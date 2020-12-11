@@ -1,0 +1,90 @@
+.shopCen {
+	width: 1003px;
+	margin-bottom: 30px;
+}
+.shopCenC {
+	
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+}
+.shopCenC .shopCartTitle {
+	background-image: url(../images/empty-shopping-cart.png);
+	background-repeat: no-repeat;
+	background-position: 0px center;
+	padding-left: 24px;
+}
+
+
+.shopCenL {
+	width: 220px;
+	float: left;
+	background-color: #f7f7f7;
+	border: 1px solid #ccc;
+}
+.shopCen h1 {
+	line-height: 40px;
+	text-indent: 20px;
+	height: 40px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #ccc;
+	font-size: 16px;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+.shopCenR {
+	width: 768px;
+	float: right;
+}
+.shopCenR .shopCenRtlBg {
+	background-image: url(../images/mail_group.png);
+	background-repeat: no-repeat;
+	background-position: 0px center;
+	padding-left: 12px;
+}
+
+.shopCenC table{
+	background-color: #ccc;
+	text-align: center;
+	line-height: 32px;
+}
+.shopCenC table tr{
+	background-color: #fff;
+}
+.shopCenC table th{
+	line-height: 30px;
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	height: 30px;
+}
+.shopCenC table td {
+	color: #0092D2;
+}
+
+.shopCenR table {
+	margin-left: 30px;
+	line-height: 32px;
+	width: 600px;
+}
+.shopCenR table th {
+	text-align: right;
+	padding-right: 15px;
+}
+.shopCenR .shopCenRtd  {
+	padding-top: 20px;
+}
+
+.shopCenRform {
+	line-height: 24px;
+	width: auto;
+	border: 1px solid #CCC;
+	height: 24px;
+}
+.shopCenRformT {
+	width: 300px;
+	height: 48px;
+	border: 1px solid #ccc;
+}

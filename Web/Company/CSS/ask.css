@@ -1,0 +1,23 @@
+﻿.ask_t {
+	background-image: url(../images/ask_5.gif);
+
+	background-repeat: repeat-x;
+}
+.ask_l {
+	background-image: url(../images/ask_9.gif);
+	background-repeat: repeat-y;
+}
+.ask_r {
+	background-image: url(../images/ask_11.gif);
+	background-repeat: repeat-y;
+}
+.ask_b {
+	background-image: url(../images/ask_23.gif);
+	background-repeat: repeat-x;
+}
+.space {
+	padding-left:36px;
+}
+td {
+	font-size:12px;
+}

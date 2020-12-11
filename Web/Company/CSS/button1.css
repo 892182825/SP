@@ -1,0 +1,301 @@
+﻿.button {
+    background-color: transparent;
+    border-style: none;
+    border-width: 0;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+.button:hover {
+    background-position: 0 -53px;
+}
+.button:active {
+    background-position: 0 -106px;
+}
+.button.Customer_add {
+    background-image: url("../images/Customer_add.png");
+    height: 53px;
+    width: 251px;
+}
+.Next {
+    background-color: transparent;
+    background-image: url("../images/Customer_su.png");
+    border-style: none;
+    border-width: 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    height: 53px;
+    text-shadow: 0 1px 1px #FFFEFF;
+    width: 160px;
+}
+.Next:hover {
+    background-position: 0 -53px;
+}
+.Next:active {
+    background-position: 0 -106px;
+}
+.submit {
+    background-color: transparent;
+    background-image: url("../images/submit.png");
+    border-style: none;
+    border-width: 0;
+    font-weight: bold;
+    height: 29px;
+    text-shadow: 0 1px 1px #FFFEFF;
+    width: 85px;
+}
+.submit:hover {
+    background-position: 0 -29px;
+}
+.submit:active {
+    background-position: 0 -58px;
+}
+.search {
+    background-color: transparent;
+    background-image: url("../images/search.png");
+    color: #666666;
+    height: 24px;
+    text-shadow: 0 1px 1px #FFFEFF;
+    width: 90px;
+}
+.search:hover {
+    background-position: 0 -25px;
+}
+.search:active {
+    background-position: 0 -50px;
+}
+.submit_button {
+    padding: 10px 10px 10px 240px;
+}
+div.cssbutton {
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    margin: 2px 5px;
+    padding: 0;
+    text-align: center;
+}
+div.cssbutton input {
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 25px;
+    margin-right: 2px;
+    padding: 0 10px 0 12px;
+    white-space: nowrap;
+    _margin-right: 0px;
+}
+div.cssbutton.sample25 input {
+    font: 12px/24px "微软雅黑";
+    height: 25px;
+   
+}
+div.cssbutton.sample34 input {
+    font: bold 15px/32px "微软雅黑";
+    height: 34px;
+}
+div.cssbutton.blue input {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #2963A4;
+}
+div.cssbutton.green input {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #4C9021;
+}
+div.cssbutton.pink input {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #DD325E;
+}
+div.cssbutton.black input {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #000000;
+}
+div.cssbutton.white input {
+    color: #444444;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+div.cssbutton.gray input {
+    color: #888888;
+    text-shadow: 0 1px 0 #CCCCCC;
+}
+div.cssbutton.yellow input {
+    color: #C95D00;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+div.cssbutton.mblue input, div.cssbutton.lblue input {
+    color: #2963A4;
+    text-shadow: none;
+}
+div.cssbutton.sample34.mblue input {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #FC900F;
+}
+div.cssbutton.sample25.blue {
+    background: url("../images/blue_25_cap.png") no-repeat scroll 100% 0 transparent;
+	height: 42px;
+}
+div.cssbutton.sample25.lblue {
+    background: url("../images/lblue_25_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.mblue {
+    background: url("../images/mblue_25_cap_v3.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.pink {
+    background: url("../images/pink_25_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.gray {
+    background: url("../images/gray_25_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.green {
+    background: url("../images/green_25_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.black {
+    background: url("../images/black_25_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.yellow {
+    background: url("../images/yellow_25_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.white {
+    background: url("../images/white_25_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample25.blue input {
+    background: url("../images/blue_25.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.lblue input {
+    background: url("../images/lblue_25_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.mblue input {
+    background: url("../images/mblue_25_v3.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.pink input {
+    background: url("../images/pink_25_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.gray input {
+    background: url("../images/gray_25_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.green input {
+    background: url("../images/green_25.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.black input {
+    background: url("../images/black_25.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.yellow input {
+    background: url("../images/yellow_25_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25.white input {
+    background: url("../images/white_25_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.blue  {
+    background: url("../images/blue_34_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.lblue {
+    background: url("../images/lblue_34_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.mblue {
+    background: url("../images/mblue_34_cap_v3.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.pink {
+    background: url("../images/pink_34_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.gray {
+    background: url("../images/gray_34_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.green {
+    background: url("../images/green_34_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.black {
+    background: url("../images/black_34_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.yellow {
+    background: url("../images/yellow_34_cap_.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.white {
+    background: url("../images/white_34_cap.png") no-repeat scroll 100% 0 transparent;
+}
+div.cssbutton.sample34.blue input {
+    background: url("../images/blue_34.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.lblue input {
+    background: url("../images/lblue_34_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.mblue input {
+    background: url("../images/mblue_34_v3.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.pink input {
+    background: url("../images/pink_34_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.gray input {
+    background: url("../images/gray_34_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.green input {
+    background: url("../images/green_34.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.black input {
+    background: url("../images/black_34.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.yellow input {
+    background: url("../images/yellow_34_.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample34.white input {
+    background: url("../images/white_34.png") no-repeat scroll 0 0 transparent;
+}
+div.cssbutton.sample25:hover {
+    background-position: 100% 50%;
+}
+div.cssbutton.sample25:hover input {
+    background-position: 0 50%;
+    text-decoration: none;
+}
+div.cssbutton.sample25:active {
+    background-position: 100% 100%;
+}
+div.cssbutton.sample25:active input {
+    background-position: 0 100%;
+    text-decoration: none;
+}
+div.cssbutton.sample34:hover {
+    background-position: 100% 50%;
+}
+div.cssbutton.sample34:hover input {
+    background-position: 0 50%;
+    text-decoration: none;
+}
+div.cssbutton.sample34:active {
+    background-position: 100% 100%;
+}
+div.cssbutton.sample34:active input {
+    background-position: 0 100%;
+    text-decoration: none;
+}
+div.cssbutton.sample25.gray:hover {
+    background-position: 100% 0;
+}
+div.cssbutton.sample25.gray:hover input {
+    background-position: 0 0;
+    text-decoration: none;
+}
+div.cssbutton.sample25.gray:active {
+    background-position: 100% 0;
+}
+div.cssbutton.sample25.gray:active input {
+    background-position: 0 0;
+    text-decoration: none;
+}
+div.cssbutton.sample34.gray:hover {
+    background-position: 100% 0;
+}
+div.cssbutton.sample34.gray:hover input {
+    background-position: 0 0;
+    text-decoration: none;
+}
+div.cssbutton.sample34.gray:active {
+    background-position: 100% 0;
+}
+div.cssbutton.sample34.gray:active input {
+    background-position: 0 0;
+    text-decoration: none;
+}
+

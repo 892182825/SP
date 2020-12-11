@@ -1,0 +1,50 @@
+* {
+	margin:0;padding:0;border:0;
+
+}
+.PrListImgCart {
+	width: 320px;
+	border:solid #CCC 1px;
+	background-color:White;
+}
+ul {
+	list-style-type: none;
+}
+.Plic-Title {
+	font-family: "宋体", Arial;
+	font-size: 16px;
+	line-height: 30px;
+	color: #dd5c1d;
+	text-indent: 20px;
+	background-color: #fff8ed;
+}
+.PrListImgCart .plic-1 {
+	font-family: "宋体", Arial;
+	font-size: 12px;
+	color: #3e3e3e;
+	line-height: 24px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 260px;
+	background-color: #FFF8ED;
+	border: 1px solid #DD5C1D;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}.plic-1 ul {
+	text-indent: 24px;
+}
+.plic-1 .plicImg-1 {
+	background-image: url(../images/wx_register__iii.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.PrListImgCart .plic-2 {
+	padding-left: 30px;
+	height: 30px;
+	margin-bottom: 15px;
+}
+.plic-2 ul li {
+	float: left;
+	padding-right: 30px;
+    width:135px
+}

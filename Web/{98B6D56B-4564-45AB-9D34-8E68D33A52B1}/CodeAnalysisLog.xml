@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="d:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Jiegou" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Link_Map(System.Int32,System.Boolean,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="Jiegou.cs" Line="2693">可以在方法 'Jiegou.Link_Map(int, bool, string, string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 2693</Issue>
+            </Message>
+            <Message TypeName="检查 SQL 查询是否存在安全漏洞" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="Jiegou.cs" Line="2610">传递给 'Jiegou.Link_Map(int, bool, string, string)' 中的 'SqlCommand.CommandText.set(string)' 的查询字符串可能包含以下变量 'shangji', 'new string[7][3]', 'bianhao'。如果其中的任意变量可能来自用户输入，请考虑使用存储过程或参数化 SQL 查询，而不是通过字符串串联来生成查询。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="Jiegou.cs" Line="2607">传递给 'Jiegou.Link_Map(int, bool, string, string)' 中的 'SqlCommand.SqlCommand(string)' 的查询字符串可能包含以下变量 'shangji', 'new string[7][3]', 'bianhao'。如果其中的任意变量可能来自用户输入，请考虑使用存储过程或参数化 SQL 查询，而不是通过字符串串联来生成查询。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MemberWebService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DelWithdraw(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="5431">可以在方法 'MemberWebService.DelWithdraw(string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 5431, 5432</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ElectronicFundsTransfer(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="5708">可以在方法 'MemberWebService.ElectronicFundsTransfer(string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 5708</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LoadExpectNum(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="427">可以在方法 'MemberWebService.LoadExpectNum(string)' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 427</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Member_FirstPage(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="1142">可以在方法 'MemberWebService.Member_FirstPage(string)' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 1142</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#MessageCascade(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="7018">可以在方法 'MemberWebService.MessageCascade(string)' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 7018</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowStoreInfo(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="3283">可以在方法 'MemberWebService.ShowStoreInfo(string)' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 3283</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SubmitOrders(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="MemberWebService.cs" Line="2589">可以在方法 'MemberWebService.SubmitOrders(string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 2589</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PublicClass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SendMsg(System.Int32,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="PublicClass.cs" Line="314">可以在方法 'PublicClass.SendMsg(int, string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 314, 316</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SendMsg(System.Int32,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="PublicClass.cs" Line="417">可以在方法 'PublicClass.SendMsg(int, string, string)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 417, 419</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UnZipClass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#UnZip(System.String[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="206">'UnZipClass.UnZip(string[])' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="212">可以在方法 'UnZipClass.UnZip(string[])' 中多次释放对象 'File.OpenRead(args[0])'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 212</Issue>
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="212">可以在方法 'UnZipClass.UnZip(string[])' 中多次释放对象 's'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 212</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ZipClass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ZipFile(System.String,System.String,System.Int32,System.Int32,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="39">'ZipClass.ZipFile(string, string, int, int, string)' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ZipFile(System.String,System.String,System.String&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="145">可以在方法 'ZipClass.ZipFile(string, string, out string)' 中多次释放对象 'File.Create(zipFilePath)'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 145</Issue>
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CompressionFile.cs" Line="145">可以在方法 'ZipClass.ZipFile(string, string, out string)' 中多次释放对象 's'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 145</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SqlCheck">
+       <Types>
+        <Type Name="CheckPost" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetHandler(System.Web.HttpContext,System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="NonBreaking">
+             <Issue Certainty="33" Level="CriticalError" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\App_Code" File="CheckPost.cs" Line="27">'CheckPost.GetHandler(HttpContext, string, string, string)' 调入具有 LinkDemand 的 'PageHandlerFactory.GetHandler(HttpContext, string, string, string)'。通过此调用，'PageHandlerFactory.GetHandler(HttpContext, string, string, string)' 被间接公开给用户代码。检查以下可能公开避开安全保护的方法的调用堆栈: &#xD;&#xA;   -&gt;'CheckPost.GetHandler(HttpContext, string, string, string)'&#xD;&#xA;   -&gt;'CheckPost.GetHandler(HttpContext, string, string, string)'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_global.asax.dll">
+   <Modules>
+    <Module Name="app_global.asax.dll">
+     <Namespaces>
+      <Namespace Name="ASP">
+       <Types>
+        <Type Name="global_asax" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#TimeMethod(System.Object,System.Timers.ElapsedEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web" File="Global.asax" Line="94">可以在方法 'global_asax.TimeMethod(object, ElapsedEventArgs)' 中多次释放对象 'fs'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 94, 95</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_0xpd0res.dll">
+   <Modules>
+    <Module Name="app_web_0xpd0res.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="LLT_AZ" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindData()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Store" File="LLT_AZ.aspx.cs" Line="165">可以在方法 'LLT_AZ.BindData()' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 165</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Store_StoreInfoModify" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#getStoreInfoByID(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Store" File="StoreInfoModify.aspx.cs" Line="141">可以在方法 'Store_StoreInfoModify.getStoreInfoByID(int)' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 141</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_2jlcg5rf.dll">
+   <Modules>
+    <Module Name="app_web_2jlcg5rf.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="MemberSpace_MultiShop" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWZN()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\MemberSpace" File="MultiShop.aspx.cs" Line="47">可以在方法 'MemberSpace_MultiShop.GetWZN()' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 47</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_422mpv2g.dll">
+   <Modules>
+    <Module Name="app_web_422mpv2g.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_AddProduct" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#deleteFold(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="AddProduct.aspx.cs" Line="433">可以在方法 'Company_AddProduct.deleteFold(int)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 433, 436</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#deleteItem(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="AddProduct.aspx.cs" Line="380">可以在方法 'Company_AddProduct.deleteItem(int)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 380, 383</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_gde4kx0v.dll">
+   <Modules>
+    <Module Name="app_web_gde4kx0v.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="LLT_AZ" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindData()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="LLT_AZ.aspx.cs" Line="153">可以在方法 'LLT_AZ.BindData()' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 153</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="LLT_TJ" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindData()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="LLT_TJ.aspx.cs" Line="166">可以在方法 'LLT_TJ.BindData()' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 166</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Member_MessageContent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="MessageContent.aspx.cs" Line="68">可以在方法 'Member_MessageContent.Page_Load(object, EventArgs)' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 68</Issue>
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="MessageContent.aspx.cs" Line="68">可以在方法 'Member_MessageContent.Page_Load(object, EventArgs)' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 68</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Member_ShowRegStore" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#bindData()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="ShowRegStore.aspx.cs" Line="84">可以在方法 'Member_ShowRegStore.bindData()' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 84</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_gn5xlqpx.dll">
+   <Modules>
+    <Module Name="app_web_gn5xlqpx.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_restpass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btn_ok_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="restpass.aspx.cs" Line="295">可以在方法 'Company_restpass.btn_ok_Click(object, EventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 295</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_hfrqweqt.dll">
+   <Modules>
+    <Module Name="app_web_hfrqweqt.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_FaHuo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SetFH()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="FaHuo.aspx.cs" Line="182">可以在方法 'Company_FaHuo.SetFH()' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 182</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Company_ReleaseGrant" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#IsProcessExist(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="NonBreaking">
+             <Issue Certainty="33" Level="CriticalError" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="SalaryGrant.aspx.cs" Line="191">'Company_ReleaseGrant.IsProcessExist(string)' 调入具有 LinkDemand 的 'Process.GetProcessesByName(string)'。通过此调用，'Process.GetProcessesByName(string)' 被间接公开给用户代码。检查以下可能公开避开安全保护的方法的调用堆栈: &#xD;&#xA;   -&gt;'Company_ReleaseGrant.IsProcessExist(string)'&#xD;&#xA;   -&gt;'Company_ReleaseGrant.IsProcessExist(string)'</Issue>
+             <Issue Certainty="33" Level="CriticalError" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="SalaryGrant.aspx.cs" Line="191">'Company_ReleaseGrant.IsProcessExist(string)' 调入具有 LinkDemand 的 'Process.ProcessName.get()'。通过此调用，'Process.ProcessName.get()' 被间接公开给用户代码。检查以下可能公开避开安全保护的方法的调用堆栈: &#xD;&#xA;   -&gt;'Company_ReleaseGrant.IsProcessExist(string)'&#xD;&#xA;   -&gt;'Company_ReleaseGrant.IsProcessExist(string)'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_hvr0g1j5.dll">
+   <Modules>
+    <Module Name="app_web_hvr0g1j5.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="LLT_TJ" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindData()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Store" File="LLT_TJ.aspx.cs" Line="171">可以在方法 'LLT_TJ.BindData()' 中多次释放对象 'dr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 171</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_hyb3p2kb.dll">
+   <Modules>
+    <Module Name="app_web_hyb3p2kb.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Member_Index" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LoadMemberInfo()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="First.aspx.cs" Line="65">可以在方法 'Member_Index.LoadMemberInfo()' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 65</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_lbnrl2pc.dll">
+   <Modules>
+    <Module Name="app_web_lbnrl2pc.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_MemberOffSP" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnquery_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="MemberOffSP.aspx.cs" Line="173">可以在方法 'Company_MemberOffSP.btnquery_Click(object, EventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 173</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_ohquofih.dll">
+   <Modules>
+    <Module Name="app_web_ohquofih.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Store_MoneyTransfer" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Button1_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Store" File="MoneyTransfer.aspx.cs" Line="151">可以在方法 'Store_MoneyTransfer.Button1_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 151</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_p4yn4bs1.dll">
+   <Modules>
+    <Module Name="app_web_p4yn4bs1.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Member_AddLsOrder" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Button1_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\RegisterMember" File="AddLsOrder.aspx.cs" Line="480">可以在方法 'Member_AddLsOrder.Button1_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 480, 535</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_pyb0s5dy.dll">
+   <Modules>
+    <Module Name="app_web_pyb0s5dy.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_SetNetTree" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnOk_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="SetNetTree.aspx.cs" Line="176">可以在方法 'Company_SetNetTree.btnOk_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 176</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_s3shxxnw.dll">
+   <Modules>
+    <Module Name="app_web_s3shxxnw.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_Default" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="Index.aspx.cs" Line="48">可以在方法 'Company_Default.Page_Load(object, EventArgs)' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 48</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_us5fufcd.dll">
+   <Modules>
+    <Module Name="app_web_us5fufcd.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ReadImage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web" File="ReadImage.aspx.cs" Line="44">可以在方法 'ReadImage.Page_Load(object, EventArgs)' 中多次释放对象 'myReader'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 44</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="TWAjax" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#IsTW(System.String,System.String,System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="检查 SQL 查询是否存在安全漏洞" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web" File="TWAjax.aspx.cs" Line="102">传递给 'TWAjax.IsTW(string, string, string, string, string)' 中的 'SqlCommand.CommandText.set(string)' 的查询字符串可能包含以下变量 'cw', 'xh', 'qs', 'parentxh'。如果其中的任意变量可能来自用户输入，请考虑使用存储过程或参数化 SQL 查询，而不是通过字符串串联来生成查询。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web" File="TWAjax.aspx.cs" Line="81">传递给 'TWAjax.IsTW(string, string, string, string, string)' 中的 'SqlCommand.SqlCommand(string, SqlConnection)' 的查询字符串可能包含以下变量 'cw', 'xh', 'qs', 'btwbianhao'。如果其中的任意变量可能来自用户输入，请考虑使用存储过程或参数化 SQL 查询，而不是通过字符串串联来生成查询。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_vg2ofgen.dll">
+   <Modules>
+    <Module Name="app_web_vg2ofgen.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="sendpki" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#QuickPayment(System.String,System.Double)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\payserver\quickPay" File="sendpki.aspx.cs" Line="196">'sendpki.QuickPayment(string, double)' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_vl0odjbd.dll">
+   <Modules>
+    <Module Name="app_web_vl0odjbd.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_QuerySMS" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Button1_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="QuerySMS.aspx.cs" Line="216">可以在方法 'Company_QuerySMS.Button1_Click(object, EventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 216</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Button2_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="QuerySMS.aspx.cs" Line="264">可以在方法 'Company_QuerySMS.Button2_Click(object, EventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 264</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GridView1_RowCommand(System.Object,System.Web.UI.WebControls.GridViewCommandEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="QuerySMS.aspx.cs" Line="144">可以在方法 'Company_QuerySMS.GridView1_RowCommand(object, GridViewCommandEventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 144</Issue>
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="QuerySMS.aspx.cs" Line="179">可以在方法 'Company_QuerySMS.GridView1_RowCommand(object, GridViewCommandEventArgs)' 中多次释放对象 'con'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 179</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_vouk4lki.dll">
+   <Modules>
+    <Module Name="app_web_vouk4lki.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Member_Index" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindLanguage()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="Index.aspx.cs" Line="73">可以在方法 'Member_Index.BindLanguage()' 中多次释放对象 'reader'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 73</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ddlLanguage_SelectedIndexChanged(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="Index.aspx.cs" Line="277">可以在方法 'Member_Index.ddlLanguage_SelectedIndexChanged(object, EventArgs)' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 277</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="Index.aspx.cs" Line="43">可以在方法 'Member_Index.Page_Load(object, EventArgs)' 中多次释放对象 'sdr'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 43</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Member_MoneyManage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnE_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Member" File="MoneyManage.aspx.cs" Line="322">可以在方法 'Member_MoneyManage.btnE_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 322</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\Ha\AppData\Local\Temp\tmp1A9E.tmp.cadir\bin\App_Web_wqefv1gy.dll">
+   <Modules>
+    <Module Name="app_web_wqefv1gy.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Company_AuditingStoreRegister" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#givStoreInfo_RowCommand(System.Object,System.Web.UI.WebControls.GridViewCommandEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="AuditingStoreRegister.aspx.cs" Line="118">可以在方法 'Company_AuditingStoreRegister.givStoreInfo_RowCommand(object, GridViewCommandEventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 118</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Company_NetWorkDisplaySetting" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnsetup_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="NetWorkDisplaySetting.aspx.cs" Line="128">可以在方法 'Company_NetWorkDisplaySetting.btnsetup_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 128</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Button1_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="NetWorkDisplaySetting.aspx.cs" Line="180">可以在方法 'Company_NetWorkDisplaySetting.Button1_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 180</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Button2_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="NetWorkDisplaySetting.aspx.cs" Line="232">可以在方法 'Company_NetWorkDisplaySetting.Button2_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 232</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Company_StorageIn" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSaveOrder_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-03 05:45:34Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\Projects\UniversalEdition\UniversalEdition\Web\Company" File="StorageIn.aspx.cs" Line="301">可以在方法 'Company_StorageIn.btnSaveOrder_Click(object, EventArgs)' 中多次释放对象 'conn'。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 301</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122">
+   <Name>不要使用链接请求间接公开方法</Name>
+   <Description>不要使用不执行安全性检查的方法来包装受 LinkDemand 保护的方法。LinkDemand 检查直接调用方的权限而不是调用堆栈中所有调用方的权限。在这种情况下，将检查包装器方法的权限。如果包装器方法本身不检查调用堆栈中位置较高的调用方的权限，则尽管恶意代码没有足够的权限，但它仍可能能够执行被包装的函数。</Description>
+   <Resolution Name="Default">{0} 调入具有 LinkDemand 的 {1}。通过此调用，{1} 被间接公开给用户代码。检查以下可能公开避开安全保护的方法的调用堆栈: {2}</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182303.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="33">CriticalError</MessageLevel>
+   <File Name="securityrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>再次引发以保留堆栈详细信息</Name>
+   <Description>重复引发捕获的异常时，请使用 IL 再次引发指令保留原始堆栈详细信息。</Description>
+   <Resolution Name="Default">{0} 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="不要多次释放对象" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>不要多次释放对象</Name>
+   <Description>可以多次调用正确实现的 Dispose 方法，而不会引发异常。但是，并不保证所有情况下都会如此。若要避免生成 System.ObjectDisposedException，您不应对一个对象多次调用 Dispose。</Description>
+   <Resolution Name="Default">可以在方法 {1} 中多次释放对象 {0}。若要避免生成 System.ObjectDisposedException，不应对一个对象多次调用 Dispose。: Lines: 165</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="检查 SQL 查询是否存在安全漏洞" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>检查 SQL 查询是否存在安全漏洞</Name>
+   <Description>通过用户输入生成的 SQL 命令字符串容易受到 SQL 注入式攻击。Microsoft SQL Server 和其他数据库服务器支持存储过程和参数化 SQL 查询，这将降低受到注入式攻击的风险。</Description>
+   <Resolution Name="WithNonLiterals">传递给 {1} 中的 {0} 的查询字符串可能包含以下变量 {2}。如果其中的任意变量可能来自用户输入，请考虑使用存储过程或参数化 SQL 查询，而不是通过字符串串联来生成查询。</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">类别</String>
+  <String Key="Certainty">确定性</String>
+  <String Key="CollapseAll">全部折叠</String>
+  <String Key="CheckId">检查 ID</String>
+  <String Key="Error">错误</String>
+  <String Key="Errors">错误</String>
+  <String Key="ExpandAll">全部展开</String>
+  <String Key="Help">帮助</String>
+  <String Key="Line">行</String>
+  <String Key="Messages">消息</String>
+  <String Key="LocationNotStoredInPdb">[位置未存储在 Pdb 中]</String>
+  <String Key="Project">项目</String>
+  <String Key="Resolution">解析</String>
+  <String Key="Rule">规则</String>
+  <String Key="RuleFile">规则文件</String>
+  <String Key="RuleDescription">规则说明</String>
+  <String Key="Source">源</String>
+  <String Key="Status">状态</String>
+  <String Key="Target">目标</String>
+  <String Key="Warning">警告</String>
+  <String Key="Warnings">警告</String>
+  <String Key="ReportTitle">代码分析报告</String>
+ </Localized>
+ <Exceptions>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>目标平台“mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”与“mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”冲突。</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>目标平台“mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”与“mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”冲突。</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>目标平台“mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”与“mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”冲突。</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>目标平台“mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”与“mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”冲突。</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>目标平台“mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”与“mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”冲突。</ExceptionMessage>
+  </Exception>
+ </Exceptions>
+</FxCopReport>

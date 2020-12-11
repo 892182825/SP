@@ -1,0 +1,6 @@
+<Configs>
+  <SmsUrl id="smsUrl" value="http://www.139000.com/send/gsend.asp?" text="http://www.139000.com/send/gsend.asp?" />
+  <UserName id="userName" value="常爱华" text="常爱华" />
+  <Pwd id="pwd" value="sh2009" text="sh2009" />
+  <IsOpen id="isOpen" value="1" text="1" />
+</Configs>

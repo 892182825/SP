@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*== 全局变量 ===========================
+RESET / 属性重置
+TYPOGRAPHY / 为基本元素定义样式
+---------------------------------------*/
+
+/*** RESET / 属性重置 ***/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,a,em,font,img,samp,small,strike,strong,tt,b,u,i,center,dl,dt,dd,ol,ul,li,a,fieldset,form,input,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,textarea, button{
+	margin:0;padding:0;border:0;outline:0; vertical-align:middle; }
+
+/*** BASIC TYPOGRAPHY / 为基本元素定义样式***/
+html { font-size: 100%;  font-family: "宋休", Helvetica, Arial, sans-serif;}
+strong, th, thead td, h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+cite, em, dfn { font-style: italic; }
+code, kbd, samp, pre, tt, var, input[type='text'], input[type='password'], textarea { font-size: 92%; font-family: monaco, "Lucida Console", courier, monospace; }
+del { text-decoration: line-through; color: #666; }
+ins, dfn { border-bottom: 1px solid #ccc; }
+small, sup, sub { font-size: 85%; }
+abbr, acronym { text-transform: uppercase; font-size: 85%; letter-spacing: .1em; }
+a abbr, a acronym { border: none; }
+abbr[title], acronym[title], dfn[title] { cursor: help; border-bottom: 1px solid #ccc; }
+sup { vertical-align: super; }
+sub { vertical-align: sub; }
+
+/*** FORMS ***/
+fieldset {}
+legend { font-weight: bold; font-size:1.2em; }
+label { font-weight: bold; }
+textarea, input[type='text'], input[type='password'], select {border: 1px solid #CBCBCB; background: #fff;-moz-background-clip: border;-moz-background-inline-policy: continuous;-moz-background-origin: padding;vertical-align: middle;background-image:url(../images/input-bg.png);background-position: 0 -72px;padding: 2px; line-height:22px;font-size: 12px;padding: 2px;line-height:20px;}
+textarea:hover, input[type='text']:hover, input[type='password']:hover, select:hover { border-color: #aaa; }
+textarea:focus, input[type='text']:focus, input[type='password']:focus, select:focus { outline: 2px solid #ffffaa; }
+input, select { cursor: pointer; }
+input[type='text'],input[type='password'] { cursor: text; }
+input{height: 22px;
+	width: 109px;
+}
+.ipt-t{font-size: 10px;	color: #454545;	border: 1px solid #CCC;	padding: 2px;height: 16px; line-height:20px;}
+.search-text {font-size: 10px;color: #999;border: 1px solid #CCC;padding: 2px;height: 16px; line-height:20px; width:120px;}
+input.xx{width:40px;}
+
+/*** LISTS ***/
+ul { list-style-type: disc; }
+li { list-style:none;}
+ul ul { list-style-type: square; }
+ul ul ul { list-style-type: circle; }
+ol { list-style-position: outside; list-style-type: decimal; }
+
+.left{float:left;}
+.right{float:right;}
+.nowrap {white-space:nowrap;}
+
+/*****Clear fix / 定义浮动*/
+hr {background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:.1em;margin:0 0 1.45em;border:none;}
+hr.space {background:#fff;color:#fff;}
+.clearfix:after, .container:after {content:".";display:block;height:0;clear:both;visibility:hidden;max-height:0;}
+.clearfix, .container {display:inline-block;}
+* html .clearfix, * html .container {height:1%;}
+.clearfix, .container {display:block;}
+.clear {clear:both;}
+
+/*** COLORS / 标准链接颜色***/
+a:link {text-decoration:  none;	color: #000;}
+a:visited { text-decoration:  none; color: #000; }
+a:hover { text-decoration: none; color: #c33; }
+a:active, a:focus { text-decoration: none; color: #000; }

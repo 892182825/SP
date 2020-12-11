@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFD85971-0FC8-4D5A-825B-5FDE2FEA00ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.TeamSystem.Data.UnitTesting, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlbumsModel.cs" />
+    <Compile Include="AlbumsPhotosModel.cs" />
+    <Compile Include="BackupDatabaseModel.cs" />
+    <Compile Include="BalanceToPurseDetailModel.cs" />
+    <Compile Include="BatchModel.cs" />
+    <Compile Include="BlackGroupModel.cs" />
+    <Compile Include="BlacklistModel.cs" />
+    <Compile Include="BMOrder.cs" />
+    <Compile Include="BMOrderPW.cs" />
+    <Compile Include="BochulvModel.cs" />
+    <Compile Include="BonusDifferenceModel.cs" />
+    <Compile Include="Branch\BranchModel.cs" />
+    <Compile Include="BscoLevelModel.cs" />
+    <Compile Include="Bsco_PaperType.cs" />
+    <Compile Include="CancelBalanceToPurseDetailModel.cs" />
+    <Compile Include="ChangeLogsModel.cs" />
+    <Compile Include="ChineseControlModel.cs" />
+    <Compile Include="ChongHongModel.cs" />
+    <Compile Include="CityModel.cs" />
+    <Compile Include="CompanyBankModel.cs" />
+    <Compile Include="CompanyDeptModel.cs" />
+    <Compile Include="ConfigModel.cs" />
+    <Compile Include="ConsigneeInfo.cs" />
+    <Compile Include="Const\ActionConst.cs" />
+    <Compile Include="Const\CMDConst.cs" />
+    <Compile Include="Const\DocTypeConst.cs" />
+    <Compile Include="Const\OrderStatusEnum.cs" />
+    <Compile Include="Const\PaywayConst.cs" />
+    <Compile Include="Const\RefundmentOrderStatusEnum.cs" />
+    <Compile Include="Const\RefundsTypeConst.cs" />
+    <Compile Include="CountryModel.cs" />
+    <Compile Include="CurrencyModel.cs" />
+    <Compile Include="DeductModel.cs" />
+    <Compile Include="DefaultMessage.cs" />
+    <Compile Include="DepotSeatModel.cs" />
+    <Compile Include="DeptRoleModel.cs" />
+    <Compile Include="DetailMoneyModel.cs" />
+    <Compile Include="DocTypeDetailModel.cs" />
+    <Compile Include="DocTypeTableModel.cs" />
+    <Compile Include="PhoneRecharge.cs" />
+    <Compile Include="StoreAccountModel.cs" />
+    <Compile Include="ECRemitDetailModel.cs" />
+    <Compile Include="ECTransferDetailModel.cs" />
+    <Compile Include="EncryptionSetting.cs" />
+    <Compile Include="EnglishControlModel.cs" />
+    <Compile Include="EnumClass.cs" />
+    <Compile Include="GiveProductModel.cs" />
+    <Compile Include="GlobalModel.cs" />
+    <Compile Include="InventoryDocDetailsModel.cs" />
+    <Compile Include="InventoryDocModel.cs" />
+    <Compile Include="LanguageModel.cs" />
+    <Compile Include="LanguageTransModel.cs" />
+    <Compile Include="Logistics\RefundmentOrderDocModel.cs" />
+    <Compile Include="GradingModel.cs" />
+    <Compile Include="LogicProductInventoryModel.cs" />
+    <Compile Include="LoginModel.cs" />
+    <Compile Include="LogisticsInfoModel.cs" />
+    <Compile Include="LogisticsModel.cs" />
+    <Compile Include="LogModel.cs" />
+    <Compile Include="ManageModel.cs" />
+    <Compile Include="ManagerPermissionModel.cs" />
+    <Compile Include="MemberBankModel.cs" />
+    <Compile Include="MemberDetailsModel.cs" />
+    <Compile Include="MemberInfoBalanceNModel.cs" />
+    <Compile Include="MemberInfoModel.cs" />
+    <Compile Include="MemberMessage.cs" />
+    <Compile Include="MemberOffModel.cs" />
+    <Compile Include="MemberOrderModel.cs" />
+    <Compile Include="MemOrderLineModel.cs" />
+    <Compile Include="MenuModel.cs" />
+    <Compile Include="MessageDropModel.cs" />
+    <Compile Include="MessageReciveModel.cs" />
+    <Compile Include="MessageSendModel.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="MoneyTransferModel.cs" />
+    <Compile Include="NavigationModel.cs" />
+    <Compile Include="NetAdjustmentHistoryModel.cs" />
+    <Compile Include="NetWorkDisplayStatusModel.cs" />
+    <Compile Include="OrderDetailModel.cs" />
+    <Compile Include="OrderFinalModel.cs" />
+    <Compile Include="OrderGoodsDetailModel.cs" />
+    <Compile Include="OrderGoodsMedel.cs" />
+    <Compile Include="OrderProduct2.cs" />
+    <Compile Include="OrderProduct3.cs" />
+    <Compile Include="Orders\MemberOrderModel.cs" />
+    <Compile Include="Other\CodingRule.cs" />
+    <Compile Include="Other\Common.cs" />
+    <Compile Include="Other\CYWLTModel.cs" />
+    <Compile Include="Other\DisposeString.cs" />
+    <Compile Include="Other\MD5Help.cs" />
+    <Compile Include="Other\MyDateTime.cs" />
+    <Compile Include="Other\PageInfo.cs" />
+    <Compile Include="Other\PaginationModel.cs" />
+    <Compile Include="Other\QuickPay.cs" />
+    <Compile Include="Other\WebSiteBaseDataConfig.cs" />
+    <Compile Include="PayControlModel.cs" />
+    <Compile Include="PrintInventoryDoc.cs" />
+    <Compile Include="ProductColorModel.cs" />
+    <Compile Include="ProductCombineDetailModel.cs" />
+    <Compile Include="ProductModel.cs" />
+    <Compile Include="ProductQuantityModel.cs" />
+    <Compile Include="ProductSexTypeModel.cs" />
+    <Compile Include="ProductSizeModel.cs" />
+    <Compile Include="ProductSpecModel.cs" />
+    <Compile Include="ProductStatusModel.cs" />
+    <Compile Include="ProductTypeModel.cs" />
+    <Compile Include="ProductUnitModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderInfoModel.cs" />
+    <Compile Include="QueryFieldModel.cs" />
+    <Compile Include="RemittancesModel.cs" />
+    <Compile Include="RemittanceUseType.cs" />
+    <Compile Include="ReplacementDetailModel.cs" />
+    <Compile Include="ReplacementModel.cs" />
+    <Compile Include="ResourceModel.cs" />
+    <Compile Include="SetGivePVModel.cs" />
+    <Compile Include="SMScontentModel.cs" />
+    <Compile Include="StockModel.cs" />
+    <Compile Include="StoreBalanceNModel.cs" />
+    <Compile Include="StoreInfoModel.cs" />
+    <Compile Include="StoreOffModel.cs" />
+    <Compile Include="StoreOrderModel.cs" />
+    <Compile Include="TempNetAdjustmentModel.cs" />
+    <Compile Include="TranToNModel.cs" />
+    <Compile Include="UnauditedStoreInfoModel.cs" />
+    <Compile Include="UniteDocModel.cs" />
+    <Compile Include="UploadDetailsModel.cs" />
+    <Compile Include="UploadLogModel.cs" />
+    <Compile Include="VIPCardRangeModel.cs" />
+    <Compile Include="WareHouseModel.cs" />
+    <Compile Include="WithdrawModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Encryption\Encryption.csproj">
+      <Project>{2015B2E5-B400-4005-AB9E-C645614FBCAA}</Project>
+      <Name>Encryption</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

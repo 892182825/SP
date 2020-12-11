@@ -1,0 +1,193 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+}
+.STYLE1 {
+	color: #32854D;
+	font-family: "Arial";
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.STYLE2 {
+	color: #32854D;
+	font-family: "Arial";
+	font-size: 12px;
+	text-decoration: none;
+}
+.STYLE2 a {
+	color: #32854D;
+	font-family: "Arial";
+	font-size: 12px;
+	text-decoration: none;
+}
+.STYLE2 a:hover {
+	color: #32854D;
+	font-family: "Arial";
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.btch {
+	font-family: "Arial";
+	font-size: 14px;
+	line-height: 22px;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+.hzi {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.heizi3 {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 24px;
+	color: #333;
+	text-decoration: none;
+}
+.heizi6 {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #666666;
+	text-decoration: none;
+}
+.baizi {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.anliu {
+	font-size: 12px;
+	color: #FFFFFF;
+	font-family: "Arial";
+	font-weight: normal;
+	background-color: #006666;
+	border: 1px solid #D0FFFF;
+	height: 22px;
+	width: 68px;
+}
+.zucuo1 {
+	font-size: 12px;
+	color: #333333;
+}
+.zucuo1 a {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+.zucuo1 a:hover {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+.xze {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #333;
+	text-decoration: none;
+	border: 1px solid #999999;
+	padding: 2px;
+}
+.xze a {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #333;
+	text-decoration: none;
+	border: 1px solid #999999;
+	padding: 2px;
+}
+.xze a:hover {
+	font-family: "Arial";
+	font-size: 12px;
+	line-height: 22px;
+	color: #FF0000;
+	text-decoration: none;
+	border: 1px solid #999999;
+	padding: 2px;
+}
+.chongzi {
+	font-family: "Arial";
+	font-size: 9pt;
+	line-height: 22px;
+	color: #000000;
+	text-decoration: none;
+}
+.chongzi a {
+	font-family: "Arial";
+	font-size: 9pt;
+	line-height: 22px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.chongzi a:hover {
+	font-family: "Arial";
+	font-size: 9pt;
+	line-height: 22px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.qz666 {font-size: 12px;
+	color: #666666;
+	line-height: 24px;
+	font-family: "Arial";
+}
+.qz333 {font-size: 12px;
+	color: #333333;
+	line-height: 28px;
+	font-family: "Arial";
+	font-weight: bold;
+}
+.qz333 a {
+	font-size: 12px;
+	color: #333333;
+	line-height: 28px;
+	font-family: "Arial";
+	font-weight: bold;
+	text-decoration: none;
+}
+.qz333 a:hover {
+	font-size: 12px;
+	color: #FF0000;
+	line-height: 28px;
+	font-family: "Arial";
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.table11 table{
+background:#E2F5BC;
+border: 1px solid #E2F5BC;
+} 
+.table11 th {
+font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+color: #4f6b72;
+border-right: 1px solid #E2F5BC;
+border-bottom: 1px solid #E2F5BC;
+border-top: 1px solid #E2F5BC;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-align: left;
+padding: 3px 3px 3px 6px;
+background:#EDF9D5;
+} 
+.table11 td {
+border-right: 1px solid #E2F5BC;
+border-bottom: 1px solid #E2F5BC;
+background: #F8FBFB;
+font-size:12px;
+padding: 3px 3px 3px 6px;
+color: #4f6b72;
+} 

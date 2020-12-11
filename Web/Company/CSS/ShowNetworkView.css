@@ -1,0 +1,88 @@
+﻿
+    span.ss{cursor:hand;font-size:12px; }
+
+    span.bh{cursor:pointer; color:red;font-size:12px;}
+    span.xm{cursor:pointer;color:black;font-size:12px;}
+    span.js{cursor:pointer;color:black;font-size:12px;}
+    span.bs{cursor:pointer;color:blue;font-size:12px;}
+    .box{cursor:pointer; font: 8pt "宋体"; position: absolute; background: LightGrey;color:blue ;z-index:101 }
+    
+    
+        A:link
+        {
+            font-size: 12px;
+        }
+        A:visited
+        {
+            font-size: 12px;
+        }
+        A:active
+        {
+            font-size: 12px;
+        }
+        A:hover
+        {
+            font-size: 12px;
+        }
+        BODY
+        {
+            font-size: 12px;
+        }
+        TD
+        {
+            font-size: 12px;
+        }
+        .ls
+        {
+            font-size: 12px;
+        }
+        .ls2
+        {
+            font-size: 16px;
+        }
+    
+    
+span.ss{cursor:hand;font-size:12px; }
+
+span.bh{cursor:pointer; color:red;font-size:12px;}
+span.xm{cursor:pointer;color:black;font-size:12px;}
+span.js{cursor:pointer;color:black;font-size:12px;}
+span.bs{cursor:pointer;color:blue;font-size:12px;}
+.box{cursor:pointer; font: 8pt "宋体"; position: absolute; background: LightGrey;color:blue ;z-index:101 }
+
+
+<!--
+.STYLE1 {
+	font-size: 12px;
+	color: #333;
+}
+.STYLE1 a {
+	font-size: 12px;
+	color: #333;
+	text-decoration: none;
+}
+.STYLE1 a:hover {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.STYLE2 {
+	font-size: 12px;
+	color: #DFDFDF;
+}
+.STYLE3 {
+	font-size: 7px;
+	color: #DFDFDF;
+	line-height: 10px;
+}
+.box{
+    filter: progid:DXImageTransform.Microsoft.Shadow(Color=#999999,Direction=120,strength=3);
+	border: 1px solid #F3F3F3;
+	text-indent: 8px;
+	line-height: 22px;
+	width: 150px;
+} 
+ .tr{}
+        .td{}
+        .img{}
+-->

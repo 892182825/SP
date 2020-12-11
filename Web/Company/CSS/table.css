@@ -1,0 +1,274 @@
+﻿dl.View_dl {
+}
+.View_dl dt {
+    border-bottom: 1px solid #CCCCCC;
+    float: left;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    padding: 8px 0;
+    text-align: right;
+    width: 120px;
+}
+.View_dl dd {
+    border-bottom: 1px solid #CCCCCC;
+    color: #666666;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    padding: 8px;
+    width: 180px;
+}
+.list_header {
+    border: 1px solid #CABC83;
+    line-height: 30px;
+    width: 100%;
+}
+.list_footer {
+    background-color: #D7EDF2;
+    border: 1px solid #CABC83;
+    line-height: 30px;
+    width: 100%;
+}
+.ViewList_table {
+    border-left: 1px solid #CABC83;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.ViewList_table caption {
+    font: italic 11px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+    padding: 0 0 5px;
+    text-align: right;
+}
+.ViewList_table th {
+    background: url("../images/mytable_bg_header.jpg") no-repeat scroll 0 0 #F5EFB5;
+    border-bottom: 1px solid #CABC83;
+    border-right: 1px solid #CABC83;
+    border-top: 1px solid #CABC83;
+    color: #7D4400;
+    font: bold 11px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+    letter-spacing: 2px;
+    padding: 6px 6px 6px 12px;
+    text-align: left;
+    text-transform: uppercase;
+}
+.ViewList_table th.nobg {
+    background: none repeat scroll 0 0 transparent;
+    border-left: 0 none;
+    border-right: 1px solid #CABC83;
+    border-top: 0 none;
+}
+.ViewList_table td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #CABC83;
+    border-right: 1px solid #CABC83;
+    color: #7D4400;
+    padding: 6px 6px 6px 12px;
+}
+.ViewList_table td.alt {
+    background: none repeat scroll 0 0 #F5FAFA;
+    color: #797268;
+}
+.ViewList_table th.spec {
+    background: url("../images/bullet1.gif") no-repeat scroll 0 0 #FFFFFF;
+    border-left: 1px solid #CABC83;
+    border-top: 0 none;
+    font: bold 10px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+}
+.ViewList_table th.specalt {
+    background: url("../images/bullet2.gif") no-repeat scroll 0 0 #F5FAFA;
+    border-left: 1px solid #CABC83;
+    border-top: 0 none;
+    color: #797268;
+    font: bold 10px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+}
+#cart-pop {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#cart_table th {
+    background: url("../images/mytable_bg_header.jpg") no-repeat scroll 0 0 #F5EFB5;
+    border-bottom: 1px solid #CABC83;
+    border-right: 1px solid #CABC83;
+    border-top: 1px solid #CABC83;
+    color: #7D4400;
+    font: bold 11px "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+    letter-spacing: 2px;
+    padding: 6px 6px 6px 12px;
+    text-align: left;
+    text-transform: uppercase;
+}
+#cart_table td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #CABC83;
+    border-right: 1px solid #CABC83;
+    color: #7D4400;
+    padding: 4px 4px 4px 12px;
+    vertical-align: middle;
+}
+#cart_table tr.alt td {
+    background: none repeat scroll 0 0 #F5FAFA;
+}
+#cart_table td.product-img img {
+    border: 1px solid #CCCCCC;
+    display: block;
+    height: 40px;
+    margin: 0;
+    padding: 1px;
+    width: 60px;
+}
+#cart_table td.num-pallets input {
+    width: 20px;
+}
+.te_poplook {
+    
+    height: 300px;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 0px;
+    position: absolute;
+    top: 40%;
+    width: 400px;
+    z-index: 9999;
+}
+.te_poplook .te_corner, .te_poplook .te_rib {
+    background-image: url("../images/pop-div-bg.png");
+}
+.te_poplook .te_top, .te_poplook .te_bottom {
+    height: 6px;
+}
+.te_poplook .te_left, .te_poplook .te_right {
+    width: 6px;
+}
+.te_poplook .te_top .te_left {
+    background-position: 0 0;
+}
+.te_poplook .te_top .te_middle {
+    background-position: 0 -40px;
+    background-repeat: repeat-x;
+}
+.te_poplook .te_top .te_right {
+    background-position: 0 -9px;
+}
+.te_poplook .te_middle .te_left {
+    background-position: -14px 0;
+}
+.te_poplook .te_middle .te_right {
+    background-position: -14px 0;
+}
+.te_poplook .te_bottom .te_left {
+    background-position: 0 -20px;
+}
+.te_poplook .te_bottom .te_middle {
+    background-position: 0 -40px;
+    background-repeat: repeat-x;
+}
+.te_poplook .te_bottom .te_right {
+    background-position: 0 -30px;
+}
+.te_poplook #cart-pop .te_close_link {
+    background-image: url("../images/sprite.png");
+    background-position: -24px -281px;
+    height: 20px;
+    position: absolute;
+    right: 22px;
+    top: 9px;
+    width: 50px;
+    z-index: 1002;
+}
+#DivCarPop #cart-pop {
+    background-color: #FFFFFF;
+    border: 3px none;
+}
+#DivCarPop #cart-pop .title {
+    background-color: #006699;
+    color: #FFFFFF;
+    line-height: 32px;
+}
+#DivCarPop h3 {
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+#DivCarPop .te_poplook #cart-pop {
+    background-color: #FFFFFF;
+}
+#DivCarPop .te_poplook #cart-pop {
+    background-color: #FFFFFF;
+}
+
+#pop-heading
+{
+	 
+}
+.title {
+    background: url("../images/heading-cbg.png") repeat-x scroll 0 0 transparent;
+    display: block;
+    height: 40px;
+    padding-left: 40px;
+    padding-top: 5px;
+}
+.title img {
+    left: 10px;
+    position: absolute;
+    top: 10px;
+}
+.title h2 {
+    color: #D76100;
+    font-size: 14px;
+    
+    text-shadow: 0 1px 1px #FFFEFF;
+}
+.pop-content {
+    overflow: hidden;
+    width: 100%;
+}
+.notice {
+    background: url("../images/sprites_common.gif") no-repeat scroll 2px -2728px #FBF8E9;
+    border: 1px solid #FEC600;
+    color: #666666;
+    font-size: 14px;
+    line-height: 150%;
+    padding: 1px 5px 5px 23px;
+}
+
+
+.pop-footer {
+    background-image: url("../images/footer-pop-bg.png");
+    background-repeat: repeat-x;
+    bottom: 0;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.Next {
+    background-color: transparent;
+    background-image: url("../images/Customer_su.png");
+    border-style: none;
+    border-width: 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    height: 53px;
+    text-shadow: 0 1px 1px #FFFEFF;
+    width: 160px;
+}
+
+.Next111 {
+    background-color: transparent;
+    background: url("../images/Customer_su.png") no-repeat  0px -53px;
+    border-style: none;
+    border-width: 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    height: 53px;
+    text-shadow: 0 1px 1px #FFFEFF;
+    width: 160px;
+}
+

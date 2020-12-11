@@ -1,0 +1,126 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+body {
+	background-attachment: fixed;
+	background-image: url(../images/useLogin_bg.png);
+	background-repeat: no-repeat;
+}
+ul  {
+	list-style-type: none;
+}
+.systemLink {
+	/*background-image: url(../images/loginLink_02.png);*/
+	background-repeat: no-repeat;
+	height: 59px;
+	width: 720px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 140px;
+	line-height: 50px;
+	font-family: "微软雅黑";
+	color:#FFF;
+	padding-right: 10px;
+	padding-left: 10px;
+	background-position: center 0px;
+}
+.sysTitleO  {
+	float: left;
+	width: 240px;
+	text-align: center;
+}
+.sysTitleO a {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 49px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.sysTitleO a:hover {
+	color: #F60;
+	background-color: #FFF;
+}
+
+
+
+.lgbg {
+	background-image: url(../images/uselgbg_05.png);
+	background-repeat: no-repeat;
+	height: 500px;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 46px;
+	clear: both;
+}
+
+
+.lgbg .ulgTitle {
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFF;
+	font-family: "微软雅黑";
+	padding-bottom: 5px;
+	width: 600px;
+	text-align: center;
+	padding-top: 5px;
+}
+.lgbg .uselg {
+	margin-top: 20px;
+}
+
+.uselg .ulgInfo {
+	float: left;
+	background-image: url(../images/login_02-1.png);
+	background-repeat: no-repeat;
+	height: 160px;
+	width: 390px;
+	padding-top: 38px;
+}
+.ulgInfo table {
+	color: #FFF;
+	line-height: 24px;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	margin-right: 15px;
+	margin-left: auto;
+}
+.ulgInfo table a {
+	font-family: "宋体", Arial;
+	font-size: 12px;
+	color: #FFF;
+}
+.ulgInfo table a:hover {
+	color: #F00;
+}
+
+.useLoginForm {
+	height: 20px;
+	border: 1px solid #EA681D;
+	line-height: 20px;
+}
+
+.uselg .ulgButton {
+	float: left;
+}
+.ulgTxt {
+	font-family: "宋体", Arial;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFF;
+	clear: both;
+}
+.ulgTxt ul {
+	margin-left: auto;
+	width: 270px;
+	clear: both;
+	margin-right: auto;
+}

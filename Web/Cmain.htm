@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>公司子系统</title>
+    <script src="JS/jquery-1.4.1-vsdoc.js"></script>
+    <script language="javascript">
+	    window.self.focus();
+    </script>
+    <script>
+        $(function () {
+           
+            $('.leftmenu').attr('src', AjaxClass.gettopsession2())
+        })
+    </script>
+</head>
+<frameset id=mm border=0 name="allframe" frameSpacing=0 rows="0,88px,*" frameBorder=NO cols=*><!--分成三块，中间为顶部导航栏-->
+		<frame src="ReFurbish.aspx" name="ReFurbish" id="ReFurbish" scrolling="NO" noresize>
+		<frame id=top name=topFrame src="Company/topMenu.aspx" noResize scrolling=no> <!--头部菜单栏-->
+			<frameset id=pp border=0 name=allmainframe frameSpacing=0 frameBorder=NO cols="187px,0px,*"><!--左边空间，中间空白，右边显示-->
+				<frame src="Company/leftMenu_W.aspx?pid=1" id="ifrUrl" name="leftmenu" noResize scrolling=auto><!--左下角展示-->
+			<frame src="contralbar_v.htm" noresize name="contralbar_v" scrolling=no>
+				<frame src="Company/First.aspx" noresize name="mainframe" scrolling=yes><!--中间靠右块-->
+		    </frameset>
+		</frame>
+	</frameset>
+	<noframes>
+		<body>
+		</body>
+	</noframes>
+</html>

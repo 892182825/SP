@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://WebXml.com.cn/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://WebXml.com.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;a href="http://www.webxml.com.cn/" target="_blank"&gt;WebXml.com.cn&lt;/a&gt; &lt;strong&gt;中国股票行情数据 WEB 服务（支持深圳和上海股市的全部基金、债券和股票）&lt;/strong&gt;，数据即时更新。输出GIF分时走势图、日/周/月 K 线图、及时行情数据（股票名称、行情时间、最新价、昨收盘、今开盘、涨跌额、最低、最高、涨跌幅、成交量、成交额、竞买价、竞卖价、委比、买一 - 买五、卖一 - 卖五）。此中国股票行情数据 WEB 服务仅作为用户获取信息之目的，并不构成投资建议。&lt;a href="http://www.webxml.com.cn/" target="_blank"&gt;WebXml.com.cn&lt;/a&gt; 和/或其各供应商不为本页面提供信息的错误、残缺、延迟或因依靠此信息所采取的任何行动负责。&lt;strong&gt;市场有风险，投资需谨慎&lt;/strong&gt;。&lt;br /&gt;此中国股票行情数据Web Services请不要用于任何商业目的，若有需要请&lt;a href="http://www.webxml.com.cn/zh_cn/contact_us.aspx" target="_blank"&gt;联系我们&lt;/a&gt;，欢迎技术交流。 QQ：8409035&lt;br /&gt;&lt;strong&gt;使用本站 WEB 服务请注明或链接本站：http://www.webxml.com.cn/ 感谢大家的支持&lt;/strong&gt;！&lt;br /&gt;&lt;br /&gt;&lt;span style="color:#D20000;"&gt;&lt;strong&gt;股票输入注意事项&lt;/strong&gt;：因上海股票和深圳股票在代号上有重叠，所以在输入上海股票请在代号前加 SH，深圳加 SZ（不区分大小写），例：上证指数 sh000001，深发展A sz000001。如不输入股票代号默认上证指数 sh000001&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&amp;nbsp;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://WebXml.com.cn/">
+      <s:element name="getStockImageByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theStockCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockImageByCodeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getStockImageByteByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theStockCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockImageByteByCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getStockImageByteByCodeResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockImage_kByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theStockCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockImage_kByCodeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getStockImage_kByteByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theStockCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockImage_kByteByCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getStockImage_kByteByCodeResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockInfoByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="theStockCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStockInfoByCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getStockInfoByCodeResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getStockImageByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getStockImageByCode" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getStockImageByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByteByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getStockImageByteByCode" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByteByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getStockImageByteByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getStockImage_kByCode" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getStockImage_kByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByteByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getStockImage_kByteByCode" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByteByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getStockImage_kByteByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getStockInfoByCode" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getStockInfoByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByCodeHttpGetIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByCodeHttpGetOut" />
+  <wsdl:message name="getStockImageByteByCodeHttpGetIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByteByCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeHttpGetIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+    <wsdl:part name="theType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeHttpGetOut" />
+  <wsdl:message name="getStockImage_kByteByCodeHttpGetIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+    <wsdl:part name="theType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByteByCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeHttpGetIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByCodeHttpPostIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByCodeHttpPostOut" />
+  <wsdl:message name="getStockImageByteByCodeHttpPostIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImageByteByCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeHttpPostIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+    <wsdl:part name="theType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByCodeHttpPostOut" />
+  <wsdl:message name="getStockImage_kByteByCodeHttpPostIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+    <wsdl:part name="theType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockImage_kByteByCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeHttpPostIn">
+    <wsdl:part name="theStockCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getStockInfoByCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:portType name="ChinaStockWebServiceSoap">
+    <wsdl:operation name="getStockImageByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF分时走势图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByCodeSoapIn" />
+      <wsdl:output message="tns:getStockImageByCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF分时走势图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图字节数组。&lt;br /&gt;&lt;strong&gt;字节流到图片可以参考以下方法&lt;/strong&gt;（.NET vb）：&lt;br /&gt;HttpContext.Current.Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache) '不缓存&lt;br /&gt;HttpContext.Current.Response.ClearContent()&lt;br /&gt;HttpContext.Current.Response.ContentType = "image/Gif"&lt;br /&gt;HttpContext.Current.Response.BinaryWrite(Ary) 'Ary 图片字节数组&lt;br /&gt;HttpContext.Current.Response.End()&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByteByCodeSoapIn" />
+      <wsdl:output message="tns:getStockImageByteByCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF日/周/月 K 线图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByCodeSoapIn" />
+      <wsdl:output message="tns:getStockImage_kByCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF日/周/月 K 线图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图字节数组。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByteByCodeSoapIn" />
+      <wsdl:output message="tns:getStockImage_kByteByCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票及时行情 String()&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：一个一维字符串数组 String(24)，结构为：String(0)股票代号、String(1)股票名称、String(2)行情时间、String(3)最新价（元）、String(4)昨收盘（元）、String(5)今开盘（元）、String(6)涨跌额（元）、String(7)最低（元）、String(8)最高（元）、String(9)涨跌幅（%）、String(10)成交量（手）、String(11)成交额（万元）、String(12)竞买价（元）、String(13)竞卖价（元）、String(14)委比（%）、String(15)-String(19)买一 - 买五（元）/手、String(20)-String(24)卖一 - 卖五（元）/手。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockInfoByCodeSoapIn" />
+      <wsdl:output message="tns:getStockInfoByCodeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ChinaStockWebServiceHttpGet">
+    <wsdl:operation name="getStockImageByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF分时走势图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByCodeHttpGetIn" />
+      <wsdl:output message="tns:getStockImageByCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF分时走势图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图字节数组。&lt;br /&gt;&lt;strong&gt;字节流到图片可以参考以下方法&lt;/strong&gt;（.NET vb）：&lt;br /&gt;HttpContext.Current.Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache) '不缓存&lt;br /&gt;HttpContext.Current.Response.ClearContent()&lt;br /&gt;HttpContext.Current.Response.ContentType = "image/Gif"&lt;br /&gt;HttpContext.Current.Response.BinaryWrite(Ary) 'Ary 图片字节数组&lt;br /&gt;HttpContext.Current.Response.End()&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByteByCodeHttpGetIn" />
+      <wsdl:output message="tns:getStockImageByteByCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF日/周/月 K 线图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByCodeHttpGetIn" />
+      <wsdl:output message="tns:getStockImage_kByCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF日/周/月 K 线图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图字节数组。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByteByCodeHttpGetIn" />
+      <wsdl:output message="tns:getStockImage_kByteByCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票及时行情 String()&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：一个一维字符串数组 String(24)，结构为：String(0)股票代号、String(1)股票名称、String(2)行情时间、String(3)最新价（元）、String(4)昨收盘（元）、String(5)今开盘（元）、String(6)涨跌额（元）、String(7)最低（元）、String(8)最高（元）、String(9)涨跌幅（%）、String(10)成交量（手）、String(11)成交额（万元）、String(12)竞买价（元）、String(13)竞卖价（元）、String(14)委比（%）、String(15)-String(19)买一 - 买五（元）/手、String(20)-String(24)卖一 - 卖五（元）/手。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockInfoByCodeHttpGetIn" />
+      <wsdl:output message="tns:getStockInfoByCodeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ChinaStockWebServiceHttpPost">
+    <wsdl:operation name="getStockImageByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF分时走势图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByCodeHttpPostIn" />
+      <wsdl:output message="tns:getStockImageByCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF分时走势图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：股票GIF分时走势图字节数组。&lt;br /&gt;&lt;strong&gt;字节流到图片可以参考以下方法&lt;/strong&gt;（.NET vb）：&lt;br /&gt;HttpContext.Current.Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache) '不缓存&lt;br /&gt;HttpContext.Current.Response.ClearContent()&lt;br /&gt;HttpContext.Current.Response.ContentType = "image/Gif"&lt;br /&gt;HttpContext.Current.Response.BinaryWrite(Ary) 'Ary 图片字节数组&lt;br /&gt;HttpContext.Current.Response.End()&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImageByteByCodeHttpPostIn" />
+      <wsdl:output message="tns:getStockImageByteByCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;直接获得中国股票GIF日/周/月 K 线图（545*300pixel/72dpi）&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByCodeHttpPostIn" />
+      <wsdl:output message="tns:getStockImage_kByCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票GIF日/周/月 K 线图字节数组&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001；theType = K 线图类型（D：日[默认]、W：周、M：月），返回数据：股票GIF日 K 线图字节数组。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockImage_kByteByCodeHttpPostIn" />
+      <wsdl:output message="tns:getStockImage_kByteByCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;br /&gt;&lt;h3&gt;获得中国股票及时行情 String()&lt;/h3&gt;&lt;p&gt;输入参数：theStockCode = 股票代号，如：sh000001； 返回数据：一个一维字符串数组 String(24)，结构为：String(0)股票代号、String(1)股票名称、String(2)行情时间、String(3)最新价（元）、String(4)昨收盘（元）、String(5)今开盘（元）、String(6)涨跌额（元）、String(7)最低（元）、String(8)最高（元）、String(9)涨跌幅（%）、String(10)成交量（手）、String(11)成交额（万元）、String(12)竞买价（元）、String(13)竞卖价（元）、String(14)委比（%）、String(15)-String(19)买一 - 买五（元）/手、String(20)-String(24)卖一 - 卖五（元）/手。&lt;/p&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:getStockInfoByCodeHttpPostIn" />
+      <wsdl:output message="tns:getStockInfoByCodeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ChinaStockWebServiceSoap" type="tns:ChinaStockWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getStockImageByCode">
+      <soap:operation soapAction="http://WebXml.com.cn/getStockImageByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <soap:operation soapAction="http://WebXml.com.cn/getStockImageByteByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <soap:operation soapAction="http://WebXml.com.cn/getStockImage_kByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <soap:operation soapAction="http://WebXml.com.cn/getStockImage_kByteByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <soap:operation soapAction="http://WebXml.com.cn/getStockInfoByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChinaStockWebServiceSoap12" type="tns:ChinaStockWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getStockImageByCode">
+      <soap12:operation soapAction="http://WebXml.com.cn/getStockImageByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <soap12:operation soapAction="http://WebXml.com.cn/getStockImageByteByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <soap12:operation soapAction="http://WebXml.com.cn/getStockImage_kByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <soap12:operation soapAction="http://WebXml.com.cn/getStockImage_kByteByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <soap12:operation soapAction="http://WebXml.com.cn/getStockInfoByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChinaStockWebServiceHttpGet" type="tns:ChinaStockWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="getStockImageByCode">
+      <http:operation location="/getStockImageByCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <http:operation location="/getStockImageByteByCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <http:operation location="/getStockImage_kByCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <http:operation location="/getStockImage_kByteByCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <http:operation location="/getStockInfoByCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChinaStockWebServiceHttpPost" type="tns:ChinaStockWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="getStockImageByCode">
+      <http:operation location="/getStockImageByCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImageByteByCode">
+      <http:operation location="/getStockImageByteByCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByCode">
+      <http:operation location="/getStockImage_kByCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="getStockImage_kByteByCode">
+      <http:operation location="/getStockImage_kByteByCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockInfoByCode">
+      <http:operation location="/getStockInfoByCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChinaStockWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;a href="http://www.webxml.com.cn/" target="_blank"&gt;WebXml.com.cn&lt;/a&gt; &lt;strong&gt;中国股票行情数据 WEB 服务（支持深圳和上海股市的全部基金、债券和股票）&lt;/strong&gt;，数据即时更新。输出GIF分时走势图、日/周/月 K 线图、及时行情数据（股票名称、行情时间、最新价、昨收盘、今开盘、涨跌额、最低、最高、涨跌幅、成交量、成交额、竞买价、竞卖价、委比、买一 - 买五、卖一 - 卖五）。此中国股票行情数据 WEB 服务仅作为用户获取信息之目的，并不构成投资建议。&lt;a href="http://www.webxml.com.cn/" target="_blank"&gt;WebXml.com.cn&lt;/a&gt; 和/或其各供应商不为本页面提供信息的错误、残缺、延迟或因依靠此信息所采取的任何行动负责。&lt;strong&gt;市场有风险，投资需谨慎&lt;/strong&gt;。&lt;br /&gt;此中国股票行情数据Web Services请不要用于任何商业目的，若有需要请&lt;a href="http://www.webxml.com.cn/zh_cn/contact_us.aspx" target="_blank"&gt;联系我们&lt;/a&gt;，欢迎技术交流。 QQ：8409035&lt;br /&gt;&lt;strong&gt;使用本站 WEB 服务请注明或链接本站：http://www.webxml.com.cn/ 感谢大家的支持&lt;/strong&gt;！&lt;br /&gt;&lt;br /&gt;&lt;span style="color:#D20000;"&gt;&lt;strong&gt;股票输入注意事项&lt;/strong&gt;：因上海股票和深圳股票在代号上有重叠，所以在输入上海股票请在代号前加 SH，深圳加 SZ（不区分大小写），例：上证指数 sh000001，深发展A sz000001。如不输入股票代号默认上证指数 sh000001&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&amp;nbsp;</wsdl:documentation>
+    <wsdl:port name="ChinaStockWebServiceSoap" binding="tns:ChinaStockWebServiceSoap">
+      <soap:address location="http://www.webxml.com.cn/WebServices/ChinaStockWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChinaStockWebServiceSoap12" binding="tns:ChinaStockWebServiceSoap12">
+      <soap12:address location="http://www.webxml.com.cn/WebServices/ChinaStockWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChinaStockWebServiceHttpGet" binding="tns:ChinaStockWebServiceHttpGet">
+      <http:address location="http://www.webxml.com.cn/WebServices/ChinaStockWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChinaStockWebServiceHttpPost" binding="tns:ChinaStockWebServiceHttpPost">
+      <http:address location="http://www.webxml.com.cn/WebServices/ChinaStockWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

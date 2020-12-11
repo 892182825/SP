@@ -1,0 +1,481 @@
+body, button, input, select, textarea
+{
+	font: 12px/1.5 tahoma,arial,宋体;
+}
+.pay
+{
+	width: 998px;
+	margin: auto;
+}
+ul
+{
+	list-style-type: none;
+}
+.payTitle
+{
+	background-color: #f6f9ff;
+	border: 1px solid #bcccee;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.payTitle ul li
+{
+	float: left;
+	margin-right: 25px;
+	margin-left: 10px;
+	font-size: 14px;
+	line-height: 60px;
+	color: #3e3e3e;
+}
+.buyfont
+{
+	font-size: 14px;
+	line-height: 60px;
+	color: #3e3e3e;
+}
+.butTitle {
+    line-height: 31px;
+    background-image: url( '../Member/images/pay_03.png' );
+    background-repeat: repeat-x;
+    text-indent: 10px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    border: 1px solid #a1bede;
+}
+.payBuy
+{
+	border: 3px solid #bcccee;
+}
+.payBuy h2
+{
+	font-size: 14px;
+	line-height: 32px;
+	font-weight: normal;
+	text-indent: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.payBuy .buyChoice
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+	line-height: 24px;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+}
+.buyChoice h3
+{
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: normal;
+	color: #09c;
+}
+.buyChoice table th
+{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.buyChoice table
+{
+	width: 930px;
+}
+.buyChoice a
+{
+	color: #3e3e3e;
+	text-decoration: none;
+	border-right-color: #bcccee;
+	border-bottom-color: #bcccee;
+	border-left-color: #bcccee;
+}
+.buyButton
+{
+	float: right;
+	background-image: url( '../Member/images/pay_07.png' );
+	background-repeat: repeat-x;
+	height: 33px;
+	width: 120px;
+	border: 1px solid #F2881E;
+	line-height: 33px;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 15px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+	text-decoration: none;
+}
+.checkStyle
+{
+	background: #f6f9ff;
+	border: solid 1px #bcccee;
+}
+
+
+.choselist
+{
+	display: none;
+	height: auto;
+}
+/*支付宝银行选择*/
+.fn-mb-30
+{
+	margin-bottom: 30px;
+	height: 45px;
+}
+
+.kj-area
+{
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #FFFBE1;
+	border-color: #FEBF90;
+	border-style: dashed;
+	border-width: 1px 0;
+	margin: 10px 0 0;
+	padding: 10px 0 0 10px;
+}
+.pticon
+{
+	float: left;
+	height: 36px;
+	margin-right: 20px;
+}
+.ui-list-icons
+{
+	margin: 10px;
+}
+.ui-list-icons li
+{
+	float: left;
+	padding: 8px;
+	height: 30px;
+	text-align: center;
+}
+
+.rdobank
+{
+	float: left;
+	width: 25px;
+	text-align: center;
+	padding-top: 10px;
+}
+.icon
+{
+	width: 150px;
+	height: 36px;
+	border: 1px solid #ccc;
+	padding: 0;
+	float: left;
+}
+.icon:hover
+{
+	border-color: Orange;
+}
+
+.ajax-DEbank
+{
+	clear: both;
+	width: 850px;
+	height: auto;
+}
+.inpss
+{
+	height: 25px;
+	border: 1px solid #ccc;
+	text-indent: 5px;
+	font-size: 14px;
+	padding-top: 5px;
+}
+.ABC, .BOC, .CCB, .CEB, .CIB, .CITIC, .CMB, .CMBC, .COMM, .GDB, .ICBC, .KuaiIconY, .PSBC, .SDB, .SPABANK, .SHRCB, .FDB, .SPDB, .BJBANK, .NBBANK, .BJRCB, .HZCB, .WZCB, .HXB, .BOS, .CBHB, .HKBEA, .GZCB, .HKBCHINA, .NJCB, .SDE, .ZHNX, .YDXH, .CZCB, .GNXS
+{
+	background-image: url( '../images/comboall.png' );
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+}
+.ABC
+{
+	background-position: 0 0;
+}
+.BOC
+{
+	background-position: 0 -36px;
+}
+.CCB
+{
+	background-position: 0 -72px;
+}
+.CEB
+{
+	background-position: 0 -108px;
+}
+.CIB
+{
+	background-position: 0 -144px;
+}
+.CITIC
+{
+	background-position: 0 -180px;
+}
+.CMB
+{
+	background-position: 0 -216px;
+}
+.CMBC
+{
+	background-position: 0 -252px;
+}
+.COMM
+{
+	background-position: 0 -288px;
+}
+.GDB
+{
+	background-position: 0 -324px;
+}
+.ICBC
+{
+	background-position: 0 -360px;
+}
+.KuaiIconY
+{
+	background-position: 0 -396px;
+}
+.PSBC
+{
+	background-position: 0 -432px;
+}
+.SDB
+{
+	background-position: 0 -468px;
+}
+.SPABANK
+{
+	background-position: 0 -504px;
+}
+.SPDB
+{
+	background-position: 0 -540px;
+}
+
+.ABC
+{
+	background-position: 0 0;
+}
+.BJBANK
+{
+	background-position: 0 -36px;
+}
+.BJRCB
+{
+	background-position: 0 -72px;
+}
+.BOC
+{
+	background-position: 0 -108px;
+}
+.CCB
+{
+	background-position: 0 -144px;
+}
+.CEB
+{
+	background-position: 0 -180px;
+}
+.CIB
+{
+	background-position: 0 -216px;
+}
+.CITIC
+{
+	background-position: 0 -252px;
+}
+.CMB
+{
+	background-position: 0 -288px;
+}
+.CMBC
+{
+	background-position: 0 -324px;
+}
+.COMM
+{
+	background-position: 0 -360px;
+}
+.FDB
+{
+	background-position: 0 -396px;
+}
+.GDB
+{
+	background-position: 0 -432px;
+}
+.HZCB
+{
+	background-position: 0 -468px;
+}
+.ICBC
+{
+	background-position: 0 -504px;
+}
+.NBBANK
+{
+	background-position: 0 -540px;
+}
+.PSBC
+{
+	background-position: 0 -576px;
+}
+.SDB
+{
+	background-position: 0 -612px;
+}
+.SHBANK
+{
+	background-position: 0 -648px;
+}
+.SHRCB
+{
+	background-position: 0 -684px;
+}
+.SPABANK
+{
+	background-position: 0 -720px;
+}
+.SPDB
+{
+	background-position: 0 -756px;
+}
+.WZCB
+{
+	background-position: 0 -792px;
+}
+
+
+.HXB
+{
+	background-position: 0 -936px;
+}
+.BOS
+{
+	background-position: 0 -828px;
+}
+.CBHB
+{
+	background-position: 0 -1162px;
+}
+.HKBEA
+{
+	background-position: 0 -864px;
+}
+.GZCB
+{
+	background-position: 0 -900px;
+}
+.HKBCHINA
+{
+	background-position: 0 -1090px;
+}
+.NJCB
+{
+	background-position: 0 -1130px;
+}
+.SDE
+{
+	background-position: 0 -936px;
+}
+ 
+.CZCB
+{
+	background-position: 0 -1012px;
+}
+.GNXS
+{
+	background-position: 0 -1050px;
+}
+
+
+
+
+
+
+
+
+
+
+.ui-state-error
+{
+	background: none repeat scroll 0 0 #FCEEE8;
+	border: 1px solid #F6C8B5;
+}
+
+.ui-notice-container
+{
+	padding: 14px 100px;
+}
+.ui-notice-title
+{
+	color: #000000;
+	font-size: 14px;
+	font-weight: 600;
+}
+.ui-notice
+{
+	position: relative;
+}
+
+.ui-notice .ui-notice-content
+{
+	color: #808080;
+}
+
+.ui-faq
+{
+	background: none repeat scroll 0 50% transparent;
+	border-top: 1px solid #F2F2F2;
+	margin-top: 40px;
+	padding: 17px 20px 7px;
+}
+
+#header
+{
+	margin-top: 15px;
+}
+
+.sl-col-cnt
+{
+	overflow: hidden;
+	width: 100%;
+}
+
+.fn-right
+{
+	float: right;
+}
+
+.fn-left, .fn-right
+{
+	display: inline;
+}
+
+ol, ul
+{
+	list-style: none outside none;
+}
+
+.ge-ce
+{
+	padding: 5px;
+	font-size: 20px;
+	color: #999;
+}
