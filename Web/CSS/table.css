@@ -1,0 +1,41 @@
+a  {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+.proLayer {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom:8px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+	height:auto;
+	background-color: #eee;
+	overflow:auto;
+}
+.proLayerTitle {
+	background-image: url(../images/detail-table-bg.png);
+	background-repeat: repeat-x;
+	height: 30px;
+	line-height: 30px;
+}
+ul .titleLeft {
+	float: left;
+	padding-left: 10px;
+}
+
+ul .titleRight {
+	float: right;
+	padding-right: 10px;
+}
+.proLayerLine {
+	height:auto;
+}
+
+.proLayerLine ul li {
+	float: left;
+	width: 165px;
+	padding-left: 10px;
+}

@@ -1,0 +1,156 @@
+.centerCon-1 {
+	border-top-width: 1px;
+	border-top-style: dashed;
+	border-top-color: #CCC;
+
+}
+.centConPage {
+	/*margin-top: 25px;*/
+	width: 993px;
+	margin:0 auto;
+	/*margin-left: auto;*/
+	clear: both;
+}
+
+.ctConPgList {
+	height: 24px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 993px;
+}
+.ctConPgList ul li {
+	float: left;
+	line-height: 24px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.ctConPgList .ctConPgFor {
+	border: 1px solid #ccc;
+	width: auto;
+	height: 20px;
+}
+.ctConPgTxt  {
+	line-height: 24px;
+	height: 20px;
+	border: 1px solid #ccc;
+}
+.sysButtonCen {
+	background-image: url(../images/sysButtonCen.png);
+	background-repeat: no-repeat;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	margin-left: 10px;
+}
+.sysButtonCen a {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+	text-decoration: none;
+	text-align: center;
+	width: 65px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+
+.ctConPgList-1 {
+	line-height: 30px;
+	margin-bottom: 15px;
+}
+.ctConPgList-2 ul li {
+	float: left;
+	/*padding-right: 5px;
+	padding-left: 5px;*/
+	line-height: 24px;
+}
+.ctConPgList-2 {
+	width: 100%;
+}
+.ctConPgTxt1  {
+	line-height: 24px;
+	border: 1px solid #ccc;
+	height: 20px;
+}
+.ctConPgList-3 {
+	line-height: 30px;
+	text-indent: 24px;
+	margin-top: 25px;
+}
+table .ctConPgTab {
+	font-weight: bold;
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	color: #3e3e3e;
+}
+
+
+table {
+	line-height: 30px;
+	height: 30px;
+	text-align: center;
+	background-color: #ccc;
+}
+table tr {
+	background-color: #fff;
+}
+.ctConPgCash {
+	width: 705px;
+	margin-right: auto;
+    margin-left: 15%;
+    margin-top: 50px;
+}
+.CashH1 {
+	background-image: url(../images/member-tabTop.png);
+	background-repeat: no-repeat;
+	text-align: center;
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: bold;
+}
+.ctConPgTxt2 {
+	line-height: 24px;
+	width: 400px;
+	height: 64px;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.ctConPgCash ul {
+	margin-right: auto;
+	margin-left: auto;
+	width: 200px;
+	line-height: 48px;
+	height: 48px;
+}
+.ctConPgCash ul li {
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+table a {
+	text-decoration: none;
+	color: #F00;
+}
+
+table a:hover {
+	text-decoration: underline;
+	
+}
+.linktinner {
+width: 100%;
+    height: 40px;
+    clear: both;
+    margin-top: 10px;
+    background-color: #fff;
+}
+.linktinner  div {
+        width: 33%;
+    float: left;
+    height: 40px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+}
+

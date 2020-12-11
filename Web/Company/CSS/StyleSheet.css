@@ -1,0 +1,30 @@
+﻿
+
+/* Rating */
+.ratingStar {
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar {
+    background-image: url(../Images/Rating_normal.gif);
+
+}
+
+.emptyRatingStar {
+    background-image: url(../Images/Rating_empty.gif);
+}
+
+.savedRatingStar {
+    background-image: url(../Images/Rating_default.gif);
+}
+
+
+
+/*Toggle Button*/

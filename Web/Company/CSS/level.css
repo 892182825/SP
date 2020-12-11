@@ -1,0 +1,24 @@
+﻿.ratingStar {
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar {
+    background-image: url(../CSS/Rating_normal.gif);
+
+}
+
+.emptyRatingStar {
+    background-image: url(../CSS/Rating_empty.gif);
+}
+
+.savedRatingStar {
+    background-image: url(../CSS/Rating_default.gif);
+}
+

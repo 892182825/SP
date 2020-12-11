@@ -1,0 +1,26 @@
+﻿body{ margin:0px; padding:0px; list-style:none; font-family:"微软雅黑"; font-size:12px;}
+        .prouduct{ width:750px; float:left;}
+        .prod{ width:750px; float:left;}
+        .prod dl{ margin:0px; padding:0px; float:left;}
+        .prod dl dd{ width:270px; height:270px; padding:5px; border:solid 1px #CCC; float:left; margin:0px;}
+        .prod dl dt{ width:450px; line-height:22px; float:left; margin:0 0 0 15px; padding:0px;}
+        .prod dl dt.title{ font-weight:bold; font-size:14px;}
+        .prod dl dt img{}
+        .prod dl dt .fontl{ float:left; text-align:right; width:100px;}
+        .prod dl dt .fontw{ color:#196582; font-weight:bold;}
+        .prod dl dt.an{ width:400px; height:40px; border:solid 1px #88e0f4; float:left; background:#dcf5fa; padding:5px 0 5px 10px;}
+        .prod dl dt.an ul{ margin:0px; padding:0px; list-style:none;}
+        .prod dl dt.an ul li{ float:left;width:152px; height:37px; margin-right:20px; }
+        .prod dl dt.an ul li a{width:152px; height:37px; display:block; background:url(../images/shopcart.jpg);}
+        .prod dl dt.an ul li.a1 a{ background-position:0 0;}
+        .prod dl dt.an ul li.a1 a:hover{ background-position:0 37px;}
+		
+		#a2 a{width:152px; height:37px; display:block; background:url(../images/shopcart222.jpg);}
+		#a2 a{ background-position:0 0;}
+        #a2 a:hover{ background-position:0 37px;}
+
+        .prodside{ width:750px; float:left; margin-top:20px;}
+        .prodside_tit{ width:750px; height:31px; line-height:31px; background:url(../images/tit_bg.jpg) repeat-x;}
+        .prodside_tit .btbg{ width:122px; height:31px; line-height:31px; font-size:16px; text-align:center; color:#fff; float:left; background:url(../images/an.jpg);}
+        .prodside p{ line-height:30px;}
+        .prodside b{ font-weight:bold; font-size:16px;}

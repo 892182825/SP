@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{201351CC-CBD7-4C19-8D3F-75BD2384DA49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddBMOrderDAL.cs" />
+    <Compile Include="AddFreeOrderDAL.cs" />
+    <Compile Include="AddMemberInfomDAL.cs" />
+    <Compile Include="AddOrderDataDAL.cs" />
+    <Compile Include="AuditingMemberagainDAL.cs" />
+    <Compile Include="BackupChangeLogsDAL.cs" />
+    <Compile Include="BackupDatabaseDAL.cs" />
+    <Compile Include="BackupMemberDetailsDAL.cs" />
+    <Compile Include="BackupMemberInfoDAL.cs" />
+    <Compile Include="BackupOrderDetailDAL.cs" />
+    <Compile Include="BasicSearchDAL.cs" />
+    <Compile Include="BlackGroupDAL.cs" />
+    <Compile Include="BlackListDAL.cs" />
+    <Compile Include="BochulvDAL.cs" />
+    <Compile Include="Branch\BranchModifyDAL.cs" />
+    <Compile Include="BrowsememberordersDAL.cs" />
+    <Compile Include="ChangeExceptDAL.cs" />
+    <Compile Include="ChangeLogsDAL.cs" />
+    <Compile Include="CityDAL.cs" />
+    <Compile Include="CommonDataDAL.cs" />
+    <Compile Include="CompanyBankDAL.cs" />
+    <Compile Include="CompanyDeptDAL.cs" />
+    <Compile Include="ConfigDAL.cs" />
+    <Compile Include="ConfusionDAL.cs" />
+    <Compile Include="CountryDAL.cs" />
+    <Compile Include="CurrencyDAL.cs" />
+    <Compile Include="DataDictionaryDAL.cs" />
+    <Compile Include="DataEmptyDAL.cs" />
+    <Compile Include="DataSourceDAL.cs" />
+    <Compile Include="DBHelper.cs" />
+    <Compile Include="DeductDAL.cs" />
+    <Compile Include="DepotSeatDAL.cs" />
+    <Compile Include="DeptRoleDAL.cs" />
+    <Compile Include="DisplaceGoodBrowseDAL.cs" />
+    <Compile Include="DocTypeDetailDAL.cs" />
+    <Compile Include="DocTypeTableDAL.cs" />
+    <Compile Include="D_AccountDAL.cs" />
+    <Compile Include="ECTransferDetailDAL.cs" />
+    <Compile Include="ECRemitDetailDAL.cs" />
+    <Compile Include="EncryptionDAL.cs" />
+    <Compile Include="GiveProductDAL.cs" />
+    <Compile Include="IndexDAL.cs" />
+    <Compile Include="InventoryDocDAL.cs" />
+    <Compile Include="InventoryDocDetailsDAL.cs" />
+    <Compile Include="LanguageDAL.cs" />
+    <Compile Include="LanguageTransDAL.cs" />
+    <Compile Include="LogicProductInventoryDAL.cs" />
+    <Compile Include="Logistics\RefundmentOrderDocDAL.cs" />
+    <Compile Include="ManageDAL.cs" />
+    <Compile Include="ManagerPermissionDAL.cs" />
+    <Compile Include="MemberBankDAL.cs" />
+    <Compile Include="MemberInfoDAL.cs" />
+    <Compile Include="MemberOffDAL.cs" />
+    <Compile Include="MemberOrderDAL.cs" />
+    <Compile Include="MemOrderLineDAL.cs" />
+    <Compile Include="MenuDAL.cs" />
+    <Compile Include="MessageDropDAL.cs" />
+    <Compile Include="MessageReceiveDAL.cs" />
+    <Compile Include="MessageSendDAL.cs" />
+    <Compile Include="MicroblogService.cs" />
+    <Compile Include="NetWorkDisplayStatusDAL.cs" />
+    <Compile Include="OrderDAL.cs" />
+    <Compile Include="OrderDetailDAL.cs" />
+    <Compile Include="Other\SqlDataReaderHelp.cs" />
+    <Compile Include="Other\StructClass.cs" />
+    <Compile Include="Other\WebSiteBaseDataConfig.cs" />
+    <Compile Include="Other\WTreeDAL.cs" />
+    <Compile Include="PaymentSetDal.cs" />
+    <Compile Include="PersonalSpace\Message.cs" />
+    <Compile Include="ProductColorDAL.cs" />
+    <Compile Include="ProductCombineDetailDAL.cs" />
+    <Compile Include="ProductDAL.cs" />
+    <Compile Include="ProductQuantityDAL.cs" />
+    <Compile Include="ProductSexTypeDAL.cs" />
+    <Compile Include="ProductSizeDAL.cs" />
+    <Compile Include="ProductSpecDAL.cs" />
+    <Compile Include="ProductStatusDAL.cs" />
+    <Compile Include="ProductTypeDAL.cs" />
+    <Compile Include="ProductUnitDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderInfoDAL.cs" />
+    <Compile Include="ReleaseDAL.cs" />
+    <Compile Include="RemittancesDAL.cs" />
+    <Compile Include="ReportDAL.cs" />
+    <Compile Include="ReportFormsDAL.cs" />
+    <Compile Include="ResourcesDAL.cs" />
+    <Compile Include="ReturnedGoodsMoneyDAL.cs" />
+    <Compile Include="SMScontentDAL.cs" />
+    <Compile Include="StockDAL.cs" />
+    <Compile Include="StoreDataDAL.cs" />
+    <Compile Include="StoreInfoDAL.cs" />
+    <Compile Include="StoreOffDAL.cs" />
+    <Compile Include="StoreOrderDAL.cs" />
+    <Compile Include="TempHistoryDAL.cs" />
+    <Compile Include="ThirdLogisticsDAL.cs" />
+    <Compile Include="TranToNDAL.cs" />
+    <Compile Include="UnauditedStoreInfoDAL.cs" />
+    <Compile Include="UniteDocDAL.cs" />
+    <Compile Include="ViewTreeDAL.cs" />
+    <Compile Include="VIPCardManageDAL.cs" />
+    <Compile Include="WareHouseDAL.cs" />
+    <Compile Include="WorldTimeDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Encryption\Encryption.csproj">
+      <Project>{2015B2E5-B400-4005-AB9E-C645614FBCAA}</Project>
+      <Name>Encryption</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{AFD85971-0FC8-4D5A-825B-5FDE2FEA00ED}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

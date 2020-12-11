@@ -1,0 +1,350 @@
+ul li {
+	line-height: 20px;
+	font-family: "宋体", Arial;
+	font-size: 12px;
+}
+.productCent {
+	padding-top: 5px;
+}
+.prdListL {
+	width: 200px;
+	float: left;
+	margin-right: 10px;
+}
+.prdListC {
+	float: left;
+	width: 773px;
+}
+
+.prdListR {
+	float: right;
+	margin-bottom: 30px;
+	width: 220px;
+}
+.prcClass {
+	border: 1px solid #CCC;
+	margin-bottom: 15px;
+}
+
+.prcClass .prcCsTitle {
+	font-family: "宋体", Arial;
+	font-size: 14px;
+	line-height: 30px;
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	font-weight: bold;
+	text-indent: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #ccc;
+}
+.prcClass .prcCsTitle a
+{
+	font-family: "宋体", Arial;
+	font-size: 14px;
+	line-height: 30px;
+	text-decoration:none;
+	color:#333;
+}
+.prcClass .prcCsTitle a:hover
+{
+	text-decoration:underline;
+	color:Red;
+}
+.prcClassImg {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+	padding-right: 10px;
+	margin-bottom: 5px;
+}
+
+.prcClassImg .pImages {
+	float: left;
+	padding: 5px;
+	height: 60px;
+	width: 60px;
+}
+.prcClass .prcClassImg a {
+	color: #063;
+	text-decoration: none;
+}
+.prcClass .prcClassImg a:hover {
+	text-decoration: underline;
+}
+.foldList{
+	border: 1px solid #CCC;
+	line-height:30px;
+	margin-bottom: 10px;
+	padding-left:30px;
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+}
+.foldList a{
+
+	color: #3E3E3E;
+	text-decoration: none;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.foldList a:hover{
+
+	color: #0092D2;
+	text-decoration: underline;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.prcSearch {
+	border-top-width: 2px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #064;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	border-left-color: #CCC;
+}
+.prcSearch table {
+	margin-bottom: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+}
+
+
+.prcSearch table th {
+	vertical-align: top;
+	text-align: right;
+	line-height: 24px;
+	width: 140px;
+	padding-right: 10px;
+}
+.prcSearch table td {
+	width: 150px;
+}
+.prcSearch table a {
+	line-height: 24px;
+	color: #063;
+	padding-left: 10px;
+	text-decoration: none;
+}
+.prcSearch table a:hover {
+	text-decoration: underline;
+}
+
+.prcSchList table {
+	border: 1px solid #CCC;
+	margin-bottom: 10px;
+}
+
+
+table .prcScTabTr {
+	height: 30px;
+	line-height: 30px;
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+}
+
+
+.proTabForm {
+	line-height: 20px;
+	height: 20px;
+	border: 1px solid #CCC;
+}
+table .prcScTabTrTd {
+	border-right-width: 1px;
+	border-right-style: dashed;
+	border-right-color: #CCC;
+	padding-right: 30px;
+}
+.prcSchPage table td {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.prcSchList2 {
+	text-align: center;
+	line-height: 24px;
+	width: 60px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+}
+.prcSchList2 a {
+	color: #3E3E3E;
+	text-decoration: none;
+}
+.prcSchList2 a:hover {
+	text-decoration: underline;
+}
+
+.prcSchList table th   {
+	text-align: right;
+	padding-left: 10px;
+	line-height: 24px;
+}
+.prcSchList table td    {
+	text-align: center;
+	line-height: 24px;
+}
+.prcSchList2 table td {
+	width: 80px;
+	text-align: center;
+}
+.prcSchList table a{
+	line-height: 30px;
+	color: #3e3e3e;
+	text-decoration: none;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.prcSchList table a:hover{
+	text-decoration: underline;
+	color: #063;
+}
+.prcSearch .prcSchBtn {
+	padding-left: 20px;
+	text-align: center;
+}
+.prcSchArray  {
+	margin-top: 15px;
+}
+.prcSchArray ul {
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	height: 30px;
+	margin-bottom: 15px;
+	border: 1px solid #CCC;
+}
+.prcSchArray ul li {
+	float: left;
+	line-height: 20px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+.prcSchResult {
+	padding-right: 10px;
+}
+.prcSchRstBx {
+	width: 773px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #f1f1f1;
+	margin-bottom: 25px;
+}
+
+
+.prcSchResult .prcSchRstPd {
+	width: 170px;
+	background-color: #fff;
+	text-align: center;
+	line-height: 20px;
+	padding-bottom: 15px;
+	margin-left: 10px;
+	float: left;
+	margin-right: 10px;
+}
+.prcSchRstPd .prcSchRstPdImg {
+	height: 170px;
+	width: 170px;
+	border: 1px solid #f1f1f1;
+}
+.prcSchResult .prcSchRstPd a , .prcSchPage a{
+	font-weight: normal;
+	color: #063;
+	text-decoration: none;
+}
+.prcSchResult .prcSchRstPd a:hover , .prcSchPage a:hover{
+	text-decoration: underline;
+}
+.prcSchRstPdPrice {
+	font-weight: normal;
+}
+.prcSchRstPd .prcSchRstPdBtn {
+	padding-left: 40px;
+}
+
+
+.prdListR .prcSchPage {
+	line-height: 30px;
+}
+.prcSchPgForm {
+	width: 20px;
+	border: 1px solid #CCC;
+}
+.prcSchPage table {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	float: right;
+}
+.btn {
+	height: 24px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.btn .btnLeft {
+	background-image: url(../images/products-useButton_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 24px;
+	width: 2px;
+}
+.btn .btnC {
+	background-image: url(../images/products-useButton_03.png);
+	background-repeat: repeat-x;
+	color: #FFF;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+	height:24px;
+	line-height: 24px;
+	font-weight: normal;
+}
+
+.btn .btnRight {
+	background-image: url(../images/products-useButton_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: left;
+	height: 24px;
+	width: 2px;
+}
+.prcSearch .fold {
+	vertical-align: top;
+	text-align: right;
+	line-height: 24px;
+	width: 140px;
+	padding-right: 10px;
+	font-weight:bold;
+	float:left;
+}
+.prcSearch .fold  a{
+	vertical-align: top;
+	text-align: right;
+	line-height: 24px;
+	width: 140px;
+	font-weight:bold;
+	float:left;
+	color:#333;
+	text-decoration:none;
+}
+.prcSearch .fold  a:hover{
+	color:red;
+	text-decoration:underline;
+}
+.prcSearch .folds
+{
+	float:left;
+	width:150px;
+}
+.prcSearch .folds a{
+	line-height: 24px;
+	color: #0092D2;
+	padding-left: 10px;
+	text-decoration: none;
+}

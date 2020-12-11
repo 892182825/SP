@@ -1,0 +1,146 @@
+.submitCent {
+	padding-top: 15px;
+}
+.subOrder , .subDis{
+	line-height: 24px;
+	width: 1003px;
+	margin-bottom: 15px;
+}
+.subTitle  {
+	line-height: 30px;
+	height: 30px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #3e3e3e;
+	text-indent: 24px;
+	font-size: 14px;
+	color: #3e3e3e;
+}
+.subOrder  table{
+	line-height: 32px;
+	margin-left: 32px;
+}
+.subOrder table tr {
+	background-color: #f7f7f7;
+}
+
+.subOrder table th {
+	text-align: right;
+	width: 100px;
+	padding-right: 15px;
+	color: #075C79;
+}
+.subOrder table td {
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #FFF;
+	color: #000;
+}
+table .subOdrAddr {
+	vertical-align: top;
+}
+subOrderForm {
+	border: 1px solid #CCC;
+	width: auto;
+	line-height: 20px;
+	height: 20px;
+}
+
+
+
+table .subDsTabTr {
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	height: 30px;
+}
+.subDis table {
+	text-align: center;
+}
+.subDis table th {
+	color: #075C79;
+
+}
+table {
+	background-color: #ccc;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+table tr {
+	background-color: #fff;
+}
+.subDis h2 {
+	text-indent: 24px;
+}
+.subProduct {
+	margin-bottom: 30px;
+	margin-left: 15px;
+	float: right;
+}
+
+.subProduct ul li {
+	float: left;
+	width: 150px;
+}
+.btn, .btn2 {
+	height: 30px;
+}
+.btn .btnLeft {
+	background-image: url(../images/submit-coButton_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 30px;
+	width: 6px;
+}
+.btn .btnC {
+	background-image: url(../images/submit-coButton_03.png);
+	background-repeat: repeat-x;
+	color: #FFF;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+	line-height: 30px;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+.btn .btnRight {
+	background-image: url(../images/submit-coButton_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: left;
+	height: 30px;
+	width: 6px;
+}
+.btn2 .btnLeft2 {
+	background-image: url(../images/submit-useButton_b_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 30px;
+	width: 6px;
+}
+.btn2 .btnC2 {
+	background-image: url(../images/submit-useButton_b_03.png);
+	background-repeat: repeat-x;
+	color: #FFF;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+	line-height: 30px;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+.btn2 .btnRight2 {
+	background-image: url(../images/submit-useButton_b_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: left;
+	height: 30px;
+	width: 6px;
+}

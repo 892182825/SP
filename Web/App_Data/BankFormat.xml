@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OutPutFormat>
+  <Bank BankName="无">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="农业银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="建设银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="交通银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="工商银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="招商银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="中国银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="商业银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="邮政银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+  <Bank BankName="其他银行">
+    <Item Label="Number:19,Name:15,LevelStr:10,Bank:18,BankCard:19,total:15" />
+  </Bank>
+</OutPutFormat>

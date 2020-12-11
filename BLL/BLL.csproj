@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD1517F8-1C98-4CA3-96C0-A09C06935136}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Branch\BranchModifyBLL.cs" />
+    <Compile Include="CommonClass\CommonDataBLL.cs" />
+    <Compile Include="CommonClass\Login.cs" />
+    <Compile Include="CommonClass\PageHelper.cs" />
+    <Compile Include="CommonClass\PhoneRechargeBLL.cs" />
+    <Compile Include="CommonClass\PrintDoc.cs" />
+    <Compile Include="CommonClass\RemarkInfo.cs" />
+    <Compile Include="CommonClass\ResetTextValue.cs" />
+    <Compile Include="CommonClass\RunExe.cs" />
+    <Compile Include="CommonClass\Transforms.cs" />
+    <Compile Include="CommonClass\TransTo.cs" />
+    <Compile Include="CommonClass\ValidData.cs" />
+    <Compile Include="Logistics\BLL.cs" />
+    <Compile Include="Logistics\D_AccountBLL.cs" />
+    <Compile Include="Logistics\FileOperateBLL.cs" />
+    <Compile Include="Logistics\Languages.cs" />
+    <Compile Include="Logistics\OrderBLL.cs" />
+    <Compile Include="Logistics\RefundmentOrderDocBLL.cs" />
+    <Compile Include="MoneyFlows\BMOrderBLL.cs" />
+    <Compile Include="other\AjaxPager.cs" />
+    <Compile Include="other\Company\GiveProductBLL.cs" />
+    <Compile Include="other\Company\MessageDropBLL.cs" />
+    <Compile Include="other\Company\SMScontentBLL.cs" />
+    <Compile Include="other\Company\StoreOffBLL.cs" />
+    <Compile Include="other\MicroblogManager.cs" />
+    <Compile Include="other\WTreeBLL.cs" />
+    <Compile Include="PersonalSpace\Message.cs" />
+    <Compile Include="QuickPay\PKI.cs" />
+    <Compile Include="QuickPay\QuickPay.cs" />
+    <Compile Include="Logistics\ReturnedGoodsBLL.cs" />
+    <Compile Include="Logistics\SMS.cs" />
+    <Compile Include="Logistics\ThirdLogisticsDLL.cs" />
+    <Compile Include="Logistics\Translation.cs" />
+    <Compile Include="Logistics\TranslationBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoneyFlows\OrderPaymentBLL.cs" />
+    <Compile Include="MoneyFlows\PayParames.cs" />
+    <Compile Include="MoneyFlows\VIPCardManageBll.cs" />
+    <Compile Include="other\Company\AddReportDamageBLL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="other\Company\AddReportProfit.cs" />
+    <Compile Include="other\Company\AstrictMemberLoginBLL.cs" />
+    <Compile Include="MoneyFlows\BochulvBLL.cs" />
+    <Compile Include="CommonClass\ChangeLogs.cs" />
+    <Compile Include="CommonClass\ChangeLogsBase.cs" />
+    <Compile Include="CommonClass\MyDateTime.cs" />
+    <Compile Include="Logistics\AffirmConsignBLL.cs" />
+    <Compile Include="Logistics\BillOutOrderBLL.cs" />
+    <Compile Include="Logistics\BrowseStoreOrdersBLL.cs" />
+    <Compile Include="Logistics\CheckOutOrdersBLL.cs" />
+    <Compile Include="Logistics\CompanyConsignBLL.cs" />
+    <Compile Include="Logistics\DisplaceGoodBrowseBLL.cs" />
+    <Compile Include="Logistics\OrderGoodsBLL.cs" />
+    <Compile Include="Logistics\OrdersBrowseBLL.cs" />
+    <Compile Include="Logistics\QueryOrdersBLL.cs" />
+    <Compile Include="Logistics\RefundmentOrderBrowseBLL.cs" />
+    <Compile Include="Logistics\ShowStorageBLL.cs" />
+    <Compile Include="Logistics\ViewAccountCircsBLL.cs" />
+    <Compile Include="MoneyFlows\CompanyBankBLL.cs" />
+    <Compile Include="MoneyFlows\DeductBLL.cs" />
+    <Compile Include="MoneyFlows\ECRemitDetailBLL.cs" />
+    <Compile Include="MoneyFlows\ECTransferBLL.cs" />
+    <Compile Include="other\Company\BlackGroupBLL.cs" />
+    <Compile Include="other\Company\BlackListBLL.cs" />
+    <Compile Include="other\Company\ChangeExceptBLL.cs" />
+    <Compile Include="other\Company\ChangeTeamBLL.cs" />
+    <Compile Include="other\Company\ConfusionBLL.cs" />
+    <Compile Include="other\Company\DataEmptyBLL.cs" />
+    <Compile Include="other\Company\EncryptionBLL.cs" />
+    <Compile Include="other\Company\MemberInfoReportBLL.cs" />
+    <Compile Include="other\Company\MemberOffBLL.cs" />
+    <Compile Include="other\Company\MemberReportBLL.cs" />
+    <Compile Include="other\Company\ProductWareHouseDetailsBLL.cs" />
+    <Compile Include="other\Company\ReportBLL.cs" />
+    <Compile Include="other\Company\ReportFormsBLL.cs" />
+    <Compile Include="other\Company\ConfigSetBLL.cs" />
+    <Compile Include="other\Company\CountryBLL.cs" />
+    <Compile Include="other\Company\DocTypeDetailBLL.cs" />
+    <Compile Include="other\Company\InventoryDocBLL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="other\Company\InventoryDocDetailsBLL.cs" />
+    <Compile Include="other\Company\LanguageBLL.cs" />
+    <Compile Include="other\Company\MessageReceiveBLL.cs" />
+    <Compile Include="other\Company\MessageSendBLL.cs" />
+    <Compile Include="other\Company\NetWorkDisplayStatusBLL.cs" />
+    <Compile Include="other\Company\OrderSetBLL.cs" />
+    <Compile Include="MoneyFlows\PayMentBLL.cs" />
+    <Compile Include="other\Company\PassModifyBLL.cs" />
+    <Compile Include="other\Company\ProductDetailsBLL.cs" />
+    <Compile Include="other\Company\ProductTreeList.cs" />
+    <Compile Include="other\Company\QueryControlBLL.cs" />
+    <Compile Include="MoneyFlows\ReleaseBLL.cs" />
+    <Compile Include="MoneyFlows\RemittancesBLL.cs" />
+    <Compile Include="MoneyFlows\ReturnedGoodsMoneyBLL.cs" />
+    <Compile Include="other\Company\AdvancedQueryBLL.cs" />
+    <Compile Include="other\Company\CompanyDeptBLL.cs" />
+    <Compile Include="other\Company\AddNewProductBLL.cs" />
+    <Compile Include="other\Company\BrowseBillsBLL.cs" />
+    <Compile Include="other\Company\CombineProductBLL.cs" />
+    <Compile Include="other\Company\DataBackupBLL.cs" />
+    <Compile Include="other\Company\LogsManageBLL.cs" />
+    <Compile Include="other\Company\MemInfoEditBLL.cs" />
+    <Compile Include="other\Company\MemInfoSearchBLL.cs" />
+    <Compile Include="other\Company\MemPassResetBLL.cs" />
+    <Compile Include="other\Company\OwnerStoreResetBLL.cs" />
+    <Compile Include="other\Company\ProductModeBLL.cs" />
+    <Compile Include="other\Company\ProviderManageBLL.cs" />
+    <Compile Include="other\Company\QueryInStorageBLL.cs" />
+    <Compile Include="other\Company\QueryMessageBLL.cs" />
+    <Compile Include="other\Company\QueryOutStorageBLL.cs" />
+    <Compile Include="other\Company\QueryStorageBLL.cs" />
+    <Compile Include="other\Company\ReceiveEmailBLL.cs" />
+    <Compile Include="other\Company\ResourcesBLL.cs" />
+    <Compile Include="other\Company\SendEmailBLL.cs" />
+    <Compile Include="other\Company\SendMessageBLL.cs" />
+    <Compile Include="other\Company\SetDataOrExpectNumBLL.cs" />
+    <Compile Include="other\Company\SetParametersBLL.cs" />
+    <Compile Include="other\Company\SetRateBLL.cs" />
+    <Compile Include="other\Company\SMSBLL.cs" />
+    <Compile Include="other\Company\StorageDamageBLL.cs" />
+    <Compile Include="other\Company\StorageInBLL.cs" />
+    <Compile Include="other\Company\StorageInBrowseBLL.cs" />
+    <Compile Include="other\Company\StorageProfitBLL.cs" />
+    <Compile Include="other\Company\StoreInfoEditBLL.cs" />
+    <Compile Include="other\Company\StoreInfoReportBLL.cs" />
+    <Compile Include="other\Company\StoreInfoSearchBLL.cs" />
+    <Compile Include="other\Company\StorePassResetBLL.cs" />
+    <Compile Include="other\Company\StoreRegisterBLL.cs" />
+    <Compile Include="other\Company\StoreRegisterConfirmBLL.cs" />
+    <Compile Include="other\Company\TranslationBLL.cs" />
+    <Compile Include="other\Company\UnusedEmailBLL.cs" />
+    <Compile Include="other\Company\UpdateNetBLL.cs" />
+    <Compile Include="other\Company\UploadInfoBLL.cs" />
+    <Compile Include="other\Company\WareHouseProductDetailsBLL.cs" />
+    <Compile Include="other\Company\WordlTimeBLL.cs" />
+    <Compile Include="other\IndexBLL.cs" />
+    <Compile Include="other\Member\DownLoadFilesBLL.cs" />
+    <Compile Include="other\Member\QueryInformationBLL.cs" />
+    <Compile Include="other\Member\UnusedEmailBLL.cs" />
+    <Compile Include="other\Member\WriteEmailBLL.cs" />
+    <Compile Include="other\Company\DeptRoleBLL.cs" />
+    <Compile Include="other\Company\ManagerBLL.cs" />
+    <Compile Include="MoneyFlows\PayBackBLL.cs" />
+    <Compile Include="other\Member\MemberInfoModifyBll.cs" />
+    <Compile Include="other\MenuBLL.cs" />
+    <Compile Include="other\Store\PwdModifyBLL.cs" />
+    <Compile Include="other\Store\StoreInfoModifyBLL.cs" />
+    <Compile Include="other\TreeViewBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickPay\QuickPaySign.cs" />
+    <Compile Include="Registration&amp;declarations\CheckMemberInfo.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\GroupRegisterBLL.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\MemberFreeOrderBLL.cs" />
+    <Compile Include="Registration&amp;declarations\MemberTree.cs" />
+    <Compile Include="Registration&amp;declarations\MemberTree2.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\OrderCommonBLL.cs" />
+    <Compile Include="Registration&amp;declarations\RegistermemberBLL.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\BrowseMemberOrdersBLL.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\MemberOrderAgainBLL.cs" />
+    <Compile Include="Registration&amp;declarations\MemberOrderBLL.cs" />
+    <Compile Include="Registration&amp;declarations\ViewFuXiaoBLL.cs" />
+    <Compile Include="Registration&amp;declarations\AuditingMemberOrdersBLL.cs" />
+    <Compile Include="Registration&amp;declarations\AuditingMemberagainBLL.cs" />
+    <Compile Include="Registration&amp;declarations\AddOrderBLL.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration&amp;declarations\PayMent_MemberBLL.cs" />
+    <Compile Include="Registration&amp;declarations\BasicSearchBLL.cs" />
+    <Compile Include="Registration&amp;declarations\DetialQuery1BLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{201351CC-CBD7-4C19-8D3F-75BD2384DA49}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Encryption\Encryption.csproj">
+      <Project>{2015B2E5-B400-4005-AB9E-C645614FBCAA}</Project>
+      <Name>Encryption</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{AFD85971-0FC8-4D5A-825B-5FDE2FEA00ED}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

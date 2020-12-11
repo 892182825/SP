@@ -1,0 +1,121 @@
+.proItem {
+	width: 1003px;
+}
+.pItem-title h1 {
+	font-size: 14px;
+	line-height: 40px;
+	color: #000;
+}
+.pItem-img {
+	float: left;
+	width: 310px;
+	border: 1px solid #ccc;
+}
+.pItem-list {
+	float: left;
+	width: 600px;
+}
+.pItem-list ul {
+	clear: both;
+	padding-left: 10px;
+}
+.pItem-list ul li {
+	float: left;
+	line-height: 24px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.btn {
+	height: 24px;
+	padding-top: 25px;
+	float: left;
+	width: 120px;
+}
+.btn .btnLeft {
+	background-image: url(../images/products-useButton_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 24px;
+	width: 2px;
+}
+.btn .btnC {
+	background-image: url(../images/products-useButton_03.png);
+	background-repeat: repeat-x;
+	color: #FFF;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+	line-height: 24px;
+	font-weight: normal;
+}
+
+.btn .btnRight {
+	background-image: url(../images/products-useButton_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: left;
+	height: 24px;
+	width: 2px;
+}
+.btn1 {
+	height: 30px;
+	padding-top: 25px;
+	float: left;
+	width: 120px;
+}
+.btn1 .btnLeft1 {
+	background-image: url(../images/itemButton_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 24px;
+	width: 1px;
+}
+.btn1 .btnC1 {
+	background-image: url(../images/itemButton_03.png);
+	background-repeat: repeat-x;
+	color: #666;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+	line-height: 24px;
+	font-weight: normal;
+}
+
+.btn1 .btnRight1 {
+	background-image: url(../images/itemButton_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: left;
+	height: 24px;
+	width: 1px;
+}
+.pItem-txt {
+	width: 1003px;
+	margin-top: 20px;
+	background-color: #f7f7f7;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.pItem-titel2 h2 {
+	background-image: url(../images/detail-table-bg_03.png);
+	background-repeat: repeat-x;
+	font-size: 14px;
+	line-height: 30px;
+	text-indent: 24px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #ccc;
+}
+.pItem-list2 ul {
+	clear: both;
+	padding-left: 15px;
+}
+.pItem-list2 ul li {
+	float: left;
+	line-height: 24px;
+	padding-right: 15px;
+	padding-left: 15px;
+	width: 230px;
+}

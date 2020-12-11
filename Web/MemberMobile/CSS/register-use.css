@@ -1,0 +1,190 @@
+.regTabTitle  {
+	text-indent: 40px;
+	background-color: #f7f7f7;
+	border: 1px solid #CCC;
+	height: 48px;
+	line-height: 48px;
+}
+.regTabTitle h1 {
+	background-image: url(../images/mail_group3.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	float: left;
+	font-family: "宋体", Arial;
+	font-size: 16px;
+	color: #063;
+}
+
+.table {
+	margin-top: 15px;
+}
+.regTabPrompt  {
+	font-weight: normal;
+	color: #666;
+	width: 230px;
+	line-height: 54px;
+}
+
+
+.table ul {
+	padding-left: 20px;
+}
+.table ul li {
+	clear: both;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.table ul .reUseLi {
+	width: 290px;
+}
+
+
+.table .re_text {
+	font-family: "宋体";
+	font-size: 14px;
+	line-height: 24px;
+	color: #666;
+	float: left;
+	width: 110px;
+	text-align: right;
+}
+
+.table .re_table {
+	height: 24px;
+	border: 1px solid #ccc;
+	line-height: 24px;
+	width: 200px;
+	font-family: "宋体";
+	font-size: 14px;
+	float: left;
+	margin-right: 10px;
+}
+.table .re_table1 {
+	height: 50px;
+	border: 1px solid #ccc;
+	line-height: 24px;
+	width: 400px;
+	font-family: "宋体";
+	font-size: 14px;
+	float: left;
+	margin-right: 10px;
+}
+.table .re_tableSelete {
+	height: 24px;
+	border: 1px solid #ccc;
+	line-height: 24px;
+	font-family: "宋体";
+	font-size: 14px;
+	float: left;
+	margin-right: 10px;
+    width:auto;
+}
+.table .re_pro {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 24px;
+	color: #404040;
+	background-color: #EDF6ED;
+	background-image: url(../images/wx_register__iii3.png);
+	background-repeat: no-repeat;
+	height: 24px;
+	border: 1px solid #063;
+	display: block;
+	padding-left: 24px;
+	background-position: 3px 3px;
+	float: left;
+	width: auto;
+	padding-right: 24px;
+	margin-left: 50px;
+}
+.table .re_proP {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 24px;
+	color: #404040;
+	background-color: #fff8ed;
+	background-image: url(../images/wx_register__ired.png);
+	background-repeat: no-repeat;
+	height: 24px;
+	border: 1px solid #F2881E;
+	display: block;
+	padding-left: 24px;
+	background-position: 3px 3px;
+	float: left;
+	width: auto;
+	padding-right: 24px;
+	margin-left: 50px;
+}
+.table .re_txtStyle {
+	font-family: "微软雅黑";
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: bold;
+	color: #063;
+	width: 120px;
+	height: 24px;
+	float: left;
+}
+.table .re_txtButton {
+	float: right;
+	width: 60px;
+	height: 24px;
+}
+.table table {
+	margin-left: 40px;
+	color: #063;
+}
+.table .regBtStyle {
+	line-height: 32px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.btn {
+	height: 24px;
+	float:left;
+	display:inline;
+}
+.btn .btnLeft {
+	background-image: url(../images/register-useButton_01.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	float: left;
+	height: 24px;
+	width: 6px;
+}
+.btn .btnC {
+	background-image: url(../images/register-useButton_03.png);
+	background-repeat: repeat-x;
+	color: #FFF;
+
+	line-height: 24px;
+	height: 24px;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+
+.btn .btnRight {
+	background-image: url(../images/register-useButton_05.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: right;
+	height: 24px;
+	width: 6px;
+}
+.btn2 {
+	background-image: url(../images/regButRegs_02.png);
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 150px;
+	border: 1px solid #063;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: bold;
+	color: #FFF;
+	margin-right: 20px;
+	margin-left: 20px;
+	text-align: center;
+}
