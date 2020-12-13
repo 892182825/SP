@@ -16,7 +16,7 @@
     <style>
         baby {
         
-        padding: 0;
+        padding: 0; 
     border: 0;
     margin: 0;
     list-style: none; 
