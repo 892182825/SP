@@ -130,7 +130,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
 
                     myDi.Add("uid", uid);
-                    myDi.Add("symbol", "FTC");
+                    myDi.Add("symbol", "USDT");
                     myDi.Add("app_id", "98bb076f4d2585c38e5ffaa6921779e0");
                     myDi.Add("time", GetTimeStamp());
 
@@ -338,7 +338,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 string sql = "update memberinfo set Jackpot=Jackpot+" + skje + " where number='" + Session["Member"].ToString() + "'";
                 int cg = DBHelper.ExecuteNonQuery(tran,sql);
 
-                ret = DBHelper.ExecuteNonQuery(tran, "INSERT INTO MemberAccount(Number,HappenTime,HappenMoney,BalanceMoney,Direction,SfType,KmType,Remark)SELECT j.number,GETutcDATE()," + skje + " ,j.Jackpot-j.Out,0,1,2,'成功充值FTC" + skje + "'from memberinfo j WHERE j.Number='" + Session["Member"].ToString() + "'");
+                ret = DBHelper.ExecuteNonQuery(tran, "INSERT INTO MemberAccount(Number,HappenTime,HappenMoney,BalanceMoney,Direction,SfType,KmType,Remark)SELECT j.number,GETutcDATE()," + skje + " ,j.Jackpot-j.Out,0,1,2,'成功充值USDT" + skje + "'from memberinfo j WHERE j.Number='" + Session["Member"].ToString() + "'");
 
                 if (cg > 0 && ret > 0)
                 {
@@ -436,7 +436,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
             {"subject", "购买配套"},
             {"out_trade_no", ddh},
             {"total_amount", mony*100000000},
-            {"settle_currency", "FTC"},
+            {"settle_currency", "USDT"},
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
