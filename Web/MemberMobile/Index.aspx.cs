@@ -114,26 +114,33 @@ public partial class Member_Index : BLL.TranslationBase
             Session["access_token"] = access_token;
             if (Session["Member"].ToString() != "")
             {
-                DataTable dt = ChangeTeamBLL.GetMemberInfoDataTable(Session["Member"].ToString());
-                if (dt.Rows.Count > 0)
-                {
-                    if (dt.Rows[0][0].ToString() != "" && dt.Rows[0][0].ToString() != null)
-                    {
-                        string sqlqq = "select  Number,Direct,name from memberinfo  where MobileTele='" + dt.Rows[0][0].ToString() + "'";
-                        DataTable dtt = DBHelper.ExecuteDataTable(sqlqq);
-                        if (dtt.Rows.Count > 0)
+               
+                        string sql = "select  Number,Direct,name from memberinfo  where number='" + Session["Member"].ToString() + "'";
+                        DataTable dt = DBHelper.ExecuteDataTable(sql);
+                        if (dt.Rows.Count > 0)
                         {
-                            if (dtt.Rows[0]["Direct"].ToString() != null && dtt.Rows[0]["Direct"].ToString() != "")
+                        if (dt.Rows[0]["Direct"].ToString() != null || dt.Rows[0]["Direct"].ToString() != "" )
+                        {
+                            string sqlqq = "select  Number from memberinfo  where MobileTele='" + dt.Rows[0]["Direct"].ToString() + "'";
+                            DataTable dtt = DBHelper.ExecuteDataTable(sqlqq);
+                            if (dtt.Rows.Count > 0)
                             {
-                                string sql = "update memberinfo set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
-                                DBHelper.ExecuteNonQuery(sql);
+                                string sqlz = "update memberinfo set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
+                                DBHelper.ExecuteNonQuery(sqlz);
                                 string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                 DBHelper.ExecuteNonQuery(sqll);
                             }
                         }
-
+                        //if (dtt.Rows[0]["name"].ToString() == null || dtt.Rows[0]["name"].ToString() == "")
+                        //{
+                        //    string sql = "update memberinfo set name='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
+                        //    DBHelper.ExecuteNonQuery(sql);
+                        //    string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
+                        //    DBHelper.ExecuteNonQuery(sqll);
+                        //}
                     }
-                }
+
+                 
                 else
                 {
 
@@ -333,9 +340,9 @@ public partial class Member_Index : BLL.TranslationBase
                                 DataTable dtt = DBHelper.ExecuteDataTable(sqlqq);
                                 if (dtt.Rows.Count > 0)
                                 {
-                                    string sql = "update memberinfo set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
+                                    string sql = "update memberinfo set Direct='" + dt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                     DBHelper.ExecuteNonQuery(sql);
-                                    string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
+                                    string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                     DBHelper.ExecuteNonQuery(sqll);
 
                                 }
