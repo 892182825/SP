@@ -104,7 +104,7 @@ public class CommandAPI : BLL.TranslationBase
 
     }
     private int rep = 0;
-    private string GenerateCheckCodeNum(int codeCount)
+    private static string GenerateCheckCodeNum(int codeCount)
     {
         string str = string.Empty;
         long num2 = DateTime.Now.Ticks + this.rep;
@@ -123,7 +123,7 @@ public class CommandAPI : BLL.TranslationBase
     /// 订单状态NOTPAY (待支付)，SUCCESS（已支付）， CLOSED（订单过期或关闭） UNKNOW（未知状态）
     /// </summary>
 
-    public string getzf()
+    public static string getzf()
     {
         string sl = GenerateCheckCodeNum(32);
         //long mony = Convert.ToInt64(money.Text.Trim());
@@ -165,7 +165,7 @@ public class CommandAPI : BLL.TranslationBase
         //}
 
     }
-    public string GetTimeStamp()
+    public static string GetTimeStamp()
     {
         TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
         return Convert.ToInt64(ts.TotalSeconds).ToString();
@@ -187,7 +187,7 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 支付接口跳转到支付界面，ddje订单金额
     /// </summary>
-    public string GetFunction(string ddje)
+    public static string GetFunction(string ddje)
     {
         SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + Session["Member"] + "'");
         string str = "";
@@ -266,6 +266,19 @@ public class CommandAPI : BLL.TranslationBase
         sdr.Close();
         sdr.Dispose();
         return str;
+    }
+
+    /// <summary>
+    /// 获取指定币对价格
+    /// </summary>
+    public static string CoinPrice(string CoinPair)
+    {
+        string postdz = "https://openapi.factorde.com/open/api/get_ticker";
+        System.Collections.Generic.Dictionary<String, String> myDi = new System.Collections.Generic.Dictionary<String, String>();
+        myDi.Add("symbol", CoinPair);
+        string rspp = PublicClass.GetFunction(postdz, myDi);
+        Newtonsoft.Json.Linq.JObject stJson = Newtonsoft.Json.Linq.JObject.Parse(rspp);
+        return stJson["data"]["last"].ToString();
     }
 
 }
