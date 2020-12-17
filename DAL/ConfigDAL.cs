@@ -133,6 +133,48 @@ namespace DAL
             return model;
         }
         /// <summary>
+        /// 获取最大期的参数
+        /// </summary>
+        /// <returns></returns>
+        public static ConfigModel GetConfig( )
+        {
+            string sql = "select top 1 * from config  order by id desc";
+          
+            SqlDataReader dr = DBHelper.ExecuteReader(sql,  CommandType.Text);
+            ConfigModel model = null;
+            if (dr.Read())
+            {
+                model = new ConfigModel();
+                model.ID = Convert.ToInt32(dr["ID"]);
+                model.ExpectNum = Convert.ToInt32(dr["expectNum"]);   
+                model.Date = dr["Date"].ToString();
+                model.IsSuance = Convert.ToInt32(dr["IsSuance"]);
+                model.Para1 = double.Parse(dr["Para1"].ToString());
+                model.Para2 = double.Parse(dr["Para2"].ToString());
+                model.Para3 = double.Parse(dr["Para3"].ToString());
+                model.Para4 = double.Parse(dr["Para4"].ToString());
+                model.Para5 = double.Parse(dr["Para5"].ToString());
+                model.Para6 = double.Parse(dr["Para6"].ToString());
+                model.Para7 = double.Parse(dr["Para7"].ToString());
+                model.Para8 = double.Parse(dr["Para8"].ToString());
+                model.Para9 = double.Parse(dr["Para9"].ToString());
+                model.Para10 = double.Parse(dr["Para10"].ToString());
+                model.Para11 = double.Parse(dr["Para11"].ToString());
+                model.Para12 = double.Parse(dr["Para12"].ToString());
+                model.Para13 = double.Parse(dr["Para13"].ToString());
+                model.Para14 = double.Parse(dr["Para14"].ToString());
+                model.Para15 = double.Parse(dr["Para15"].ToString());
+                model.Para16 = double.Parse(dr["Para16"].ToString());
+
+                model.Para17 = double.Parse(dr["Para17"].ToString());
+                model.Para18 = double.Parse(dr["Para18"].ToString());
+                model.Para19 = double.Parse(dr["Para19"].ToString());
+            }
+            dr.Close();
+            dr.Dispose();
+            return model;
+        }
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="expectNum"></param>
