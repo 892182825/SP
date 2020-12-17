@@ -30,13 +30,13 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 账户余额
     /// </summary>
-    private double GetActMoney(string  number)
+    private double GetActMoney()
     {
         double blance = 0;
         string post = posturl+"/user/info";
         Dictionary<String, String> myDictionary = new Dictionary<String, String>();
         myDictionary.Add("app_id", app_id);
-        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select MobileTele,Jackpot-Out as xj from memberinfo where Number='" + number + "'");
+        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select MobileTele,Jackpot-Out as xj from memberinfo where Number='" + Session["Member"].ToString() + "'");
         if (dt_one.Rows.Count > 0)
         {
             string ipn = dt_one.Rows[0]["MobileTele"].ToString();
