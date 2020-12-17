@@ -274,4 +274,17 @@ public class CommandAPI : BLL.TranslationBase
         return str;
     }
 
+    /// <summary>
+    /// 获取指定币对价格
+    /// </summary>
+    public static string CoinPrice(string CoinPair)
+    {
+        string postdz = "https://openapi.factorde.com/open/api/get_ticker";
+        System.Collections.Generic.Dictionary<String, String> myDi = new System.Collections.Generic.Dictionary<String, String>();
+        myDi.Add("symbol", CoinPair);
+        string rspp = PublicClass.GetFunction(postdz, myDi);
+        Newtonsoft.Json.Linq.JObject stJson = Newtonsoft.Json.Linq.JObject.Parse(rspp);
+        return stJson["data"]["last"].ToString();
+    }
+
 }

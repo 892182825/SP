@@ -3,14 +3,14 @@
 <script runat="server">
 
     public static System.Timers.Timer ptime;
-    void Application_Start(object sender, EventArgs e) 
+    void Application_Start(object sender, EventArgs e)
     {
-       // BLL.CommonClass.Login.MaxDateTime = Convert.ToDateTime("2018-08-31 11:09:15");//限制时间
+        // BLL.CommonClass.Login.MaxDateTime = Convert.ToDateTime("2018-08-31 11:09:15");//限制时间
         //在应用程序启动时运行的代码
         Application["jinzhi"] = "F";
         Application["maxqishu"] = BLL.CommonClass.CommonDataBLL.GetMaxqishu();
         Application["TopManageID"] = BLL.CommonClass.CommonDataBLL.GetTopManageID(1);
-       // Application["TopStoreID"] = BLL.CommonClass.CommonDataBLL.GetTopManageID(2);
+        // Application["TopStoreID"] = BLL.CommonClass.CommonDataBLL.GetTopManageID(2);
         Application["TopMemberID"] = BLL.CommonClass.CommonDataBLL.GetTopManageID(3);
         Application["NetWorkDisplayStatus"] = "1111111";
         Application["Dict_English"] = new System.Collections.Hashtable();
@@ -29,23 +29,23 @@
         ptime.Enabled = true;
         GC.KeepAlive(ptime);
         ptime.Start();
-        
-        DAL.DBHelper.ExecuteNonQuery("insert into ZiDongJieSuanJiLu(ExceptNum, Remark) values('-1','应用程序开始，开始时间：" + DateTime.Now + "')"); 
+
+        DAL.DBHelper.ExecuteNonQuery("insert into ZiDongJieSuanJiLu(ExceptNum, Remark) values('-1','应用程序开始，开始时间：" + DateTime.Now + "')");
     }
     //24小时删除未激活的会员信息
     void CleaMemberProc(object sender, System.Timers.ElapsedEventArgs e)
     {
-        
-            DAL.DBHelper.ExecuteNonQuery("ClearMemberOuttimeNopay", System.Data.CommandType.StoredProcedure);
-            
-        
+
+        DAL.DBHelper.ExecuteNonQuery("ClearMemberOuttimeNopay", System.Data.CommandType.StoredProcedure);
+
+
     }
-    
-    
+
+
     void TimeMethod(object sender, System.Timers.ElapsedEventArgs e)
     {
         string maxqs="";
-        
+
         System.Data.SqlClient.SqlConnection con = null;
         System.Data.SqlClient.SqlTransaction tran = null;
         System.Data.SqlClient.SqlCommand cmd = null;
@@ -54,7 +54,7 @@
         int strD = -100;
         int strH = -100;
         int strB = -100;
-        
+
         try
         {
             string nowTime = DateTime.Now.ToString();
@@ -63,13 +63,13 @@
             con.Open();//先打开在事务
 
             tran = con.BeginTransaction();
-            
+
             cmd = new System.Data.SqlClient.SqlCommand();
 
             cmd.Transaction = tran;
             cmd.Connection = con;
-            
-            
+
+
             cmd.CommandText="select qiyong from dbo.zidongjiesuan";
             cmd.CommandType = System.Data.CommandType.Text;
 
@@ -156,7 +156,7 @@
                             cmd.CommandType = System.Data.CommandType.Text;
                             cmd.Parameters.Clear();
                             cmd.ExecuteNonQuery();
-                            
+
                             tran.Commit();
                             HttpContext.Current.Application["maxqishu"] = null;
                             InsertZDJSJiLu(maxqs, "自动结算成功");
@@ -172,7 +172,7 @@
             }
             else
                 tran.Commit();
-            
+
         }
         catch (Exception ee)
         {
@@ -180,7 +180,7 @@
                 tran.Rollback();
 
             InsertZDJSJiLu(maxqs, ee.Message);
-            
+
         }
         finally
         {
@@ -210,10 +210,10 @@
     {
         //在应用程序关闭时运行的代码
         DAL.DBHelper.ExecuteNonQuery("insert into ZiDongJieSuanJiLu(ExceptNum, Remark) values('-1','应用程序停止，停止时间：" + DateTime.Now + "')");
-        
+
         //防止应用程序池清空后，没有人访问网站，无法启动app_strar
         System.Threading.Thread.Sleep(1000);
-        
+
         //这里设置你的web地址，可以随便指向你的任意一个aspx页面甚至不存在的页面，目的是要激发Application_Start
         string url = System.Configuration.ConfigurationSettings.AppSettings["redurl"].ToString();
         System.Net.HttpWebRequest myHttpWebRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
@@ -221,9 +221,9 @@
         System.IO.Stream receiveStream = myHttpWebResponse.GetResponseStream();//得到回写的字节流
 
     }
-        
-    void Application_Error(object sender, EventArgs e) 
-    { 
+
+    void Application_Error(object sender, EventArgs e)
+    {
         //在出现未处理的错误时运行的代码
 
     }
@@ -239,7 +239,7 @@
         //判断当前时间是否在工作时间段内
         DateTime timeStr = DateTime.Now;
         string _strWorkingDayAM = "00:00";//工作时间上午08:30
-        string _strWorkingDayPM = "00:10";
+        string _strWorkingDayPM = "00:01";
         TimeSpan dspWorkingDayAM = DateTime.Parse(_strWorkingDayAM).TimeOfDay;
         TimeSpan dspWorkingDayPM = DateTime.Parse(_strWorkingDayPM).TimeOfDay;
 
@@ -249,14 +249,11 @@
         TimeSpan dspNow = t1.TimeOfDay;
         if (dspNow > dspWorkingDayAM && dspNow < dspWorkingDayPM)
         {
-            string postdz = "https://openapi.factorde.com/open/api/get_ticker";
-            System.Collections.Generic.Dictionary<String, String> myDi = new System.Collections.Generic.Dictionary<String, String>();
-            myDi.Add("symbol", "ftcusdt");
-            string rspp = PublicClass.GetFunction(postdz, myDi);
-            Newtonsoft.Json.Linq.JObject stJson = Newtonsoft.Json.Linq.JObject.Parse(rspp);
+
+            string postdz =CommandAPI.CoinPrice(string CoinPair);
             //rmoney.Text = rspp;
-            
-            string sql = "update DayPrice set NowPrice='" + stJson["data"]["last"].ToString() + "'";
+
+            string sql = "update DayPrice set NowPrice='" + postdz + "'";
             DAL.DBHelper.ExecuteNonQuery(sql);
         }
 
@@ -274,18 +271,18 @@
         //        System.Web.HttpContext.Current.Response.Redirect("../Logout.aspx");
         //}
     }
-    
+
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
         isTimeruse();
         string url = Request.Url.ToString().ToLower();
-        
+
         if (url.Contains(".aspx")) //更新超时时间-重新定义为30分钟
         {
             Session.Timeout = 30;
             Session["ReFurbish_Timeout"] = DateTime.Now.AddMinutes(HttpContext.Current.Session.Timeout);
         }
-        
+
         if (url.ToLower().IndexOf("refurbish.aspx") < 0 && url.ToLower().IndexOf("ajaxclass") < 0 && url.ToLower().IndexOf("fckediter") > 0)
         {
             //更新超时时间
@@ -319,14 +316,14 @@
             }
             else
                 if (ptime == null)
-                {
-                    ptime = new System.Timers.Timer(Convert.ToDouble(System.Configuration.ConfigurationSettings.AppSettings["zdjs"]));
-                    ptime.Elapsed += new System.Timers.ElapsedEventHandler(TimeMethod);
-                    ptime.AutoReset = true;
-                    ptime.Enabled = true;
-                    GC.KeepAlive(ptime);
-                    ptime.Start();
-                }
+            {
+                ptime = new System.Timers.Timer(Convert.ToDouble(System.Configuration.ConfigurationSettings.AppSettings["zdjs"]));
+                ptime.Elapsed += new System.Timers.ElapsedEventHandler(TimeMethod);
+                ptime.AutoReset = true;
+                ptime.Enabled = true;
+                GC.KeepAlive(ptime);
+                ptime.Start();
+            }
         }
     }
     void Session_Start(object sender, EventArgs e)
@@ -337,7 +334,7 @@
 
     }
 
-    void Session_End(object sender, EventArgs e) 
+    void Session_End(object sender, EventArgs e)
     {
         //在会话结束时运行的代码。 
         // 注意: 只有在 Web.config 文件中的 sessionstate 模式设置为
@@ -351,5 +348,5 @@
         //}
         //System.Web.HttpContext.Current.Response.Redirect("../Logout.aspx");
     }
-       
+
 </script>
