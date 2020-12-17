@@ -123,7 +123,7 @@ public class CommandAPI : BLL.TranslationBase
     /// 订单状态NOTPAY (待支付)，SUCCESS（已支付）， CLOSED（订单过期或关闭） UNKNOW（未知状态）
     /// </summary>
 
-    public string getzf(string zfddh,string access_token,string Member)
+    public string getzf()
     {
         string sl = GenerateCheckCodeNum(32);
         //long mony = Convert.ToInt64(money.Text.Trim());
@@ -134,7 +134,7 @@ public class CommandAPI : BLL.TranslationBase
         Dictionary<String, String> myDi = new Dictionary<String, String>();
         Dictionary<String, Object> da = new Dictionary<String, Object>
 {
-            {"out_trade_no", zfddh}
+            {"out_trade_no", Session["zfddh"].ToString()}
 };
 
         String jso = JsonConvert.SerializeObject(da, Formatting.Indented);
@@ -142,11 +142,11 @@ public class CommandAPI : BLL.TranslationBase
         myDi.Add("nonce_str", sl);
         myDi.Add("biz_content", jso);
         myDi.Add("app_id", PublicClass.app_id);
-        myDi.Add("access_token", access_token);
+        myDi.Add("access_token", Session["access_token"].ToString());
         myDi.Add("lang", "zh_CN");
         myDi.Add("version", "1.0");
         myDi.Add("charset", "utf8");
-        myDi.Add("openid", Member);
+        myDi.Add("openid", Session["Member"].ToString());
 
         string signj = PublicClass.GetSignContent(myDi);
         string jsonS = PublicClass.HmacSHA256(signj + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
