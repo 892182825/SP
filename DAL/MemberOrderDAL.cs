@@ -269,6 +269,58 @@ namespace DAL
             return model;
         }
 
+        //使用本地账户支付
+        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed,int lv)
+        {
+            int res = 0;
+             
+            SqlTransaction tran = null;
+            SqlConnection conn = null;
+            using (conn = DBHelper.SqlCon()) {
+                conn.Open();
+                tran = conn.BeginTransaction();
+
+                if (aneed > 0 || bneed > 0 || cneed > 0)
+                {
+                    //修改会员账户
+                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + " ,levelint=" + lv + "  where number='" + number + "'");
+                    if (r == 0) tran.Rollback();
+                }
+                string ddremark = "支付订单:";
+                //插入对账单
+                if (aneed > 0) {
+                    ddremark += "A币支付  "+ aneed ;
+                int c=    D_AccountDAL.AddAccount("A",number,aneed,D_AccountSftype.MemberType, D_AccountKmtype.Declarations,DirectionEnum.AccountReduced,"购买矿机支付",tran);
+                    if (c == 0) tran.Rollback();
+                }
+                if (bneed > 0)
+                {
+                    ddremark += "  B币支付  " + bneed;
+                    int c = D_AccountDAL.AddAccount("B", number, bneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号"+orderid, tran);
+                    if (c == 0) tran.Rollback();
+                }
+                if (cneed > 0)
+                {
+                    ddremark += "  C币支付  " + cneed;
+                    int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                    if (c == 0) tran.Rollback();
+                }
+                //修改订单状态
+               int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1   where orderid='" + orderid+"' ");
+                if (rr == 1)
+                {
+                    tran.Commit();
+                    res =1;
+                }
+                else tran.Rollback();
+
+            }
+            return res;
+            
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>

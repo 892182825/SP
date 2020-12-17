@@ -2341,3 +2341,87 @@ color:#fff;
         padding-left:8px;
         box-sizing:border-box;
 }
+
+
+.buylist {
+    width:100%;
+    background:#000;
+    color:#aaa;
+}
+    .buylist ul {
+     width:90%; margin:auto;
+    }
+        .buylist ul li {
+        list-style:none;
+         width:100%;
+         border-radius:10px;
+         height:60px; 
+         text-align:left;margin-top:5px;
+        background-color:#333;
+        box-shadow:inset;
+        }
+            .buylist ul li .ltimg {
+             font-size:18px;
+            }
+            .buylist ul li div {
+                float: left;
+                height: 50px;
+                margin: 5px;
+            }
+                .buylist ul li div p {
+                  line-height:15px; margin:2px;
+                }
+                .buylist ul li input { 
+                    text-align: center;
+                   padding :10px;  border-radius:5px;
+                    background-color: #5c4417;
+                    color: #666;
+                    float: right;
+                    width: 60px;
+                    margin: 10px; font-size:18px; font-weight:bold;
+                }
+
+.showhid {
+    background: lightgoldenrodyellow;
+    display: -webkit-box;
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    display:none;
+ 
+    background: #333;
+ 
+    width: 80%;
+    border: 2px;
+    border-radius: 5px;
+    height: 80px;
+    padding: 10px;
+    border-color: #ccc;
+}
+    .showhid div {
+    width:100%; text-align:center;
+    line-height:20px; 
+    }
+        .showhid div input { 
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #5c4417;
+            color: #666; 
+            width: 120px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+
+

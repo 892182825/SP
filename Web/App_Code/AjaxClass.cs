@@ -177,9 +177,9 @@ public class AjaxClass : BLL.TranslationBase
         ArrayList coll = new ArrayList();
         SqlParameter[] parm = new SqlParameter[]
         {
-		    new SqlParameter("@BeginDate",SqlDbType.DateTime),
-		    new SqlParameter("@EndDate",SqlDbType.DateTime)							
-		};
+            new SqlParameter("@BeginDate",SqlDbType.DateTime),
+            new SqlParameter("@EndDate",SqlDbType.DateTime)
+        };
         parm[0].Value = begin;
         parm[1].Value = end;
 
@@ -298,9 +298,9 @@ public class AjaxClass : BLL.TranslationBase
         ArrayList coll = new ArrayList();
 
         SqlParameter[] param ={
-									 new SqlParameter("@BeginDate",SqlDbType.DateTime),
-									 new SqlParameter("@EndDate",SqlDbType.DateTime)
-								 };
+                                     new SqlParameter("@BeginDate",SqlDbType.DateTime),
+                                     new SqlParameter("@EndDate",SqlDbType.DateTime)
+                                 };
         param[0].Value = Convert.ToDateTime(begin).ToUniversalTime();
         param[1].Value = Convert.ToDateTime(end).AddDays(1).ToUniversalTime();
 
@@ -456,7 +456,7 @@ public class AjaxClass : BLL.TranslationBase
         {
             string number = HttpContext.Current.Session["Member"].ToString();
             string sqlst = " select COUNT(0) from  ShopCart where number='" + number + "'   ";
-              nmc = Convert.ToInt32(DBHelper.ExecuteScalar(sqlst));
+            nmc = Convert.ToInt32(DBHelper.ExecuteScalar(sqlst));
         }
         return nmc;
     }
@@ -1683,13 +1683,13 @@ public class AjaxClass : BLL.TranslationBase
     public string WangLuoTu12(string number, string tree, int ExpectNum, int ISAZ, string storeid)
     {
         SqlParameter[] paraJB ={
-									  new SqlParameter("@ID",     SqlDbType.VarChar,20),
-									  new SqlParameter("@TREE",   SqlDbType.VarChar,400),
-									  new SqlParameter("@ISAZ",   SqlDbType.Int),
-									  new SqlParameter("@CS ",    SqlDbType.Int),
-									  new SqlParameter("@ExpectNum ", SqlDbType.Int),
-									  new SqlParameter("@storeID",SqlDbType.VarChar,20)
-								  };
+                                      new SqlParameter("@ID",     SqlDbType.VarChar,20),
+                                      new SqlParameter("@TREE",   SqlDbType.VarChar,400),
+                                      new SqlParameter("@ISAZ",   SqlDbType.Int),
+                                      new SqlParameter("@CS ",    SqlDbType.Int),
+                                      new SqlParameter("@ExpectNum ", SqlDbType.Int),
+                                      new SqlParameter("@storeID",SqlDbType.VarChar,20)
+                                  };
         paraJB[0].Value = number;
         paraJB[1].Value = tree;
         paraJB[2].Value = ISAZ;
@@ -2734,7 +2734,7 @@ public class AjaxClass : BLL.TranslationBase
     public bool GetIsExistsConfig(int ExpectNum)
     {
         string sql = "select count(*) from config where jsflag=0 and ExpectNum<@ExpectNum";
-        SqlParameter[] parm = new SqlParameter[] { 
+        SqlParameter[] parm = new SqlParameter[] {
             new SqlParameter("@ExpectNum",SqlDbType.Int)
         };
         parm[0].Value = ExpectNum;
@@ -2875,14 +2875,16 @@ public class AjaxClass : BLL.TranslationBase
         {
             return content = "对不起，您没有更改此会员的权限！";
 
-        } if (MemberOffBLL.getMemberZX(number) > 0)
+        }
+        if (MemberOffBLL.getMemberZX(number) > 0)
         {
             int con1 = MemberOffBLL.getMemberISzx(number);
             if (con1 == 1)
             {
                 return content = BLL.Translation.Translate("000599", "会员") + "" + number + "" + BLL.Translation.Translate("001310", "已经注销，不需要再次注销了") + "！";
             }
-        } string zxname = BLL.Translation.Translate("001286", "已注销");
+        }
+        string zxname = BLL.Translation.Translate("001286", "已注销");
         zxname = Encryption.Encryption.GetEncryptionName(zxname);
         MemberOffModel mom = new MemberOffModel();
         mom.Number = number;
@@ -4684,9 +4686,9 @@ public class AjaxClass : BLL.TranslationBase
                                             "<TR>" +
                                                 "<TD align=\"center\" colSpan=\"2\" height=\"20\">" + bianhaohtml[0] + "</TD>" +
                                             "</TR>" +
-            //"<TR>" +
-            //    "<TD align=\"center\" bgColor=\"#ffffcc\" colSpan=\"2\" height=\"20\"><font size=2px><img height='18' src=''></font></TD>" +//" + jibiehtml[0] + "
-            //"</TR>" +
+                                            //"<TR>" +
+                                            //    "<TD align=\"center\" bgColor=\"#ffffcc\" colSpan=\"2\" height=\"20\"><font size=2px><img height='18' src=''></font></TD>" +//" + jibiehtml[0] + "
+                                            //"</TR>" +
                                             "<TR>" +
                                                 "<TD align=\"center\" colSpan=\"2\" height=\"17\"><input type=\"button\" id=\"selected\" value=\"请选择\" class=\"anyes\" onclick=\"OnChose('" + TopBianhao + "')\"/></TD>" +
                                             "</TR>" +
@@ -4762,9 +4764,9 @@ public class AjaxClass : BLL.TranslationBase
                                                     "<TR>" +
                                                         "<TD align=\"center\" colSpan=\"2\" height=\"20\">" + bianhaohtml[i + 1] + "</TD>" +
                                                     "</TR>" +
-                //"<TR>" +
-                //    "<TD align=\"center\" bgColor=\"#ffffcc\" colSpan=\"2\" height=\"20\"><font size=2px><img height='18' src=''></font></TD>" +
-                //"</TR>" +
+                                                    //"<TR>" +
+                                                    //    "<TD align=\"center\" bgColor=\"#ffffcc\" colSpan=\"2\" height=\"20\"><font size=2px><img height='18' src=''></font></TD>" +
+                                                    //"</TR>" +
                                                     "<TR>" +
                                                         "<TD align=\"center\" colSpan=\"2\" height=\"17\"><input type=\"button\" id=\"selected\" value=\"请选择\" class=\"anyes\"  onclick=\"OnChose('" + dt_tuijian.Rows[i]["number"] + "')\"/></TD>" +
                                                     "</TR>" +
@@ -6601,7 +6603,7 @@ public class AjaxClass : BLL.TranslationBase
 
         if (isact != -1) cdit += " and  mo.DefrayState=" + isact;
         string sqls = @"WITH sss AS(  
-   SELECT  m.Petname,m.number,m.Direct ,m.MobileTele,RegisterDate,m.Name,mo.TotalMoney,m.MemberState,mo.DefrayState,mo.OrderID  ,ROW_NUMBER() OVER(ORDER BY  m.id desc ) AS rowNum FROM memberinfo m left join memberorder mo on m.number=mo.number where (m.Direct='" + direct + "' or m.Assister='"+direct+"')  and mo.IsAgain=0  AND ordertype in(11,21,31)  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+   SELECT  m.Petname,m.number,m.Direct ,m.MobileTele,RegisterDate,m.Name,mo.TotalMoney,m.MemberState,mo.DefrayState,mo.OrderID  ,ROW_NUMBER() OVER(ORDER BY  m.id desc ) AS rowNum FROM memberinfo m left join memberorder mo on m.number=mo.number where (m.Direct='" + direct + "' or m.Assister='" + direct + "')  and mo.IsAgain=0  AND ordertype in(11,21,31)  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
         DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
@@ -6673,7 +6675,7 @@ public class AjaxClass : BLL.TranslationBase
     [AjaxPro.AjaxMethod]
     public string AccountDetailOrders(int isact, int pageindex, string q1)
     {
-       
+
         string curstr = "";
         string cdit = "";
         int pgsize = 10;
@@ -6734,23 +6736,23 @@ public class AjaxClass : BLL.TranslationBase
     {
 
         string curstr = "";
-        
+
         int pgsize = 10;
-        
-           
-             
-
-                string sqls = @"WITH sss AS(SELECT id,mobile,je,ewm,zhifu,isno,ROW_NUMBER() OVER(ORDER BY id desc ) as rowNum FROM H5saoma where isno=0   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
-            DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
-            foreach (DataRow item in dtt.Rows)
-            {
 
-                curstr += "<div id=\"qud" + Convert.ToString(item["id"]).ToString() + "\" ></div><div class=\"caption\" contenteditable=\"true\"><h3>支付金额：" + Convert.ToString(item["je"]).ToString() + "</h3><p><h3>手机号：" + Convert.ToString(item["mobile"]).ToString() + "</h3><p><h3>支付方式：" + Convert.ToString(item["zhifu"]).ToString() + "</h3><p><a class=\"btt\" onclick=\"shengc('qud" + Convert.ToString(item["id"]).ToString() + "','" + Convert.ToString(item["ewm"]).ToString() + "');\">查看</a><a class=\"btt\" onclick=\"zhifuwancheng(" + Convert.ToString(item["id"]).ToString() + ");\" >完成</a> </p></div>";
-               
-            }
-        
+
+        string sqls = @"WITH sss AS(SELECT id,mobile,je,ewm,zhifu,isno,ROW_NUMBER() OVER(ORDER BY id desc ) as rowNum FROM H5saoma where isno=0   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+
+
+        DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
+        foreach (DataRow item in dtt.Rows)
+        {
+
+            curstr += "<div id=\"qud" + Convert.ToString(item["id"]).ToString() + "\" ></div><div class=\"caption\" contenteditable=\"true\"><h3>支付金额：" + Convert.ToString(item["je"]).ToString() + "</h3><p><h3>手机号：" + Convert.ToString(item["mobile"]).ToString() + "</h3><p><h3>支付方式：" + Convert.ToString(item["zhifu"]).ToString() + "</h3><p><a class=\"btt\" onclick=\"shengc('qud" + Convert.ToString(item["id"]).ToString() + "','" + Convert.ToString(item["ewm"]).ToString() + "');\">查看</a><a class=\"btt\" onclick=\"zhifuwancheng(" + Convert.ToString(item["id"]).ToString() + ");\" >完成</a> </p></div>";
+
+        }
+
         return curstr;
 
     }
@@ -6776,7 +6778,7 @@ public class AjaxClass : BLL.TranslationBase
             string sql = "update H5saoma set isno=1 where ID='" + pageindex + "'";
             int cg = DBHelper.ExecuteNonQuery(tran, sql);
 
-           if (cg > 0)
+            if (cg > 0)
             {
                 tran.Commit();
                 conn.Close();
@@ -6822,12 +6824,13 @@ public class AjaxClass : BLL.TranslationBase
             {
                 if (isact == 0)
                 {
-                    cdit += " and  OutNumber!='" + direct+"'";
+                    cdit += " and  OutNumber!='" + direct + "'";
                 }
-                else {
-                    cdit += " and  OutNumber='" + direct+"'";
+                else
+                {
+                    cdit += " and  OutNumber='" + direct + "'";
                 }
-            } 
+            }
             string sqls = @"WITH sss AS(SELECT *,ROW_NUMBER() OVER(ORDER BY id desc ) as rowNum FROM ECTransferDetail where (outNumber='" + direct + "' or InNumber='" + direct + "') " + cdit + ") SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
@@ -6901,7 +6904,7 @@ public class AjaxClass : BLL.TranslationBase
             string direct = HttpContext.Current.Session["Member"].ToString();
 
             if (isact == "0") { cdit += " and  a.DefrayState=" + isact; }
-            if (isact != "0" && isact != "-1") { cdit += " and d.IsSent='" + isact+"'"; }
+            if (isact != "0" && isact != "-1") { cdit += " and d.IsSent='" + isact + "'"; }
             string sqls = @"WITH sss AS(select a.Number,a.OrderID,b.Price,b.Pv,a.OrderDate,b.Quantity,b.ProductID,c.ProductImage,c.ProductName,a.DefrayState,d.IsSent,d.IsReceived,ROW_NUMBER() OVER(ORDER BY a.OrderDate desc,a.id desc  ) as rowNum from MemberOrder a left join MemberDetails b on a.OrderID=b.OrderID left join Product c on c.ProductID=b.ProductID left join StoreOrder d on a.OrderID=d.StoreOrderID where  a.Number='" + direct + "' and a.ordertype=22 and a.DefrayState>-2  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
             DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
@@ -7127,43 +7130,43 @@ public class AjaxClass : BLL.TranslationBase
             idlist = idlist.TrimEnd(",".ToCharArray());
             //对自己本身的公告查询
             string sql1 = "SELECT ma.MessageID FROM dbo.MessageReadCondition AS ma,dbo.MessageSend AS me WHERE ma.MessageID=me.ID and DropFlag=0 and me.SenderRole=0 and me.Receive='*' and me.LoginRole=2 and (ma.ConditionLeader='" + direct + "' or ma.ConditionLeader='')";
-        DataTable dt1 = DAL.DBHelper.ExecuteDataTable(sql1);
-        if (dt1.Rows.Count > 0)
-        {
-            for (int i = 0; i < dt1.Rows.Count; i++)
+            DataTable dt1 = DAL.DBHelper.ExecuteDataTable(sql1);
+            if (dt1.Rows.Count > 0)
             {
-                idlist += "," + dt1.Rows[i]["MessageID"].ToString();
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    idlist += "," + dt1.Rows[i]["MessageID"].ToString();
+                }
             }
-        }
-        idlist = idlist.TrimStart(",".ToCharArray());
-        string where = "";
-        if (!idlist.Equals(""))
-        {
-            where = "ID in(" + idlist + ") and MessageType='a'";
-        }
-        else
-        {
-            where = "1=2";
-        }
-        string sqls = @"WITH sss AS(select *,ROW_NUMBER() OVER(ORDER BY Senddate desc ) as rowNum from MessageSend where " + conditions + " and " + where + ") SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+            idlist = idlist.TrimStart(",".ToCharArray());
+            string where = "";
+            if (!idlist.Equals(""))
+            {
+                where = "ID in(" + idlist + ") and MessageType='a'";
+            }
+            else
+            {
+                where = "1=2";
+            }
+            string sqls = @"WITH sss AS(select *,ROW_NUMBER() OVER(ORDER BY Senddate desc ) as rowNum from MessageSend where " + conditions + " and " + where + ") SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
-        DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
-        foreach (DataRow item in dtt.Rows)
-        {
-            int ispay = Convert.ToInt32(item["ReadFlag"]);
-            if (ispay == 0)
+            DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
+            foreach (DataRow item in dtt.Rows)
             {
-                curstr += "<li  onclick=\"location.href='ddcyxx.aspx?id=" + item["ID"].ToString() + "'\"><div style='font-size: 12px;'><span style='float:left;'>发送人：管理员</span><span style='float:right;'>" + Convert.ToDateTime(item["Senddate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString() +
-"</span></div><div><span style='float:left;'>标题：" + Convert.ToString(item["InfoTitle"]).ToString() + "</span><Label style='color:blue'>未阅读</Label></div></li>";
-            }
-            else if (ispay == 1)
-            {
-                curstr += "<li  onclick=\"location.href='ddcyxx.aspx?id=" + item["ID"].ToString() + "'\"><div style='font-size: 12px;'><span style='float:left;'>发送人：管理员</span><span style='float:right;'>" + Convert.ToDateTime(item["Senddate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString() +
-"</span></div><div><span style='float:left;'>标题：" + Convert.ToString(item["InfoTitle"]).ToString() + "</span><Label>已阅读</Label></div></li>";
+                int ispay = Convert.ToInt32(item["ReadFlag"]);
+                if (ispay == 0)
+                {
+                    curstr += "<li  onclick=\"location.href='ddcyxx.aspx?id=" + item["ID"].ToString() + "'\"><div style='font-size: 12px;'><span style='float:left;'>发送人：管理员</span><span style='float:right;'>" + Convert.ToDateTime(item["Senddate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString() +
+    "</span></div><div><span style='float:left;'>标题：" + Convert.ToString(item["InfoTitle"]).ToString() + "</span><Label style='color:blue'>未阅读</Label></div></li>";
+                }
+                else if (ispay == 1)
+                {
+                    curstr += "<li  onclick=\"location.href='ddcyxx.aspx?id=" + item["ID"].ToString() + "'\"><div style='font-size: 12px;'><span style='float:left;'>发送人：管理员</span><span style='float:right;'>" + Convert.ToDateTime(item["Senddate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString() +
+    "</span></div><div><span style='float:left;'>标题：" + Convert.ToString(item["InfoTitle"]).ToString() + "</span><Label>已阅读</Label></div></li>";
 
+                }
             }
-        }
         }
         return curstr;
 
@@ -7186,7 +7189,7 @@ public class AjaxClass : BLL.TranslationBase
 
         string sqls = "select COUNT(0)  from Remittances  where  RemitNumber='" + number + "' and shenhestate in (0,1,11,20)  and DateDiff(dd,RemittancesDate,getutcdate())=0";
         int bc = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sqls));
-        if (Mcount >5000)
+        if (Mcount > 5000)
         {
             return -3;  //单笔买入不能超过21000
         }
@@ -7245,9 +7248,9 @@ public class AjaxClass : BLL.TranslationBase
             int HkID = 0;
             if (dt_one != null && dt_one.Rows.Count > 0) HkID = Convert.ToInt32(dt_one.Rows[0]["ID"]);//汇款ID
             int bishu = 4;
-      return HkID;
+            return HkID;
         }
-  
+
 
     }
 
@@ -7274,11 +7277,11 @@ public class AjaxClass : BLL.TranslationBase
     /// </summary>
     /// <param name="hkid"></param>
     /// <returns></returns>
-  [AjaxPro.AjaxMethod]
+    [AjaxPro.AjaxMethod]
     public int PiepeiRemittanceGO(int hkid)
     {
-        
-     int c= PiepeiRemittance(  hkid);
+
+        int c = PiepeiRemittance(hkid);
         if (c > 0)
         {
             DAL.DBHelper.ExecuteNonQuery("update  remittances set shenhestate =1  where id=" + hkid);
@@ -7288,7 +7291,7 @@ public class AjaxClass : BLL.TranslationBase
                 double wm = Convert.ToDouble(dtt.Rows[0]["RemitMoney"]);
                 string rnumber = dtt.Rows[0]["RemitNumber"].ToString();
 
-                string content = "<b style='margin:20px; '>系统匹配邮件</b> <p> 系统已为您的买入石斛积分完成匹配 ，请立即到交易中心查看买单并在两小时内完成汇款。<a href='Sellbuydetails.aspx?rmid=" + hkid + "'  >点击进入>></a></p> <p>系统邮件</p>"; 
+                string content = "<b style='margin:20px; '>系统匹配邮件</b> <p> 系统已为您的买入石斛积分完成匹配 ，请立即到交易中心查看买单并在两小时内完成汇款。<a href='Sellbuydetails.aspx?rmid=" + hkid + "'  >点击进入>></a></p> <p>系统邮件</p>";
                 SendEmail.SendSystemEmail("System", "1", content, rnumber);
             }
         }
@@ -7311,7 +7314,7 @@ public class AjaxClass : BLL.TranslationBase
 
         if (dtt != null && dtt.Rows.Count > 0)
         {
-            string Name = dtt.Rows[0]["Name"] .ToString();
+            string Name = dtt.Rows[0]["Name"].ToString();
             string bankbook = dtt.Rows[0]["BankBook"].ToString();
             string bankname = dtt.Rows[0]["BankName"].ToString();
             string BankCard = dtt.Rows[0]["BankCard"].ToString();
@@ -7358,7 +7361,7 @@ public class AjaxClass : BLL.TranslationBase
     }
 
     [AjaxPro.AjaxMethod]
-    public string AddWithdawNew(decimal sellcount, string password, int ctype,string yzm)
+    public string AddWithdawNew(decimal sellcount, string password, int ctype, string yzm)
     {
         if (Session["Member"] == null) return "-1";
         string number = Session["Member"].ToString();
@@ -7372,7 +7375,7 @@ public class AjaxClass : BLL.TranslationBase
         }
         else
         {
-             smscode = Session["smscode"].ToString();
+            smscode = Session["smscode"].ToString();
         }
         if (yzm == "" || yzm == null)
         {
@@ -7616,7 +7619,7 @@ public class AjaxClass : BLL.TranslationBase
                         <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>&yen;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
                         <div class='secdiv'>" + GetRemitStateStr(Convert.ToInt32(item["Ispipei"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"</div>
                           </a>
-                        <div  class='fourdiv'>" + GetRemitStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()) ) + @"    </div>         </li>";
+                        <div  class='fourdiv'>" + GetRemitStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"    </div>         </li>";
 
             }
             if (bs == 1)
@@ -7736,7 +7739,7 @@ public class AjaxClass : BLL.TranslationBase
         return resss;
     }
 
-    private string GetRemitStateStr(int ispp, int shenhe,DateTime dtrev)
+    private string GetRemitStateStr(int ispp, int shenhe, DateTime dtrev)
     {
         string mstr = "";
         if (dtrev > DateTime.Now.AddHours(-2))
@@ -7745,15 +7748,17 @@ public class AjaxClass : BLL.TranslationBase
             if (shenhe == 0) mstr = "买入已报";
             if (shenhe == 1) mstr = "买入待汇";
             if (shenhe == 11) mstr = "买入已汇";
-        }else 
-        mstr = "<span style='color:#999;'>买入超时</span>";
+        }
+        else
+            mstr = "<span style='color:#999;'>买入超时</span>";
         return mstr;
     }
 
     private string GetRemitStateButton(int hkid, int shenhe, DateTime dtst)
     {
         string mstr = "";
-        if(shenhe!=20){
+        if (shenhe != 20)
+        {
             if (dtst > DateTime.Now.AddHours(-2))
             {
                 if (shenhe == 0) mstr += "<a  class='btn btn-danger'  onclick='cancelbuy(this," + hkid + @")'  >买入<br/>撤销</a>  ";// <a   class='btn btn-success '  onclick='confirmRmit(" + hkid + @")' >确认<br/>汇款 </a> 
@@ -7768,14 +7773,15 @@ public class AjaxClass : BLL.TranslationBase
                     mstr += "  <p>  <a class='btn btn-default ' style='width:60%;'  >已通知</a></p>";
                 }
             }
-            else {
+            else
+            {
                 mstr += "  <a  class='btn btn-default'  href='Sellbuydetails.aspx?rmid=" + hkid + @"'  >超时<br/>说明</a> ";
-                if (shenhe==-1)
+                if (shenhe == -1)
                 {
-                mstr=" <a  class='btn btn-danger'  onclick='delcsdj(" + hkid + @");'  >超时<br/>删除</a> ";
+                    mstr = " <a  class='btn btn-danger'  onclick='delcsdj(" + hkid + @");'  >超时<br/>删除</a> ";
                 }
             }
-             }
+        }
         return mstr;
     }
 
@@ -7786,7 +7792,8 @@ public class AjaxClass : BLL.TranslationBase
         {
             mstr += "卖出已报";
 
-        } if (shenhe == 1)
+        }
+        if (shenhe == 1)
         {
             mstr += "确认收款";
         }
@@ -7802,7 +7809,8 @@ public class AjaxClass : BLL.TranslationBase
         {
             mstr += "<a  class='btn btn-danger ' onclick='cancelsell(this," + wdid + ")' style='color:#fff;'  >卖出<br/>撤销</a>";
 
-        } if (shenhe == 1 || shenhe == 3 || shenhe == 11)
+        }
+        if (shenhe == 1 || shenhe == 3 || shenhe == 11)
         {
             mstr += "<a   class='btn btn-success '  onclick='shoukuan(this," + wdid + ");' style='color:#fff;' >确认<br/>收款 </a>";
         }
@@ -7824,57 +7832,58 @@ public class AjaxClass : BLL.TranslationBase
         int rc = 0;
         int c = Convert.ToInt32(DBHelper.ExecuteScalar("select count(0) from withdraw where  hkid=@rmid", new SqlParameter[] { new SqlParameter("@rmid", rmid) }, CommandType.Text));
         if (c == 0)
-        { c=PiepeiRemittance(Convert.ToInt32(rmid));
+        {
+            c = PiepeiRemittance(Convert.ToInt32(rmid));
         }
-            if (c > 0)
-            {
-                string dn = DateTime.UtcNow.ToString();
-                string sql = " update  Remittances   set  WppHkDj=1,shenHestate=1,ReceivablesDate=@time , RemitCardtype =@rtype  ,khname=@name  ";
+        if (c > 0)
+        {
+            string dn = DateTime.UtcNow.ToString();
+            string sql = " update  Remittances   set  WppHkDj=1,shenHestate=1,ReceivablesDate=@time , RemitCardtype =@rtype  ,khname=@name  ";
 
-                SqlParameter[] sps = null;
-                if (rtype == "0")
-                {
-                    sps = new SqlParameter[] { 
+            SqlParameter[] sps = null;
+            if (rtype == "0")
+            {
+                sps = new SqlParameter[] {
           new SqlParameter("@time",dn),
            new SqlParameter("@rmid",rmid),
-             new SqlParameter("@rtype",rtype), 
+             new SqlParameter("@rtype",rtype),
              new SqlParameter("@name",name),
             new SqlParameter("@bankcard",kahao) ,
             new SqlParameter("@bankname",bankname)
               };
-                    sql += " ,bankcard=@bankcard  , bankname=@bankname ";
+                sql += " ,bankcard=@bankcard  , bankname=@bankname ";
 
-                }
-                if (rtype == "1")
-                {
-                    sps = new SqlParameter[] { 
+            }
+            if (rtype == "1")
+            {
+                sps = new SqlParameter[] {
           new SqlParameter("@time",dn),
            new SqlParameter("@rmid",rmid),
-             new SqlParameter("@rtype",rtype), 
+             new SqlParameter("@rtype",rtype),
              new SqlParameter("@name",name),
-            new SqlParameter("@AliNo",kahao)  
+            new SqlParameter("@AliNo",kahao)
               };
-                    sql += " ,AliNo=@AliNo  ";
-                }
-                if (rtype == "2")
-                {
-                    sps = new SqlParameter[] { 
+                sql += " ,AliNo=@AliNo  ";
+            }
+            if (rtype == "2")
+            {
+                sps = new SqlParameter[] {
           new SqlParameter("@time",dn),
           new SqlParameter("@rmid",rmid),
-             new SqlParameter("@rtype",rtype), 
+             new SqlParameter("@rtype",rtype),
              new SqlParameter("@name",name),
-            new SqlParameter("@WeiXNo",kahao)  
+            new SqlParameter("@WeiXNo",kahao)
               }; sql += " ,WeiXNo=@WeiXNo  ";
-                }
-                sql += "   where id= @rmid ";
+            }
+            sql += "   where id= @rmid ";
 
-                rc = DBHelper.ExecuteNonQuery(sql, sps, CommandType.Text);
+            rc = DBHelper.ExecuteNonQuery(sql, sps, CommandType.Text);
 
 
-           
+
             if (rc > 0)
                 ConfirmRemittanceSendMsg(Convert.ToInt32(rmid));//发邮件 
-        } 
+        }
 
         return rc.ToString();
 
@@ -7908,7 +7917,7 @@ public class AjaxClass : BLL.TranslationBase
             int dtype = Convert.ToInt32(dtt.Rows[0]["drawcardtype"]);
             string content = "";
             if (dtype == 0)
-                content = "<b style='margin:20px; '>卖出查收提醒</b> <p> 会员" + sendnumber + " 已向您的银行账户" + bkname + " " + bkcd + "转账汇款" + wm.ToString("0.00") + " ,请查询您的银行余额确认收款，并在交易中心确认收款。<a href='Selldetails.aspx?wdid="+id+"'  >点击进入>></a></p> <p>系统邮件</p>";
+                content = "<b style='margin:20px; '>卖出查收提醒</b> <p> 会员" + sendnumber + " 已向您的银行账户" + bkname + " " + bkcd + "转账汇款" + wm.ToString("0.00") + " ,请查询您的银行余额确认收款，并在交易中心确认收款。<a href='Selldetails.aspx?wdid=" + id + "'  >点击进入>></a></p> <p>系统邮件</p>";
             if (dtype == 1)
                 content = "<b style='margin:20px; '>卖出查收提醒</b> <p> 会员" + sendnumber + " 已向您的支付宝账户" + alino + "转账汇款" + wm.ToString("0.00") + " ,请查询您的支付宝余额确认收款，并在交易中心确认收款。<a href='Selldetails.aspx?wdid=" + id + "'  >点击进入>></a></p> <p>系统邮件</p>";
             if (dtype == 2)
@@ -7941,7 +7950,7 @@ public class AjaxClass : BLL.TranslationBase
 
         return ccc.ToString();
     }
-  /// <summary>
+    /// <summary>
     /// 删除买入
     /// </summary>
     /// <param name="rmid"></param>
@@ -8019,159 +8028,160 @@ public class AjaxClass : BLL.TranslationBase
     }
 
 
-   [AjaxPro.AjaxMethod]
-    public string ConfirmWithdrawSK(int wdid) 
+    [AjaxPro.AjaxMethod]
+    public string ConfirmWithdrawSK(int wdid)
     {
         if (Session["Member"] == null) return "-1";
-           
-       string restr="0";
-       int  issh=Convert.ToInt32(DAL.DBHelper.ExecuteScalar("select  shenhestate from  Withdraw where id="+wdid));
-       if (issh != 20)
-       {
-           string sqls = "ConfirmWithDrawSk";
-           int outp = 0;
-           try
-           {
+
+        string restr = "0";
+        int issh = Convert.ToInt32(DAL.DBHelper.ExecuteScalar("select  shenhestate from  Withdraw where id=" + wdid));
+        if (issh != 20)
+        {
+            string sqls = "ConfirmWithDrawSk";
+            int outp = 0;
+            try
+            {
 
 
-               SqlParameter[] sps = new SqlParameter[]{
+                SqlParameter[] sps = new SqlParameter[]{
         new SqlParameter("@wdid",wdid),
          new SqlParameter("@rec",outp)
        };
-               sps[1].Direction = ParameterDirection.Output;
-               DBHelper.ExecuteNonQuery(sqls, sps, CommandType.StoredProcedure);
-               int c = Convert.ToInt32(sps[1].Value);
-               if (c == 1)
-               {
-                   restr = "1";
-                   string sendnumber = Session["Member"].ToString();
-                   DataTable dtt = DAL.DBHelper.ExecuteDataTable(" select top 1  r.RemitNumber,w.WithdrawMoney  from Remittances r left join   Withdraw   w on r.ID=w.hkid where w.id= " + wdid);
-                   if (dtt != null && dtt.Rows.Count > 0)
-                   {
-                       double wm = Convert.ToDouble(dtt.Rows[0]["WithdrawMoney"]);
-                       string rnumber = dtt.Rows[0]["RemitNumber"].ToString();
+                sps[1].Direction = ParameterDirection.Output;
+                DBHelper.ExecuteNonQuery(sqls, sps, CommandType.StoredProcedure);
+                int c = Convert.ToInt32(sps[1].Value);
+                if (c == 1)
+                {
+                    restr = "1";
+                    string sendnumber = Session["Member"].ToString();
+                    DataTable dtt = DAL.DBHelper.ExecuteDataTable(" select top 1  r.RemitNumber,w.WithdrawMoney  from Remittances r left join   Withdraw   w on r.ID=w.hkid where w.id= " + wdid);
+                    if (dtt != null && dtt.Rows.Count > 0)
+                    {
+                        double wm = Convert.ToDouble(dtt.Rows[0]["WithdrawMoney"]);
+                        string rnumber = dtt.Rows[0]["RemitNumber"].ToString();
 
-                       string content = "<b style='margin:20px; '>买入查收提醒</b> <p> 会员" + sendnumber + " 确认收到您的转账汇款" + wm.ToString("0.00") + " ,请到您石斛积分账户查收石斛积分。</p> <p>系统邮件</p>";
-                       SendEmail.SendSystemEmail(sendnumber, "1", content, rnumber);
-                   }
-
-
-               }
-           }
-           catch (Exception eee)
-           {
-
-           }
+                        string content = "<b style='margin:20px; '>买入查收提醒</b> <p> 会员" + sendnumber + " 确认收到您的转账汇款" + wm.ToString("0.00") + " ,请到您石斛积分账户查收石斛积分。</p> <p>系统邮件</p>";
+                        SendEmail.SendSystemEmail(sendnumber, "1", content, rnumber);
+                    }
 
 
+                }
+            }
+            catch (Exception eee)
+            {
 
-           //{
-           //发送系统邮件通知
-
-
-           //}
-           //else
-           //{
-           //    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("009051", "到账失败") + "！');location.href='TxDetailDCS.aspx'</script>", false);
-           //}
+            }
 
 
-       }
-       else {
-           restr = "2";
-       }
-       return restr;
+
+            //{
+            //发送系统邮件通知
+
+
+            //}
+            //else
+            //{
+            //    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("009051", "到账失败") + "！');location.href='TxDetailDCS.aspx'</script>", false);
+            //}
+
+
+        }
+        else
+        {
+            restr = "2";
+        }
+        return restr;
 
     }
 
-   [AjaxPro.AjaxMethod]
-   public string XFOrders(int isact, int pageindex)
-   {
-       string curstr = "";
-       string cdit = "";
-       int pgsize = 10;
-       if (Session["Member"] != null)
-       {
-           string direct = Session["Member"].ToString();
+    [AjaxPro.AjaxMethod]
+    public string XFOrders(int isact, int pageindex)
+    {
+        string curstr = "";
+        string cdit = "";
+        int pgsize = 10;
+        if (Session["Member"] != null)
+        {
+            string direct = Session["Member"].ToString();
 
 
-           string sqls = @"WITH sss AS(SELECT case when XFState = '0' then '已提交' when XFState = '1' then '处理中' when XFState ='2' then '完成'  when XFState ='3' then '拒绝'  end  as zt,*,ROW_NUMBER() OVER(ORDER BY id desc ) as rowNum FROM MemberCashXF where Number='" + direct + "') SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+            string sqls = @"WITH sss AS(SELECT case when XFState = '0' then '已提交' when XFState = '1' then '处理中' when XFState ='2' then '完成'  when XFState ='3' then '拒绝'  end  as zt,*,ROW_NUMBER() OVER(ORDER BY id desc ) as rowNum FROM MemberCashXF where Number='" + direct + "') SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
-           DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
-           foreach (DataRow item in dtt.Rows)
-           {
-               string ispay = Convert.ToString(item["Number"]);
+            DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
+            foreach (DataRow item in dtt.Rows)
+            {
+                string ispay = Convert.ToString(item["Number"]);
 
-               curstr += "<tr><td>" + Convert.ToDateTime(item["XFTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td style='color: #dd4814'>"+ Convert.ToDouble(item["XFON"]).ToString("0.00") + "</td> <td style='color: #dd4814'>"+ item["zt"].ToString() + "</td></tr>";
+                curstr += "<tr><td>" + Convert.ToDateTime(item["XFTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td style='color: #dd4814'>" + Convert.ToDouble(item["XFON"]).ToString("0.00") + "</td> <td style='color: #dd4814'>" + item["zt"].ToString() + "</td></tr>";
 
-           }
-       }
-       return curstr;
+            }
+        }
+        return curstr;
 
-   }
-   public string Efayitype(int type)
-   {
-       string resss = "";
-       if (type == 0) resss = GetTran("010063", "充值中");
-       if (type == 1) resss = GetTran("000968", "成功");
-       if (type == 9) resss = GetTran("010064", "撤销");
-       return resss;
-   }
+    }
+    public string Efayitype(int type)
+    {
+        string resss = "";
+        if (type == 0) resss = GetTran("010063", "充值中");
+        if (type == 1) resss = GetTran("000968", "成功");
+        if (type == 9) resss = GetTran("010064", "撤销");
+        return resss;
+    }
 
-   [AjaxPro.AjaxMethod]
-   public string EshenghuoCZ(int pgidex, int type)
-   {
-       if (Session["Member"] == null) return "-1";
-       string curstr = "";
-       int pgsize = 10;
-       string number = Session["Member"].ToString();
-       //string sqls = @"    select  * from (select * from BMOuter where Number='" + number + "' and OuterType=" + type + ") as td order by td.trantime desc";
-       string sqls = @"WITH sss AS(SELECT id,rechargeAccount,saleAmount,EPmny,ROW_NUMBER() OVER(ORDER BY  id desc ) as rowNum FROM BMOuter where Number='" + number + "' and OuterType=" + type + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pgidex - 1) * pgsize + 1) + " AND " + pgidex * pgsize + "";
+    [AjaxPro.AjaxMethod]
+    public string EshenghuoCZ(int pgidex, int type)
+    {
+        if (Session["Member"] == null) return "-1";
+        string curstr = "";
+        int pgsize = 10;
+        string number = Session["Member"].ToString();
+        //string sqls = @"    select  * from (select * from BMOuter where Number='" + number + "' and OuterType=" + type + ") as td order by td.trantime desc";
+        string sqls = @"WITH sss AS(SELECT id,rechargeAccount,saleAmount,EPmny,ROW_NUMBER() OVER(ORDER BY  id desc ) as rowNum FROM BMOuter where Number='" + number + "' and OuterType=" + type + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pgidex - 1) * pgsize + 1) + " AND " + pgidex * pgsize + "";
 
-       DataTable dtt = DBHelper.ExecuteDataTable(sqls);
-       foreach (DataRow item in dtt.Rows)
-       {
+        DataTable dtt = DBHelper.ExecuteDataTable(sqls);
+        foreach (DataRow item in dtt.Rows)
+        {
 
-           curstr += "<tr ><td>" + item["rechargeAccount"].ToString() + "</td><td>" + item["saleAmount"].ToString() + "</td><td><span >" + Convert.ToDouble(item["EPmny"]).ToString("0.00") + "</span></td></tr>";
-          
-       }
+            curstr += "<tr ><td>" + item["rechargeAccount"].ToString() + "</td><td>" + item["saleAmount"].ToString() + "</td><td><span >" + Convert.ToDouble(item["EPmny"]).ToString("0.00") + "</span></td></tr>";
 
-
-
-
-       return curstr;
-
-
-   }
-
-
-   [AjaxPro.AjaxMethod]
-   public string EshenghuoCP(int pgidex, int type)
-   {
-       if (Session["Member"] == null) return "-1";
-       string curstr = "";
-       int pgsize = 10;
-       string number = Session["Member"].ToString();
-       //string sqls = @"    select  * from (select * from BMPiaowu where Number='" + number + "' and orderType=" + type + ") as td order by td.trantime desc";
-       string sqls = @"WITH sss AS(SELECT startStation,depTime,EPmny,ROW_NUMBER() OVER(ORDER BY  id desc ) as rowNum FROM BMPiaowu where Number='" + number + "' and OuterType=" + type + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pgidex - 1) * pgsize + 1) + " AND " + pgidex * pgsize + "";
-
-       DataTable dtt = DBHelper.ExecuteDataTable(sqls);
-       foreach (DataRow item in dtt.Rows)
-       {
-
-           curstr += "<tr ><td>" + item["startStation"].ToString() + "</td><td>" + item["depTime"].ToString() + "</td><td><span >" + Convert.ToDouble(item["EPmny"]).ToString("0.00") + "</span></td></tr>";
-          
-       }
+        }
 
 
 
 
-       return curstr;
+        return curstr;
 
-   }
 
-     
-  
+    }
+
+
+    [AjaxPro.AjaxMethod]
+    public string EshenghuoCP(int pgidex, int type)
+    {
+        if (Session["Member"] == null) return "-1";
+        string curstr = "";
+        int pgsize = 10;
+        string number = Session["Member"].ToString();
+        //string sqls = @"    select  * from (select * from BMPiaowu where Number='" + number + "' and orderType=" + type + ") as td order by td.trantime desc";
+        string sqls = @"WITH sss AS(SELECT startStation,depTime,EPmny,ROW_NUMBER() OVER(ORDER BY  id desc ) as rowNum FROM BMPiaowu where Number='" + number + "' and OuterType=" + type + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pgidex - 1) * pgsize + 1) + " AND " + pgidex * pgsize + "";
+
+        DataTable dtt = DBHelper.ExecuteDataTable(sqls);
+        foreach (DataRow item in dtt.Rows)
+        {
+
+            curstr += "<tr ><td>" + item["startStation"].ToString() + "</td><td>" + item["depTime"].ToString() + "</td><td><span >" + Convert.ToDouble(item["EPmny"]).ToString("0.00") + "</span></td></tr>";
+
+        }
+
+
+
+
+        return curstr;
+
+    }
+
+
+
 
 }

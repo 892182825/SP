@@ -1,339 +1,288 @@
-﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using BLL.CommonClass;
+﻿using BLL.Registration_declarations;
 using DAL;
-using System.Data.SqlClient;
-using System.Text;
 using Model;
-using BLL.Registration_declarations;
+using System;
+using System.Data;
 
-public partial class MemberMobile_ReCast : BLL.TranslationBase
+public partial class ReCast : BLL.TranslationBase
 {
     RegistermemberBLL registermemberBLL = new RegistermemberBLL();
     decimal num = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-       // AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-        Permissions.MemRedirect(Page, Permissions.redirUrl);
+      //  AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
+       // Session["Member"] = "9999999999";
+        //Permissions.MemRedirect(Page, Permissions.redirUrl);
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)
         {
+            if (Request.QueryString["orderid"] != null)
+            {
+                string orderid = Request.QueryString["orderid"];
+                string getresult = CommandAPI.getzf(orderid);
+                string[] rlist = getresult.Split(',');
+                //修改订单状态
+                int rr = DBHelper.ExecuteNonQuery("update  memberorder set  DefrayState=1 ,remark='USDT账户支付订单'  where orderid='" + orderid + "' ");
+
+                if (rr == 1)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买矿机成功！');</script>", false);
+                    return;
+                }
+                else {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买矿机失败！');</script>", false);
+                    Bind();
+                }
+            }
+            else 
             Bind();
         }
     }
 
     public void Bind()
     {
-       
+
+        string number = Session["Member"].ToString();
         decimal sum = 0;
         int lv = 0;
 
-        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select isnull(jackpot,0)-isnull([out],0)-membership as xjye,* from memberinfo where Number='" + Session["Member"].ToString() + "'");
+        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select LevelInt from memberinfo where Number='" + number + "'");
         if (dt_one.Rows != null && dt_one.Rows.Count > 0)
         {
-            sum = Convert.ToDecimal(dt_one.Rows[0]["xjye"]);//获取账户金额
-            //lv = Convert.ToInt32(dt_one.Rows[0]["LevelInt"]);//获取账户等级
+            lv = Convert.ToInt32(dt_one.Rows[0]["LevelInt"]);//获取账户等级
         }
-        string sqllll = "select Level from MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " where number='" + Session["Member"].ToString() + "'";
-        DataTable dat = DBHelper.ExecuteDataTable(sqllll);
-        if (dat.Rows.Count > 0)
-        {
+        int jd = Common.GetcurJieDuan();//获取阶段状态
 
-            lv = Convert.ToInt32(dat.Rows[0]["Level"]);
+        DataTable dt_config = DAL.DBHelper.ExecuteDataTable("select top 1  * from config order  by id desc");
+        //  ConfigModel cm = ConfigDAL.GetConfig();
+        int x1p = 0; int x2p = 0; int x3p = 0; int x4p = 0; int x5p = 0; int x6p = 0; int x7p = 0;
+        double x1cn = 0; double x2cn = 0; double x3cn = 0; double x4cn = 0; double x5cn = 0; double x6cn = 0; double x7cn = 0;
+        if (dt_config != null && dt_config.Rows.Count > 0)
+        {
+            DataRow dr = dt_config.Rows[0];
+            x1p = Convert.ToInt32(dr["para1"]); x2p = Convert.ToInt32(dr["para2"]);
+            x3p = Convert.ToInt32(dr["para3"]); x4p = Convert.ToInt32(dr["para4"]);
+            x5p = Convert.ToInt32(dr["para5"]); x6p = Convert.ToInt32(dr["para6"]);
+            x7p = Convert.ToInt32(dr["para7"]);
+            x1cn = Convert.ToDouble(dr["para8"]) * 100; x2cn = Convert.ToDouble(dr["para9"]) * 100;
+            x3cn = Convert.ToDouble(dr["para10"]) * 100; x4cn = Convert.ToDouble(dr["para11"]) * 100;
+            x5cn = Convert.ToDouble(dr["para12"]) * 100; x6cn = Convert.ToDouble(dr["para13"]) * 100;
+            x7cn = Convert.ToDouble(dr["para14"]) * 100;
+        }
+        int lebuy = 0;
+        lebuy = Convert.ToInt32(DBHelper.ExecuteNonQuery("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
+
+        string buyorup = "升级";
+        if (lv < 2) buyorup = "购买";
+        string html = @" <ul>";
+        string h = "";
+        if (lebuy > 0)
+        {
+            html += @"  < li > < div class='ltimg'><img src = 'img/kj.png'  alt='X1' /></div><div class='dsc' > <p>矿机编号：X1(体验矿机)</p> <p>剩余数量：" + lebuy + @" 台</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip1'  onclick='showbuy(1)'  type='button' value='抢购' /> </li>";
         }
 
-        DataTable dt = DAL.DBHelper.ExecuteDataTable("select isnull(sum(TotalPv),0) as TotalPv from memberorder where Number='" + Session["Member"].ToString() + "' and ordertype=22 and PayExpectNum=1");
-        if (dt.Rows != null && dt.Rows.Count > 0)
-        {
-            sum = Convert.ToDecimal(dt.Rows[0]["TotalPv"]);//获取账户金额
-            
-        }
+        if (lv > 6)
+            h += @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X2' /></div><div class='dsc' > <p>矿机编号：X2</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip2'  onclick='showbuy(2)' type='button'  value='" + buyorup + "' />    </li>";
+        if (lv > 5)
+            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X3' /></div><div class='dsc' > <p>矿机编号：X3</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip3'  onclick='showbuy(3)' type='button'  value='" + buyorup + "' />    </li>" + h;
+        if (lv > 4)
+            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X4' /></div><div class='dsc' > <p>矿机编号：X4</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip4'  onclick='showbuy(4)' type='button'  value='" + buyorup + "' />    </li>" + h;
+        if (lv > 3)
+            h = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X5' /></div><div class='dsc' > <p>矿机编号：X5</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip5'  onclick='showbuy(5)' type='button'  value='" + buyorup + "' />    </li>" + h;
+        if (lv > 2)
+            h += @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X6' /></div><div class='dsc' > <p>矿机编号：X6</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+                <input id = 'ip6'  onclick='showbuy(6)'  type='button' value='" + buyorup + "' />    </li>" + h;
+        html += h;
+        html += " </ul>";
+        getshow.InnerHtml = html;
 
-        num = Common.GetnowPrice();//获取当前石斛积分价格
-        hidnew.Value = num.ToString();
-        if(lv==1)
-        { Jackpot.Text="500"; }
-        if(lv==2)
-        { Jackpot.Text="1000"; }
-        if(lv==3)
-        { Jackpot.Text="3000"; }
-        if(lv==4)
-        { Jackpot.Text="5000"; }
-        if(lv==0)
-        {
-            if (sum != null && sum != 0)
-            {
-                Jackpot.Text = Convert.ToInt32(sum).ToString();
-            }
-            else
-            {
-                Jackpot.Text = "无";
-
-            }
-            }
-        
-        
-         
     }
 
 
-    
-    protected void ImageButton1_Click(object sender, EventArgs e)
+
+    /// <summary>
+    /// 购买矿机
+    /// </summary>
+    /// <param name="chosenum"></param>
+    /// <returns></returns> 
+    public void GetRegSendPost( )
     {
-        lind();
-    }
-    public void lind()
-    {
-        if (ft.Text == "" && newprice.Value=="")
+        int chosenum=Convert.ToInt32( hidetp.Value);
+        if ( Session["Member"] == null) { 
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('未登录！');</script>", false);
+        return;  //未登录
+}
+        string number = Session["Member"].ToString();
+
+        int re = 0;
+        ///获取usdt账户 
+        int lv = 0;
+        double zhye = CommandAPI.GetActMoney();
+
+        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select LevelInt from memberinfo where Number='" + number + "'");
+        if (dt_one.Rows != null && dt_one.Rows.Count > 0)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('抱歉！锁仓金额不能为空！');</script>", false);
+            lv = Convert.ToInt32(dt_one.Rows[0]["LevelInt"]);//获取账户等级
+        }
+
+        if (chosenum < 0 || chosenum > 7 || lv > chosenum) {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请选择矿机！');</script>", false);
             return;
-        }
-        try
-        {
-            decimal a1 = Convert.ToDecimal(newprice.Value);//复投的金额
+        } //选择购买的矿机
 
-            if (Jackpot.Text != "无")
-            {
-                int ptdj = Convert.ToInt32(Jackpot.Text);
-                if (a1 <= ptdj)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('抱歉！锁仓金额不能小于当前等级！');</script>", false);
-                    return;
-                }
-                else
-                {
-                    a1 = a1 - ptdj;
-                }
-            }
+        ConfigModel cm = ConfigDAL.GetConfig();
+        double ttmoney = 0;
+        double ttpv = 0;
+        int ordertype = 22; // 0 第一次购买 1 补差升级 
+        int isagain = 0;
+        double yymoney = 0;
+     //   int ispay = 0; ///支付状态
+        if (lv == 0)
+        {
+            ordertype = 22; //抢购20u
            
-        
-        
-        if (a1 <= 0)
+        }
+        if (lv == 1)
+        {  
+            ordertype = 23; //购买 
+        }
+        if (lv == 2)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('锁仓金额不能小于等于0！');</script>", false);
-            ft.Text = Math.Abs(a1).ToString();
+            yymoney = cm.Para2;
+        }
+        if (lv == 3) yymoney = cm.Para3;
+        if (lv == 4) yymoney = cm.Para4;
+        if (lv == 5) yymoney = cm.Para5;
+        if (lv == 6) yymoney = cm.Para6;
+        if (lv == 7) ordertype = 25;  //复投
+        if (chosenum == 1) { ttmoney = cm.Para1; ttpv = cm.Para1; }
+        if (chosenum == 2) { ttmoney = cm.Para2 - yymoney; ttpv = cm.Para2 - yymoney; }
+        if (chosenum == 3) { ttmoney = cm.Para3 - yymoney; ttpv = cm.Para3 - yymoney; }
+        if (chosenum == 4) { ttmoney = cm.Para4 - yymoney; ttpv = cm.Para4 - yymoney; }
+        if (chosenum == 5) { ttmoney = cm.Para5 - yymoney; ttpv = cm.Para5 - yymoney; }
+        if (chosenum == 6) { ttmoney = cm.Para6 - yymoney; ttpv = cm.Para6 - yymoney; }
+        if (chosenum == 7) { ttmoney = cm.Para7 - yymoney; ttpv = cm.Para7 - yymoney; }
+
+        if (yymoney > 0) { isagain = 1; ordertype = 24; }//升级
+        int jd = Common.GetcurJieDuan();//获取阶段状态
+        DataTable dtmb = DBHelper.ExecuteDataTable("select pointAin-pointAout  as  ablc,pointbin-pointbout  as  bblc,pointcin-pointcout  as  cblc,pointdin-pointdout  as  dblc,pointein-pointeout  as  eblc  from memberinfo where number='" + number + "'");
+        DataTable conp = DBHelper.ExecuteDataTable("select CoinIndex ,coinnewprice  from CoinPlant  order by id ");
+        double ablc = 0; double bblc = 0; double cblc = 0; double dblc = 0; double eblc = 0;
+        double cap = 0; double cbp = 0; double ccp = 0; double cdp = 0; double cep = 0;
+        if (dtmb != null && dtmb.Rows.Count > 0)
+        {
+            DataRow dr = dtmb.Rows[0];
+            ablc = Convert.ToDouble(dr["ablc"]);
+            bblc = Convert.ToDouble(dr["bblc"]);
+            cblc = Convert.ToDouble(dr["cblc"]);
+            dblc = Convert.ToDouble(dr["dblc"]);
+            eblc = Convert.ToDouble(dr["eblc"]);
+        }
+        else {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
             return;
         }
-        if (MemberInfoDAL.CheckState(Session["Member"].ToString()))
+        if (conp != null && conp.Rows.Count > 0)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script> alert('" + GetTran("000000", "会员账户已冻结，不能复投支付!") + "'); </script>");
-
-            return;
-        }
-        
-
-        num = Common.GetnowPrice();//获取当前石斛积分价格
-
-
-        int a3 =Convert.ToInt32(a1 / num);//复投的金额
-
-       decimal num1 = Common.GetFTJBbyMoney(Session["Member"].ToString(),a3);
-       OrderFinalModel ofm = new OrderFinalModel();
-       MemberInfoModel mi = AddUserInfo();
-
-       
-       ofm.SendWay = 1;
-       ofm.Number = mi.Number;
-       ofm.Placement = mi.Placement;
-       ofm.Direct = mi.Direct;
-       ofm.ExpectNum = mi.ExpectNum;
-       ofm.OrderID = registermemberBLL.GetOrderInfo("add", null);
-       ofm.StoreID = mi.StoreID;
-       ofm.Name = mi.Name;
-       ofm.PetName = mi.PetName;
-       ofm.LoginPass = mi.LoginPass;
-       ofm.AdvPass = mi.AdvPass;
-       ofm.LevelInt = mi.LevelInt;
-
-       ofm.RegisterDate = mi.RegisterDate;
-       ofm.Birthday = mi.Birthday;
-       ofm.Sex = mi.Sex;
-       ofm.HomeTele = mi.HomeTele;
-       ofm.OfficeTele = mi.OfficeTele;
-       ofm.MobileTele = mi.MobileTele;
-       ofm.FaxTele = mi.FaxTele;
-       ofm.CPCCode = mi.CPCCode;
-       ofm.Address = mi.Address;
-       ofm.PostalCode = mi.PostalCode;
-       ofm.PaperType.PaperTypeCode = mi.PaperType.PaperTypeCode;
-       ofm.PaperNumber = mi.PaperNumber;
-       ofm.BankCode = mi.BankCode;
-       ofm.BankAddress = mi.BankAddress;
-       ofm.BankCard = mi.BankCard;
-       ofm.BCPCCode = mi.BCPCCode;
-       ofm.BankBook = mi.BankBook;
-       ofm.Remark = mi.Remark;
-       ofm.ChangeInfo = mi.ChangeInfo;
-       ofm.PhotoPath = mi.PhotoPath;
-       ofm.Email = mi.Email;
-       ofm.IsBatch = mi.IsBatch;
-       ofm.Language = mi.Language;
-       ofm.OperateIp = mi.OperateIp;
-       ofm.OperaterNum = mi.OperaterNum;
-       ofm.Answer = mi.Answer;
-       ofm.Question = mi.Question;
-       ofm.Error = mi.Error;
-       ofm.Bankbranchname = mi.Bankbranchname;
-       ofm.Flag = mi.Flag;
-       ofm.Assister = mi.Assister;
-       ofm.District = mi.District;
-       //ofm.IsAgain = 1;
-
-       ofm.TotalMoney = a3;
-       ofm.TotalPv = a1;
-       ofm.OrderType = mi.OrderType;
-       ofm.OrderExpect = mi.ExpectNum;
-       ofm.StandardcurrencyMoney = ofm.TotalMoney;
-       ofm.PaymentMoney = ofm.TotalMoney;
-       ofm.OrderDate = DateTime.UtcNow;
-       ofm.RemittancesId = "";
-       ofm.ElectronicaccountId = "";
-
-       ofm.InvestJB = a3;//投资石斛积分数量
-       ofm.PriceJB = num;//当前石斛积分市价
-
-       
-       ofm.ConCity.Country = "";
-       ofm.ConCity.Province = "";
-       ofm.ConCity.City = "";
-       ofm.ConCity.Xian = "";
-       ofm.ConAddress = "";
-
-       ofm.CCPCCode = "" ;
-
-
-
-       ofm.ConTelPhone = "";
-       ofm.ConMobilPhone = "";
-       ofm.CarryMoney = 0;
-       ofm.ConPost = "";
-       ofm.Consignee = "";
-       ofm.ConZipCode = "";
-
-       ofm.ProductIDList = "";
-       ofm.QuantityList = "";
-       ofm.NotEnoughProductList = "";
-       ofm.PhotoPath = "";
-       Boolean flag = new AddOrderDataDAL().AddFinalOrder(ofm);
-       if (flag)
-       {
-           ClientScript.RegisterStartupScript(this.GetType(), "", "<script>$('#tiaoz').show();document.getElementById('tiaoz').href = '../payserver/chosepaysjpay.aspx?blif=" + EncryKey.GetEncryptstr(ofm.OrderID.ToString(), 1, 1) + "'; ;alertt('订单已生成，请及时支付！');</script>", false);
-           //return;
-       }
-        }
-        catch (OverflowException)
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('err:转化的不是一个Decimal型数据');</script>", false);
-        }
-        catch (FormatException)
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('err:格式错误');</script>", false);
-        }
-        catch (ArgumentNullException)
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('err:不能为空');</script>", false);
-
-        }
-    }
-
-
-    public MemberInfoModel AddUserInfo()
-    {
-        MemberInfoModel memberInfoModel = new MemberInfoModel();
-        memberInfoModel.Number = Session["Member"].ToString();
-        memberInfoModel.Placement = "";
-        memberInfoModel.Direct ="";
-        memberInfoModel.ExpectNum = BLL.CommonClass.CommonDataBLL.getMaxqishu();
-        memberInfoModel.OrderID = "";
-        memberInfoModel.StoreID = "8888888888";
-        memberInfoModel.Name = "";
-        memberInfoModel.PetName = "";
-        memberInfoModel.OrderType = 22;
-        if (Jackpot.Text == "无" || Jackpot.Text == "0")
-        {
-            memberInfoModel.OrderType = 22;
+            foreach (DataRow item in conp.Rows)
+            {
+                string s = item["CoinIndex"].ToString();
+                if (s == "CoinA") cap = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinB") cap = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinC") cap = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinD") cap = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinE") cap = Convert.ToDouble(item["coinnewprice"]);
+            }
         }
         else
         {
-            memberInfoModel.OrderType = 23;
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+            return;
         }
+
+
+        double aneed = 0;
+        double bneed = 0;
+        double cneed = 0;
+        if (jd == 1) if (zhye < ttmoney)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                return;
+            }//余额不足
+            else if (jd == 2 || jd == 3)
+            {
+                aneed =  ttmoney/cap; 
+                if (aneed > ablc   )
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                    return;
+                };//余额不足
+            }
+            else if (jd == 4 || jd == 5)
+            {
+                  aneed = (ttmoney * 0.5) / cap;
+                  bneed = (ttmoney * 0.5) / cbp;
+                if (aneed > ablc || bneed > bblc)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                    return;
+                }//余额不足
+            }
+            else if (jd == 6 || jd == 7)
+            {
+                  aneed = (ttmoney * 0.2) / cap;
+                  bneed = (ttmoney * 0.3) / cbp;
+                  cneed = (ttmoney * 0.5) / ccp;
+                if (aneed > ablc || bneed > bblc || cneed > cblc)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                    return;
+                }//余额不足
+            }
+
+        RegistermemberBLL registermemberBLL = new RegistermemberBLL();
+        string orderid=registermemberBLL.GetOrderInfo("add", null);
+        int maxexpt = ConfigDAL.GetMaxExpectNum(); 
+       
+        Boolean flag = new AddOrderDataDAL().AddOrderInfo(number,orderid,maxexpt,isagain,ttmoney,ttpv,ordertype );
+
+        if (flag)  //插入订单成功 开始支付
+        {
+            if (lv == 1)//说明是第一次买 必须使用USDT买 
+            {
+                string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString());
+                ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
+                return;
+            }
+
+            else
+            {
+                //本地支付开始
+                int r= MemberOrderDAL.PayOrder(number,orderid,aneed,bneed,cneed,chosenum);
+                if (r == 1)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买成功！');</script>", false);
+                    return;
+                }
+                else {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买失败！');</script>", false);
+                    return;
+                }
+            }
+
+          
+        }
+         
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+       GetRegSendPost();
         
-        memberInfoModel.LoginPass ="";
-        memberInfoModel.AdvPass = "";
-        memberInfoModel.LevelInt = 0;
-
-        if (Jackpot.Text == "500")
-        { memberInfoModel.LevelInt = 1;//会员级别 
-        }
-        if (Jackpot.Text == "1000")
-        { memberInfoModel.LevelInt = 2;//会员级别 
-        }
-        if (Jackpot.Text == "3000")
-        { memberInfoModel.LevelInt = 3;//会员级别 
-        }
-        if (Jackpot.Text == "5000")
-        { memberInfoModel.LevelInt = 4;//会员级别 
-        }
-        if (Jackpot.Text== "无")
-        { memberInfoModel.LevelInt = 0;//会员级别 
-        }
-        
-        memberInfoModel.RegisterDate = DateTime.UtcNow;
-        memberInfoModel.PaperType.Id = 0;
-        memberInfoModel.Sex = 0;
-        memberInfoModel.Birthday = Convert.ToDateTime("1990-01-01");
-        
-        memberInfoModel.Assister = "";
-        memberInfoModel.OfficeTele = "";
-
-        memberInfoModel.HomeTele = "";
-        memberInfoModel.MobileTele = "";
-
-        memberInfoModel.FaxTele = "";
-        memberInfoModel.City.Country = "";
-        memberInfoModel.City.Province = "";
-        memberInfoModel.City.City = "";
-        memberInfoModel.City.Xian = "";
-        memberInfoModel.CPCCode = "";
-        memberInfoModel.Address = "";
-        memberInfoModel.PostalCode = "";
-        memberInfoModel.PaperType.PaperTypeCode = "";
-        memberInfoModel.PaperNumber = "";
-
-
-        memberInfoModel.BankCode = "";
-        memberInfoModel.BankAddress = "";
-        memberInfoModel.BankBook = memberInfoModel.Name;
-        memberInfoModel.BankCard = "";
-
-        memberInfoModel.BCPCCode = "";
-        memberInfoModel.Remark = "";
-        memberInfoModel.ChangeInfo = "";
-        memberInfoModel.Email = "";
-        //memberInfoModel.District = SearchPlacement_DoubleLines1.District;
-        memberInfoModel.District = 0;
-        memberInfoModel.Answer = "";
-        memberInfoModel.Question = "";
-        memberInfoModel.IsBatch = Convert.ToInt32(ViewState["isBatch"]);//不是批量注册  modify
-        memberInfoModel.Language = 1;
-        memberInfoModel.OperateIp = CommonDataBLL.OperateIP;//调用方法
-
-        memberInfoModel.OperaterNum = CommonDataBLL.OperateBh;//调用方法
-
-        memberInfoModel.Error = ViewState["Error"] == null ? "" : ViewState["Error"].ToString();
-
-        memberInfoModel.Bankbranchname = "";
-        return memberInfoModel;
     }
 }

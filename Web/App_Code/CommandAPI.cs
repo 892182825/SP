@@ -30,17 +30,18 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 账户余额
     /// </summary>
-    private double GetActMoney()
+    public static double GetActMoney()
     {
+        string number = HttpContext.Current.Session["Member"].ToString();
         double blance = 0;
-        string post = posturl+"/user/info";
+        string post = posturl + "/user/info";
         Dictionary<String, String> myDictionary = new Dictionary<String, String>();
         myDictionary.Add("app_id", app_id);
-        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select MobileTele,Jackpot-Out as xj from memberinfo where Number='" + Session["Member"].ToString() + "'");
+        DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select MobileTele,Jackpot-Out as xj from memberinfo where Number='" + number + "'");
         if (dt_one.Rows.Count > 0)
         {
             string ipn = dt_one.Rows[0]["MobileTele"].ToString();
-          
+
             if (ipn != "")
             {
                 string quhao = "";
@@ -85,7 +86,7 @@ public class CommandAPI : BLL.TranslationBase
                     string rspp = PublicClass.GetFunction(postdz, myDi);
                     JObject stJson = JObject.Parse(rspp);
                     //rmoney.Text = rspp;
-                    blance =Convert.ToDouble( stJson["data"]["normal_balance"] );
+                    blance = Convert.ToDouble(stJson["data"]["normal_balance"]);
 
                 }
                 catch
@@ -103,13 +104,13 @@ public class CommandAPI : BLL.TranslationBase
         return blance;
 
     }
-    private int rep = 0;
-    private string GenerateCheckCodeNum(int codeCount)
+    private static int rep = 0;
+    private  static string GenerateCheckCodeNum(int codeCount)
     {
         string str = string.Empty;
-        long num2 = DateTime.Now.Ticks + this.rep;
-        this.rep++;
-        Random random = new Random(((int)(((ulong)num2) & 0xffffffffL)) | ((int)(num2 >> this.rep)));
+        long num2 = DateTime.Now.Ticks + rep;
+        rep++;
+        Random random = new Random(((int)(((ulong)num2) & 0xffffffffL)) | ((int)(num2 >>  rep)));
         for (int i = 0; i < codeCount; i++)
         {
             int num = random.Next();
@@ -123,18 +124,19 @@ public class CommandAPI : BLL.TranslationBase
     /// 订单状态NOTPAY (待支付)，SUCCESS（已支付）， CLOSED（订单过期或关闭） UNKNOW（未知状态）
     /// </summary>
 
-    public string getzf()
+    public static string getzf(string ddh)
     {
+        string token = HttpContext.Current.Session["access_token"].ToString();
+            string openid = HttpContext.Current.Session["Member"].ToString();
         string sl = GenerateCheckCodeNum(32);
         //long mony = Convert.ToInt64(money.Text.Trim());
-
-
+         
 
         string postdz = "https://oauth.factorde.com/api/pay/queryOrder";
         Dictionary<String, String> myDi = new Dictionary<String, String>();
         Dictionary<String, Object> da = new Dictionary<String, Object>
 {
-            {"out_trade_no", Session["zfddh"].ToString()}
+            {"out_trade_no", ddh}
 };
 
         String jso = JsonConvert.SerializeObject(da, Formatting.Indented);
@@ -142,11 +144,11 @@ public class CommandAPI : BLL.TranslationBase
         myDi.Add("nonce_str", sl);
         myDi.Add("biz_content", jso);
         myDi.Add("app_id", PublicClass.app_id);
-        myDi.Add("access_token", Session["access_token"].ToString());
+        myDi.Add("access_token", token);
         myDi.Add("lang", "zh_CN");
         myDi.Add("version", "1.0");
         myDi.Add("charset", "utf8");
-        myDi.Add("openid", Session["Member"].ToString());
+        myDi.Add("openid", openid);
 
         string signj = PublicClass.GetSignContent(myDi);
         string jsonS = PublicClass.HmacSHA256(signj + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
@@ -158,14 +160,15 @@ public class CommandAPI : BLL.TranslationBase
         // money.Text = rspp;
         string zt = stJson["data"]["trade_status"].ToString();
         int skje = Convert.ToInt32(stJson["data"]["settle_trans_amount"]);
-        return zt+","+skje;
+        return zt + "," + skje;
         //if (zt == "SUCCESS")
         //{
-          
+
         //}
 
     }
-    public string GetTimeStamp()
+
+    public static  string GetTimeStamp()
     {
         TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
         return Convert.ToInt64(ts.TotalSeconds).ToString();
@@ -187,25 +190,27 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 支付接口跳转到支付界面，ddje订单金额
     /// </summary>
-    public string GetFunction(string ddje)
-    {
-        SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + Session["Member"] + "'");
+    public static string GetFunction(string ddh
+        , string ddje)
+    {  
+        string openid =HttpContext.Current. Session["Member"].ToString();
+        SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + openid + "'");
         string str = "";
         if (sdr.Read())
         {
             string num = GenerateCheckCodeNum(32);
-            string ddh = registermemberBLL.GetOrderInfo("add", null);
+            
 
-            Session["ddje"] = "";
+           // Session["ddje"] = "";
             decimal mony = Convert.ToDecimal(ddje);
-            Session["ddje"] = mony;
+           // Session["ddje"] = mony;
             string yum = "https://oauth.factorde.com/api/pay/preOrder";
             Dictionary<String, String> myDictionary = new Dictionary<String, String>();
             Dictionary<String, Object> data = new Dictionary<String, Object>
 {
 
 
-            {"openid", Session["Member"].ToString()},
+            {"openid",openid},
             {"body", Convert.ToString(sdr["MobileTele"])+"购买配套"},
             {"subject", "购买配套"},
             {"out_trade_no", ddh},
@@ -214,21 +219,22 @@ public class CommandAPI : BLL.TranslationBase
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/MemberCashXF.aspx"}
+            {"return_url", "http://zd.factorde.com/MemberMobile/recast.aspx?orderid="+ddh}
 
 
 };
+            string token = HttpContext.Current.Session["access_token"].ToString();
 
             String json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
             myDictionary.Add("nonce_str", num);
             myDictionary.Add("biz_content", json);
             myDictionary.Add("app_id", PublicClass.app_id);
-            myDictionary.Add("access_token", Session["access_token"].ToString());
+            myDictionary.Add("access_token", token);
             myDictionary.Add("lang", "zh_CN");
             myDictionary.Add("version", "1.0");
             myDictionary.Add("charset", "utf8");
-            myDictionary.Add("openid", Session["Member"].ToString());
+            myDictionary.Add("openid", openid);
 
             string signjs = PublicClass.GetSignContent(myDictionary);
             string jsonStr = PublicClass.HmacSHA256(signjs + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
@@ -244,7 +250,7 @@ public class CommandAPI : BLL.TranslationBase
             JObject studentsJson = JObject.Parse(rsp);
             string bh = studentsJson["data"]["out_trade_no"].ToString();
             string ddbh = bh;
-            Session["zfddh"] = ddbh;
+           // Session["zfddh"] = ddbh;
             if (bh == ddh)
             {
                 string ddhbm = "prepay_id%3D" + studentsJson["data"]["trade_no"].ToString();

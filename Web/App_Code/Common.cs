@@ -445,4 +445,41 @@ public class Common
         }
        return value;
     }
+
+    /// <summary>
+    /// 获取当前阶段 每个币种占两个阶段
+    /// </summary>
+    /// <returns></returns>
+    public static int GetcurJieDuan() {
+        int jd =0;
+        DataTable dtc = DBHelper.ExecuteDataTable("select CoinIndex ,Coinstate  from  CoinPlant where  Coinstate>0  and Coinstate<3 order by id ");
+        string conindex = "";
+        int cst = 0;
+        if (dtc != null && dtc.Rows.Count > 0)
+        {
+            DataRow dr = dtc.Rows[0];
+            conindex = dr["CoinIndex"].ToString() ;
+            cst = Convert.ToInt32(dr["Coinstate"]);
+        }
+        switch (conindex)
+        {
+            case "CoinA":
+                jd = 0; jd += cst;
+                break;
+            case "CoinB":
+                jd = 2; jd += cst;
+                break;
+            case "CoinC":
+                jd = 4; jd += cst;
+                break;
+            case "CoinD":
+                jd = 6; jd += cst;
+                break;
+            case "CoinE":
+                jd = 8; jd += cst;
+                break; 
+        }
+
+        return jd;
+    }
 }

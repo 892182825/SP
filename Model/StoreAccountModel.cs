@@ -123,14 +123,14 @@ namespace Model
         /// </summary>
         MemberTypeBd=6,
         /// <summary>
-        /// 店铺交易
+        /// 支付订单
         /// </summary>
-        StoreType=1,
-
+        
+         StoreType = 1,
         /// <summary>
         /// 店铺订货款
         /// </summary>
-        StoreDingHuokuan=10,
+        StoreDingHuokuan =10,
 
         /// <summary>
         /// 店铺周转款

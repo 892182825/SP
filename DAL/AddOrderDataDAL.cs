@@ -247,6 +247,38 @@ namespace DAL
 
         }
 
+        
+
+        /// <summary>
+        /// 添加会员报单，用于修改报单，注册报单不添加会员信息
+        /// </summary>
+        /// <param name="ofm"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
+        public Boolean AddOrderInfo(string number, string orderid, int maxexpt, int isagain, double ttmoney, double ttpv, int ordertype)
+        {
+            int cc = 0;
+            string sql = "INSERT INTO [MemberOrder]([Number],[OrderID], [TotalMoney],[TotalPv], [OrderExpectNum],[PayExpectNum],[IsAgain],[OrderDate], [ordertype] )   VALUES('"+ number + "', '"+  orderid + "', "+ttmoney+", "+ttpv+",   "+maxexpt+ ", " + maxexpt + ", "+isagain+", getdate(),  "+ordertype+" )  ";
+             
+
+            try
+            {
+              cc=   DBHelper.ExecuteNonQuery( sql );
+                if (cc == 1) return true;
+                else return false;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+          
+
+
+
+        }
+
         /// <summary>
         /// 是否该会员下是否有安置编号
         /// </summary>
