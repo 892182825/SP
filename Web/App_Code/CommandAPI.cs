@@ -104,7 +104,7 @@ public class CommandAPI : BLL.TranslationBase
 
     }
     private int rep = 0;
-    private static string GenerateCheckCodeNum(int codeCount)
+    private  string GenerateCheckCodeNum(int codeCount)
     {
         string str = string.Empty;
         long num2 = DateTime.Now.Ticks + this.rep;
@@ -123,7 +123,7 @@ public class CommandAPI : BLL.TranslationBase
     /// 订单状态NOTPAY (待支付)，SUCCESS（已支付）， CLOSED（订单过期或关闭） UNKNOW（未知状态）
     /// </summary>
 
-    public static string getzf()
+    public string getzf()
     {
         string sl = GenerateCheckCodeNum(32);
         //long mony = Convert.ToInt64(money.Text.Trim());
@@ -187,7 +187,7 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 支付接口跳转到支付界面，ddje订单金额
     /// </summary>
-    public static string GetFunction(string ddje)
+    public  string GetFunction(string ddje)
     {
         SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + Session["Member"] + "'");
         string str = "";
