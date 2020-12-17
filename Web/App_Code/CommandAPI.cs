@@ -24,7 +24,7 @@ public class CommandAPI
     /// <summary>
     /// 账户余额
     /// </summary>
-    private double GetActMoney(string  number)
+   public static  double GetActMoney(string  number)
     {
         double blance = 0;
         string post = posturl+"/user/info";
