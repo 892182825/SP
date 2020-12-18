@@ -6682,42 +6682,23 @@ public class AjaxClass : BLL.TranslationBase
         if (HttpContext.Current.Session["Member"] != null)
         {
             string direct = HttpContext.Current.Session["Member"].ToString();
-            if (q1 == "AccountFZ")
-            {
-                cdit += " and  SfType=4";
-            }
-            if (q1 == "AccountFX")
-            {
-                cdit += " and  SfType=2";
-            }
-            if (q1 == "AccountXJ")
-            {
-                cdit += " and  SfType=1";
-            }
-            if (q1 == "AccountXF")
-            {
-                cdit += " and  SfType=6";
-            }
-            if (q1 == "AccountFXth")
-            {
-                cdit += " and  SfType=5";
-            }
+            
             if (isact != -1) cdit += " and  Direction=" + isact;
-            string sqls = @"WITH sss AS(SELECT id,number,HappenTime,KmType,HappenMoney,BalanceMoney,Direction,ROW_NUMBER() OVER(ORDER BY HappenTime desc, id desc ) as rowNum FROM memberaccount where number='" + direct + "'  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+            string sqls = @"WITH sss AS(SELECT id,number,HappenTime,KmType,HappenMoney,BalanceMoney,Direction,ROW_NUMBER() OVER(ORDER BY HappenTime desc, id desc ) as rowNum FROM  account"+ q1 + " where number='" + direct + "'  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
 
 
             DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
                 int ispay = Convert.ToInt32(item["Direction"]);
-                if (ispay == 0)
-                {
-                    curstr += "<tr onclick=\"location.href='Zhxiangxi.aspx?id=" + Convert.ToString(item["id"]).ToString() + "'\"><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</br>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + "</td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span style='color: #dd4814;float:right;'>+" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
-                }
-                else if (ispay == 1)
-                {
-                    curstr += "<tr onclick=\"location.href='Zhxiangxi.aspx?id=" + Convert.ToString(item["id"]).ToString() + "'\"><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</br>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + "</td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span  style='color: #4caf50;float:right;'>-" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
-                }
+                //if (ispay == 0)
+                //{
+                //    curstr += "<tr onclick=\"location.href='Zhxiangxi.aspx?id=" + Convert.ToString(item["id"]).ToString() + "'\"><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</br>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + "</td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span style='color: #dd4814;float:right;'>+" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
+                //}
+                //else if (ispay == 1)
+                //{
+                    curstr += "<tr   ><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + " </td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span  style='color: #4caf50;float:right;'>-" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
+                //}
             }
         }
         return curstr;
