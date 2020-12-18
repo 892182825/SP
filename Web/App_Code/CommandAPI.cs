@@ -288,9 +288,9 @@ public class CommandAPI : BLL.TranslationBase
     }
 
     /// <summary>
-    /// 获取指定币对价格
+    /// 销毁方法，cion币种，amount数量
     /// </summary>
-    public static string Destruction(string cion)
+    public static string Destruction(string cion,double amount)
     {
         string je = "";
         return je;
