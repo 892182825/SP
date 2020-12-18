@@ -267,9 +267,9 @@ namespace DAL
                 if (cc == 1) return true;
                 else return false;
             }
-            catch (Exception)
+            catch (Exception ee)
             {
-
+                string mm = ee.Message;
                 return false;
             }
 

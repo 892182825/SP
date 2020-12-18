@@ -11,7 +11,7 @@ public partial class ReCast : BLL.TranslationBase
     protected void Page_Load(object sender, EventArgs e)
     {
       //  AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-        Session["Member"] = "9999999999";
+        Session["Member"] = "d2918447acbc262fbcb01efce558752c";
         //Permissions.MemRedirect(Page, Permissions.redirUrl);
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)
@@ -70,7 +70,7 @@ public partial class ReCast : BLL.TranslationBase
             x7cn = Convert.ToDouble(dr["para14"]) * 100;
         }
         int lebuy = 0;
-        lebuy = Convert.ToInt32(DBHelper.ExecuteNonQuery("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
+        lebuy = Convert.ToInt32(DBHelper.ExecuteScalar("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
 
         string buyorup = "升级";
         if (lv < 2) buyorup = "购买";
@@ -78,25 +78,27 @@ public partial class ReCast : BLL.TranslationBase
         string h = "";
         if (lebuy > 0)
         {
-            html += @"  < li > < div class='ltimg'><img src = 'img/kj.png'  alt='X1' /></div><div class='dsc' > <p>矿机编号：X1(体验矿机)</p> <p>剩余数量：" + lebuy + @" 台</p> <p>产能：" + x1cn + @"%</p></div>
+            html += @"  <li > <div class='ltimg'><img src = 'img/kj.png'  alt='X1' /></div><div class='dsc' > <p>矿机编号：X1(体验矿机)</p> <p>剩余数量：" + lebuy + @" 台</p> <p>产能：" + x1cn + @"%</p></div>
                 <input id = 'ip1'  onclick='showbuy(1)'  type='button' value='抢购' /> </li>";
         }
-
-        if (lv > 6)
-            h += @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X2' /></div><div class='dsc' > <p>矿机编号：X2</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
-                <input id = 'ip2'  onclick='showbuy(2)' type='button'  value='" + buyorup + "' />    </li>";
-        if (lv > 5)
-            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X3' /></div><div class='dsc' > <p>矿机编号：X3</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
-                <input id = 'ip3'  onclick='showbuy(3)' type='button'  value='" + buyorup + "' />    </li>" + h;
-        if (lv > 4)
-            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X4' /></div><div class='dsc' > <p>矿机编号：X4</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
-                <input id = 'ip4'  onclick='showbuy(4)' type='button'  value='" + buyorup + "' />    </li>" + h;
-        if (lv > 3)
-            h = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X5' /></div><div class='dsc' > <p>矿机编号：X5</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
+        if (lv < 7)
+            h = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X7' /></div><div class='dsc' > <p>矿机编号：X7</p> <p>价格：" + x7p + @"U</p> <p>产能：" + x7cn + @"%</p></div>
+                <input id = 'ip7'  onclick='showbuy(7)' type='button'  value='" + buyorup + "' />    </li>";
+        if (lv < 6)
+            h  = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X6' /></div><div class='dsc' > <p>矿机编号：X6</p> <p>价格：" + x6p + @"U</p> <p>产能：" + x6cn + @"%</p></div>
+                <input id = 'ip6'  onclick='showbuy(6)' type='button'  value='" + buyorup + "' />    </li>"+h;
+        if (lv < 5)
+            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X5' /></div><div class='dsc' > <p>矿机编号：X5</p> <p>价格：" + x5p + @"U</p> <p>产能：" + x5cn + @"%</p></div>
                 <input id = 'ip5'  onclick='showbuy(5)' type='button'  value='" + buyorup + "' />    </li>" + h;
-        if (lv > 2)
-            h += @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X6' /></div><div class='dsc' > <p>矿机编号：X6</p> <p>价格：" + x1p + @"U</p> <p>产能：" + x1cn + @"%</p></div>
-                <input id = 'ip6'  onclick='showbuy(6)'  type='button' value='" + buyorup + "' />    </li>" + h;
+        if (lv > 4)
+            h = @" <li><div class='ltimg'><img src = 'img/kj.png'  alt='X4' /></div><div class='dsc' > <p>矿机编号：X4</p> <p>价格：" + x4p + @"U</p> <p>产能：" + x4cn + @"%</p></div>
+                <input id = 'ip4'  onclick='showbuy(4)' type='button'  value='" + buyorup + "' />    </li>" + h;
+        if (lv < 3)
+            h = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X3' /></div><div class='dsc' > <p>矿机编号：X3</p> <p>价格：" + x3p + @"U</p> <p>产能：" + x3cn + @"%</p></div>
+                <input id = 'ip3'  onclick='showbuy(3)' type='button'  value='" + buyorup + "' />    </li>" + h;
+        if (lv < 2)
+            h  = @"<li><div class='ltimg'><img src = 'img/kj.png'  alt='X2' /></div><div class='dsc' > <p>矿机编号：X2</p> <p>价格：" + x2p + @"U</p> <p>产能：" + x2cn + @"%</p></div>
+                <input id = 'ip2'  onclick='showbuy(2)'  type='button' value='" + buyorup + "' />    </li>" + h;
         html += h;
         html += " </ul>";
         getshow.InnerHtml = html;
@@ -122,14 +124,17 @@ public partial class ReCast : BLL.TranslationBase
         int re = 0;
         ///获取usdt账户 
         int lv = 0;
-        double zhye = CommandAPI.GetActMoney();
+      
 
         DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select LevelInt from memberinfo where Number='" + number + "'");
         if (dt_one.Rows != null && dt_one.Rows.Count > 0)
         {
             lv = Convert.ToInt32(dt_one.Rows[0]["LevelInt"]);//获取账户等级
         }
-
+        double zhye = 0;
+        int jd = Common.GetcurJieDuan();//获取阶段状态
+        if ((lv==1||(lv==0&&chosenum>1))&&jd==1)
+            zhye = CommandAPI.GetActMoney();
         if (chosenum < 0 || chosenum > 7 || lv > chosenum) {
             ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请选择矿机！');</script>", false);
             return;
@@ -169,7 +174,7 @@ public partial class ReCast : BLL.TranslationBase
         if (chosenum == 7) { ttmoney = cm.Para7 - yymoney; ttpv = cm.Para7 - yymoney; }
 
         if (yymoney > 0) { isagain = 1; ordertype = 24; }//升级
-        int jd = Common.GetcurJieDuan();//获取阶段状态
+      
         DataTable dtmb = DBHelper.ExecuteDataTable("select pointAin-pointAout  as  ablc,pointbin-pointbout  as  bblc,pointcin-pointcout  as  cblc,pointdin-pointdout  as  dblc,pointein-pointeout  as  eblc  from memberinfo where number='" + number + "'");
         DataTable conp = DBHelper.ExecuteDataTable("select CoinIndex ,coinnewprice  from CoinPlant  order by id ");
         double ablc = 0; double bblc = 0; double cblc = 0; double dblc = 0; double eblc = 0;
@@ -193,10 +198,10 @@ public partial class ReCast : BLL.TranslationBase
             {
                 string s = item["CoinIndex"].ToString();
                 if (s == "CoinA") cap = Convert.ToDouble(item["coinnewprice"]);
-                if (s == "CoinB") cap = Convert.ToDouble(item["coinnewprice"]);
-                if (s == "CoinC") cap = Convert.ToDouble(item["coinnewprice"]);
-                if (s == "CoinD") cap = Convert.ToDouble(item["coinnewprice"]);
-                if (s == "CoinE") cap = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinB") cbp = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinC") ccp = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinD") cdp = Convert.ToDouble(item["coinnewprice"]);
+                if (s == "CoinE") cep = Convert.ToDouble(item["coinnewprice"]);
             }
         }
         else
@@ -209,41 +214,56 @@ public partial class ReCast : BLL.TranslationBase
         double aneed = 0;
         double bneed = 0;
         double cneed = 0;
-        if (jd == 1) if (zhye < ttmoney)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
-                return;
-            }//余额不足
-            else if (jd == 2 || jd == 3)
-            {
-                aneed =  ttmoney/cap; 
-                if (aneed > ablc   )
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
-                    return;
-                };//余额不足
-            }
-            else if (jd == 4 || jd == 5)
-            {
-                  aneed = (ttmoney * 0.5) / cap;
-                  bneed = (ttmoney * 0.5) / cbp;
-                if (aneed > ablc || bneed > bblc)
+        double eneed = 0;
+        if (lv > 0)
+        {
+            if (jd == 1) if (zhye < ttmoney)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
                     return;
                 }//余额不足
-            }
-            else if (jd == 6 || jd == 7)
-            {
-                  aneed = (ttmoney * 0.2) / cap;
-                  bneed = (ttmoney * 0.3) / cbp;
-                  cneed = (ttmoney * 0.5) / ccp;
-                if (aneed > ablc || bneed > bblc || cneed > cblc)
+                else if (jd == 2 || jd == 3)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                    aneed = ttmoney / cap;
+                    if (aneed > ablc)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        return;
+                    };//余额不足
+                }
+                else if (jd == 4 || jd == 5)
+                {
+                    aneed = (ttmoney * 0.5) / cap;
+                    bneed = (ttmoney * 0.5) / cbp;
+                    if (aneed > ablc || bneed > bblc)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        return;
+                    }//余额不足
+                }
+                else if (jd == 6 || jd == 7)
+                {
+                    aneed = (ttmoney * 0.2) / cap;
+                    bneed = (ttmoney * 0.3) / cbp;
+                    cneed = (ttmoney * 0.5) / ccp;
+                    if (aneed > ablc || bneed > bblc || cneed > cblc)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        return;
+                    }//余额不足
+                }
+           
+            if (jd > 1) ///  如果是第二阶段以上 则需要额外支付 5% 的E
+            {
+                eneed = (ttmoney * 0.05) / cep;
+                if (eneed > eblc)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('E币余额不足！');</script>", false);
                     return;
                 }//余额不足
             }
+
+        }
 
         RegistermemberBLL registermemberBLL = new RegistermemberBLL();
         string orderid=registermemberBLL.GetOrderInfo("add", null);
@@ -253,7 +273,7 @@ public partial class ReCast : BLL.TranslationBase
 
         if (flag)  //插入订单成功 开始支付
         {
-            if (lv == 1)//说明是第一次买 必须使用USDT买 
+            if (lv <=1&&chosenum>1)//说明是第一次买 必须使用USDT买 
             {
                 string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString());
                 ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
@@ -263,9 +283,15 @@ public partial class ReCast : BLL.TranslationBase
             else
             {
                 //本地支付开始
-                int r= MemberOrderDAL.PayOrder(number,orderid,aneed,bneed,cneed,chosenum);
+                int r= MemberOrderDAL.PayOrder(number,orderid,aneed,bneed,cneed, eneed, chosenum);
                 if (r == 1)
                 {
+                    //销毁
+                    if (aneed > 0) CommandAPI.Destruction("A", aneed); 
+                    if (bneed > 0) CommandAPI.Destruction("B", bneed);
+                    if (cneed > 0) CommandAPI.Destruction("C", cneed);
+                    if (eneed > 0) CommandAPI.Destruction("E", eneed);
+
                     ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买成功！');</script>", false);
                     return;
                 }

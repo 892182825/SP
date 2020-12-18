@@ -28,7 +28,7 @@
     <link href='../css/uploadify.css' rel='stylesheet'>
     <link href='../css/animate.min.css' rel='stylesheet'>
     <script src="../bower_components/jquery/jquery.min.js"></script>
-    <title>FTC申请锁仓</title>
+    <title>购买矿机</title>
     <style>
                 ul li {
        list-style:none; 
@@ -101,8 +101,18 @@
             $(".showhid").show();
             $("#hidetp").val(num);
             var html = "";
-            if (num == 1) html += ""; 
+            if (num == 1) html += "恭喜您，抢到免费体验矿机，请立即领取！"; 
+            if (num == 2) html += "您当前购买需支付50U！"; 
+            if (num == 3) html += "您当前购买需支付100U！";
+            if (num == 4) html += "您当前购买需支付500U！";
+            if (num == 5) html += "您当前购买需支付1000U！";
+            if (num == 6) html += "您当前购买需支付1500U！";
+            if (num == 7) html += "您当前购买需支付3000U！";
             $("#sbuyinfo").html(html);
+        }
+
+        function hidediv() {
+            $(".showhid").hide();
         }
 
         function je(id) {
@@ -140,7 +150,7 @@
     <form id="form1" runat="server">
         <div class="navbar navbar-default" role="navigation">
             <div class="navbar-inner">
-                <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-chevron-left glyphicon-white"></i></a>
+                <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="javascript:history.go(-1)"> </a>
 
                 <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);">	    购买矿机</span>
             </div>
@@ -148,8 +158,9 @@
     <div>
  
          <div class="showhid">
-            <div id="sbuyinfo"> </div>
+            <div id="sbuyinfo"  style="height:70%;"> </div>
             <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
+                <input type="button" class="canc" value="取消" onclick="hidediv()" />
                 <asp:Button ID="Button1" runat="server" Text="确认购买" OnClick="Button1_Click" />
                  
                 

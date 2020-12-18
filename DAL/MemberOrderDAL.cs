@@ -270,7 +270,7 @@ namespace DAL
         }
 
         //使用本地账户支付
-        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed,int lv)
+        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed ,double eneed,int lv)
         {
             int res = 0;
              
@@ -284,8 +284,17 @@ namespace DAL
                 {
                     //修改会员账户
                     int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + " ,levelint=" + lv + "  where number='" + number + "'");
+                   //更新销毁字段 
+                    DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
+
                     if (r == 0) tran.Rollback();
                 }
+                else {
+                    //修改会员账户
+                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "'");
+                    if (r == 0) tran.Rollback();
+                }
+
                 string ddremark = "支付订单:";
                 //插入对账单
                 if (aneed > 0) {

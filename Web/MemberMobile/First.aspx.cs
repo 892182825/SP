@@ -95,7 +95,7 @@ public partial class Member_First : BLL.TranslationBase
     {
         string number = Session["Member"].ToString();
 
-        DataTable dtmb = DAL.DBHelper.ExecuteDataTable("select ARate,pointAin,pointAout,fuxiaoin,isnull(jackpot,0)-isnull([out],0)-isnull([membership],0) as xjye,isnull( fuxiaoin-fuxiaoout,0) as djye, isnull( pointAin-pointAout,0) as pointA ,isnull(pointBIn-pointBOut,0) as pointB,isnull(pointCIn-pointCOut,0) as pointC,isnull(pointDIn-pointDOut,0) as pointD,isnull(pointEIn-pointEOut,0) as pointE ,Name,levelint,DefaultNumber,MobileTele,isnull(zzye-xuhao,0) as zzye , from MemberInfo where Number='" + number + "'");
+        DataTable dtmb = DAL.DBHelper.ExecuteDataTable("select ARate,pointAin,pointAout,fuxiaoin,isnull(jackpot,0)-isnull([out],0)-isnull([membership],0) as xjye,isnull( fuxiaoin-fuxiaoout,0) as djye, isnull( pointAin-pointAout,0) as pointA ,isnull(pointBIn-pointBOut,0) as pointB,isnull(pointCIn-pointCOut,0) as pointC,isnull(pointDIn-pointDOut,0) as pointD,isnull(pointEIn-pointEOut,0) as pointE ,Name,levelint,DefaultNumber,MobileTele,isnull(zzye-xuhao,0) as zzye  from MemberInfo where Number='" + number + "'");
         
         double blv = AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()));
         decimal mrsf=0m;
