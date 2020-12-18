@@ -287,4 +287,13 @@ public class CommandAPI : BLL.TranslationBase
         return stJson["data"]["last"].ToString();
     }
 
+    /// <summary>
+    /// 获取指定币对价格
+    /// </summary>
+    public static string Destruction(string cion)
+    {
+        string je = "";
+        return je;
+    }
+
 }
