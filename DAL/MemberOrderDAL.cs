@@ -270,7 +270,7 @@ namespace DAL
         }
 
         //使用本地账户支付
-        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed ,double eneed,int lv)
+        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed ,double eneed,int lv,string remark)
         {
             int res = 0;
              
@@ -314,8 +314,14 @@ namespace DAL
                     int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
                     if (c == 0) tran.Rollback();
                 }
+                if (eneed > 0)
+                {
+                    ddremark += "  E币支付  " + cneed;
+                    int c = D_AccountDAL.AddAccount("E", number, eneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                    if (c == 0) tran.Rollback();
+                }
                 //修改订单状态
-               int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1   where orderid='" + orderid+"' ");
+                int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,remark='"+remark+"'  where orderid='" + orderid+"' ");
                 if (rr == 1)
                 {
                     tran.Commit();

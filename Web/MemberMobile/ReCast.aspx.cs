@@ -22,7 +22,10 @@ public partial class ReCast : BLL.TranslationBase
                 string getresult = CommandAPI.getzf(orderid);
                 string[] rlist = getresult.Split(',');
                 //修改订单状态
-                int rr = DBHelper.ExecuteNonQuery("update  memberorder set  DefrayState=1 ,remark='USDT账户支付订单'  where orderid='" + orderid + "' ");
+                string number = Session["Member"].ToString();
+                int choselv = Convert.ToInt32(Session["choselv"]);
+                int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付订单");
+                  
 
                 if (rr == 1)
                 {
@@ -76,7 +79,7 @@ public partial class ReCast : BLL.TranslationBase
         if (lv < 2) buyorup = "购买";
         string html = @" <ul>";
         string h = "";
-        if (lebuy > 0)
+        if (lebuy > 0&&lv==0)
         {
             html += @"  <li > <div class='ltimg'><img src = 'img/kj.png'  alt='X1' /></div><div class='dsc' > <p>矿机编号：X1(体验矿机)</p> <p>剩余数量：" + lebuy + @" 台</p> <p>产能：" + x1cn + @"%</p></div>
                 <input id = 'ip1'  onclick='showbuy(1)'  type='button' value='抢购' /> </li>";
@@ -270,7 +273,7 @@ public partial class ReCast : BLL.TranslationBase
         int maxexpt = ConfigDAL.GetMaxExpectNum(); 
        
         Boolean flag = new AddOrderDataDAL().AddOrderInfo(number,orderid,maxexpt,isagain,ttmoney,ttpv,ordertype );
-
+        Session["choselv"] = chosenum;//保存当前选中级别
         if (flag)  //插入订单成功 开始支付
         {
             if (lv <=1&&chosenum>1)//说明是第一次买 必须使用USDT买 
@@ -283,7 +286,7 @@ public partial class ReCast : BLL.TranslationBase
             else
             {
                 //本地支付开始
-                int r= MemberOrderDAL.PayOrder(number,orderid,aneed,bneed,cneed, eneed, chosenum);
+                int r= MemberOrderDAL.PayOrder(number,orderid,aneed,bneed,cneed, eneed, chosenum,"使用本地币种账户支付");
                 if (r == 1)
                 {
                     //销毁
