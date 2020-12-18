@@ -93,36 +93,14 @@ public partial class Member_First : BLL.TranslationBase
 
     public void LoadMemberInfo()
     {
-        SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select ARate,pointAin,pointAout,fuxiaoin,isnull(jackpot,0)-isnull([out],0)-isnull([membership],0) as xjye,isnull( fuxiaoin-fuxiaoout,0) as djye, isnull( pointAin-pointAout,0) as jldj ,isnull(pointBIn-pointBOut,0) as xfzh ,Name,levelint,DefaultNumber,MobileTele,isnull(zzye-xuhao,0) as zzye from MemberInfo where Number='" + Session["Member"] + "'");
-        String str =(String)Session["Member"];
+        string number = Session["Member"].ToString();
+
+        DataTable dtmb = DAL.DBHelper.ExecuteDataTable("select ARate,pointAin,pointAout,fuxiaoin,isnull(jackpot,0)-isnull([out],0)-isnull([membership],0) as xjye,isnull( fuxiaoin-fuxiaoout,0) as djye, isnull( pointAin-pointAout,0) as pointA ,isnull(pointBIn-pointBOut,0) as pointB,isnull(pointCIn-pointCOut,0) as pointC,isnull(pointDIn-pointDOut,0) as pointD,isnull(pointEIn-pointEOut,0) as pointE ,Name,levelint,DefaultNumber,MobileTele,isnull(zzye-xuhao,0) as zzye , from MemberInfo where Number='" + number + "'");
+        
         double blv = AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()));
         decimal mrsf=0m;
-        if (sdr.Read())
-        {
-            //lblNumber.Text = Session["Member"].ToString();
-           
-            //根据用户选择语言来翻译变量，L001中文，L002英文
-            //if ((String)Session["languageCode"] == "L001")
-            //{
-                ////lblName.Text = Encryption.Encryption.GetDecipherName(sdr["Name"].ToString());
-            //lblPetName.Text = sdr["petName"].ToString();
-            //第二个参数表示翻译类别
-            //lblLevel.Text = CommonDataBLL.GetLevelStr(sdr["levelint"].ToString());
-
-          //  lblLevel.Text = sdr["levelint"].ToString() == "0" ? GetTran("006899", "世联会员") : sdr["levelint"].ToString() == "1" ? GetTran("004255", "世联普商") : sdr["levelint"].ToString() == "2" ? GetTran("004258", "世联咨商") : sdr["levelint"].ToString() == "3" ? GetTran("005219", "世联特别咨商") : sdr["levelint"].ToString() == "4" ? GetTran("005222", "世联高级咨商") : GetTran("005224", "世联全面咨商");
-            //}
-            //else if ((String)Session["languageCode"] == "L002")
-            //{
-            //    lblName.Text = Encryption.Encryption.GetDecipherName(sdr["L002"].ToString());
-            //    lblPetName.Text = sdr["L002"].ToString();
-            //    lblLevel.Text = CommonDataBLL.GetLevelStr(sdr["levelint"].ToString(),"L002");
-            //}
-            ////lblRegisterDate.Text = GetBiaoZhunTime(sdr["registerdate"].ToString());
-            ////lblActiveDate.Text = GetBiaoZhunTime(sdr["ActiveDate"].ToString());
-           // lblLastLoginDate.Text = GetBiaoZhunTime(Session["UserLastLoginDate"].ToString()).Split(' ')[0];
-
-            //this.kk.Text = Convert.ToString(sdr["DefaultNumber"]);
-
+        if (dtmb!=null && dtmb.Rows.Count>0)
+        { DataRow dr = dtmb.Rows[0];
             if (blv == 0)
             {
                 lblPay.Text = "0.00";
@@ -132,40 +110,30 @@ public partial class Member_First : BLL.TranslationBase
             }
             else
             {
-                decimal djye = Convert.ToDecimal(sdr["djye"]);
-                decimal jldj = Convert.ToDecimal(sdr["jldj"]);
-                decimal xjye = Convert.ToDecimal(sdr["xjye"]);
-                decimal xfzh = Convert.ToDecimal(sdr["xfzh"]);
-                decimal zzye = Convert.ToDecimal(sdr["zzye"]);
-          
-                mobil.Text = Convert.ToString(sdr["MobileTele"]);
+                decimal djye = Convert.ToDecimal(dr["djye"]); 
+                decimal xjye = Convert.ToDecimal(dr["xjye"]);
+           decimal  pointA = Convert.ToDecimal(dr["pointA"]);
+                decimal pointB = Convert.ToDecimal(dr["pointB"]);
+                decimal pointC = Convert.ToDecimal(dr["pointC"]);
+                decimal pointD = Convert.ToDecimal(dr["pointD"]);
+                decimal pointE = Convert.ToDecimal(dr["pointE"]);
+
+                mobil.Text = Convert.ToString(dr["MobileTele"]);
                 Jackpot.Text = xjye.ToString("0.0000");
-                fuxiaoin.Text = djye.ToString("0.0000");
+                
                 decimal cudayprice=Common.GetnowPrice();
                 lblPay.Text = cudayprice.ToString("0.0000");
-              //  lblPay.Text =  Math.Round((Convert.ToDouble(sdr["leftMoney"]) * blv)).ToString("#0.00");
-                decimal ze = jldj / cudayprice;
-                pointAIn.Text = jldj.ToString() + "(" + ze.ToString("0.0000") + "FTC)";
-                xfqbzh.Text = xfzh.ToString("0.0000");
-                lblBonse.Text = (ze + xjye + djye).ToString("0.0000");
-                mrsf = Convert.ToDecimal(sdr["fuxiaoin"]);
-                bxsc.Text = zzye.ToString();
-                //lblBonse.Text = Math.Round((double.Parse(CommonDataBLL.GetLeftMoney(Session["Member"].ToString())) * AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString())))).ToString("#0.00");
-                //lblBonse.Text = Math.Round((double.Parse(CommonDataBLL.GetLeftMoney1(Session["Member"].ToString())) * AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString())))).ToString("#0.00");
-              //  lblBonse.Text = Math.Round(Convert.ToDouble(sdr["xjye"]) * blv).ToString("#0.00");
 
-                //lblFx.Text =   Math.Round(((Convert.ToDouble(sdr["fuxiaoin"]) - Convert.ToDouble(sdr["fuxiaoout"])) * blv)).ToString("#0.00");
+                lblPointA.Text = pointA.ToString("0.0000");
+                lblPointB.Text = pointB.ToString("0.0000");
+                lblPointC.Text = pointC.ToString("0.0000");
+                lblPointD.Text = pointD.ToString("0.0000"); 
+                lblPointE.Text = pointE.ToString("0.0000");
 
-                //lblFxth.Text =  Math.Round(((Convert.ToDouble(sdr["fuxiaothin"]) - Convert.ToDouble(sdr["fuxiaothout"])) * blv)).ToString("#0.00");
-
-                //lblzsjf.Text = Math.Round(((Convert.ToDouble(sdr["pointAin"]) - Convert.ToDouble(sdr["pointAout"])) * blv)).ToString("#0.00");
-
-                //lblsfjf.Text = Math.Round(((Convert.ToDouble(sdr["pointBin"]) - Convert.ToDouble(sdr["pointBout"])) * blv)).ToString("#0.00");
 
             }
         }
-        sdr.Close();
-        sdr.Dispose();
+       
 
         string sql = "select isnull(fxlj,0) as ffxlj, * from MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " where number='" + Session["Member"].ToString() + "'";
         DataTable dt = DBHelper.ExecuteDataTable(sql);
@@ -174,7 +142,7 @@ public partial class Member_First : BLL.TranslationBase
             labCurrentOneMark.Text = (Convert.ToDecimal(dt.Rows[0]["DTotalNetRecord"]) - Convert.ToDecimal(dt.Rows[0]["totaloneMark"])).ToString("f4");
             //Label1.Text = Convert.ToDecimal(dt.Rows[0]["totaloneMark"]).ToString();
             IRate.Text = (Convert.ToDecimal(dt.Rows[0]["ARate"]) * 100).ToString("0.00")+"%";
-            sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
+           // sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
             int lv=Convert.ToInt16(dt.Rows[0]["Level"].ToString());
              if(lv==1)
              { Label1.Text = "500"; }
@@ -203,32 +171,7 @@ public partial class Member_First : BLL.TranslationBase
 
             Label2.Text = "";
         }
-            if (blv == 0)
-            {
-                //lblNewYeji.Text = "0.00";
-                //lblTotalYeji.Text = "0.00";
-                //lblBonse.Text = "0.00";
-               // lblCurrentOneMark2.Text = "0.00";
-                //lblTotalOneMark2.Text = "0.00";
-            }
-            else
-            {
-                //lblNewYeji.Text = (double.Parse(dt.Rows[0]["CurrentTotalNetRecord"].ToString())).ToString("0.00");
-                //lblTotalYeji.Text = (double.Parse(dt.Rows[0]["TotalNetRecord"].ToString())).ToString("0.00");
-
-                //lblBonse.Text = (double.Parse(CommonDataBLL.EctIsEnough(Session["Member"].ToString()).ToString()) * AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()))).ToString("0.00");
-                //lblBonse.Text = Math.Round((double.Parse(CommonDataBLL.GetLeftMoney(Session["Member"].ToString())) * AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString())))).ToString("#0.00");
-
-               // lblCurrentOneMark2.Text =  (Convert.ToDouble(dt.Rows[0]["CurrentOneMark2"])).ToString("0.00");
-
-               // lblTotalOneMark2.Text =   (Convert.ToDouble(dt.Rows[0]["TotalOneMark2"])).ToString("0.00");
-
-
-                //lblcflje.Text = (Convert.ToDouble(dt.Rows[0]["ffxlj"])).ToString("0.00");
-                // lblcxkhkye.Text = (Convert.ToDouble(dt.Rows[0]["CurrentOneMoney"])).ToString("0.00");
-
-            }
-         // lblTotalPeople.Text = dt.Rows[0]["TotalNetNum"].ToString();
+           
         }
     }
 

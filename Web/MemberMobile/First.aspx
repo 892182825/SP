@@ -15,7 +15,16 @@
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="../bower_components/jquery/jquery.min.js"></script>
+    <style>
+        .dv1 {box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px
+        }
+        .dv2 {margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;
+        }
+        .dv3 {
+            margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;
+        }
 
+    </style>
  
   
    
@@ -91,36 +100,40 @@
                       <div style="float:left;font-size:20px;font-weight:bold;">账户总览</div>
                       <div style="float:right;color:#fe3f10;text-align:right">会员级别：<br /></div>
                   </div>--%>
-                  <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #666;" >会员级别</a></div>
+                  <div  class="dv1">
+                      <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #666;" >会员级别</a></div>
                       <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="Label1" style="font-size:18px" runat="server" Text="0.00"></asp:Label><asp:Label ID="Label2" style="font-size:20px" runat="server" Text=""></asp:Label></div>
+                      <div  class="dv3"><asp:Label ID="Label1" style="font-size:18px" runat="server" Text="0.00"></asp:Label><asp:Label ID="Label2" style="font-size:20px" runat="server" Text=""></asp:Label></div>
                       <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"><asp:Label ID="mobil" style="color:#797979;font-size:12px" runat="server" Text="0.00"></asp:Label></div>
                   </div>
                   <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #666;" >可用账户</a></div>
+                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #666;" >USDT账户</a></div>
                       <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
                       <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="Jackpot" runat="server" Text="0.00"></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;">FTC</div>
+                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"> </div>
                   </div>
-                  <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountFX" style="text-decoration: underline;color: #666;" >锁仓账户</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">锁仓中的FTC</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="fuxiaoin" runat="server" Text="0.00"></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"><asp:Label ID="sfje" runat="server" Text="0.00"></asp:Label></div>
-                  </div>
-                  <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXF" style="text-decoration: underline;color: #666;" >现金账户</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">锁仓中的FTC</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="xfqbzh" runat="server" Text="0.00"></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"><asp:Label ID="xfqbzhdw" runat="server" Text=""></asp:Label></div>
-                  </div>
-                  <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="" style="text-decoration: underline;color: #666;" >保险锁仓</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">锁仓中的FTC</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="bxsc" runat="server" Text="0.00"></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;">FTC</div>
-                  </div>
+       <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=A" style="text-decoration: underline;color: #666;" >A币账户</a></div> 
+                      <div  class="dv3"><asp:Label ID="lblPointA" runat="server" Text="0.00"></asp:Label></div> 
+        </div>
+
+                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=B" style="text-decoration: underline;color: #666;" >B币账户</a></div> 
+                      <div  class="dv3"><asp:Label ID="lblPointB" runat="server" Text="0.00"></asp:Label></div> 
+        </div>
+
+                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=C" style="text-decoration: underline;color: #666;" >C币账户</a></div> 
+                      <div  class="dv3"><asp:Label ID="lblPointC" runat="server" Text="0.00"></asp:Label></div> 
+        </div>
+
+                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=D" style="text-decoration: underline;color: #666;" >D币账户</a></div> 
+                      <div  class="dv3"><asp:Label ID="lblPointD" runat="server" Text="0.00"></asp:Label></div> 
+        </div>
+
+                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=E" style="text-decoration: underline;color: #666;" >E币账户</a></div> 
+                      <div  class="dv3"><asp:Label ID="lblPointE" runat="server" Text="0.00"></asp:Label></div> 
+        </div>
+
+                   
+                   
                   <div style="box-shadow: #e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px">
                       <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountFXth" style="text-decoration: underline;color: #666;" >团队业绩</a></div>
                       <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">整个团队的业绩汇总</div>--%>

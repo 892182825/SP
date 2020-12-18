@@ -11,7 +11,7 @@ public partial class ReCast : BLL.TranslationBase
     protected void Page_Load(object sender, EventArgs e)
     {
       //  AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-       // Session["Member"] = "9999999999";
+        Session["Member"] = "9999999999";
         //Permissions.MemRedirect(Page, Permissions.redirUrl);
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)

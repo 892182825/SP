@@ -250,7 +250,7 @@
         if (dspNow > dspWorkingDayAM && dspNow < dspWorkingDayPM)
         {
 
-            string postdz =CommandAPI.CoinPrice(string CoinPair);
+            string postdz = "";// CommandAPI.CoinPrice(string CoinPair);
             //rmoney.Text = rspp;
 
             string sql = "update DayPrice set NowPrice='" + postdz + "'";

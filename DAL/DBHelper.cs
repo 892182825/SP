@@ -26,7 +26,7 @@ namespace DAL
         {
 
         }
-        public static readonly string connString = new Encryption.NumberByBit().DecryptDES(System.Configuration.ConfigurationManager.ConnectionStrings["connString"].ConnectionString, "qc2010jmDataLine");
+        public static readonly string connString =  System.Configuration.ConfigurationManager.ConnectionStrings["connString"].ConnectionString ;
 
         /// <summary>
         /// 返回SqlServer连接接口
