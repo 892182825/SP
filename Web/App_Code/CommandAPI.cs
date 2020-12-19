@@ -277,14 +277,46 @@ public class CommandAPI : BLL.TranslationBase
     /// <summary>
     /// 获取指定币对价格
     /// </summary>
-    public static string CoinPrice(string CoinPair)
+    public static int CoinPrice(string CoinPair)
     {
         string postdz = "https://openapi.factorde.com/open/api/get_ticker";
         System.Collections.Generic.Dictionary<String, String> myDi = new System.Collections.Generic.Dictionary<String, String>();
         myDi.Add("symbol", CoinPair);
         string rspp = PublicClass.GetFunction(postdz, myDi);
         Newtonsoft.Json.Linq.JObject stJson = Newtonsoft.Json.Linq.JObject.Parse(rspp);
-        return stJson["data"]["last"].ToString();
+        int cg = 0;
+        SqlTransaction tran = null;
+        SqlConnection conn = DAL.DBHelper.SqlCon();
+        conn.Open();
+        tran = conn.BeginTransaction();
+        try
+        {
+            string sql = "INSERT INTO CoinPriceList (CoinIndex,CoinPrice,updatetime) values('"+CoinPair+"',"+ stJson["data"]["last"].ToString() + ","+ DateTime.Now.ToString("yyyyMMdd HH:mm:ss") + ") NowPrice='" + postdz + "'";
+            cg = DAL.DBHelper.ExecuteNonQuery(tran, sql);
+
+            if (cg > 0 )
+            {
+                tran.Commit();
+                conn.Close();
+                
+            }
+            else
+            {
+                tran.Rollback();
+                conn.Close();
+                
+            }
+        }
+        catch (Exception)
+        {
+
+            conn.Close();
+            
+        }
+                   
+         
+
+        return cg;
     }
 
     /// <summary>

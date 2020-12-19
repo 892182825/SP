@@ -145,14 +145,20 @@ public partial class Member_First : BLL.TranslationBase
            // sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
             int lv=Convert.ToInt16(dt.Rows[0]["Level"].ToString());
              if(lv==1)
-             { Label1.Text = "500"; }
+             { Label1.Text = "20U"; }
         if(lv==2)
-        { Label1.Text = "1000"; }
+        { Label1.Text = "50U"; }
         if(lv==3)
-        { Label1.Text = "3000"; }
+        { Label1.Text = "100U"; }
         if(lv==4)
-        { Label1.Text = "5000"; }
-        if(lv==0)
+        { Label1.Text = "500U"; }
+            if (lv == 5)
+            { Label1.Text = "1000U"; }
+            if (lv == 6)
+            { Label1.Text = "1500U"; }
+            if (lv == 7)
+            { Label1.Text = "3000U"; }
+            if (lv==0)
         {
 
             Label1.Text = "无";

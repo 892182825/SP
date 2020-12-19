@@ -259,7 +259,7 @@ public class Common
     /// </summary>
     /// <returns></returns>
     public static decimal GetnowPrice() {
-        decimal de = Convert.ToDecimal(DBHelper.ExecuteScalar("select max(NowPrice)  from DayPrice  "));
+        decimal de = Convert.ToDecimal(DBHelper.ExecuteScalar("select CoinPrice  from CoinPriceList where id=(select max(id)  from CoinPriceList)  "));
         return de;
      }
     /// <summary>
