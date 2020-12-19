@@ -63,7 +63,7 @@ public partial class _SST_AZ : BLL.TranslationBase
 
     }
         if (str == "") { 
-           str += "  <li><a   ><div>无</div><div>无 </div><div>0人</div></a></li>";
+           str += "  <li><a   ><div>无</div><div>无</div><div>0人</div></a></li>";
          //  str += "  <li><a   ><div>无</div><div>无 </div><div>0人</div></a></li>";
         }
 

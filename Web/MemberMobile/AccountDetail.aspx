@@ -107,6 +107,22 @@
     border-left: 80px #BDBABD solid;
     position: relative;
 }
+        .auto-style1 {
+            width: 3840px;
+            height: 2160px;
+        }
+        .auto-style2 {
+            width: 1920px;
+            height: 1080px;
+        }
+        .auto-style3 {
+            width: 2560px;
+            height: 1440px;
+        }
+        .auto-style4 {
+            width: 960px;
+            height: 540px;
+        }
     </style>
        <script type="text/javascript" >
            $(function () {
@@ -155,7 +171,7 @@
                   <thead id="mbbt">
                     <tr>
                         <th style="width:29%;">时间</th>
-                        <th style="width:29%;">科目</th>
+                        <th style="width:29%;">科目 </th>
                         <th style="width: 180px;">
                             <div> 金额/余额 </div>
                         </th>
