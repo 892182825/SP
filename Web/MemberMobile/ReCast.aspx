@@ -10,23 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" href="css/style.css">
-
-    <link  href="../css/bootstrap-cerulean.min.css" rel="stylesheet">
-
-    <link href="../css/charisma-app.css" rel="stylesheet">
-    <link href='../bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
-    <link href='../bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
-    <link href='../bower_components/chosen/chosen.min.css' rel='stylesheet'>
-    <link href='../bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
-    <link href='../bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
-    <link href='../bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
-    <link href='../css/jquery.noty.css' rel='stylesheet'>
-    <link href='../css/noty_theme_default.css' rel='stylesheet'>
-    <link href='../css/elfinder.min.css' rel='stylesheet'>
-    <link href='../css/elfinder.theme.css' rel='stylesheet'>
-    <link href='../css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='../css/uploadify.css' rel='stylesheet'>
-    <link href='../css/animate.min.css' rel='stylesheet'>
+     
     <script src="../bower_components/jquery/jquery.min.js"></script>
     <title>购买矿机</title>
     <style>
@@ -101,13 +85,13 @@
             $(".showhid").show();
             $("#hidetp").val(num);
             var html = "";
-            if (num == 1) html += "恭喜您，抢到免费体验矿机，请立即领取！"; 
-            if (num == 2) html += "您当前购买需支付50U！"; 
-            if (num == 3) html += "您当前购买需支付100U！";
-            if (num == 4) html += "您当前购买需支付500U！";
-            if (num == 5) html += "您当前购买需支付1000U！";
-            if (num == 6) html += "您当前购买需支付1500U！";
-            if (num == 7) html += "您当前购买需支付3000U！";
+            if (num == 1) html += "抢到免费体验矿机！"; 
+            if (num == 2) html += "支付50 USDT"; 
+            if (num == 3) html += "支付100 USDT";
+            if (num == 4) html += "支付500 USDT";
+            if (num == 5) html += "支付1000 USDT";
+            if (num == 6) html += "支付1500 USDT";
+            if (num == 7) html += "支付3000 USDT";
             $("#sbuyinfo").html(html);
         }
 
@@ -115,29 +99,7 @@
             $(".showhid").hide();
         }
 
-        function je(id) {
-            $("#ft").val("");
-            var num = parseFloat($("#hidnew").val());
-           var je = id / num;
-           $("#je").text(parseFloat(je).toFixed(4));
-           $("#newprice").val(id);
-           
-           $("#tz500").attr("class", "btn btn-qianse btn-lg");
-           $("#tz1000").attr("class", "btn btn-qianse btn-lg");
-            $("#tz3000").attr("class", "btn btn-qianse btn-lg");
-            $("#tz5000").attr("class", "btn btn-qianse btn-lg");
-            $("#tz100").attr("class", "btn btn-qianse btn-lg");
-           
-            
-            if (id == $("#tz500").val()) $("#tz500").attr("class", "btn btn-success btn-lg");
-            if (id == $("#tz1000").val()) $("#tz1000").attr("class", "btn btn-success btn-lg");
-            if (id == $("#tz3000").val()) $("#tz3000").attr("class", "btn btn-success btn-lg");
-            if (id == $("#tz5000").val()) $("#tz5000").attr("class", "btn btn-success btn-lg");
-            if (id == $("#tz100").val()) $("#tz100").attr("class", "btn btn-success btn-lg");
-           
-
-            return false;
-        }
+        
 
       
 
@@ -148,22 +110,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-inner">
-                <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="javascript:history.go(-1)"> </a>
-
-                <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);">	    购买矿机</span>
-            </div>
-        </div>
+        
     <div>
  
          <div class="showhid">
-            <div id="sbuyinfo"  style="height:70%;"> </div>
+            <div id="sbuyinfo"  style=""> </div>
             <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
                 <input type="button" class="canc" value="取消" onclick="hidediv()" />
-                <asp:Button ID="Button1" runat="server" Text="确认购买" OnClick="Button1_Click" />
-                 
-                
+                <asp:Button ID="Button1" runat="server" Text="确认购买" OnClick="Button1_Click" /> 
             </div>
         </div>
 
@@ -202,7 +156,7 @@
                 
             }
 </script>
-         <!-- #include file = "comcode.html" -->
+        
 
     
     </form>
