@@ -11,7 +11,7 @@ public partial class ReCast : BLL.TranslationBase
     protected void Page_Load(object sender, EventArgs e)
     {
         //  AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-        Session["Member"] = "d2918447acbc262fbcb01efce558752c";
+        //Session["Member"] = "d2918447acbc262fbcb01efce558752c";
         //Permissions.MemRedirect(Page, Permissions.redirUrl);
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)
@@ -284,7 +284,7 @@ public partial class ReCast : BLL.TranslationBase
         {
             if (lv <= 1 && chosenum > 1)//说明是第一次买 必须使用USDT买 
             {
-                string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString());
+                string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString(),"recast.aspx");
                 ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
                 return;
             }

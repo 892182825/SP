@@ -334,6 +334,69 @@ namespace DAL
             
         }
 
+   /// <summary>
+   /// 創建兌換記錄
+   /// </summary>
+   /// <param name="number"></param>
+   /// <param name="orderid"></param>
+   /// <param name="useusdt"></param>
+   /// <param name="plantEprice"></param>
+   /// <param name="getplantE"></param>
+   /// <param name="remark"></param>
+   /// <returns></returns>
+        public static int createDHOrder(string number, string orderid, double useusdt, double plantEprice, double getplantE,   string remark)
+        {
+            int res = 0;
+
+            res = DBHelper.ExecuteNonQuery(" insert into dhlist(dhorderid,number,dhdate,useusdt,plantEprice,getplantE,issuc,remark) values('" + orderid + "','" + number + "', getdate(), "+useusdt+", "+plantEprice+", "+getplantE+", 0, '"+remark+"') ");
+                     
+            return res;
+
+        }
+
+        //使用本地账户支付
+        public static int dhOrdersuc(string number, string dhorderid,   double
+            getpE )
+        {
+            int res = 0;
+
+            SqlTransaction tran = null;
+            SqlConnection conn = null;
+            using (conn = DBHelper.SqlCon())
+            {
+                conn.Open();
+                tran = conn.BeginTransaction();
+
+                if (getpE > 0)
+                {
+                    //修改会员账户 增加E
+                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointEin=pointEin+" + getpE + "   where number='" + number + "'");
+                    if (r == 0) tran.Rollback();
+                }
+                else tran.Rollback();
+
+                string ddremark = "USDT兌換創世幣E:" + getpE;
+                //插入对账单
+                if (getpE > 0)
+                {
+                     
+                    int c = D_AccountDAL.AddAccount("E", number, getpE, D_AccountSftype.MemberType, D_AccountKmtype.AccountTransfer, DirectionEnum.AccountsIncreased, ddremark, tran);
+                    if (c == 0) tran.Rollback();
+                } 
+                //修改订单状态
+                int rr = DBHelper.ExecuteNonQuery(tran, "update  dhlist set  issuc=1  ,remark=remark+' 兌換成功'  where dhorderid='" + dhorderid + "' ");
+                if (rr == 1)
+                {
+                    tran.Commit();
+                    res = 1;
+                }
+                else tran.Rollback();
+
+            }
+            return res;
+
+        }
+
 
 
         /// <summary>

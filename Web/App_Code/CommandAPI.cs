@@ -31,9 +31,13 @@ public class CommandAPI : BLL.TranslationBase
     /// 账户余额
     /// </summary>
     public static double GetActMoney()
-    {
+    { double blance = 0;
+        try
+        {
+
+       
         string number = HttpContext.Current.Session["Member"].ToString();
-        double blance = 0;
+        
         string post = posturl + "/user/info";
         Dictionary<String, String> myDictionary = new Dictionary<String, String>();
         myDictionary.Add("app_id", app_id);
@@ -100,6 +104,13 @@ public class CommandAPI : BLL.TranslationBase
                 return blance;
             }
 
+        }
+
+        }
+        catch (Exception)
+        {
+
+            return 0;
         }
         return blance;
 
@@ -191,7 +202,7 @@ public class CommandAPI : BLL.TranslationBase
     /// 支付接口跳转到支付界面，ddje订单金额
     /// </summary>
     public static string GetFunction(string ddh
-        , string ddje)
+        , string ddje,string url)
     {  
         string openid =HttpContext.Current. Session["Member"].ToString();
         SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + openid + "'");
@@ -219,7 +230,7 @@ public class CommandAPI : BLL.TranslationBase
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/recast.aspx?orderid="+ddh}
+            {"return_url", "http://zd.factorde.com/MemberMobile/"+url+"?orderid="+ddh}
 
 
 };
