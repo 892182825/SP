@@ -2255,3 +2255,92 @@ span .orderTHOK {
         .showhid div .qr {
             background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
         }
+
+.pricelist {
+    width: 100%;
+    padding-bottom: 20px;
+    background: #111622;
+    padding-top: 10px;
+    height: 100%;
+}
+
+    .pricelist ul {
+        width: 80%;
+        margin: auto;
+    }
+    .pricelist img {
+        width: 40px;
+        height:40px;
+    }
+
+        .pricelist ul li {
+            list-style: none;
+            width: 100%;
+            /*border-top: 2px transparent solid;*/
+            height: 60px;
+            text-align: left;
+            background-color: #1A202E;
+            box-shadow: inset;
+            padding: 10px 5px 10px 5px;
+        }
+
+            .pricelist ul li .ltimg {
+                float: left;
+                margin-top: 5px;
+                /*margin-right: 20px;*/
+                width:15%;
+            }
+
+            .pricelist ul li div {
+                float: left;
+                height: 45px;
+                margin: 5px 0px 5px 0px;
+            }
+
+            .pricelist ul li .dsc1 {
+                width: 40%;
+                float: left;
+                border-bottom: 1px solid #484848 !important;
+                margin-left:5%;
+            }
+
+            .pricelist ul li .dsc2 {
+                width: 40%;
+                float: right;
+                border-bottom: 1px solid #484848 !important;
+                text-align: right;
+            }
+
+            .pricelist ul li div .p1 {
+                line-height: 15px;
+                margin: 2px;
+                color: #fff;
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+
+            .pricelist ul li div .p2 {
+                line-height: 15px;
+                margin: 2px;
+                font-size: 15px;
+                color: #fff;
+                margin-top: -10px;
+            }
+
+            .pricelist ul li div .p3 {
+                line-height: 15px;
+                margin: 2px;
+                color: #5D6678;
+            }
+
+            .pricelist ul li input {
+                text-align: center;
+                padding: 5px;
+                border-radius: 20px;
+                background-color: #3E475A;
+                color: #fff;
+                float: right;
+                width: 80px;
+                margin: 20px 5px;
+                font-size: 13px;
+            }

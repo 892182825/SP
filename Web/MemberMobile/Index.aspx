@@ -245,7 +245,7 @@
     </script>
     
     <style>
-        body{background:#fff;}
+        body{background:#000;}
         .login_in{padding:10px 5%;margin-top: -1%;}
         .login_in li{height:50px;line-height:50px;padding:5px 0;margin:10px 0;}
         /*.login_in li input,select{height:100%;width:100%;padding-left:5px;background:#eee;display: block;border-radius:3px ;}*/
@@ -260,7 +260,7 @@
    <%-- <p><%=Session["LanguageCode"] %></p>--%>
     <form id="form1" runat="server" style="height: 100%">
          
-        <div style="height: 100%;width:100%;background-image: url(images/dlbj.png);background-repeat: no-repeat;background-size: 100% 100%;">
+        <div style="height: 100%;width:100%;background-image: url(images/MAIN.png);background-repeat: no-repeat;background-size: 100% 100%;">
             <div style="margin-top:50%;width:100%;height:50px;position:absolute;text-align:center;">
                  <span style="font-size:25px;color: #000;">授权登录中...</span><br />
                 <span style="font-size:20px;color: #000;">请稍后</span><br />

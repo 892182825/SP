@@ -16,13 +16,19 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="../bower_components/jquery/jquery.min.js"></script>
     <style>
-        .dv1 {border-bottom: 1px solid #484848!important;width:100%;height:70px;background-color:#07090e;margin-top:10px
+        .dv1 {width:80%;height:160px;margin-top:10px;position: absolute;    border-top: 2px transparent solid;
+    border-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
+    background-color: #1A202E;
+    margin-left:5%;
         }
-        .dv2 {margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;
+        .dv2 {margin-left: 25px;font-size:15px;padding-top: 25px;font-weight:bold;width:100%
         }
         .dv3 {
-            margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;
+            margin-left:25px;font-size:18px;margin-top:50px;width:60%;width:100%;color:#fff;
         }
+        .content{transform:scale(0.5);opacity:0;transition:all 1s;}
+        .active{transform:scale(1);opacity:1;transition:all 1s;}
+
 
     </style>
  
@@ -32,38 +38,79 @@
 <body style="height:100%">
     <form id="form2" runat="server">
     <div style="width:100%;height:100%;margin:0 0 0 0;">
-              <div style="height:150px;color:#fff;">
+              <div style="height:100px;color:#fff;">
                   <div style="height:30px;text-align:center;font-size:20px;padding-top:10px">Super Planet</div>
               </div>
-              <div style="position:absolute;margin-top:-75px;width:90%;height:150px;margin-left:5%;color:#fff;z-index:999">
-                  <div style="margin-left:25px;float:left;font-size:14px;margin-top:25px;">總資產（USDT）</div>
-                  <div style="margin-left: -82px;float:left;font-size:24px;margin-top: 55px;width:70%"><asp:Label ID="lblBonse" runat="server" Text=""></asp:Label></div>
-                  <div style="margin-left: -248px;float:left;font-size:14px;margin-top: 108px;">最新價格：  <asp:Label ID="lblPay" runat="server" Text=""></asp:Label>
-                    <%--  <asp:ScriptManager ID="ScriptManager1" runat="server">
-  </asp:ScriptManager>
-  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-  <ContentTemplate>
-  <!--GridView控件在后台进行绑定--->
- 
-  <!--定时器每5秒钟刷新一次UpdatePanel中的数据-->
-  <asp:Timer ID="Timer1" runat="server" Interval="5000" OnTick="Timer1_Tick" >
-  </asp:Timer>
-  </ContentTemplate>
-  <Triggers>
-  <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick"></asp:AsyncPostBackTrigger>
-  </Triggers>
-  </asp:UpdatePanel>--%>
-
-                  </div>
+        <div style="margin-left:10%;"><h4 style="color:#797979">Total Assets</h4></div>
+              <div style="margin-top:10px;width:90%;height:70px;margin-left:5%;color:#fff;border-bottom: 1px solid #484848!important;">
                   
-                  <a style="margin-right:10px;float:right;font-size:14px;margin-top:55px;color:#fff" href=""><asp:Label ID="IRate" runat="server" Text="0.00" ></asp:Label><br />
-                      释放</a>
-                  <div style="margin-right: 10px;float:right;font-size:12px;margin-top: 22px;width:50%;text-align: right;display:none;" >奬金賬戶： <asp:Label ID="pointAIn" runat="server" Text="0.00"></asp:Label></div>
+                  <div style="margin-left: 5%;float:left;font-size:24px;margin-top: 5%;width:70%">$ <asp:Label ID="lblBonse" runat="server" Text="0.0000"></asp:Label></div>
+                  <div ></div>
               </div>
-         <div style="position:absolute;margin-top: -116px;background-image:url(img/jb-1.jpg);filter:brightness(0.4);width: 100%;height: 188px;margin-left: 0;color:#fff;background-repeat: no-repeat;background-size: 124% 150%;-moz-background-size: 124% 150%;">
-             </div>
+         
 
-        <div style="width: 90%;height:70px;margin-top: 96px;margin-left: 5%;">
+        
+         
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">My Wallet</h4></div>
+        <div style="width: 90%; height: 170px; margin-top: 10px; margin-left: 5%" id="box">
+            <%--<div style="width:100%;height:40px;">
+                      <div style="float:left;font-size:20px;font-weight:bold;">账户总览</div>
+                      <div style="float:right;color:#fe3f10;text-align:right">会员级别：<br /></div>
+                  </div>--%>
+            <div class="dv1 content active">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline; color: #fff;">會員級別</a></div>
+                <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
+                <div class="dv3">
+                    <asp:Label ID="Label1" Style="font-size: 18px" runat="server" Text="0.00"></asp:Label><asp:Label ID="Label2" Style="font-size: 20px" runat="server" Text=""></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="mobil" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+                <div style="float:right;margin-top:-50px;color:#fff;margin-right:15px">→滑動切換</div>
+            </div>
+            
+            <div class="dv1 content">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=A" style="text-decoration: underline; color: #fff;">A幣賬戶</a></div>
+                <div class="dv3">
+                    <asp:Label ID="lblPointA" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="Label3" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+            </div>
+
+            <div class="dv1 content">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=B" style="text-decoration: underline; color: #fff;">B幣賬戶</a></div>
+                <div class="dv3">
+                    <asp:Label ID="lblPointB" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="Label4" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+            </div>
+
+            <div class="dv1 content">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=C" style="text-decoration: underline; color: #fff;">C幣賬戶</a></div>
+                <div class="dv3">
+                    <asp:Label ID="lblPointC" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="Label5" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+            </div>
+
+            <div class="dv1 content">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=D" style="text-decoration: underline; color: #fff;">D幣賬戶</a></div>
+                <div class="dv3">
+                    <asp:Label ID="lblPointD" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="Label6" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+            </div>
+
+            <div class="dv1 content">
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=E" style="text-decoration: underline; color: #fff;">E幣賬戶</a></div>
+                <div class="dv3">
+                    <asp:Label ID="lblPointE" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
+                    <asp:Label ID="Label7" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
+            </div>
+
+           
+        </div>
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">Function</h4></div>
+        <div style="width: 90%;height:70px;margin-top: 20px;margin-left: 5%;">
                   <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="../MemberMobile/ReCast.aspx">
                       <img src="img/矿业.png" width="32" height="32"  /><br />礦機
                   </a>
@@ -79,64 +126,148 @@
                       <img src="img/交易.png" width="32" height="32"  /><br />幣幣
                   </a>
               </div>
-         
+               <div style="box-shadow: #e8e5e5 0px 0px 10px; width: 100%; height: 70px; background-color: #f9f9ff; margin-top: 10px; display: none">
+                <div style="margin-left: 10px; font-size: 18px; padding-top: 23px; font-weight: bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline; color: #666;">USDT账户</a></div>
+                <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
+                <div style="margin-right: 10px; float: right; font-size: 18px; margin-top: -27px; width: 60%; text-align: right;">
+                    <asp:Label ID="Jackpot" runat="server" Text="0.00"></asp:Label></div>
+                <div style="margin-right: 10px; float: right; font-size: 12px; margin-top: 0px; color: #797979;"></div>
+            </div>
 
-              <div style="width:90%;height:300px;margin-top:20px;margin-left:5%">
-                  <%--<div style="width:100%;height:40px;">
-                      <div style="float:left;font-size:20px;font-weight:bold;">账户总览</div>
-                      <div style="float:right;color:#fe3f10;text-align:right">会员级别：<br /></div>
-                  </div>--%>
-                  <div  class="dv1">
-                      <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #fff;" >會員級別</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
-                      <div  class="dv3"><asp:Label ID="Label1" style="font-size:18px" runat="server" Text="0.00"></asp:Label><asp:Label ID="Label2" style="font-size:20px" runat="server" Text=""></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"><asp:Label ID="mobil" style="color:#797979;font-size:12px" runat="server" Text="0.00"></asp:Label></div>
-                  </div>
-                  <div style="box-shadow:#e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#f9f9ff;margin-top:10px;display:none">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline;color: #666;" >USDT账户</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="Jackpot" runat="server" Text="0.00"></asp:Label></div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#797979;"> </div>
-                  </div>
-       <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=A" style="text-decoration: underline;color: #fff;" >A幣賬戶</a></div> 
-                      <div  class="dv3"><asp:Label ID="lblPointA" runat="server" Text="0.00"></asp:Label></div> 
-        </div>
-
-                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=B" style="text-decoration: underline;color: #fff;" >B幣賬戶</a></div> 
-                      <div  class="dv3"><asp:Label ID="lblPointB" runat="server" Text="0.00"></asp:Label></div> 
-        </div>
-
-                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=C" style="text-decoration: underline;color: #fff;" >C幣賬戶</a></div> 
-                      <div  class="dv3"><asp:Label ID="lblPointC" runat="server" Text="0.00"></asp:Label></div> 
-        </div>
-
-                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=D" style="text-decoration: underline;color: #fff;" >D幣賬戶</a></div> 
-                      <div  class="dv3"><asp:Label ID="lblPointD" runat="server" Text="0.00"></asp:Label></div> 
-        </div>
-
-                   <div  class="dv1">   <div  class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=E" style="text-decoration: underline;color: #fff;" >E幣賬戶</a></div> 
-                      <div  class="dv3"><asp:Label ID="lblPointE" runat="server" Text="0.00"></asp:Label></div> 
-        </div>
-
-                   
-                   
-                  <div style="box-shadow: #e8e5e5 0px 0px 10px;width:100%;height:70px;background-color:#07090e;margin-top:10px">
-                      <div style="margin-left: 10px;font-size:18px;padding-top: 23px;font-weight:bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountFXth" style="text-decoration: underline;color: #fff;" >團隊業績</a></div>
-                      <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">整个团队的业绩汇总</div>--%>
-                      <div style="margin-right:10px;float:right;font-size:18px;margin-top:-27px;width:60%;text-align:right;"><asp:Label ID="labCurrentOneMark" style="color:#dd4814;font-size:18px" runat="server" Text="0.00"></asp:Label> </div>
-                      <div style="margin-right:10px;float:right;font-size:12px;margin-top:0px;color:#fff;">USDT</div>
-                  </div>
-              </div>
-              
+            <div style="box-shadow: #e8e5e5 0px 0px 10px; width: 100%; height: 70px; background-color: #07090e; margin-top: 10px;display: none">
+                <div style="margin-left: 10px; font-size: 18px; padding-top: 23px; font-weight: bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountFXth" style="text-decoration: underline; color: #fff;">團隊業績</a></div>
+                <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">整个团队的业绩汇总</div>--%>
+                <div style="margin-right: 10px; float: right; font-size: 18px; margin-top: -27px; width: 60%; text-align: right;">
+                    <asp:Label ID="labCurrentOneMark" Style="color: #dd4814; font-size: 18px" runat="server" Text="0.00"></asp:Label>
+                </div>
+                <div style="margin-right: 10px; float: right; font-size: 12px; margin-top: 0px; color: #fff;">USDT</div>
+            </div>
         
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">Latest Price</h4></div>
+        <div id="getshow" runat="server" class="pricelist">
+            <ul>
+                <li>
+                    <div class='ltimg'>
+                        <img src='img/btb.png' alt='XA' /></div>
+                    <div class='dsc1'>
+                        <p class='p1'>Venus</p>
+                        <p class='p3'>0.5%</p>
+                    </div>
+                    <div class='dsc2'>
+                        <p class='p1'>&nbsp;</p>
+                        <p class='p2'>$0.5</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='ltimg'>
+                        <img src='img/btb.png' alt='XB' /></div>
+                    <div class='dsc1'>
+                        <p class='p1'>Saturn</p>
+                        <p class='p3'>0.5%</p>
+                    </div>
+                    <div class='dsc2'>
+                        <p class='p1'>&nbsp;</p>
+                        <p class='p2'>$0.5</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='ltimg'>
+                        <img src='img/btb.png' alt='XC' /></div>
+                    <div class='dsc1'>
+                        <p class='p1'>Mars</p>
+                        <p class='p3'>0.5%</p>
+                    </div>
+                    <div class='dsc2'>
+                        <p class='p1'>&nbsp;</p>
+                        <p class='p2'>$0.5</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='ltimg'>
+                        <img src='img/btb.png' alt='XD' /></div>
+                    <div class='dsc1'>
+                        <p class='p1'>Marcury</p>
+                        <p class='p3'>0.5%</p>
+                    </div>
+                    <div class='dsc2'>
+                        <p class='p1'>&nbsp;</p>
+                        <p class='p2'>$0.5</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='ltimg'>
+                        <img src='img/btb.png' alt='XE' /></div>
+                    <div class='dsc1'>
+                        <p class='p1'>Jupiter</p>
+                        <p class='p3'>0.5%</p>
+                    </div>
+                    <div class='dsc2'>
+                        <p class='p1'>&nbsp;</p>
+                        <p class='p2'>$0.5</p>
+                    </div>
+                </li>
 
+            </ul>
+        </div>  
 
           </div>
         
            
        
         
-      
+        <script>
+            (function (select) {
+                //小左边滑动
+                var startX, moveX, movebox = document.querySelector(select);
+                //触摸开始
+                function boxTouchStart(e) {
+                    var touch = e.touches[0]; //获取触摸对象
+                    startX = touch.pageX; //获取触摸坐标
+                }
+                //触摸移动
+                function boxTouchMove(e) {
+                    var touch = e.touches[0];
+                    moveX = touch.pageX - startX; //手指水平方向移动的距离
+                }
+                //触摸结束
+                function boxTouchEnd(e) {
+                    moveDir = moveX > 0 ? true : false; //滑动方向大于0表示向左滑动，小于0表示向右滑动
+                    //手指向左滑动
+                    if (moveDir) {
+                        var index = $(this).find("div.active").index();
+                        //第一个是1的时候
+                        if (index == 0) {
+                            $(this).find("div.active").removeClass("active");
+                            $(this).children(":last").addClass("active");
+                        } else {
+                            var last = $(this).find("div.active");
+                            last.removeClass("active").prev().addClass("active");
+                        }
+
+                        //手指向右滑动
+                    } else {
+                        var index = $(this).find("div.active").index();
+                        //第一个是4的时候
+                        if (index == 5) {
+                            $(this).find("div.active").removeClass("active");
+                            $(this).children(":first").addClass("active");
+                        } else {
+                            var last = $(this).find("div.active");
+                            var _this = $(this);
+                            last.removeClass("active").next().addClass("active");
+
+                        }
+                    }
+                }
+
+                //滑动对象事件绑定
+                movebox.addEventListener("touchstart", boxTouchStart, false);
+                movebox.addEventListener("touchmove", boxTouchMove, false);
+                movebox.addEventListener("touchend", boxTouchEnd, false);
+
+            })("#box")
+
+        </script>
     
 
     <script>
@@ -157,6 +288,8 @@
         
         
     </script>
+
+        
     <!-- #include file = "comcode.html" -->
    
 

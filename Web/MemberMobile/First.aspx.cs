@@ -52,7 +52,7 @@ public partial class Member_First : BLL.TranslationBase
             
             if (Session["Default_Currency"] == null) Session["Default_Currency"] = bzCurrency;
             LoadMemberInfo();
-            lblPay.Text = Common.GetnowPrice().ToString();
+            //lblPay.Text = Common.GetnowPrice().ToString();
             //int countdls = Convert.ToInt32(DAL.DBHelper.ExecuteScalar("select count(0) from dlssettb where number='" + Session["Member"].ToString() + "'"));
 
             //if (countdls <= 0)
@@ -103,7 +103,7 @@ public partial class Member_First : BLL.TranslationBase
         { DataRow dr = dtmb.Rows[0];
             if (blv == 0)
             {
-                lblPay.Text = "0.00";
+                //lblPay.Text = "0.00";
                 //lblFx.Text = "0.00";
                 //lblFxth.Text = "0.00";
                 lblBonse.Text = "0.00";
@@ -122,13 +122,14 @@ public partial class Member_First : BLL.TranslationBase
                 Jackpot.Text = xjye.ToString("0.0000");
                 
                 decimal cudayprice=Common.GetnowPrice();
-                lblPay.Text = cudayprice.ToString("0.0000");
+                //lblPay.Text = cudayprice.ToString("0.0000");
 
                 lblPointA.Text = pointA.ToString("0.0000");
                 lblPointB.Text = pointB.ToString("0.0000");
                 lblPointC.Text = pointC.ToString("0.0000");
                 lblPointD.Text = pointD.ToString("0.0000"); 
                 lblPointE.Text = pointE.ToString("0.0000");
+                Label3.Text = (pointA * cudayprice).ToString("0.0000");
 
 
             }
@@ -141,7 +142,7 @@ public partial class Member_First : BLL.TranslationBase
         {
             labCurrentOneMark.Text = (Convert.ToDecimal(dt.Rows[0]["DTotalNetRecord"]) - Convert.ToDecimal(dt.Rows[0]["totaloneMark"])).ToString("f4");
             //Label1.Text = Convert.ToDecimal(dt.Rows[0]["totaloneMark"]).ToString();
-            IRate.Text = (Convert.ToDecimal(dt.Rows[0]["ARate"]) * 100).ToString("0.00")+"%";
+            //IRate.Text = (Convert.ToDecimal(dt.Rows[0]["ARate"]) * 100).ToString("0.00")+"%";
            // sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
             int lv=Convert.ToInt16(dt.Rows[0]["Level"].ToString());
              if(lv==1)
