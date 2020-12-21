@@ -39,50 +39,11 @@
     </style>
 
     <script>
-        window.alert = alert;
-        //$(function () {
-        //    $("#ft").blur(function () {
-        //        if ($("#ft").val() == "" || $("#ft").val()<=0) {
-        //            webToast("复投金额不能为空或小于0", "middle", 3000);
-        //            document.getElementById("ft").style.borderColor = "#b94a48";
-
-        //            return;
-        //        }
-        //        else {
-        //            document.getElementById("ft").style.borderColor = "#468847";
-        //        }
-        //    });
-        //});
-        $(function (){
-            //$("#subto").click(function(){
-            //    var sen = $("#hidetp").val();
-            //    var res = AjaxPro.AjaxClass.GetSendPost(sen).value;
-            //    if (res == 1) {
-            //        $(".showhid").html = "购买矿机成功！";
-            //        setTimeout(function () { $(".showhid").hide(); }, 3000);
-            //    }
-            //    else if (res == -1) {
-            //        $(".showhid").html = "用户未登录！";
-            //        setTimeout(function () { $(".showhid").hide(); }, 2000);
-            //    } else if (res == -2) {
-            //        $(".showhid").html = "请选择购买的矿机！";
-            //        setTimeout(function () { $(".showhid").hide(); }, 2000);
-            //    }
-            //    else if (res == -3) {
-            //        $(".showhid").html = "账户余额不足以支付！";
-            //        setTimeout(function () { $(".showhid").hide(); }, 2000);
-            //    }
-            //    else if (res == 0) {
-            //        $(".showhid").html = "支付失败！";
-            //        setTimeout(function () { $(".showhid").hide(); }, 2000);
-            //    }
-
-
-            //});
-        });
+      
+        
         ///点击购买
         function showbuy(num) {
-            $(".showhid").show();
+            $("#shid").show();
             $("#hidetp").val(num);
             var html = "";
             if (num == 1) html += "抢到免费体验矿机！"; 
@@ -99,13 +60,14 @@
             $(".showhid").hide();
         }
 
-        
 
-      
-
-
-
-
+        function showsuc(remark) {
+            $("#shscid").show();
+            $("#sbuyinfo1").html(remark);
+        } 
+       function hidediv1() {
+            $("#shscid").hide();
+        } 
     </script>
 </head>
 <body>
@@ -113,11 +75,18 @@
         
     <div>
  
-         <div class="showhid">
+         <div id="shscid" class="showhid">
+            <div id="sbuyinfo1"  style=""> </div>
+            <div> 
+                <input type="button" class="qr"  value="關閉" onclick="hidediv1()" /> 
+            </div>
+        </div>
+
+         <div id="shid" class="showhid">
             <div id="sbuyinfo"  style=""> </div>
             <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
                 <input type="button" class="canc" value="取消" onclick="hidediv()" />
-                <asp:Button ID="Button1" runat="server" Text="确认购买" OnClick="Button1_Click" /> 
+                <asp:Button ID="Button1" CssClass="qr" runat="server" Text="確認購買" OnClick="Button1_Click" /> 
             </div>
         </div>
 

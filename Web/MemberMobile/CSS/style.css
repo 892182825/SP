@@ -2216,8 +2216,8 @@ span .orderTHOK {
     background: lightgoldenrodyellow;
     display: none;
     width: 80%;
-    border: 2px #999 solid;
-    border-radius:10px;
+    border: 1px ;
+    border-radius: 10px;
     background-color: #1A202E;
     padding: 10px;
     border-color: #ccc;
@@ -2246,10 +2246,12 @@ span .orderTHOK {
             color: #fff; 
             width: 120px;
             margin: 10px;
-            font-size: 16px;
-           
+            font-size: 16px; 
         }
 
         .showhid div .canc { 
             color: #999;
+        }
+        .showhid div .qr {
+            background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
         }

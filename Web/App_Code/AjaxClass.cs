@@ -13,7 +13,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Web.UI.WebControls;
-using BLL.CommonClass;
+ 
 using DAL;
 using BLL.other.Company;
 using BLL.other.Member;
@@ -6690,19 +6690,16 @@ public class AjaxClass : BLL.TranslationBase
             DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
-                int ispay = Convert.ToInt32(item["Direction"]);
-                //if (ispay == 0)
-                //{
-                //    curstr += "<tr onclick=\"location.href='Zhxiangxi.aspx?id=" + Convert.ToString(item["id"]).ToString() + "'\"><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</br>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + "</td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span style='color: #dd4814;float:right;'>+" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
-                //}
-                //else if (ispay == 1)
-                //{
-                    curstr += "<tr   ><td>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + " </td><td> " + BLL.Logistics.D_AccountBLL.GetKmtype(Convert.ToString(item["KmType"]).ToString()) + "</td><td><span  style='color: #4caf50;float:right;'>-" + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</span></br><span style='float:right;'>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</span></td></tr>";
-                //}
+                curstr += "<li><div class='ldv'> <p> @" + Getdirc(Convert.ToInt32(item["Direction"])) + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</p> <p class='pdate'>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</p>  </div> <div  class='rdv'><p>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</p></div> </li>   ";
             }
         }
         return curstr;
 
+    }
+    private string Getdirc(int der) {
+        if (der == 0) return "+";
+        if (der == 1) return "-";
+        return "";
     }
 
 

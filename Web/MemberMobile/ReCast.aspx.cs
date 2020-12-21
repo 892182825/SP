@@ -29,13 +29,13 @@ public partial class ReCast : BLL.TranslationBase
 
                 if (rr == 1)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买矿机成功！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机成功！');</script>", false); Bind();
                     return;
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买矿机失败！');</script>", false);
-                    Bind();
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false);
+               
                 }
             }
             else
@@ -123,7 +123,7 @@ public partial class ReCast : BLL.TranslationBase
         int chosenum = Convert.ToInt32(hidetp.Value);
         if (Session["Member"] == null)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('未登录！');</script>", false);
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('未登录！');</script>", false);
             return;  //未登录
         }
         string number = Session["Member"].ToString();
@@ -144,7 +144,7 @@ public partial class ReCast : BLL.TranslationBase
             zhye = CommandAPI.GetActMoney();
         if (chosenum < 0 || chosenum > 7 || lv > chosenum)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请选择矿机！');</script>", false);
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('请选择矿机！');</script>", false);
             return;
         } //选择购买的矿机
 
@@ -198,7 +198,7 @@ public partial class ReCast : BLL.TranslationBase
         }
         else
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
             return;
         }
         if (conp != null && conp.Rows.Count > 0)
@@ -215,7 +215,7 @@ public partial class ReCast : BLL.TranslationBase
         }
         else
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
             return;
         }
 
@@ -228,7 +228,7 @@ public partial class ReCast : BLL.TranslationBase
         {
             if (jd == 1) if (zhye < ttmoney)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
                     return;
                 }//余额不足
                 else if (jd == 2 || jd == 3)
@@ -236,7 +236,7 @@ public partial class ReCast : BLL.TranslationBase
                     aneed = ttmoney / cap;
                     if (aneed > ablc)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
                         return;
                     };//余额不足
                 }
@@ -246,7 +246,7 @@ public partial class ReCast : BLL.TranslationBase
                     bneed = (ttmoney * 0.5) / cbp;
                     if (aneed > ablc || bneed > bblc)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
                         return;
                     }//余额不足
                 }
@@ -257,7 +257,7 @@ public partial class ReCast : BLL.TranslationBase
                     cneed = (ttmoney * 0.5) / ccp;
                     if (aneed > ablc || bneed > bblc || cneed > cblc)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('账户余额不足！');</script>", false);
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>  showsuc('账户余额不足！');</script>", false);
                         return;
                     }//余额不足
                 }
@@ -267,7 +267,7 @@ public partial class ReCast : BLL.TranslationBase
                 eneed = (ttmoney * 0.05) / cep;
                 if (eneed > eblc)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('E币余额不足！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('E币余额不足！');</script>", false);
                     return;
                 }//余额不足
             }
@@ -301,12 +301,12 @@ public partial class ReCast : BLL.TranslationBase
                     if (cneed > 0) CommandAPI.Destruction("C", cneed);
                     if (eneed > 0) CommandAPI.Destruction("E", eneed);
 
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买成功！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买成功！');</script>", false); Bind();
                     return;
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('购买失败！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买失败！');</script>", false);
                     return;
                 }
             }

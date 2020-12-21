@@ -123,6 +123,30 @@
             width: 960px;
             height: 540px;
         }
+       
+        .blance {
+        width:100%;
+        height: 200px;
+       
+        }
+            .blance p {
+                line-height:80px; padding-left:50px;
+            font-size:40px; font-family: Arial; 
+            }
+            .blance div { padding-left:50px;
+            color:#3E475A; font-size:16px;
+            }
+
+ .zhlist {float:right ; width:90%; background-color:#1A202E;  min-height:100px;  }  
+.zhlist ul { padding-left:30px;  }
+.zhlist ul li {  list-style:none; border-bottom:1px solid #808080 ;    height:100px;}
+ 
+.zhlist ul li .ldv { margin-left:0px;margin-top:30px;  width:40%; float:left; }
+.zhlist ul li .ldv p { color:#fff; font-size:16px; margin-bottom:10px; }
+.zhlist ul li .ldv .pdate { color:#3E475A;  font-size:14px;}
+.zhlist ul li .rdv { width:20%; float:right;  margin-right:30px;margin-top:30px; line-height:50px;  }
+.zhlist ul li .rdv p { color:#fff; font-size:16px; }
+
     </style>
        <script type="text/javascript" >
            $(function () {
@@ -154,10 +178,64 @@
     <b id="lang" style="display:none"><%=Session["LanguageCode"] %></b>
 
     <form id="form2" runat="server">
-          
+          <input type="hidden" id="hdst" value="-1" />
+        <div class="blance">
+            <p> &nbsp;</p>
+             <p id="" >$16998.3</p>
+            <div>餘額</div>
+        </div>
+
+        <div class="zhlist" >
+            <ul id="mblist">
+                <li> 
+                    <div class="ldv">
+                        <p>+1000</p> <p class="pdate">09 19 20</p> 
+                     </div>
+                     <div class="rdv"><p>$2453</p></div>
+                     </li>
+
+                 <li> 
+                    <div class="ldv">
+                        <p>+1000</p> <p class="pdate">09 19 20</p> 
+                     </div>
+                     <div class="rdv"><p>$2453</p></div>
+                     </li>
+
+                 <li> 
+                    <div class="ldv">
+                        <p>+1000</p> <p class="pdate">09 19 20</p> 
+                     </div>
+                     <div class="rdv"><p>$2453</p></div>
+                     </li>
+
+                 <li> 
+                    <div class="ldv">
+                        <p>+1000</p> <p class="pdate">09 19 20</p> 
+                     </div>
+                     <div class="rdv"><p>$2453</p></div>
+                     </li>
+
+                 <li> 
+                    <div class="ldv">
+                        <p>+1000</p> <p class="pdate">09 19 20</p> 
+                     </div>
+                     <div class="rdv"><p>$2453</p></div>
+                     </li>
+
+                  <li> 
+                    <div class="ldv">
+                        <p> 沒有更多了..</p> 
+                     </div>
+                     
+                     </li>
+
+            </ul>
+        </div>
+
+
         
-        <div class="middle" style="margin-bottom: 100px;">
-            <input type="hidden" id="hdst" value="-1" />
+        <div class="middle" style=" display:none; ">
+          
             <ul class="sctt">
                 <li class="cur" atr="-1">全部</li>
                 <li atr="0">收入</li>
@@ -179,7 +257,7 @@
                     </tr>
 
                 </thead>
-                        <tbody id="mblist"></tbody>
+                        <tbody id=" "></tbody>
                         </table>
                         <asp:Repeater ID="rep_km" runat="server">
                                 <ItemTemplate>
@@ -216,28 +294,25 @@
                     else {
                         $("#mom").remove(); $(res).appendTo("#mblist");
                     }
-                    $("<div id='mom' class='more' style='position: absolute;' onclick='getNext();' >加载更多..</div>").appendTo("#mblist"); cupindex += 1;
+                    $("<li class='more' onclick='getNext();' >   <div class= 'ldv' >  <p> 加载更多..</p>   </div >  </li >   ").appendTo("#mblist"); cupindex += 1;
                 } else {
                     if (cupindex == 1) { $("#mblist").html(res); }
                     $("#mom").remove();
                     $("#end").remove();
-                    $("<div id='end' class='end'  style='position: absolute;'>没有更多了~</div>").appendTo("#div1");
+                    $("<li class='end' onclick='getNext();' >   <div class= 'ldv' >  <p> 沒有更多了..</p>   </div >  </li >   ").appendTo("#mblist");
                     
                     
                 }
 
 
             }
-    </script>
-      <!-- #include file = "comcode.html" -->
+        </script>
+    
         <script type="text/javascript">
             $(function () {
                 
                     $(".glyphicon").removeClass("a_cur");
-                    $("#c3").addClass("a_cur");
-                
-          
-
+                    $("#c3").addClass("a_cur");  
                 $('.mailbtn').on('click', function () {
                     $(this).addClass('mailSlt').siblings('.mailbtn').removeClass('mailSlt');
                     var Mindex = $(this).index();
