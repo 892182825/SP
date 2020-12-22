@@ -21,17 +21,15 @@ public partial class PlanteDH : System.Web.UI.Page
     RegistermemberBLL registermemberBLL = new RegistermemberBLL();
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["Member"] = "d2918447acbc262fbcb01efce558752c";
+       /// Session["Member"] = "d2918447acbc262fbcb01efce558752c";
         if (!IsPostBack)
         {
           
 
             GetActMoney();
-            if (Session["zfddh"] != null && Session["zfddh"] != "")
-            {
-                getzf();
-
-
+            if (Session["zfddh"] != null )
+            { 
+                getzf(); 
             }
             
         }
@@ -61,7 +59,7 @@ public partial class PlanteDH : System.Web.UI.Page
     {
         string number = Session["member"].ToString();
         double coineblac = Convert.ToDouble(DBHelper.ExecuteScalar("select  pointEin-pointEout as eblc from  memberinfo where number='"+number+"'"));
-        double actm = CommandAPI.GetActMoney();
+        double actm =   CommandAPI.GetActMoney();
         double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
         double kg = 80 - coineblac;
         lblusdt.Text =actm.ToString("0.0000");
@@ -85,13 +83,7 @@ public partial class PlanteDH : System.Web.UI.Page
     {
         string number = Session["member"].ToString();
         ///设置特定值防止重复提交
-
-
-
-     
-
-
-
+          
         double txMoney = 0; //購買金額
         if (!double.TryParse(this.txtneed.Text.Trim(), out txMoney))
         {
@@ -105,20 +97,21 @@ public partial class PlanteDH : System.Web.UI.Page
         }
 
         double coineblac = Convert.ToDouble(DBHelper.ExecuteScalar("select  pointEin-pointEout as eblc from  memberinfo where number='" + number + "'"));
-        double actm = CommandAPI.GetActMoney();
+        double actm =   CommandAPI.GetActMoney();
         double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
         double kg = 80 - coineblac;
         double cuususdt = txMoney * dprice; //需要使用的usdt數量
 
         if (kg < txMoney) //購買數量超過可購數量
         { 
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('最多可購"+ kg + " 枚創世幣！');", true);
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('最多可購"+ kg + " 枚創世幣！');", true); txtneed.Text = kg.ToString("0.0000");
             return;
         }
 
         if (actm < cuususdt) //usdt數量超多賬戶
         {
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('當前USDT賬戶餘額不足！');", true);
+            double zdkd = actm / dprice;
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('當前USDT賬戶最多可購"+ zdkd.ToString("0.0000") + "！');", true); txtneed.Text = zdkd.ToString("0.0000") ;
             return;
         }
 

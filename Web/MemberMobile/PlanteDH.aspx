@@ -30,17 +30,15 @@
             } else { return false; }
         }
         function countcsb() {
-            var buy = $("#txtneed").val();
-            if (!isNaN(buy)) {
-                var dj = $("#hiddj").val(); 
-                var cr =  buy  *  dj ;
+            var buy = $("#txtneed").val(); 
+            if (!isNaN(buy)) { 
+                var dj = $("#hiddj").val();
+                var cr = parseInt( buy  * dj*10000)/10000;
                 $("#uu").val(cr);
-            }
-            $("#uu").val("0.00");
-
-
-        }
-
+            }else 
+            $("#uu").val("0.0000");
+             
+        } 
         function showsuc(remark) {
             $("#shscid").show();
             $("#sbuyinfo1").html(remark);
@@ -77,8 +75,7 @@
         <div class="dq">
             
             <p style="width:45%;float:left;">創世幣</p> <p style="width:45%;float:left;">USDT</p>
-            <p style="width:45%;float:left;"> <asp:TextBox   ID="txtneed" onkeyup="countcsb()"   runat="server" MaxLength="15"  ></asp:TextBox></p><p style="width:45%;float:left;"><input  type="text"   readonly="readonly"  id="uu"  /></p>
-
+            <p style="width:45%;float:left;"> <asp:TextBox   ID="txtneed" onkeyup="countcsb()"   runat="server" MaxLength="2"  ></asp:TextBox></p><p style="width:45%;float:left;"><input  type="text"   readonly="readonly"  id="uu"  /></p> 
              <p  >&nbsp;</p>
            <p  >&nbsp;</p>
        <p>USDT餘額：<asp:Label ID="lblusdt" runat="server" Text=""></asp:Label></p> 
