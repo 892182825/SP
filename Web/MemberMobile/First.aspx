@@ -122,8 +122,8 @@
                       <img src="img/团队.png" width="32" height="32"  /><br />團隊
                       
                   </a>
-                  <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="">
-                      <img src="img/交易.png" width="32" height="32"  /><br />幣幣
+                  <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="PlanteDH.aspx">
+                      <img src="img/交易.png" width="32" height="32"  /><br />搶購
                   </a>
               </div>
                <div style="box-shadow: #e8e5e5 0px 0px 10px; width: 100%; height: 70px; background-color: #f9f9ff; margin-top: 10px; display: none">
