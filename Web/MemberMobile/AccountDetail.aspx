@@ -137,7 +137,7 @@
             color:#3E475A; font-size:16px;
             }
 
- .zhlist {float:right ; width:90%; background-color:#1A202E;  min-height:100px;  }  
+ .zhlist { margin:auto; width:90%; background-color:#1A202E;  min-height:100px;  }  
 .zhlist ul { padding-left:30px;  }
 .zhlist ul li {  list-style:none; border-bottom:1px solid #808080 ;    height:100px;}
  
@@ -181,46 +181,13 @@
           <input type="hidden" id="hdst" value="-1" />
         <div class="blance">
             <p> &nbsp;</p>
-             <p id="" >$16998.3</p>
+             <p id="blac" > </p>
             <div>餘額</div>
         </div>
 
         <div class="zhlist" >
             <ul id="mblist">
-                <li> 
-                    <div class="ldv">
-                        <p>+1000</p> <p class="pdate">09 19 20</p> 
-                     </div>
-                     <div class="rdv"><p>$2453</p></div>
-                     </li>
-
-                 <li> 
-                    <div class="ldv">
-                        <p>+1000</p> <p class="pdate">09 19 20</p> 
-                     </div>
-                     <div class="rdv"><p>$2453</p></div>
-                     </li>
-
-                 <li> 
-                    <div class="ldv">
-                        <p>+1000</p> <p class="pdate">09 19 20</p> 
-                     </div>
-                     <div class="rdv"><p>$2453</p></div>
-                     </li>
-
-                 <li> 
-                    <div class="ldv">
-                        <p>+1000</p> <p class="pdate">09 19 20</p> 
-                     </div>
-                     <div class="rdv"><p>$2453</p></div>
-                     </li>
-
-                 <li> 
-                    <div class="ldv">
-                        <p>+1000</p> <p class="pdate">09 19 20</p> 
-                     </div>
-                     <div class="rdv"><p>$2453</p></div>
-                     </li>
+               
 
                   <li> 
                     <div class="ldv">
@@ -272,7 +239,11 @@
             var cupindex = 1;
             $(function () {
                 var q1 = "<%=ttt %>";
-                
+
+               
+                $("#blac").html(AjaxClass.GetCoinBlance(q1).value);
+
+
                 getNext();
                 $(".sctt li").click(function () {
                     var ck = $(this).attr("atr");

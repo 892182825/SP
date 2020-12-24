@@ -125,16 +125,7 @@ body {
     cursor: pointer;
 }
 
-.end {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 40px;
-    line-height: 20px;
-    text-align: center;
-    width: 100%;
-    color: #aaa;
-    background-color: #eee;
-}
+ 
 
 .xs_yjxx {
     height: 100px;
@@ -2170,12 +2161,12 @@ span .orderTHOK {
             }
 
             .buylist ul li .dsc1 {
-                width: 150px;
+                width: 48%;
                 float: left;
             }
 
             .buylist ul li .dsc2 {
-                width: 80px;
+                width: 20%;
                 float: right;
             }
 
@@ -2183,21 +2174,22 @@ span .orderTHOK {
                 line-height: 15px;
                 margin: 2px;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
                 margin-bottom: 20px;
             }
 
             .buylist ul li div .p2 {
                 line-height: 15px;
                 margin: 2px;
-                font-size: 16px;
+                font-size: 14px;
                 color: #fff;
             }
 
             .buylist ul li div .p3 {
-                line-height: 15px;
+                line-height: 14px;
                 margin: 2px;
                 color: #5D6678;
+                font-size:10px;
             }
 
             .buylist ul li input {
@@ -2209,7 +2201,7 @@ span .orderTHOK {
                 float: right;
                 width: 80px;
                 margin: 20px 5px;
-                font-size: 16px;
+                font-size: 14px;
             }
 
 .showhid {
@@ -2244,9 +2236,9 @@ span .orderTHOK {
             border-radius: 20px;
             background-color: #3E475A;
             color: #fff; 
-            width: 120px;
+            width: 30%;
             margin: 10px;
-            font-size: 16px; 
+            font-size: 12px; 
         }
 
         .showhid div .canc { 

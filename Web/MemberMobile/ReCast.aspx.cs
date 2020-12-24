@@ -267,7 +267,7 @@ public partial class ReCast : BLL.TranslationBase
                 eneed = (ttmoney * 0.05) / cep;
                 if (eneed > eblc)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('E币余额不足！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('創世幣币余额不足！');</script>", false);
                     return;
                 }//余额不足
             }

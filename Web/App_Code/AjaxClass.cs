@@ -6665,6 +6665,21 @@ public class AjaxClass : BLL.TranslationBase
         if (str.Length > len) return str.Substring(0, len) + "..";
         else return str;
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="coin"></param>
+    /// <returns></returns>
+    [AjaxPro.AjaxMethod]
+    public string  GetCoinBlance(string  coin )
+    {
+        string number = HttpContext.Current.Session["member"].ToString();
+        double blac = 0; 
+        blac = Convert.ToDouble(DBHelper.ExecuteScalar("select  point"+ coin + "in-point" + coin + "out as b from memberinfo   where  number='" + number+"' "));
+
+
+        return blac.ToString("0.0000");
+    }
 
     /// <summary>
     /// 账户明细页面数据加载
