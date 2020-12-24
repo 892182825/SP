@@ -176,7 +176,7 @@ public partial class MemberMobile_mallchongzhi : System.Web.UI.Page
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=4f95ab748e204c65d0bdaa61b4e3f1d7&redirect_uri=http%3a%2f%2fzd.factorde.com%2fMemberMobile%2fmallchongzhi.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fzd.factorde.com%2fMemberMobile%2fmallchongzhi.aspx';</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=4f95ab748e204c65d0bdaa61b4e3f1d7&redirect_uri=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fmallchongzhi.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fmallchongzhi.aspx';</script>");
                 return;
             }
         }
@@ -470,7 +470,7 @@ public partial class MemberMobile_mallchongzhi : System.Web.UI.Page
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/mallchongzhi.aspx"}
+            {"return_url", "http://sp.factorde.com/MemberMobile/mallchongzhi.aspx"}
             
      
 };

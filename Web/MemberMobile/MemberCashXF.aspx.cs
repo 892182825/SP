@@ -440,7 +440,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/MemberCashXF.aspx"}
+            {"return_url", "http://sp.factorde.com/MemberMobile/MemberCashXF.aspx"}
             
      
 };

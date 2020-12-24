@@ -133,7 +133,7 @@ public partial class Member_SHDL : BLL.TranslationBase
             return;
         }
         else {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=4f95ab748e204c65d0bdaa61b4e3f1d7&redirect_uri=http%3a%2f%2fzd.factorde.com%2fMemberMobile%2fSHDL.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fzd.factorde.com%2fMemberMobile%2fSHDL.aspx';</script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=4f95ab748e204c65d0bdaa61b4e3f1d7&redirect_uri=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fSHDL.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fzd.factorde.com%2fMemberMobile%2fSHDL.aspx';</script>");
             return;
         }
         }

@@ -230,7 +230,7 @@ public class CommandAPI : BLL.TranslationBase
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/"+url+"?orderid="+ddh}
+            {"return_url", "http://sp.factorde.com/MemberMobile/"+url+"?orderid="+ddh}
 
 
 };
