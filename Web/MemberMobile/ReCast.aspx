@@ -90,6 +90,8 @@
             </div>
         </div>
 
+        <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;"><h2 style="color:#fff">Mining</h2></div>
+
         <div id="getshow" runat="server" class="buylist">
              
         </div>  

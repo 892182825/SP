@@ -152,13 +152,16 @@ public partial class Member_Index : BLL.TranslationBase
                 Session["UserType"] = 3;
                 Session["LUOrder"] = Session["Member"].ToString() + ",12";
                 Session["languageCode"] = "L001";
-                Response.Redirect("First.aspx");
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>setInterval('myInterval()',3000);function myInterval(){window.location.href='First.aspx'};</script>");
+                    
+                    //Response.Redirect("First.aspx");
             }
 
             return;
         }
         else {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=4f95ab748e204c65d0bdaa61b4e3f1d7&redirect_uri=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fIndex.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fIndex.aspx';</script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://oauth.factorde.com/api/connect/oauth/authorize?app_id=58b7824b8b4f5c339bddf6079d153145&redirect_uri=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fIndex.aspx&response_type=code&scope=snsapi_base&wallet_redirect=http%3a%2f%2fsp.factorde.com%2fMemberMobile%2fIndex.aspx';</script>");
             return;
         }
         }

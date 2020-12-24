@@ -457,9 +457,9 @@ public class PublicClass
 
     #region  钱包支付
     static CookieContainer cookie = new CookieContainer();
-    public const string app_id = "4f95ab748e204c65d0bdaa61b4e3f1d7";//	String	是	应用ID
+    public const string app_id = "58b7824b8b4f5c339bddf6079d153145";//	String	是	应用ID
     //public const string access_token = "4dedb14fae76dae682de02e671eac408";//	string	是	础授权接口
-    public const string app_secret = "616f22a924906ff03f51335325089df7";
+    public const string app_secret = "7182d95496d812c62c81707126eac754";
     public const string lang="zh_CN";//	string	是	i18n 语言,固定zh_CN
     public const string version="1.0";//	string	是	接口版本固定1.0
     public const string charset = "utf8";//	string	是	固定utf8

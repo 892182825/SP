@@ -260,25 +260,18 @@
    <%-- <p><%=Session["LanguageCode"] %></p>--%>
     <form id="form1" runat="server" style="height: 100%">
          
-        <div style="height: 100%;width:100%;background-image: url(images/MAIN.png);background-repeat: no-repeat;background-size: 100% 100%;">
-            <div style="margin-top:50%;width:100%;height:50px;position:absolute;text-align:center;">
-                 <span style="font-size:25px;color: #000;">授权登录中...</span><br />
-                <span style="font-size:20px;color: #000;">请稍后</span><br />
-
-            </div>
-        <ul class="login_in"  style="margin-top: 70%;">	
-            <%--<li style="height:auto;">
-                <img src="../images/img/logo.jpg"  style="width:100%;" />
-
-            </li>--%>
+        <div style="height: 100%;width:100%;">
             
-            <li style="text-align: center;">
-                
-               
-            </li>
+        
+            
+                <img src="images/MAIN.gif" alt=""  style="width:100%;height:225px; margin-top:40%;" />
+
+            
+            
+           
 
             <%--<li><asp:TextBox ID="ck" Text="cookie" CssClass="form-control" runat="server" MaxLength="500"></asp:TextBox></li>--%>
-    </ul>
+    
         </div>
     
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
