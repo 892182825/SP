@@ -78,7 +78,7 @@ public class CommandAPI : BLL.TranslationBase
 
 
                     myDi.Add("uid", uid);
-                    myDi.Add("symbol", "USDT");
+                    myDi.Add("symbol", "FTC");
                     myDi.Add("app_id", app_id);
                     myDi.Add("time", GetTimeStamp());
 
@@ -226,7 +226,7 @@ public class CommandAPI : BLL.TranslationBase
             {"subject", "购买配套"},
             {"out_trade_no", ddh},
             {"total_amount", mony*100000000},
-            {"settle_currency", "USDT"},
+            {"settle_currency", "FTC"},
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
