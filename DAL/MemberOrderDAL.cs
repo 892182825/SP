@@ -272,6 +272,7 @@ namespace DAL
         //使用本地账户支付
         public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed ,double eneed,int lv,string remark)
         {
+            int maxexpt = ConfigDAL.GetMaxExpectNum();
             int res = 0;
              
             SqlTransaction tran = null;
@@ -316,7 +317,7 @@ namespace DAL
                     if (c == 0) tran.Rollback();
                 }
                 //修改订单状态
-                int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,remark='"+remark+"'  where orderid='" + orderid+"' ");
+                int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark+"'  where orderid='" + orderid+"' ");
 
                 double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar( tran,"select totalmoney  from memberorder  where  number='"+number+ "'  and DefrayState=1  and ordertype in(23,24)    ",CommandType.Text));
                 lv = 1;
@@ -343,6 +344,8 @@ namespace DAL
                 }
                 //修改会员账户
                 int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
+               
+                DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance"+maxexpt+" set  level =" + lv + "  where number='" + number + "' ");
                 if (r == 0) tran.Rollback();
 
                 if (rr == 1)
