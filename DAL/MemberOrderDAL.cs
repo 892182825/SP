@@ -281,10 +281,10 @@ namespace DAL
                 conn.Open();
                 tran = conn.BeginTransaction();
 
-                if (aneed > 0 || bneed > 0 || cneed > 0)
+                if (aneed > 0 || bneed > 0 || cneed > 0|| eneed > 0)
                 {
                     //修改会员账户
-                    int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "    where number='" + number + "'");
+                    int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "  ,pointEout=pointEout+" + eneed + "    where number='" + number + "'");
                     //更新销毁字段 
                     DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
 
