@@ -31,7 +31,7 @@ public partial class AccountDetail_AccountDetail : BLL.TranslationBase
         bzCurrency = CommonDataBLL.GetStandard();
         AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
         ttt = Request.QueryString["type"];
-        Session["member"]= "b16b6adb609a399d644fef7123bf35fe";
+       //// Session["member"]= "b16b6adb609a399d644fef7123bf35fe";
         //i = AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()));
         ViewState["Kmtype"] =( Request.QueryString["type"] == "" ? "" : Request.QueryString["type"]);
         String str = ViewState["Kmtype"].ToString();
