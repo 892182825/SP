@@ -199,12 +199,12 @@ public partial class Member_Index : BLL.TranslationBase
         //ck.Text = hz;
         JObject studentsJson = JObject.Parse(hz);
         Session["Member"] = studentsJson["data"]["openid"].ToString();
-        if (studentsJson["data"]["nickname"].ToString() == null || studentsJson["data"]["nickname"].ToString() == "")
-        {
-            ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('" + GetTran("000000", "请先实名认证") + "');</script>", false);
-            return;
+        //if (studentsJson["data"]["nickname"].ToString() == null || studentsJson["data"]["nickname"].ToString() == "")
+        //{
+        //    ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('" + GetTran("000000", "请先实名认证") + "');</script>", false);
+        //    return;
         
-        }
+        //}
         int countdls = Convert.ToInt32(DAL.DBHelper.ExecuteScalar("select count(0) from memberinfo where number='" + Session["Member"].ToString() + "'"));
 
         if (countdls <= 0)
@@ -411,7 +411,7 @@ public partial class Member_Index : BLL.TranslationBase
         string tuij = parent_mobile_number;
         if (tuij == "")
         {
-            tuij = "d2918447acbc262fbcb01efce558752c";
+            tuij = "sp010";
         }
         //string place = (new AjaxClass()).GetAtuosetPlace(tuij);
         MemberInfoModel memberInfoModel = new MemberInfoModel();
