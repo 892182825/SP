@@ -6103,7 +6103,19 @@ public class AjaxClass : BLL.TranslationBase
         }
         return str;
     }
-
+    [AjaxPro.AjaxMethod]
+    public string GetNamebyphone(string phone)
+    {
+        string str = "";
+        string sql = "select name from memberinfo where mobiletele=@phone";
+        SqlParameter par = new SqlParameter("@phone", phone);
+        object name = DAL.DBHelper.ExecuteScalar(sql, par, CommandType.Text);
+        if (name != null)
+        {
+            str = Encryption.Encryption.GetDecipherName(name.ToString());
+        }
+        return str;
+    }
     /// <summary>
     /// 获取昵称
     /// </summary>
@@ -6705,7 +6717,7 @@ public class AjaxClass : BLL.TranslationBase
             DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
-                curstr += "<li><div class='ldv'> <p> @" + Getdirc(Convert.ToInt32(item["Direction"])) + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</p> <p class='pdate'>" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "" + Convert.ToDateTime(item["HappenTime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd") + "</p>  </div> <div  class='rdv'><p>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</p></div> </li>   ";
+                curstr += "<li><div class='ldv'> <p> " + Getdirc(Convert.ToInt32(item["Direction"])) + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</p> <p class='pdate'>" +   Convert.ToDateTime(item["HappenTime"]). ToString("yy-MM-dd HH-mm") + "</p>  </div> <div  class='rdv'><p>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</p></div> </li>   ";
             }
         }
         return curstr;

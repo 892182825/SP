@@ -34,8 +34,8 @@ public partial class ReCast : BLL.TranslationBase
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false);
-               
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false); Bind();
+
                 }
             }
             else
@@ -132,6 +132,58 @@ public partial class ReCast : BLL.TranslationBase
         ///获取usdt账户 
         int lv = 0;
 
+        //檢測是否有未支付的單子 如果有則走未支付的訂單
+
+        double ddmm = 0;
+        string orderid = "";
+        //DataTable ddt = DBHelper.ExecuteDataTable("select  top 1 OrderID,TotalMoney from memberorder where  DefrayState=0 order by id  ");
+        //if (ddt != null && ddt.Rows.Count > 0)
+        //{
+        //    DataRow dr = ddt.Rows[0];
+        //    ddmm = Convert.ToDouble(dr["TotalMoney"]);
+        //    orderid =  dr["orderid"].ToString();
+
+
+
+        //    return;
+        //} 
+
+        //清除未支付订单 
+        DBHelper.ExecuteNonQuery(@" insert  into   memberorderdel(id,[Number],[OrderID],[StoreID],[TotalMoney]
+           ,[TotalPv],[CarryMoney],[OrderExpectNum],[PayExpectNum]
+           ,[IsAgain],[OrderDate],[Error],[Remark],[DefrayState],[Consignee]
+           ,[CCPCCode],[ConCity],[ConAddress]
+           ,[ConZipCode],[ConTelphone]
+           ,[ConMobilPhone],[ConPost]
+           ,[DefrayType],[PayMoney]
+           ,[PayCurrency],[StandardCurrency]
+           ,[StandardCurrencyMoney],[OperateIP]
+           ,[OperateNum],[RemittancesID],[ElectronicAccountID],[ordertype]
+           ,[IsReceivables],[PayMentMoney],[ReceivablesDate],[EnoughProductMoney]
+           ,[LackProductMoney],[IsReturn],[SendType],[SendWay],[TotalMoneyReturned]
+           ,[TotalPvReturned],[OrderStatus],[TotalMoneyReturning],[TotalPvReturning]
+           ,[OrderStatus_NR],[Isjjff],[trackingnum],[InvestJB]
+           ,[PriceJB],[isSend],[xjpay],[xfpay],[bdpay],[ISSettle])
+ select id,[Number],[OrderID],[StoreID],[TotalMoney]
+           ,[TotalPv],[CarryMoney],[OrderExpectNum],[PayExpectNum]
+           ,[IsAgain],[OrderDate],[Error],[Remark],[DefrayState],[Consignee]
+           ,[CCPCCode],[ConCity],[ConAddress]
+           ,[ConZipCode],[ConTelphone]
+           ,[ConMobilPhone],[ConPost]
+           ,[DefrayType],[PayMoney]
+           ,[PayCurrency],[StandardCurrency]
+           ,[StandardCurrencyMoney],[OperateIP]
+           ,[OperateNum],[RemittancesID],[ElectronicAccountID],[ordertype]
+           ,[IsReceivables],[PayMentMoney],[ReceivablesDate],[EnoughProductMoney]
+           ,[LackProductMoney],[IsReturn],[SendType],[SendWay],[TotalMoneyReturned]
+           ,[TotalPvReturned],[OrderStatus],[TotalMoneyReturning],[TotalPvReturning]
+           ,[OrderStatus_NR],[Isjjff],[trackingnum],[InvestJB]
+           ,[PriceJB],[isSend],[xjpay],[xfpay],[bdpay],[ISSettle]
+ from MemberOrder where DefrayState = 0
+ and number ='" + number+"'   ");
+        //删除未支付的订单
+          DBHelper.ExecuteNonQuery("delete  from   memberorder where  DefrayState=0 and number='"+number+"'   ");
+
 
         DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select LevelInt from memberinfo where Number='" + number + "'");
         if (dt_one.Rows != null && dt_one.Rows.Count > 0)
@@ -160,7 +212,7 @@ public partial class ReCast : BLL.TranslationBase
             ordertype = 22; //抢购20u
 
         }
-        if (lv == 1)
+        if (lv == 1|| (lv==0 &&chosenum>1))
         {
             ordertype = 23; //购买 
         }
@@ -275,7 +327,7 @@ public partial class ReCast : BLL.TranslationBase
         }
 
         RegistermemberBLL registermemberBLL = new RegistermemberBLL();
-        string orderid = registermemberBLL.GetOrderInfo("add", null);
+          orderid = registermemberBLL.GetOrderInfo("add", null);
         int maxexpt = ConfigDAL.GetMaxExpectNum();
 
         Boolean flag = new AddOrderDataDAL().AddOrderInfo(number, orderid, maxexpt, isagain, ttmoney, ttpv, ordertype);

@@ -38,14 +38,22 @@ public class Common
                 orderType = new BLL.TranslationBase().GetTran("10011", "公司注册"); 
                 break;
             case 21:
-                orderType = new BLL.TranslationBase().GetTran("10012", "会员注册");
+                orderType =   "会员注册" ;
                 break;
             case 22:
-                orderType = new BLL.TranslationBase().GetTran("10013", "消费购物");
+                orderType =  "抢购体验矿机" ;
                 break;
             case 23:
-                orderType = new BLL.TranslationBase().GetTran("10014", "会员复投");
+                orderType =  "购买矿机" ;
                 break;
+            case 24:
+                orderType = "矿机升级";
+                break;
+
+            case 25:
+                orderType = "会员复投";
+                break;
+
         }
         return orderType;
     }

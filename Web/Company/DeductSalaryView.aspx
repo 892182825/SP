@@ -10,7 +10,7 @@
     <script language="javascript" type="text/javascript">
         function getname() {
             var number = document.getElementById("txtbh").value;
-            var name = AjaxClass.GetName(number).value;
+            var name = AjaxClass.GetNamebyphone(number).value;
             document.getElementById("lit_name").innerHTML = name;
         }
     </script>
@@ -148,12 +148,12 @@
                             <table cellspacing="1" cellpadding="0" width="600px" border="0" align="center" class="tablemb">
                                 <tr>
                                     <th colspan="2">
-                                        FTC调整
+                                        E币(火星币)调整
                                     </th>
                                 </tr>
                                 <tr>
                                     <td align="right" style="white-space: nowrap;" bgcolor="#EBF1F1">
-                                        <%=GetTran("000024", "会员编号")%>：
+                                         手机号码 ：
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtbh" runat="server" onblur="getname()" MaxLength="100" Width="88px"></asp:TextBox>
@@ -176,7 +176,7 @@
                                 </tr>
                                 <tr>
                                     <td style="height: 29px; white-space: nowrap;" align="right" bgcolor="#EBF1F1">
-                                        <%= GetTran("000000","FTC")%>：
+                                        火星币（E币）：
                                     </td>
                                     <td>
                                         <asp:TextBox ID="money" runat="server" Width="88px" MaxLength="9" onblur="Fmoney(this)"></asp:TextBox>

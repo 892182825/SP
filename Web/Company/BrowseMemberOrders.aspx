@@ -108,7 +108,7 @@
             </tr>
         </table>
         <br />
-        <div style="width: 1500px">
+        <div style="width: 1000px">
             <table width="99%" style="word-break: keep-all; word-wrap: normal;">
                 <tr>
                     <td style="border: rgb(147,226,244) solid 1px">
@@ -119,16 +119,7 @@
                                 <%--<asp:BoundField HeaderText="错误信息" DataField="error" Visible="false">
                                     <ItemStyle Wrap="false" />
                                 </asp:BoundField>--%>
-                                <asp:TemplateField Visible="false">
-                                    <HeaderTemplate>
-                                        发货
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="linkbtnOk" runat="server" Text="发货" CommandName="E" Visible='<%# Eval("isSend").ToString()=="0" %>' 
-                                           CommandArgument='<%#Eval("OrderID")+":"+Eval("Number")+":"+Eval("defraytype")+":"+Eval("DefrayState")+":"+Eval("orderExpectNum")+":"+Eval("isAgain")+":"+Eval("OStoreID") %>'
-                                            OnClientClick="return confirm('您确定要发货吗?')"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                 
                                 <asp:TemplateField Visible="false">
                                     <HeaderTemplate>
                                         修改
@@ -138,8 +129,8 @@
                                             CommandArgument='<%#Eval("OrderID")+":"+Eval("Number")+":"+Eval("defraytype")+":"+Eval("DefrayState")+":"+Eval("orderExpectNum")+":"+Eval("isAgain")+":"+Eval("OStoreID") %>'> <%=this.GetTran("000259", "修改")%></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
-                                <asp:BoundField HeaderText="会员编号" DataField="number"></asp:BoundField>
+                                <asp:BoundField   HeaderText ="手机号" DataField="Mobiletele"></asp:BoundField>
+                                <asp:BoundField   HeaderText ="会员编号" Visible="false" DataField="number"></asp:BoundField>
                                 <asp:BoundField HeaderText="会员姓名" DataField="name"></asp:BoundField>
                                <%-- <asp:BoundField HeaderText="报单类型" DataField="orderType"></asp:BoundField>
 
@@ -173,6 +164,8 @@
                                     <ItemStyle HorizontalAlign="Center" />
                                     <ItemTemplate>
                                         <%# Getgsqueren(DataBinder.Eval(Container.DataItem, "gsqueren").ToString())%>
+
+                                        <asp:LinkButton ID="linkbtnPay" runat="server" CommandName="P" Visible='<%# (Eval("defraystate").ToString()=="0")  %>' CommandArgument='<%#Eval("OrderID") %>'> 协助支付</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="报单时间" ItemStyle-Wrap="false">
@@ -181,33 +174,17 @@
                                         <%# GetRegisterDate(DataBinder.Eval(Container.DataItem, "OrderDate").ToString())%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="收货人手机号">
+                                <asp:TemplateField HeaderText="收货人手机号"  Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblConMobilPhone" CssClass="lab" name="lblConMobilPhone" runat="server" Text='<%# Eval("ConMobilPhone") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="收货人地址">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblConAddress" CssClass="lab" name="lblConAddress" runat="server" Text='<%# Eval("ConAddress") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField HeaderText="备注" DataField="remark" Visible="false"></asp:BoundField>
+                                        <asp:Label ID="lblConMobilPhone" CssClass="lab" name="lblConMobilPhone" runat="server" Text='<%# Eval("ConMobilPhone") %>'></asp:Label>       </ItemTemplate>
+                                </asp:TemplateField> 
                                 <asp:TemplateField HeaderText="备注">
                                     <ItemTemplate>
                                         <%# "<span title='"+Eval("remark").ToString()+"'>"+Eval("remark").ToString().Substring(0, (Eval("remark").ToString().Length > 5) ? 5 : Eval("remark").ToString().Length)+"</span>" %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField>
-                                    <HeaderTemplate>
-                                        查看
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <img src="images/fdj.gif" />
-                                        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%#Eval("OrderId") %>'
-                                            CommandName='<%#Eval("OStoreId") %>' OnCommand="LinkButton1_Command"> <%=this.GetTran("000440", "查看")%></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                 
                                 <asp:TemplateField>
                                     <HeaderTemplate>
                                         删除

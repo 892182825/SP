@@ -283,16 +283,11 @@ namespace DAL
                 if (aneed > 0 || bneed > 0 || cneed > 0)
                 {
                     //修改会员账户
-                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + " ,levelint=" + lv + "  where number='" + number + "'");
-                   //更新销毁字段 
+                    int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "    where number='" + number + "'");
+                    //更新销毁字段 
                     DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
 
-                    if (r == 0) tran.Rollback();
-                }
-                else {
-                    //修改会员账户
-                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "'");
-                    if (r == 0) tran.Rollback();
+                    if (r1 == 0) tran.Rollback();
                 }
 
                 string ddremark = "支付订单:";
@@ -322,6 +317,34 @@ namespace DAL
                 }
                 //修改订单状态
                 int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,remark='"+remark+"'  where orderid='" + orderid+"' ");
+
+                double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar( tran,"select totalmoney  from memberorder  where  number='"+number+ "'  and DefrayState=1  and ordertype in(23,24)    ",CommandType.Text));
+                lv = 1;
+                switch (ttpv)
+                {
+                    case 50:
+                        lv = 2;
+                        break;
+                    case 100:
+                        lv = 3;
+                        break;
+                    case 500:
+                        lv = 4;
+                        break;
+                    case 1000:
+                        lv = 5;
+                        break;
+                    case 1500:
+                        lv = 6;
+                        break;
+                    case 3000:
+                        lv = 7;
+                        break; 
+                }
+                //修改会员账户
+                int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
+                if (r == 0) tran.Rollback();
+
                 if (rr == 1)
                 {
                     tran.Commit();

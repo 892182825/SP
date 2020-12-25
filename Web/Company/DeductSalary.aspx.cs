@@ -17,6 +17,9 @@ using System.Text;
 using Encryption;
 using Model;
 using BLL.CommonClass;
+using System.Data.SqlClient;
+using DAL;
+
 public partial class Company_DeductSalary : BLL.TranslationBase
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -42,7 +45,7 @@ public partial class Company_DeductSalary : BLL.TranslationBase
                             new string[] { "000015","操作"},
                             new string[] { "001195","编号"},
                             new string[] { "000107","姓名"},
-                            new string[] { "010004","扣补款石斛积分"},
+                            new string[] { "000","扣补款火星币"},
                             new string[] { "000045","期数"},
                             new string[] { "001838","录入日期"},
                             new string[] { "001835","操作编号"},
@@ -228,7 +231,7 @@ public partial class Company_DeductSalary : BLL.TranslationBase
                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script >alert('" + GetTran("000849", "不能重复审核") + "')</script>");
                 return;
             }
-            if (DeductBLL.UpdateInfoTran(model))
+            if ( GetAudit(model))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script >alert('" + GetTran("000858", "审核成功") + "')</script>");
                 BtnConfirm_Click(null, null);
@@ -249,5 +252,53 @@ public partial class Company_DeductSalary : BLL.TranslationBase
                 ScriptHelper.SetAlert(Page, GetTran("000009", "删除失败"));
             }
         }
+    }
+    private bool GetAudit(DeductModel info) {
+        bool bl = false;
+        using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+        {
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            try
+            {
+                if (DeductDAL.UpdateDeduct(info, tran) <= 0)
+                {
+                    tran.Rollback();
+                    return false;
+                }
+                string p = "pointEin =pointEin +" + info.DeductMoney;
+                if(info.IsDeduct==0) p = "pointEout =pointEout +" + info.DeductMoney;
+
+             int r=    DBHelper.ExecuteNonQuery(tran,"update  memberinfo  set  "+p+"  where  number='"+info.Number+"'");
+                if (r == 0) { tran.Rollback(); return false; }
+                //对账单
+                string rem = "扣款";
+                D_AccountKmtype dakm = D_AccountKmtype.AddMoneycut;
+                DirectionEnum dem = DirectionEnum.AccountReduced;
+                if (info.IsDeduct == 0) { dakm = D_AccountKmtype.AddMoneycut; }
+                else if (info.IsDeduct == 1) {dakm = D_AccountKmtype.AddMoneyget; dem= DirectionEnum.AccountsIncreased; rem = "补款"; }
+                 
+                int c = D_AccountDAL.AddAccount("E", info.Number, info.DeductMoney, D_AccountSftype.MemberType, dakm, dem, "管理员添加"+ rem+" "+info.DeductMoney, tran);
+                if (c == 0) {
+                    tran.Rollback();
+                    return  false;
+                } 
+                tran.Commit();
+                return true;
+            }
+            catch
+            {
+                tran.Rollback();
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+
+        return bl;
     }
 }

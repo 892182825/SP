@@ -286,7 +286,7 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
 
         condition += "  and ordertype in(22,23) " ;
 
-        string columns = "B.isSend,(C.Country+C.Province+C.City+C.Xian+B.ConAddress) as ConAddress,a.MobileTele as ConMobilPhone,B.SendWay,A.ID,A.Number,b.OrderID,B.IsReceivables,B.StoreID as OStoreID,A.Name,B.totalMoney,B.totalPv,B.InvestJB,B.OrderExpectNum,case B.PayExpectNum when -1 then '0' when 0 then '1' else convert(varchar,B.PayExpectNum) end as PayExpectNum,B.OrderDate,A.Remark,b.Error as Error,B.ordertype,case when B.ordertype=0 then '0' when B.ordertype = 3 then '3' when  B.ordertype = 4 then '4' else '5' end as RegisterWay ,  defraytype,B.defraytype,B.DefrayState, case when B.DefrayState = 0 then '0'  when  B.DefrayState = 1 then '1' else '2' end as PayStatus ,B.isAgain ,case B.isAgain when 0 then '注册报单' when 1 then '复销报单'  end as againType,case defraystate when 1 then 1 else case paymentmoney when 0 then 0 else 1 end end as dpqueren,defraystate as gsqueren";
+        string columns = "B.isSend,(C.Country+C.Province+C.City+C.Xian+B.ConAddress) as ConAddress,a.MobileTele as ConMobilPhone,B.SendWay,A.ID,A.Number,A.Mobiletele,b.OrderID,B.IsReceivables,B.StoreID as OStoreID,A.Name,B.totalMoney,B.totalPv,B.InvestJB,B.OrderExpectNum,case B.PayExpectNum when -1 then '0' when 0 then '1' else convert(varchar,B.PayExpectNum) end as PayExpectNum,B.OrderDate,A.Remark,b.Error as Error,B.ordertype,case when B.ordertype=0 then '0' when B.ordertype = 3 then '3' when  B.ordertype = 4 then '4' else '5' end as RegisterWay ,  defraytype,B.defraytype,B.DefrayState, case when B.DefrayState = 0 then '0'  when  B.DefrayState = 1 then '1' else '2' end as PayStatus ,B.isAgain ,case B.isAgain when 0 then '注册报单' when 1 then '复销报单'  end as againType,case defraystate when 1 then 1 else case paymentmoney when 0 then 0 else 1 end end as dpqueren,defraystate as gsqueren";
         string table = "[MemberInfo]as A,MemberOrder as B left join City C  on C.CPCCode=B.CCPCCode";
         string condistions = " B.Number=A.Number " + expectNum + condition;
 
@@ -408,15 +408,54 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
 
     protected void gv_browOrder_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        string[] args = e.CommandArgument.ToString().Split(':');
-        if (args.Length != 7)
+        if (e.CommandName == "P")
         {
-            ScriptHelper.SetAlert(Page, this.GetTran("001089", "数据异常"));
-            return;
+            string orderid = e.CommandArgument.ToString();
+            string num = "";
+            double ttmoney = 0;
+            DataTable dt = DBHelper.ExecuteDataTable("select  number,TotalMoney  from memberorder where  orderid='" + orderid + "'");
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                num = dr["number"].ToString();
+                ttmoney = Convert.ToDouble(dr["TotalMoney"]);
+                int choselv = 1;
+                int rr = MemberOrderDAL.PayOrder(num, orderid, 0, 0, 0, 0, choselv, "USDT账户支付订单,支付中断,后台协助支付");
+                if (rr == 1)
+                {
+                   
+                    ScriptHelper.SetAlert(Page,   "协助支付成功" );
+                    btnSearch_Click(null, null);
+                    return;
+                }
+                else
+                {
+                    ScriptHelper.SetAlert(Page, "协助支付失败！");
+                    btnSearch_Click(null, null);
+                    return;
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('订单不存在！');</script>", false);
+                btnSearch_Click(null, null);
+                return;
+            }
+
+
         }
+
+
+        string[] args = e.CommandArgument.ToString().Split(':');
+        //if (args.Length != 7)
+        //{
+        //    ScriptHelper.SetAlert(Page, this.GetTran("001089", "数据异常"));
+        //    return;
+        //}
         string orderId = args[0];//报单ID    
         MemberOrderModel mOrderModel = new MemberOrderModel();
         MemberInfoModel mInfoModel = null;
+        
         if (args[5].Trim() == "1")
         {
             MemberOrderAgainBLL memberOrderAgainBLL = new MemberOrderAgainBLL();
@@ -514,32 +553,32 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
             //if (payStatus == "0")
             //{
 
-                if (isagain == "0")
+            if (isagain == "0")
+            {
+                Application.Lock();
+                //注册报单删除
+                string result = bll.DelMembersDeclaration(number, mInfoModel.ExpectNum, orderId, mOrderModel.StoreId, Convert.ToDouble(mOrderModel.LackProductMoney));
+                //返回null标识没有产生错误
+                Application.UnLock();
+                if (result == null)
                 {
-                    Application.Lock();
-                    //注册报单删除
-                    string result = bll.DelMembersDeclaration(number, mInfoModel.ExpectNum, orderId, mOrderModel.StoreId, Convert.ToDouble(mOrderModel.LackProductMoney));
-                    //返回null标识没有产生错误
-                    Application.UnLock();
-                    if (result == null)
-                    {
-                        result = this.GetTran("000008", "删除成功");
-                    }
-                    ScriptHelper.SetAlert(Page, result);
+                    result = this.GetTran("000008", "删除成功");
                 }
-                else if (isagain == "1")
+                ScriptHelper.SetAlert(Page, result);
+            }
+            else if (isagain == "1")
+            {
+                Application.Lock();
+                string result = viewFuXiaoBLL.DelOredrAgain(orderId, double.Parse(mOrderModel.TotalPv.ToString()), number, mOrderModel.OrderExpect, mOrderModel.StoreId);
+                Application.UnLock();
+                if (result == null)
                 {
-                    Application.Lock();
-                    string result = viewFuXiaoBLL.DelOredrAgain(orderId, double.Parse(mOrderModel.TotalPv.ToString()), number, mOrderModel.OrderExpect, mOrderModel.StoreId);
-                    Application.UnLock();
-                    if (result == null)
-                    {
-                        result = this.GetTran("000008", "删除成功");
+                    result = this.GetTran("000008", "删除成功");
 
-                    }
-                    ScriptHelper.SetAlert(Page, result);
                 }
-                btnSearch_Click(null, null);
+                ScriptHelper.SetAlert(Page, result);
+            }
+            btnSearch_Click(null, null);
             //}
             //else
             //{
@@ -550,21 +589,24 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
             //}
             //btnSearch_Click(null, null);
         }
+       
+
         else if (e.CommandName == "E")
         {
             if (payStatus == "1")
             {
                 string sql = @"UPDATE memberorder SET isSend = 1  WHERE OrderID = @orderId";
-                SqlParameter[] para = 
+                SqlParameter[] para =
             {
                 new SqlParameter("@orderId",orderId)
             };
-                int idd= DBHelper.ExecuteNonQuery(sql, para, CommandType.Text);
+                int idd = DBHelper.ExecuteNonQuery(sql, para, CommandType.Text);
                 if (idd == 1)
                 {
                     ScriptHelper.SetAlert(Page, "发货成功！");
                 }
-                else {
+                else
+                {
                     ScriptHelper.SetAlert(Page, "发货失败！");
                 }
 
@@ -631,7 +673,7 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
         { 
          //new string[] { "000742", "错误信息" }, 
          new string[] { "000811", "确认" }, 
-         new string[] { "000259", "修改" },
+         new string[] { "000", "手机号码" },
       
          new string[] { "000024", "会员编号" },
          new string[] { "000025", "会员姓名" },

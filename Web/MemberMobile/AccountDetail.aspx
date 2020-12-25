@@ -238,12 +238,8 @@
         <script>
             var cupindex = 1;
             $(function () {
-                var q1 = "<%=ttt %>";
-
-               
-                $("#blac").html(AjaxClass.GetCoinBlance(q1).value);
-
-
+                var q1 = "<%=ttt %>"; 
+                $("#blac").html(AjaxClass.GetCoinBlance(q1).value); 
                 getNext();
                 $(".sctt li").click(function () {
                     var ck = $(this).attr("atr");
@@ -259,18 +255,19 @@
             function getNext() {
                 var q1 = "<%=ttt %>";
 
-                var res = AjaxClass.AccountDetailOrders($("#hdst").val(), cupindex,q1).value;
+                var res = AjaxClass.AccountDetailOrders($("#hdst").val(), cupindex, q1).value;
+             
                 if (res != "") {
                     if (cupindex == 1) $("#mblist").html(res);
                     else {
                         $("#mom").remove(); $(res).appendTo("#mblist");
                     }
-                    $("<li class='more' onclick='getNext();' >   <div class= 'ldv' >  <p> 加载更多..</p>   </div >  </li >   ").appendTo("#mblist"); cupindex += 1;
+                    $("<li  onclick='getNext();' >   <div class= 'ldv' >  <p> 加载更多..</p>   </div >  </li >   ").appendTo("#mblist"); cupindex += 1;
                 } else {
                     if (cupindex == 1) { $("#mblist").html(res); }
                     $("#mom").remove();
                     $("#end").remove();
-                    $("<li class='end' onclick='getNext();' >   <div class= 'ldv' >  <p> 沒有更多了..</p>   </div >  </li >   ").appendTo("#mblist");
+                    $("<li  onclick='getNext();' >   <div class= 'ldv' >  <p> 沒有更多了..</p>   </div >  </li >   ").appendTo("#mblist");
                     
                     
                 }

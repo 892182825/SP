@@ -100,15 +100,11 @@ namespace DAL
                 new SqlParameter("@remark",SqlDbType.NVarChar,500)};
                 double Residual =Convert.ToDouble(
                     DBHelper.ExecuteScalar( tran, "select  point" + Coinname + "in-point" + Coinname+"out  as rr from memberinfo  where   number='"+number+"'",CommandType.Text));
-                if (DirectionEnum.AccountReduced == direction)
-                {
-                    money = -money;
-                }
-
+                 
                 parm[0].Value = number;
                 parm[1].Value = DateTime.Now.ToUniversalTime();
                 parm[2].Value = money; 
-                  parm[3].Value = Residual + money; 
+                  parm[3].Value = Residual  ; 
                 parm[4].Value = (int)direction;
                 parm[5].Value = (int)sftype;
                 parm[6].Value = (int)kmtype;
