@@ -419,8 +419,18 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
                 DataRow dr = dt.Rows[0];
                 num = dr["number"].ToString();
                 ttmoney = Convert.ToDouble(dr["TotalMoney"]);
+              double  nep=Convert.ToDouble(  DBHelper.ExecuteScalar("  select CoinnewPrice   from CoinPlant where CoinIndex = 'CoinE' "));
+                double nedde = (ttmoney * 0.05) / nep; 
                 int choselv = 1;
-                int rr = MemberOrderDAL.PayOrder(num, orderid, 0, 0, 0, 0, choselv, "USDT账户支付订单,支付中断,后台协助支付");
+
+                double eblace = Convert.ToDouble(DBHelper.ExecuteScalar("select  pointEin -pointEout as r from memberinfo where  number='"+num+"'"));
+                if (nedde > eblace) {
+                    ScriptHelper.SetAlert(Page, "火星币账户余额不足，不能完成协助支付！");
+                   // btnSearch_Click(null, null);
+                    return;
+                }
+
+                int rr = MemberOrderDAL.PayOrder(num, orderid, 0, 0, 0, nedde, choselv, "USDT账户支付订单,支付中断,后台协助支付");
                 if (rr == 1)
                 {
                    

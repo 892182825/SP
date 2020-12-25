@@ -104,7 +104,7 @@ namespace DAL
                 parm[0].Value = number;
                 parm[1].Value = DateTime.Now.ToUniversalTime();
                 parm[2].Value = money; 
-                  parm[3].Value = Residual  ; 
+                  parm[3].Value = Residual   ; 
                 parm[4].Value = (int)direction;
                 parm[5].Value = (int)sftype;
                 parm[6].Value = (int)kmtype;
