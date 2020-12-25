@@ -63,7 +63,7 @@ public partial class PlanteDH : System.Web.UI.Page
         double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
         double kg = 80 - coineblac;
         lblusdt.Text =actm.ToString("0.0000");
-        lblcsb.Text=coineblac.ToString("0.0000")+"(可購買"+ kg .ToString("0.00")+ "枚)"; 
+        lblcsb.Text=coineblac.ToString("0.0000")+"(可购买"+ kg .ToString("0.00")+ "枚)"; 
         lbldj.Text = dprice.ToString("0.0000") ;
 
         hidactm.Value=actm.ToString("0.0000");
@@ -87,12 +87,12 @@ public partial class PlanteDH : System.Web.UI.Page
         double txMoney = 0; //購買金額
         if (!double.TryParse(this.txtneed.Text.Trim(), out txMoney))
         {
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('請正確輸入！');", true);
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('请正确输入！');", true);
             return;
         }
         if (txMoney <= 0)
         {
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('請正確輸入！');", true);
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('请正确输入！');", true);
            return;
         }
 
@@ -104,14 +104,14 @@ public partial class PlanteDH : System.Web.UI.Page
 
         if (kg < txMoney) //購買數量超過可購數量
         { 
-        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('最多可購"+ kg + " 枚創世幣！');", true); txtneed.Text = kg.ToString("0.0000");
+        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('最多可购"+ kg + " 枚火星币！');", true); txtneed.Text = kg.ToString("0.0000");
             return;
         }
 
         if (actm < cuususdt) //usdt數量超多賬戶
         {
             double zdkd = actm / dprice;
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('當前USDT賬戶最多可購"+ zdkd.ToString("0.0000") + "！');", true); txtneed.Text = zdkd.ToString("0.0000") ;
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('当前USDT账户最多可购"+ zdkd.ToString("0.0000") + "！');", true); txtneed.Text = zdkd.ToString("0.0000") ;
             return;
         }
 
@@ -121,7 +121,7 @@ public partial class PlanteDH : System.Web.UI.Page
         Session["zfddh"] = dhorderid;
         Session["getE"] = txMoney;
         Session["USDT"] = cuususdt;
-        int  rr= MemberOrderDAL.createDHOrder(number, dhorderid, cuususdt, dprice, txMoney, "會員兌換PlantE創世幣");
+        int  rr= MemberOrderDAL.createDHOrder(number, dhorderid, cuususdt, dprice, txMoney, "会员兑换Mars（火星币）");
 
         //請求執行支付
         if (rr == 1)
@@ -131,7 +131,7 @@ public partial class PlanteDH : System.Web.UI.Page
             return;
         }
         else {
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兌換操作異常！');", true);
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换操作异常！');", true);
         }
  
 
@@ -159,7 +159,7 @@ public partial class PlanteDH : System.Web.UI.Page
         //long mony = Convert.ToInt64(money.Text.Trim());
         if (number == "")
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('充值失败您在商城里暂没有账号，请先登陆注册商城，如果钱已经扣除请联系商城客服。');setInterval('myInterval()',3000);function myInterval(){window.location.href='http://wap.xphmalls.com/WapShop'};</script>");
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换状态未知，如果钱已扣除，请联系客服处理');", true);
             return;
         }
         string ddh = Session["zfddh"].ToString();
@@ -184,7 +184,7 @@ public partial class PlanteDH : System.Web.UI.Page
         myDi.Add("openid", number);
 
         string signj = PublicClass.GetSignContent(myDi);
-        string jsonS = PublicClass.HmacSHA256(signj + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
+        string jsonS = PublicClass.HmacSHA256(signj + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
 
         myDi.Add("sign", jsonS);
 
@@ -193,27 +193,34 @@ public partial class PlanteDH : System.Web.UI.Page
         // money.Text = rspp;
         string zt = stJson["data"]["trade_status"].ToString();
         int skje = Convert.ToInt32(stJson["data"]["settle_trans_amount"]);
-        skje = Convert.ToInt32(skje * Common.GetnowPrice() * 7 / 3);
+        double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
+        skje = Convert.ToInt32(skje * dprice);
         if (zt == "SUCCESS")
         {
-            if (skje == usdt)
-            {
+            //if (skje == usdt)
+            //{
                 int rr = MemberOrderDAL.dhOrdersuc(number, ddh, getE);
                 if (rr > 0)
                 {
-                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兌換成功！');", true);
-                    GetActMoney();
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败');", true);
+                Session["zfddh"] = "";
+                    Session["USDT"] = "";
+                    Session["getE"] = "";
+                    return;
+                }
+                else {
+                    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败，如果钱已扣除，请联系客服处理');", true);
                 }
 
-                Session["zfddh"] = "";
-                Session["USDT"] = "";
-                Session["getE"] = "";
-            }
+                
+                return;
+            //}
 
         }
         else {
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兌換失敗！');", true);
-            GetActMoney();
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败，如果钱已扣除，请联系客服处理');", true);
+           // GetActMoney();
+            return;
         }
 
 

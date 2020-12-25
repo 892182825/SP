@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <script src="js/jquery-1.7.1.min.js"></script>
-    <title>Ecoin兌換</title>
+    <title>Mars（火星币）兑换</title>
     <link rel="stylesheet" href="CSS/style.css">
      <script type="text/javascript">
         
@@ -75,26 +75,26 @@
             </div>
         </div>
 
-        <div class="timg"><p>當前第一期</p></div> 
+        <div class="timg"><p>当前第一期</p></div> 
 
         <div class="dq">
             
-            <p style="width:45%;float:left;">創世幣</p> <p style="width:45%;float:left;">USDT</p>
+            <p style="width:45%;float:left;">Mars（火星币）</p> <p style="width:45%;float:left;">USDT</p>
             <p style="width:45%;float:left;"> <asp:TextBox   ID="txtneed" onkeyup="countcsb()"   runat="server" MaxLength="2"  ></asp:TextBox></p><p style="width:45%;float:left;  ">
                 
                 <i     id="uu"   ></i></p> 
              <p  >&nbsp;</p>  <p  >&nbsp;</p>
            <p  >&nbsp;</p>
-       <p>USDT餘額：<asp:Label ID="lblusdt" runat="server" Text=""></asp:Label></p> 
+       <p>USDT余额：<asp:Label ID="lblusdt" runat="server" Text=""></asp:Label></p> 
         
-              <p>匯兌單價：<asp:Label ID="lbldj" runat="server" Text=""></asp:Label></p>
+              <p>汇 兑 单 价：<asp:Label ID="lbldj" runat="server" Text=""></asp:Label></p>
 
             
-            <p >已有創世幣：<asp:Label ID="lblcsb" runat="server" Text=""></asp:Label></p>
+            <p >已有火星币：<asp:Label ID="lblcsb" runat="server" Text=""></asp:Label></p>
 
               <p  >&nbsp;</p>
            
-            <div  style="width:100%">   <asp:Button ID="Button1" runat="server"   CssClass="busub"    Text="兌換"  OnClick="Button1_Click" />
+            <div  style="width:100%">   <asp:Button ID="Button1" runat="server"   CssClass="busub"    Text="兑换"  OnClick="Button1_Click" />
                 </div>
 
             </div>

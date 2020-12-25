@@ -41,7 +41,7 @@
               <div style="height:100px;color:#fff;">
                   <div style="height:30px;text-align:center;font-size:20px;padding-top:10px">Super Planet</div>
               </div>
-        <div style="margin-left:10%;"><h4 style="color:#797979">Total Assets</h4></div>
+        <div style="margin-left:10%;"><h4 style="color:#797979">总资产</h4></div>
               <div style="margin-top:10px;width:90%;height:70px;margin-left:5%;color:#fff;border-bottom: 1px solid #484848!important;">
                   
                   <div style="margin-left: 5%;float:left;font-size:24px;margin-top: 5%;width:70%">$ <asp:Label ID="lblBonse" runat="server" Text="0.0000"></asp:Label></div>
@@ -51,24 +51,24 @@
 
         
          
-        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">My Wallet</h4></div>
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">账户总览</h4></div>
         <div style="width: 90%; height: 170px; margin-top: 10px; margin-left: 5%" id="box">
             <%--<div style="width:100%;height:40px;">
                       <div style="float:left;font-size:20px;font-weight:bold;">账户总览</div>
                       <div style="float:right;color:#fe3f10;text-align:right">会员级别：<br /></div>
                   </div>--%>
             <div class="dv1 content active">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline; color: #fff;">會員級別</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline; color: #fff;">会员等级</a></div>
                 <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
                 <div class="dv3">
                     <asp:Label ID="Label1" Style="font-size: 18px" runat="server" Text="0.00"></asp:Label><asp:Label ID="Label2" Style="font-size: 20px" runat="server" Text=""></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
                     <asp:Label ID="mobil" Style="color: #797979; font-size: 12px" runat="server" Text="0.00"></asp:Label></div>
-                <div style="float:right;margin-top:-50px;color:#fff;margin-right:15px">→滑動切換</div>
+                <div style="float:right;margin-top:-50px;color:#fff;margin-right:15px">→滑动切换</div>
             </div>
             
             <div class="dv1 content">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=A" style="text-decoration: underline; color: #fff;">A幣賬戶</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=A" style="text-decoration: underline; color: #fff;">土星账户</a></div>
                 <div class="dv3">
                     <asp:Label ID="lblPointA" runat="server" Text="0.00"></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="dv1 content">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=B" style="text-decoration: underline; color: #fff;">B幣賬戶</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=B" style="text-decoration: underline; color: #fff;">金星账户</a></div>
                 <div class="dv3">
                     <asp:Label ID="lblPointB" runat="server" Text="0.00"></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="dv1 content">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=C" style="text-decoration: underline; color: #fff;">C幣賬戶</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=C" style="text-decoration: underline; color: #fff;">水星账户</a></div>
                 <div class="dv3">
                     <asp:Label ID="lblPointC" runat="server" Text="0.00"></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
@@ -92,7 +92,7 @@
             </div>
 
             <div class="dv1 content">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=D" style="text-decoration: underline; color: #fff;">D幣賬戶</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=D" style="text-decoration: underline; color: #fff;">木星账户</a></div>
                 <div class="dv3">
                     <asp:Label ID="lblPointD" runat="server" Text="0.00"></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
@@ -100,7 +100,7 @@
             </div>
 
             <div class="dv1 content">
-                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=E" style="text-decoration: underline; color: #fff;">E幣賬戶</a></div>
+                <div class="dv2"><a href="../MemberMobile/AccountDetail.aspx?type=E" style="text-decoration: underline; color: #fff;">火星账户</a></div>
                 <div class="dv3">
                     <asp:Label ID="lblPointE" runat="server" Text="0.00"></asp:Label></div>
                 <div style="margin-left: 25px;  font-size: 12px; margin-top: 0px; color: #797979;">
@@ -109,21 +109,21 @@
 
            
         </div>
-        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">Function</h4></div>
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">功能</h4></div>
         <div style="width: 90%;height:70px;margin-top: 20px;margin-left: 5%;">
                   <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="../MemberMobile/ReCast.aspx">
-                      <img src="img/矿业.png" width="32" height="32"  /><br />礦機
+                      <img src="img/矿业.png" width="32" height="32"  /><br />矿机
                   </a>
                   <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="">
-                      <img src="img/星球.png" width="32" height="32"  /><br />礦池
+                      <img src="img/星球.png" width="32" height="32"  /><br />矿池
                       
                   </a>
                   <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="../MemberMobile/SST_TJ.aspx">
-                      <img src="img/团队.png" width="32" height="32"  /><br />團隊
+                      <img src="img/团队.png" width="32" height="32"  /><br />团队
                       
                   </a>
                   <a style="float:left;width:24%;height:55px;text-align:center;font-size:14px;margin-top:3px;color: #fff;" href="PlanteDH.aspx">
-                      <img src="img/交易.png" width="32" height="32"  /><br />搶購
+                      <img src="img/交易.png" width="32" height="32"  /><br />抢购
                   </a>
               </div>
                <div style="box-shadow: #e8e5e5 0px 0px 10px; width: 100%; height: 70px; background-color: #f9f9ff; margin-top: 10px; display: none">
@@ -143,14 +143,14 @@
                 <div style="margin-right: 10px; float: right; font-size: 12px; margin-top: 0px; color: #fff;">USDT</div>
             </div>
         
-        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">Latest Price</h4></div>
+        <div style="margin-left:10%;margin-top:40px;"><h4 style="color:#797979">最新价格</h4></div>
         <div id="getshow" runat="server" class="pricelist">
             <ul>
                 <li>
                     <div class='ltimg'>
                         <img src='img/btb.png' alt='XA' /></div>
                     <div class='dsc1'>
-                        <p class='p1'>Venus</p>
+                        <p class='p1'>Saturn（土星）</p>
                         <p class='p3'>0.5%</p>
                     </div>
                     <div class='dsc2'>
@@ -162,7 +162,7 @@
                     <div class='ltimg'>
                         <img src='img/btb.png' alt='XB' /></div>
                     <div class='dsc1'>
-                        <p class='p1'>Saturn</p>
+                        <p class='p1'>Venus（金星）</p>
                         <p class='p3'>0.5%</p>
                     </div>
                     <div class='dsc2'>
@@ -174,7 +174,7 @@
                     <div class='ltimg'>
                         <img src='img/btb.png' alt='XC' /></div>
                     <div class='dsc1'>
-                        <p class='p1'>Mars</p>
+                        <p class='p1'>Marcury（水星）</p>
                         <p class='p3'>0.5%</p>
                     </div>
                     <div class='dsc2'>
@@ -186,7 +186,7 @@
                     <div class='ltimg'>
                         <img src='img/btb.png' alt='XD' /></div>
                     <div class='dsc1'>
-                        <p class='p1'>Marcury</p>
+                        <p class='p1'>Jupiter（木星）</p>
                         <p class='p3'>0.5%</p>
                     </div>
                     <div class='dsc2'>
@@ -198,7 +198,7 @@
                     <div class='ltimg'>
                         <img src='img/btb.png' alt='XE' /></div>
                     <div class='dsc1'>
-                        <p class='p1'>Jupiter</p>
+                        <p class='p1'>Mars（火星）</p>
                         <p class='p3'>0.5%</p>
                     </div>
                     <div class='dsc2'>

@@ -130,56 +130,75 @@ public partial class Member_First : BLL.TranslationBase
                 lblPointD.Text = pointD.ToString("0.0000"); 
                 lblPointE.Text = pointE.ToString("0.0000");
                 Label3.Text = (pointA * cudayprice).ToString("0.0000");
+                int lv = Convert.ToInt16(dr["levelint"].ToString());
+                if (lv == 1)
+                { Label1.Text = "20U矿机"; }
+                if (lv == 2)
+                { Label1.Text = "50U矿机"; }
+                if (lv == 3)
+                { Label1.Text = "100U矿机"; }
+                if (lv == 4)
+                { Label1.Text = "500U矿机"; }
+                if (lv == 5)
+                { Label1.Text = "1000U矿机"; }
+                if (lv == 6)
+                { Label1.Text = "1500U矿机"; }
+                if (lv == 7)
+                { Label1.Text = "3000U矿机"; }
+                if (lv == 0)
+                {
 
+                    Label1.Text = "无";
+                }
 
             }
         }
        
 
-        string sql = "select isnull(fxlj,0) as ffxlj, * from MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " where number='" + Session["Member"].ToString() + "'";
-        DataTable dt = DBHelper.ExecuteDataTable(sql);
-        if (dt.Rows.Count > 0)
-        {
-            labCurrentOneMark.Text = (Convert.ToDecimal(dt.Rows[0]["DTotalNetRecord"]) - Convert.ToDecimal(dt.Rows[0]["totaloneMark"])).ToString("f4");
-            //Label1.Text = Convert.ToDecimal(dt.Rows[0]["totaloneMark"]).ToString();
-            //IRate.Text = (Convert.ToDecimal(dt.Rows[0]["ARate"]) * 100).ToString("0.00")+"%";
-           // sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
-            int lv=Convert.ToInt16(dt.Rows[0]["Level"].ToString());
-             if(lv==1)
-             { Label1.Text = "20U"; }
-        if(lv==2)
-        { Label1.Text = "50U"; }
-        if(lv==3)
-        { Label1.Text = "100U"; }
-        if(lv==4)
-        { Label1.Text = "500U"; }
-            if (lv == 5)
-            { Label1.Text = "1000U"; }
-            if (lv == 6)
-            { Label1.Text = "1500U"; }
-            if (lv == 7)
-            { Label1.Text = "3000U"; }
-            if (lv==0)
-        {
+        //string sql = "select isnull(fxlj,0) as ffxlj, * from MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " where number='" + Session["Member"].ToString() + "'";
+        //DataTable dt = DBHelper.ExecuteDataTable(sql);
+        //if (dt.Rows.Count > 0)
+        //{
+        //    labCurrentOneMark.Text = (Convert.ToDecimal(dt.Rows[0]["DTotalNetRecord"]) - Convert.ToDecimal(dt.Rows[0]["totaloneMark"])).ToString("f4");
+        //    //Label1.Text = Convert.ToDecimal(dt.Rows[0]["totaloneMark"]).ToString();
+        //    //IRate.Text = (Convert.ToDecimal(dt.Rows[0]["ARate"]) * 100).ToString("0.00")+"%";
+        //   // sfje.Text ="每日释放约：" +(mrsf * Convert.ToDecimal(dt.Rows[0]["ARate"])).ToString("0.00");
+        //    int lv=Convert.ToInt16(dt.Rows[0]["Level"].ToString());
+        //     if(lv==1)
+        //     { Label1.Text = "20U"; }
+        //if(lv==2)
+        //{ Label1.Text = "50U"; }
+        //if(lv==3)
+        //{ Label1.Text = "100U"; }
+        //if(lv==4)
+        //{ Label1.Text = "500U"; }
+        //    if (lv == 5)
+        //    { Label1.Text = "1000U"; }
+        //    if (lv == 6)
+        //    { Label1.Text = "1500U"; }
+        //    if (lv == 7)
+        //    { Label1.Text = "3000U"; }
+        //    if (lv==0)
+        //{
 
-            Label1.Text = "无";
-        }
-        int lv2 = Convert.ToInt16(dt.Rows[0]["Level2"].ToString());
-        if (lv2 == 1)
-        { Label2.Text = "初级节点"; }
-        if (lv2 == 2)
-        { Label2.Text = "中级节点"; }
-        if (lv2 == 3)
-        { Label2.Text = "高级节点"; }
-        if (lv2 == 4)
-        { Label2.Text = "顶级节点"; }
-        if (lv2 == 0)
-        {
+        //    Label1.Text = "无";
+        //}
+        //int lv2 = Convert.ToInt16(dt.Rows[0]["Level2"].ToString());
+        //if (lv2 == 1)
+        //{ Label2.Text = "初级节点"; }
+        //if (lv2 == 2)
+        //{ Label2.Text = "中级节点"; }
+        //if (lv2 == 3)
+        //{ Label2.Text = "高级节点"; }
+        //if (lv2 == 4)
+        //{ Label2.Text = "顶级节点"; }
+        //if (lv2 == 0)
+        //{
 
-            Label2.Text = "";
-        }
+        //    Label2.Text = "";
+        //}
            
-        }
+        //}
     }
 
     ////protected void Translations_More()

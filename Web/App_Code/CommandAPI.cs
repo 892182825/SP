@@ -162,7 +162,7 @@ public class CommandAPI : BLL.TranslationBase
         myDi.Add("openid", openid);
 
         string signj = PublicClass.GetSignContent(myDi);
-        string jsonS = PublicClass.HmacSHA256(signj + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
+        string jsonS = PublicClass.HmacSHA256(signj + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
 
         myDi.Add("sign", jsonS);
 
@@ -248,7 +248,7 @@ public class CommandAPI : BLL.TranslationBase
             myDictionary.Add("openid", openid);
 
             string signjs = PublicClass.GetSignContent(myDictionary);
-            string jsonStr = PublicClass.HmacSHA256(signjs + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
+            string jsonStr = PublicClass.HmacSHA256(signjs + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
 
             myDictionary.Add("sign", jsonStr);
 
@@ -258,7 +258,9 @@ public class CommandAPI : BLL.TranslationBase
             string rsp = PublicClass.doHttpPost(yum, myDictionary);
 
 
-            JObject studentsJson = JObject.Parse(rsp);
+            //JObject studentsJson = JObject.Parse(rsp);
+            JObject studentsJson = (JObject)JsonConvert.DeserializeObject(rsp);
+
             string bh = studentsJson["data"]["out_trade_no"].ToString();
             string ddbh = bh;
            // Session["zfddh"] = ddbh;
@@ -266,8 +268,8 @@ public class CommandAPI : BLL.TranslationBase
             {
                 string ddhbm = "prepay_id%3D" + studentsJson["data"]["trade_no"].ToString();
                 string sjc = GetTimeStamp();
-                string zfqm = PublicClass.HmacSHA256("appId=4f95ab748e204c65d0bdaa61b4e3f1d7&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
-                str="<script language='javascript'>window.location.href = 'https://api.hicoin.vip/hicoinfe/payment?appId=4f95ab748e204c65d0bdaa61b4e3f1d7&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&paySign=" + zfqm + "';</script>";
+                string zfqm = PublicClass.HmacSHA256("appId=58b7824b8b4f5c339bddf6079d153145&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
+                str= "<script language='javascript'>window.location.href = 'https://api.hicoin.vip/hicoinfe/payment?appId=58b7824b8b4f5c339bddf6079d153145&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&paySign=" + zfqm + "';</script>";
                 
 
             }

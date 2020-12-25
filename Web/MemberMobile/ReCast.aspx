@@ -78,7 +78,7 @@
          <div id="shscid" class="showhid">
             <div id="sbuyinfo1"  style=""> </div>
             <div> 
-                <input type="button" class="qr"  value="關閉" onclick="hidediv1()" /> 
+                <input type="button" class="qr"  value="关闭" onclick="hidediv1()" /> 
             </div>
         </div>
 
@@ -86,11 +86,11 @@
             <div id="sbuyinfo"  style=""> </div>
             <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
                 <input type="button" class="canc" value="取消" onclick="hidediv()" />
-                <asp:Button ID="Button1" CssClass="qr" runat="server" Text="確認購買" OnClick="Button1_Click" /> 
+                <asp:Button ID="Button1" CssClass="qr" runat="server" Text="确认购买" OnClick="Button1_Click" /> 
             </div>
         </div>
 
-        <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;"><h2 style="color:#fff">Mining</h2></div>
+        <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;"><h2 style="color:#fff">购买矿机</h2></div>
 
         <div id="getshow" runat="server" class="buylist">
              
