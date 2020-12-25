@@ -19,7 +19,7 @@ public partial class MemberMobile_zhifu : BLL.TranslationBase
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["Member"] = "c616d3f3a2e532355b049a2230f20b83";
+        Session["Member"] = "3b5ed4b1c920caf3c1e8d386b44ed74c";
         AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
 
 
@@ -95,7 +95,7 @@ public partial class MemberMobile_zhifu : BLL.TranslationBase
                 decimal cudayprice = Common.GetnowPrice();
                 lblPay.Text = cudayprice.ToString("0.0000");
                 //  lblPay.Text =  Math.Round((Convert.ToDouble(sdr["leftMoney"]) * blv)).ToString("#0.00");
-                decimal ze = jldj / cudayprice;
+                decimal ze = jldj / 0.05m;
                 pointAIn.Text = jldj.ToString() + "(" + ze.ToString("0.0000") + "FTC)";
 
                 lblBonse.Text = (ze + xjye + djye).ToString("0.0000");

@@ -22,20 +22,27 @@ public partial class ReCast : BLL.TranslationBase
                 string getresult = CommandAPI.getzf(orderid);
                 string[] rlist = getresult.Split(',');
                 //修改订单状态
-                string number = Session["Member"].ToString();
-                int choselv = Convert.ToInt32(Session["choselv"]);
-                int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付订单");
-
-
-                if (rr == 1)
+                if (rlist[0] == "SUCCESS")
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机成功！');</script>", false); Bind();
-                    return;
+                    string number = Session["Member"].ToString();
+                    int choselv = Convert.ToInt32(Session["choselv"]);
+                    int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
+
+
+                    if (rr == 1)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机成功！');</script>", false); Bind();
+                        return;
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('付款成功但插入订单失败，请联系客服查询处理！');</script>", false);
+
+                    }
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false); Bind();
-
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false);
                 }
             }
             else
@@ -82,28 +89,28 @@ public partial class ReCast : BLL.TranslationBase
         string h = "";
         if (lebuy > 0 && lv == 0)
         {
-            html += @"  <li  onclick='showbuy(1)'  > <div class='ltimg'><img src = 'img/btb.png'  alt='X1' /></div><div class='dsc1' > <p class='p1' >Super-Planet-X1</p> <p class='p2'> " + x1p + @" USDT</p> <p class='p3'>礦機價格</p>   
+            html += @"  <li  onclick='showbuy(1)'  > <div class='ltimg'><img src = 'img/btb.png'  alt='X1' /></div><div class='dsc1' > <p class='p1' >Super-Planet-X1</p> <p class='p2'> " + x1p + @" USDT</p> <p class='p3'>矿机价格</p>   
 </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x1cn + @"%</p><p class='p3'>日收益率</p>   </div>
                 </li>";
         }
         if (lv < 7)
-            h = @"<li onclick='showbuy(7)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>礦機價格</p>  </div>
+            h = @"<li onclick='showbuy(7)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
 <div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
                    </li>";
         if (lv < 6)
-            h = @"<li onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>礦機價格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @"<li onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
                    </li>" + h;
         if (lv < 5)
-            h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>礦機價格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
                     </li>" + h;
         if (lv > 4)
-            h = @" <li onclick='showbuy(4)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X4' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X4</p> <p  class='p2'> " + x4p + @" USDT</p><p class='p3'>礦機價格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x4cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @" <li onclick='showbuy(4)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X4' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X4</p> <p  class='p2'> " + x4p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x4cn + @"%</p><p class='p3'>日收益率</p>   </div>
                   </li>" + h;
         if (lv < 3)
-            h = @"<li onclick='showbuy(3)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X3' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X3</p> <p class='p2'> " + x3p + @" USDT</p><p class='p3'>礦機價格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x3cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @"<li onclick='showbuy(3)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X3' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X3</p> <p class='p2'> " + x3p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x3cn + @"%</p><p class='p3'>日收益率</p>   </div>
                      </li>" + h;
         if (lv < 2)
-            h = @"<li onclick='showbuy(2)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X2' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X2</p> <p class='p2'> " + x2p + @" USDT</p><p class='p3'>礦機價格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x2cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @"<li onclick='showbuy(2)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X2' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X2</p> <p class='p2'> " + x2p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x2cn + @"%</p><p class='p3'>日收益率</p>   </div>
                  </li>" + h;
         html += h;
         html += " </ul>";
@@ -319,7 +326,7 @@ public partial class ReCast : BLL.TranslationBase
                 eneed = (ttmoney * 0.05) / cep;
                 if (eneed > eblc)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('創世幣币余额不足！');</script>", false);
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('火星币余额不足，请先去抢购兑换！');</script>", false);
                     return;
                 }//余额不足
             }
