@@ -26,7 +26,8 @@ public partial class ReCast : BLL.TranslationBase
                 {
                     string number = Session["Member"].ToString();
                     int choselv = Convert.ToInt32(Session["choselv"]);
-                    int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
+                    double eneed=Convert.ToDouble(  Session["Eneed"] );
+                    int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, eneed, choselv, "USDT账户支付成功");
 
 
                     if (rr == 1)
@@ -329,6 +330,8 @@ public partial class ReCast : BLL.TranslationBase
                     ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('火星币余额不足，请先去抢购兑换！');</script>", false);
                     return;
                 }//余额不足
+
+                Session["Eneed"] = eneed;
             }
 
         }
