@@ -2290,14 +2290,14 @@ span .orderTHOK {
             }
 
             .pricelist ul li .dsc1 {
-                width: 40%;
+                width: 55%;
                 float: left;
                 border-bottom: 1px solid #484848 !important;
                 margin-left:5%;
             }
 
             .pricelist ul li .dsc2 {
-                width: 40%;
+                width: 25%;
                 float: right;
                 border-bottom: 1px solid #484848 !important;
                 text-align: right;
