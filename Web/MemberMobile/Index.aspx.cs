@@ -343,8 +343,9 @@ public partial class Member_Index : BLL.TranslationBase
                 Boolean flag = new AddOrderDataDAL().AddFinalOrder(ofm);
                 if (flag)
                 {
-                   
-                    int val = AddOrderDataDAL.OrderPayment(ofm.StoreID, ofm.OrderID, ofm.OperateIp, 3, 1, 10, "管理员", "", 1, -1, 1, 1, "", 0, "");
+                        string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + mi.Direct + "',0,1,0";
+                        DBHelper.ExecuteNonQuery(sqljs);
+                        int val = AddOrderDataDAL.OrderPayment(ofm.StoreID, ofm.OrderID, ofm.OperateIp, 3, 1, 10, "管理员", "", 1, -1, 1, 1, "", 0, "");
                     if (val == 0)
                     {
                         //PublicClass.SendMsg(1, ofm.OrderID, "");
@@ -361,8 +362,8 @@ public partial class Member_Index : BLL.TranslationBase
                                     DBHelper.ExecuteNonQuery(sql);
                                     string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                     DBHelper.ExecuteNonQuery(sqll);
-                                    string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dt.Rows[0][0].ToString() + "',0,1,0";
-                                    DBHelper.ExecuteNonQuery(sqljs);
+                                    string sqljss = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dt.Rows[0][0].ToString() + "',0,1,0";
+                                    DBHelper.ExecuteNonQuery(sqljss);
 
                                     }
 
