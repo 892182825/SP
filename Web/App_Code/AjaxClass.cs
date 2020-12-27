@@ -6732,26 +6732,58 @@ public class AjaxClass : BLL.TranslationBase
     public string GetSignIn() {
         string number = HttpContext.Current.Session["Member"].ToString();
         double getcoin = 0;
-       int r=  Getsign(  number,getcoin );
+       int r=  Getsign(  number  );
         return r.ToString();
 
     }
 
+    /// <summary>
+    /// 获取当日奖金是否领取
+    /// </summary>
+    /// <returns></returns>
     [AjaxPro.AjaxMethod]
-    public int ChekisSignIn()
+    public double ChekisSignIn()
     {
         string number = HttpContext.Current.Session["Member"].ToString();
-        int rr = Convert.ToInt32(DBHelper.ExecuteScalar(@"select   COUNT(0)  from   signinList where CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number + "'"));
+        int qs = ConfigDAL.GetMaxExpectNum(); 
+        double rr = Convert.ToInt32(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= "+qs+" and cs=0 and bonus>0 "));
         return rr ;
 
     }
-
-    private int Getsign(string number,double getcoin) {
+    /// <summary>
+    /// 领取当日收益
+    /// </summary>
+    /// <param name="number"></param>
+    /// <param name="getcoin"></param>
+    /// <returns></returns>
+    private int Getsign(string number ) {
         int r = 0;
-        int rr =Convert.ToInt32( DBHelper.ExecuteScalar(@"select   COUNT(0)  from   signinList where CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number+"'"));
-        if (rr == 1) r = Convert.ToInt32(DBHelper.ExecuteNonQuery("update signinList set issign=1 where  CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number + "' "));
-        else   r = Convert.ToInt32(DBHelper.ExecuteNonQuery("insert into signinList (number,signindate,issign,getcoin) values('" + number + "',CONVERT(varchar(100),GETDATE(), 112),1," + getcoin + ") "));
+         
+        int qs = ConfigDAL.GetMaxExpectNum();
+        double bunus = Convert.ToInt32(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= " + qs + " and cs=0 and bonus>0 "));
+        string coinname = "A";
+        string sqlu = " pointAin=pointAin+ "+bunus;
+        int jd = Common.GetcurJieDuan();
+        if (jd == 1 || jd == 2) { coinname = "A"; sqlu = " pointAin=pointAin+ " + bunus; }
+        if (jd == 3 || jd == 4) { coinname = "B"; sqlu = " pointBin=pointBin+ " + bunus; }
+            if (jd == 5 || jd == 6){ coinname = "C"; sqlu = " pointCin=pointCin+ " + bunus;
+    }
+        if (jd == 7 || jd == 8){ coinname = "D"; sqlu = " pointDin=pointDin+ " + bunus; }
 
+       int rm= DBHelper.ExecuteNonQuery(" update  mx0 set  cs=1  where hybh='" + number + "'  and qs= " + qs + " and cs=0 and bonus>0  ");
+        if (rm > 0)
+        {
+            int m = DBHelper.ExecuteNonQuery("update   memberinfo   set  " + sqlu + "    where  number='" + number + "'");
+            if (m > 0)
+            {
+
+                string ddremark = " 每日领取" + coinname + "币收益  " + bunus;
+                int c = D_AccountDAL.AddAccount(coinname, number, bunus, D_AccountSftype.MemberType, D_AccountKmtype.Cash, DirectionEnum.AccountsIncreased, ddremark);
+
+                r = Convert.ToInt32(DBHelper.ExecuteNonQuery("insert into signinList (number,signindate,issign,getcoin) values('" + number + "',CONVERT(varchar(100),GETDATE(), 112),1," + bunus + ") "));
+
+            }
+        }
         return r;
     }
 

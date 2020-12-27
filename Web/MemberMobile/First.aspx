@@ -53,18 +53,7 @@
 
     <script type="text/javascript" language="javascript">
     
-      function showcu() {
-
-        var  r=AjaxClass.GetSignIn().value;
-if(r>0){
-          $("#kaiqi").html("<p>签到成功</p><p>领取矿币</p> ");
-
-          $("#kaiqi").removeClass("gaiqi"); $("#kaiqi").addClass("gaiqi1");
-           
-
-          $(".signin").fadeOut(3000);
- }          
-      }
+     
     </script>
 
 </head>
@@ -74,7 +63,7 @@ if(r>0){
             <div class="gai">
                 <div class="getcoin"></div>
             </div>
-            <div id="kaiqi" class="gaiqi" onclick="showcu()">签</div>
+            <div id="kaiqi" class="gaiqi" onclick="showcu()">领</div>
         </div>
 
         <div style="width: 100%; height: 100%; margin: 0 0 0 0;">
@@ -355,7 +344,7 @@ if(r>0){
         }
       
         
-
+var  bs=0;
     $(function(){
      var bd = '<%=b6%>';
         if( bd=="1")
@@ -364,13 +353,32 @@ if(r>0){
         }
 
 
-           var  r=AjaxClass.ChekisSignIn().value;
+              bs=AjaxClass.ChekisSignIn().value;
  
-        if(r==0)
+        if(bs>0)
         {
         $(".signin").show();
-         }
+         } 
+
+
+
         });
+
+
+
+ function showcu() {
+
+        var  m=AjaxClass.GetSignIn().value;
+if(m>0){
+          $("#kaiqi").html("<p>领取矿币</p><p>"+bs+" </p> ");
+
+          $("#kaiqi").removeClass("gaiqi"); $("#kaiqi").addClass("gaiqi1");
+           
+
+          $(".signin").fadeOut(3000);
+ }          
+      }
+
 
 
         
