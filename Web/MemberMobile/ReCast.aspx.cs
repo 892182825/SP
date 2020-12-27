@@ -233,7 +233,7 @@ public partial class ReCast : BLL.TranslationBase
         if (lv == 5) yymoney = cm.Para5;
         if (lv == 6) yymoney = cm.Para6;
         if (lv == 7) ordertype = 25;  //复投
-        if (chosenum == 1) { ttmoney = cm.Para1; ttpv = cm.Para1; }
+        if (chosenum == 1) { ttmoney = cm.Para1; ttpv = 0; }//20u 不计算业绩
         if (chosenum == 2) { ttmoney = cm.Para2 - yymoney; ttpv = cm.Para2 - yymoney; }
         if (chosenum == 3) { ttmoney = cm.Para3 - yymoney; ttpv = cm.Para3 - yymoney; }
         if (chosenum == 4) { ttmoney = cm.Para4 - yymoney; ttpv = cm.Para4 - yymoney; }
