@@ -322,7 +322,7 @@ public partial class ReCast : BLL.TranslationBase
                     }//余额不足
                 }
 
-            if (jd > 1) ///  如果是第二阶段以上 则需要额外支付 5% 的E
+            if (jd > 0&& chosenum>1) ///  如果是20u以上 则需要额外支付 5% 的E
             {
                 eneed = (ttmoney * 0.05) / cep;
                 if (eneed > eblc)

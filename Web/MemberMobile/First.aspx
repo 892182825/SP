@@ -29,14 +29,47 @@
         .content{transform:scale(0.5);opacity:0;transition:all 1s;}
         .active{transform:scale(1);opacity:1;transition:all 1s;}
 
-
+        .signin { z-index:1000; position:fixed; width:60%; top:150px;  left : 20%;margin:auto; height:150px; background:#ff0000; border-radius:30px;
+        }
+        .gai { width:100%; height:50%; background:#ff6a00;
+               border-bottom-left-radius:50%; border-bottom-right-radius:50%; border-top-left-radius:30px; border-top-right-radius:30px; 
+        }
+         
+        .gaiqi { width:60px; height:60px; border-radius:50px;
+                 background:#ffd800; font-size:40px; color:#f00;
+                 font-family:YouYuan; margin:auto; margin-top:-30px;
+                line-height:60px; text-align:center;
+                cursor:pointer;  
+        }
+          
+        
+        .gaiqi1 { width:100px; height:100px; border-radius:5px;
+                 background:#ffd800; font-size:20px; color:#2dd60c;
+                 font-family:YouYuan; margin:auto;  margin-top:-50px;
+                line-height:30px; text-align:center;
+                cursor:pointer;  
+        }
     </style>
  
-  
+  <script type="text/javascript" language="javascript">
+      function showcu() {
+          $("#kaiqi").html("<p>签到成功</p><p>领取$2020</p> ");
+
+          $("#kaiqi").removeClass("gaiqi"); $("#kaiqi").addClass("gaiqi1");
+           
+         // $(".signin").fadeOut(5000);
+           
+      }
+  </script>
    
 </head>
 <body style="height:100%">
     <form id="form2" runat="server">
+        <div class="signin">
+             <div class="gai"><div class="getcoin"></div></div>
+            <div id="kaiqi" class="gaiqi" onclick="showcu()">签</div>
+        </div>
+
     <div style="width:100%;height:100%;margin:0 0 0 0;">
               <div style="height:100px;color:#fff;">
                   <div style="height:30px;text-align:center;font-size:20px;padding-top:10px">Super Planet</div>
@@ -267,7 +300,7 @@
 
             })("#box")
 
-        </script>
+  </script>
     
 
     <script>

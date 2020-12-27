@@ -348,7 +348,7 @@ namespace DAL
                 DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance"+maxexpt+" set  level =" + lv + "  where number='" + number + "' ");
                 if (r == 0) tran.Rollback();
 
-                double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv  from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
+                double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv    from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
                 if (cupv > 0)
                 {
                     //计算业绩
