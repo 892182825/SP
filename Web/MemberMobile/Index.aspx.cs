@@ -219,6 +219,10 @@ public partial class Member_Index : BLL.TranslationBase
             string parent_mobile_number = studentsJson["data"]["parent_mobile_number"].ToString();
             string parent_email = studentsJson["data"]["parent_email"].ToString();
 
+                if (mobile_number == "")
+                {
+                    mobile_number = email;
+                }
             MemberInfoModel mi = AddUserInfo(number, name, mobile_number, email, parent_mobile_number);
 
             Session["mbreginfo"] = mi;
@@ -347,8 +351,10 @@ public partial class Member_Index : BLL.TranslationBase
                                     DBHelper.ExecuteNonQuery(sql);
                                     string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                     DBHelper.ExecuteNonQuery(sqll);
+                                    string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dt.Rows[0][0].ToString() + "',0,1,0";
+                                    DBHelper.ExecuteNonQuery(sqljs);
 
-                                }
+                                    }
 
                             }
                         }
