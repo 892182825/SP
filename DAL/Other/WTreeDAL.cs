@@ -1253,7 +1253,7 @@ namespace DAL.Other
             string _str = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                _str = _str + " <li><a class='btn btn-primary' href='SST_TJ.aspx?topnum=" + dt.Rows[i]["name"].ToString().Split(' ')[0] + "'  >" + dt.Rows[i]["name"].ToString().Split(' ')[0] + " ></a> </li> ";
+                _str = _str + " <li><a class='btn btn-primary' href='SST_TJ.aspx?topnum=" + dt.Rows[i]["number"].ToString().Split(' ')[0] + "'  >" + dt.Rows[i]["name"].ToString().Split(' ')[0] + " ></a> </li> ";
             }
 
             dt.Dispose();
