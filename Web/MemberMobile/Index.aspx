@@ -11,7 +11,7 @@
 
     <%--<link rel="stylesheet" href="css/style.css" />--%>
 
-    <title><%=GetTran("000000","会员登录") %></title>
+    <title><%=GetTran("000000","Super Planet") %></title>
    <%-- <link href="css/uselogin.css" rel="stylesheet" type="text/css" />--%>
    <%-- <script src="../Company/js/jquery.min.js" type="text/javascript"></script>
     <script src="js/jquery-1.7.1.min.js"></script>--%>

@@ -223,7 +223,17 @@ public partial class Member_Index : BLL.TranslationBase
                 {
                     mobile_number = email;
                 }
-            MemberInfoModel mi = AddUserInfo(number, name, mobile_number, email, parent_mobile_number);
+                if (parent_mobile_number == "")
+                {
+                    parent_mobile_number = parent_email;
+                }
+                DataTable dtdr = DAL.DBHelper.ExecuteDataTable("select number from memberinfo where MobileTele='"+ parent_mobile_number + "'");
+                if (dtdr.Rows != null && dtdr.Rows.Count > 0)
+                {
+                    parent_mobile_number = dtdr.Rows[0]["number"].ToString();//投资金额
+                   
+                }
+                MemberInfoModel mi = AddUserInfo(number, name, mobile_number, email, parent_mobile_number);
 
             Session["mbreginfo"] = mi;
             //Session["OrderType"] = 22;
@@ -333,8 +343,9 @@ public partial class Member_Index : BLL.TranslationBase
                 Boolean flag = new AddOrderDataDAL().AddFinalOrder(ofm);
                 if (flag)
                 {
-                   
-                    int val = AddOrderDataDAL.OrderPayment(ofm.StoreID, ofm.OrderID, ofm.OperateIp, 3, 1, 10, "管理员", "", 1, -1, 1, 1, "", 0, "");
+                        string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + mi.Direct + "',0,1,0";
+                        DBHelper.ExecuteNonQuery(sqljs);
+                        int val = AddOrderDataDAL.OrderPayment(ofm.StoreID, ofm.OrderID, ofm.OperateIp, 3, 1, 10, "管理员", "", 1, -1, 1, 1, "", 0, "");
                     if (val == 0)
                     {
                         //PublicClass.SendMsg(1, ofm.OrderID, "");
@@ -351,8 +362,8 @@ public partial class Member_Index : BLL.TranslationBase
                                     DBHelper.ExecuteNonQuery(sql);
                                     string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                                     DBHelper.ExecuteNonQuery(sqll);
-                                    string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dt.Rows[0][0].ToString() + "',0,1,0";
-                                    DBHelper.ExecuteNonQuery(sqljs);
+                                    string sqljss = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dt.Rows[0][0].ToString() + "',0,1,0";
+                                    DBHelper.ExecuteNonQuery(sqljss);
 
                                     }
 
@@ -370,11 +381,18 @@ public partial class Member_Index : BLL.TranslationBase
         }
         else
         {
-            DataTable dt = ChangeTeamBLL.GetMemberInfoDataTable(Session["Member"].ToString());
+                string mobile_number = studentsJson["data"]["mobile_number"].ToString();
+                string email = studentsJson["data"]["email"].ToString();
+                string parent_mobile_number = studentsJson["data"]["parent_mobile_number"].ToString();
+                string parent_email = studentsJson["data"]["parent_email"].ToString();
+
+                DataTable dt = ChangeTeamBLL.GetMemberInfoDataTable(Session["Member"].ToString());
             if (dt.Rows.Count > 0)
             {
                 if (dt.Rows[0][0].ToString() != "" && dt.Rows[0][0].ToString() != null)
                 {
+                        if(dt.Rows[0][0].ToString() == parent_mobile_number || dt.Rows[0][0].ToString() == parent_email)
+                        { 
                     string sqlqq = "select  Number,Direct,name from memberinfo  where MobileTele='" + dt.Rows[0][0].ToString() + "'";
                     DataTable dtt = DBHelper.ExecuteDataTable(sqlqq);
                     if (dtt.Rows.Count > 0)
@@ -385,7 +403,9 @@ public partial class Member_Index : BLL.TranslationBase
                         DBHelper.ExecuteNonQuery(sql);
                         string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                         DBHelper.ExecuteNonQuery(sqll);
-                        }
+                                    string sqljs = "exec dbo.js_addnew '" + Session["Member"].ToString() + "','','" + dtt.Rows[0][0].ToString() + "',0,1,0";
+                                    DBHelper.ExecuteNonQuery(sqljs);
+                                }
                         if (dtt.Rows[0]["name"].ToString() == "" || dtt.Rows[0]["name"].ToString() == null)
                         {
                             string name = studentsJson["data"]["nickname"].ToString();
@@ -395,8 +415,9 @@ public partial class Member_Index : BLL.TranslationBase
                         }
 
                     }
+                        }
 
-                }
+                    }
             }
             
 

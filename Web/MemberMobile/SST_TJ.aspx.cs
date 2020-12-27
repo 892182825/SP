@@ -38,9 +38,10 @@ public partial class _SST_AZ : BLL.TranslationBase
 
         EndNumber = Session["member"].ToString();
         string Qs = BLL.CommonClass.CommonDataBLL.getMaxqishu().ToString();
-          //获取链路图
-            if (WTreeBLL.IsExistsNumber(ThNumber) && IsRoot(ThNumber, Qs, EndNumber))
-            {
+        //获取链路图
+        //if (WTreeBLL.IsExistsNumber(ThNumber) && IsRoot(ThNumber, Qs, EndNumber))
+        if (WTreeBLL.IsExistsNumber(ThNumber))
+        {
                 SetLianLuTu(EndNumber, ThNumber, Qs);
                 Loadnumlist(ThNumber, EndNumber);
             }
@@ -58,8 +59,13 @@ public partial class _SST_AZ : BLL.TranslationBase
         string petname = item["name"].ToString();
         string tjrs = item["ZongRen"].ToString();
         string TotalNetRecord = item["DTotalNetRecord"].ToString();
-       // str += "  <li><a href='SST_TJ.aspx?topnum=" + number + "' ><div>" + number + "</div><div>" + petname + "</div><div style='line-height: 20px;text-align:right;'>" + tjrs + "人<br/>" + TotalNetRecord + "</div></a></li>";
-        str += "  <li><a ><div>" + number + "</div><div>" + petname + "</div><div style='line-height: 20px;text-align:right;'>" + tjrs + "人<br/>" + TotalNetRecord + "</div></a></li>";
+            string sql = "select number from MemberInfo where MobileTele='" + number + "'";
+            DataTable shj = DBHelper.ExecuteDataTable(sql);
+            string bh= shj.Rows[0][0].ToString();
+
+
+            str += "  <li><a href='SST_TJ.aspx?topnum=" + bh + "' ><div>" + number + "</div><div>" + petname + "</div><div style='line-height: 20px;text-align:right;'>" + tjrs + "人<br/>" + TotalNetRecord + "</div></a></li>";
+       // str += "  <li><a ><div>" + number + "</div><div>" + petname + "</div><div style='line-height: 20px;text-align:right;'>" + tjrs + "人<br/>" + TotalNetRecord + "</div></a></li>";
 
     }
         if (str == "") { 
@@ -93,30 +99,30 @@ public partial class _SST_AZ : BLL.TranslationBase
             return  null;
         }
 
-        if (IsRoot(_thnumber, ExpectNum, EndNumber) == false)
-        {
-            //判断所有的可用网络中是否含有权限。
-            string maxqs = WTreeBLL.GetMaxQS();
-            string ts = GetTran("007461", " 您没有权限查看");
+        //if (IsRoot(_thnumber, ExpectNum, EndNumber) == false)
+        //{
+        //    //判断所有的可用网络中是否含有权限。
+        //    string maxqs = WTreeBLL.GetMaxQS();
+        //    string ts = GetTran("007461", " 您没有权限查看");
 
-            if (IsRoot(_thnumber, maxqs, EndNumber))
-            {
-                ts = GetTran("007462", " 您查看的这期中没有这个会员，所以不能查看该网路！");
+        //    if (IsRoot(_thnumber, maxqs, EndNumber))
+        //    {
+        //        ts = GetTran("007462", " 您查看的这期中没有这个会员，所以不能查看该网路！");
 
-            }
+        //    }
 
-            Session["WLTCS_M_A_QS"] = null;
-            Session["WLTCS_M_A"] = null;
+        //    Session["WLTCS_M_A_QS"] = null;
+        //    Session["WLTCS_M_A"] = null;
 
-            return null;
-        }
-        else
-        {
+        //    return null;
+        //}
+        //else
+        //{
             //string sql = "select MobileTele from MemberInfo where number='" + Session["member"].ToString() + "'";
             //DataTable shj = DBHelper.ExecuteDataTable(sql);
             //_thnumber = shj.Rows[0][0].ToString();
             return WTreeBLL.GetTreePhone(nodeid, ExpectNum, _thnumber, model, BrowserType, "0", ManageNum, Session["LanguageCode"].ToString());
-        }
+       // }
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
