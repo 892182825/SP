@@ -6728,6 +6728,34 @@ public class AjaxClass : BLL.TranslationBase
         if (der == 1) return "-";
         return "";
     }
+    [AjaxPro.AjaxMethod]
+    public string GetSignIn() {
+        string number = HttpContext.Current.Session["Member"].ToString();
+        double getcoin = 0;
+       int r=  Getsign(  number,getcoin );
+        return r.ToString();
+
+    }
+
+    [AjaxPro.AjaxMethod]
+    public int ChekisSignIn()
+    {
+        string number = HttpContext.Current.Session["Member"].ToString();
+        int rr = Convert.ToInt32(DBHelper.ExecuteScalar(@"select   COUNT(0)  from   signinList where CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number + "'"));
+        return rr ;
+
+    }
+
+    private int Getsign(string number,double getcoin) {
+        int r = 0;
+        int rr =Convert.ToInt32( DBHelper.ExecuteScalar(@"select   COUNT(0)  from   signinList where CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number+"'"));
+        if (rr == 1) r = Convert.ToInt32(DBHelper.ExecuteNonQuery("update signinList set issign=1 where  CONVERT(varchar(100),signindate, 112)=CONVERT(varchar(100),GETDATE(), 112)   and number= '" + number + "' "));
+        else   r = Convert.ToInt32(DBHelper.ExecuteNonQuery("insert into signinList (number,signindate,issign,getcoin) values('" + number + "',CONVERT(varchar(100),GETDATE(), 112),1," + getcoin + ") "));
+
+        return r;
+    }
+
+
 
 
     /// <summary>
