@@ -245,22 +245,17 @@ public partial class Member_Index : BLL.TranslationBase
             {
                 decimal totalmoeny = 0.00M;
                 decimal bili = 0.00M;
-                DataTable dts = DAL.DBHelper.ExecuteDataTable("select top 1 * from config order by createdate desc");
-                if (dts.Rows != null && dts.Rows.Count > 0)
-                {
-                    totalmoeny = Convert.ToDecimal(dts.Rows[0]["para1"]);//投资金额
-                    bili = Convert.ToDecimal(dts.Rows[0]["para4"]);
-                }
+                
                 OrderFinalModel ofm = new OrderFinalModel();
                 var dayPrice = CommonDataBLL.GetMaxDayPrice();
 
-                var value = Convert.ToDecimal(totalmoeny) / Convert.ToDecimal(dayPrice);//投资金额换化石斛积分
+                var value = 0;//投资金额换化石斛积分
                 decimal totalpv = 0.0M;
                 var expect = CommonDataBLL.getMaxqishu();
 
 
-                totalpv = Convert.ToDecimal(value);
-                ofm.InvestJB = Convert.ToDecimal(value * bili);//投资石斛积分币数量
+                totalpv =0;
+                ofm.InvestJB = 0;//投资石斛积分币数量
                 ofm.PriceJB = Convert.ToDecimal(dayPrice);//石斛积分当前市价
                 ofm.SendWay = 1;
                 ofm.Number = mi.Number;
@@ -450,7 +445,7 @@ public partial class Member_Index : BLL.TranslationBase
         memberInfoModel.StoreID = "8888888888";
         memberInfoModel.Name = name;
         memberInfoModel.PetName = "";
-        memberInfoModel.OrderType = 21;
+        memberInfoModel.OrderType = 0;
         memberInfoModel.LoginPass = "";
         memberInfoModel.AdvPass = "";
         memberInfoModel.LevelInt = 0;//会员级别

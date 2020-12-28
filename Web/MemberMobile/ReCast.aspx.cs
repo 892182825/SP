@@ -94,13 +94,13 @@ public partial class ReCast : BLL.TranslationBase
 </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x1cn + @"%</p><p class='p3'>日收益率</p>   </div>
                 </li>";
         }
-        if (lv < 7)
-            h = @"<li onclick='showbuy(7)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
-<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
-                   </li>";
-        if (lv < 6)
-            h = @"<li onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
-                   </li>" + h;
+//        if (lv < 7)
+//            h = @"<li onclick='showbuy(7)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
+//<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
+//                   </li>";
+//        if (lv < 6)
+//            h = @"<li onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
+//                   </li>" + h;
         if (lv < 5)
             h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
                     </li>" + h;
@@ -288,8 +288,8 @@ public partial class ReCast : BLL.TranslationBase
         {
             if (jd == 1) if (zhye < ttmoney)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
-                    return;
+                    //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('账户余额不足！');</script>", false);
+                    //return;
                 }//余额不足
                 else if (jd == 2 || jd == 3)
                 {

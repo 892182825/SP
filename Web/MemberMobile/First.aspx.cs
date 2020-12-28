@@ -54,11 +54,11 @@ public partial class Member_First : BLL.TranslationBase
             LoadMemberInfo();
 
 
-            string sql = "select COUNT(*) from memberorder where ordertype=23 and totalpv=1000 and DefrayType=1";
+            string sql = "select COUNT(*) from memberorder where ordertype=23 and totalpv=1000 and Defraystate=1";
             int countdls = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sql));
-            if(countdls<288)
+            if(countdls<250)
             {
-                ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('前300名1000U矿机还剩：" + (288- countdls) + "位！');</script>", false);
+                ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('前300名1000U矿机还剩：" + (250- countdls) + "位！');</script>", false);
             }
             
             //lblPay.Text = Common.GetnowPrice().ToString();

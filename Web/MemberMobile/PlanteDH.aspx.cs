@@ -62,6 +62,11 @@ public partial class PlanteDH : System.Web.UI.Page
         double actm =   CommandAPI.GetActMoney();
         double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
         double kg = 80 - coineblac;
+        if (kg < 0)
+        {
+
+            kg = 0;
+                }
         lblusdt.Text =actm.ToString("0.0000");
         lblcsb.Text=coineblac.ToString("0.0000")+"(可购买"+ kg .ToString("0.00")+ "枚)"; 
         lbldj.Text = dprice.ToString("0.0000") ;
