@@ -116,6 +116,38 @@ namespace DAL
         }
 
 
+        public static int AddAccount(string Coinname, string number, double money, D_AccountSftype sftype, D_AccountKmtype kmtype, DirectionEnum direction, string str )
+        {
+            int r = 0;
+            if (number != "" && money != 0)
+            {
+                string sql = "INSERT INTO [Account" + Coinname + "]([number],[happentime],[happenmoney],[Balancemoney],[Direction],[sftype],[kmtype],[remark])VALUES(@number,@happentime,@happenmoney,@Balancemoney,@Direction,@sftype,@kmtype,@remark)";
+                SqlParameter[] parm = new SqlParameter[] {
+                new SqlParameter("@number",SqlDbType.NVarChar,50),
+                new SqlParameter("@happentime",SqlDbType.DateTime),
+                new SqlParameter("@happenmoney",SqlDbType.Money),
+                new SqlParameter("@Balancemoney",SqlDbType.Money),
+                new SqlParameter("@Direction",SqlDbType.TinyInt),
+                new SqlParameter("@sftype",SqlDbType.TinyInt),
+                new SqlParameter("@kmtype",SqlDbType.TinyInt),
+                new SqlParameter("@remark",SqlDbType.NVarChar,500)};
+                double Residual = Convert.ToDouble(
+                    DBHelper.ExecuteScalar(  "select  point" + Coinname + "in-point" + Coinname + "out  as rr from memberinfo  where   number='" + number + "'", CommandType.Text));
+
+                parm[0].Value = number;
+                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[2].Value = money;
+                parm[3].Value = Residual;
+                parm[4].Value = (int)direction;
+                parm[5].Value = (int)sftype;
+                parm[6].Value = (int)kmtype;
+                parm[7].Value = str;
+
+                r = DBHelper.ExecuteNonQuery(  sql, parm, CommandType.Text);
+            }
+            return r;
+        }
+
 
         public static int GetDeliveryflag(string OrderId, SqlTransaction tran)
         {
