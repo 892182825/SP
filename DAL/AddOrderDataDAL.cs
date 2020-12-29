@@ -258,7 +258,7 @@ namespace DAL
         public Boolean AddOrderInfo(string number, string orderid, int maxexpt, int isagain, double ttmoney, double ttpv, int ordertype)
         {
             int cc = 0;
-            string sql = "INSERT INTO [MemberOrder]([Number],[OrderID], [TotalMoney],[TotalPv], [OrderExpectNum],[PayExpectNum],[IsAgain],[OrderDate], [ordertype] )   VALUES('"+ number + "', '"+  orderid + "', "+ttmoney+", "+ttpv+",   "+maxexpt+ ", " + maxexpt + ", "+isagain+", getdate(),  "+ordertype+" )  ";
+            string sql = "INSERT INTO [MemberOrder]([Number],[OrderID], [TotalMoney],[TotalPv], [OrderExpectNum],[PayExpectNum],[IsAgain],[OrderDate], [ordertype] )   VALUES('"+ number + "', '"+  orderid + "', "+ttmoney+", "+ttpv+",   "+maxexpt+ ", 0, "+isagain+", getdate(),  "+ordertype+" )  ";
              
 
             try
