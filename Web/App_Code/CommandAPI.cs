@@ -202,7 +202,7 @@ public class CommandAPI : BLL.TranslationBase
     /// 支付接口跳转到支付界面，ddje订单金额
     /// </summary>
     public static string GetFunction(string ddh
-        , string ddje,string url)
+        , string ddje,string url,string us)
     {  
         string openid =HttpContext.Current. Session["Member"].ToString();
         SqlDataReader sdr = DAL.DBHelper.ExecuteReader("select  Name,MobileTele from MemberInfo where Number='" + openid + "'");
@@ -226,7 +226,7 @@ public class CommandAPI : BLL.TranslationBase
             {"subject", "购买配套"},
             {"out_trade_no", ddh},
             {"total_amount", mony*100000000},
-            {"settle_currency", "USDT"},
+            {"settle_currency", us},
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
