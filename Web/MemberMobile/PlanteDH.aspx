@@ -69,14 +69,14 @@
 <body>
     <form id="form1" runat="server">
          <div id="shscid" class="showhid">
-            <div id="sbuyinfo1"  style=""> </div>
-             <div><asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" meta:resourcekey="RadioButtonList1Resource1" AutoPostBack="true">
+            <div id="sbuyinfo1"  class="rawz"> </div>
+             <div class="radb"><asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" meta:resourcekey="RadioButtonList1Resource1" >
                                 <asp:ListItem Selected="True" Value="USDT">USDT</asp:ListItem>
                                 <asp:ListItem  Value="USDTERC20">USDTERC20</asp:ListItem>
                                  <asp:ListItem  Value="TUSDT">TUSDT</asp:ListItem>
                                     
                                 </asp:RadioButtonList></div>
-            <div> 
+            <div class="radgm"> 
                 <input type="button" class="qr"  value="確定" onclick="hidediv1()" /> 
             </div>
         </div>
