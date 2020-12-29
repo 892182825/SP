@@ -43,7 +43,7 @@ public partial class Company_DeductSalary : BLL.TranslationBase
         TranControls(gvdeduct, new string[][]
                         {
                             new string[] { "000015","操作"},
-                            new string[] { "001195","编号"},
+                            new string[] { "0000","手机号"},
                             new string[] { "000107","姓名"},
                             new string[] { "000","扣补款火星币"},
                             new string[] { "000045","期数"},
@@ -64,7 +64,7 @@ public partial class Company_DeductSalary : BLL.TranslationBase
         TranControls(DropDownList2, new string[][]
                         {
                             new string[] { "001871","条件不限"},
-                            new string[] { "001195","编号"},
+                            new string[] { "000","手机号"},
                             new string[] { "000107","姓名"},
                         }
          );
@@ -109,9 +109,9 @@ public partial class Company_DeductSalary : BLL.TranslationBase
         {
             sql = sql + " and " + mark + " like '%" + search + "%' ";
         }
-        ViewState["sql"] = "select isAudit,MemberInfo.Number,MemberInfo.[Name],case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as typeE,Deduct.DeductMoney, Deduct.ExpectNum,KeyinDate,Deduct.OperateNum,Deduct.DeductReason from MemberInfo,Deduct where" + sql + " order by Deduct.id desc";
+        ViewState["sql"] = "select isAudit,MemberInfo.Number, MemberInfo.mobiletele,  MemberInfo.[Name],case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as typeE,Deduct.DeductMoney, Deduct.ExpectNum,KeyinDate,Deduct.OperateNum,Deduct.DeductReason from MemberInfo,Deduct where" + sql + " order by Deduct.id desc";
         Pager pager = Page.FindControl("Pager1") as Pager;
-        pager.PageBind(0, 10, "MemberInfo,Deduct", "isAudit,MemberInfo.Number,MemberInfo.Name,Deduct.ID,Deduct.DeductMoney,Deduct.DeductReason,Deduct.ExpectNum,case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as IsDeduct,KeyinDate,Deduct.OperateNum",
+        pager.PageBind(0, 10, "MemberInfo,Deduct", "isAudit,MemberInfo.Number,MemberInfo.mobiletele,MemberInfo.Name,Deduct.ID,Deduct.DeductMoney,Deduct.DeductReason,Deduct.ExpectNum,case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as IsDeduct,KeyinDate,Deduct.OperateNum",
             sql, "Deduct.id", "gvdeduct");
         Translations_More();
     }

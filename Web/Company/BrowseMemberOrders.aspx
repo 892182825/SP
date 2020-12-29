@@ -83,11 +83,11 @@
                     <%=this.GetTran("000719", "并且")%>
                     <asp:DropDownList ID="ddlContion" runat="server" Style="word-break: keep-all; word-wrap: normal;"
                         AutoPostBack="True" OnSelectedIndexChanged="ddlContion_SelectedIndexChanged">
-                        <asp:ListItem Value="A.Number" Selected="True">会员编号</asp:ListItem>
+                        <asp:ListItem Value="A.mobiletele" Selected="True">会员手机号</asp:ListItem>
                         <asp:ListItem Value="A.Name">会员姓名</asp:ListItem>
                         <asp:ListItem Value="B.OrderID">订单号</asp:ListItem>
                         <asp:ListItem Value="B.TotalMoney">金额</asp:ListItem>
-                        <asp:ListItem Value="B.InvestJB">石斛积分</asp:ListItem>
+                        
                     </asp:DropDownList>
                     <asp:DropDownList ID="ddlcompare" runat="server">
                     </asp:DropDownList>
@@ -157,7 +157,7 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="FTC" DataField="totalpv" ItemStyle-CssClass="lab1" DataFormatString="{0:n2}" HtmlEncode="False">
+                                <asp:BoundField HeaderText="业绩" DataField="totalpv" ItemStyle-CssClass="lab1" DataFormatString="{0:n2}" HtmlEncode="False">
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="确认">

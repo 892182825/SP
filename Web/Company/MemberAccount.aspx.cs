@@ -53,14 +53,14 @@ public partial class Company_MemberAccount : BLL.TranslationBase
     public void GetBind()
     {
         string table = "memberinfo a,memberinfobalance1 b";
-        string clounms = "a.number,name,Jackpot-Out as kyjb,fuxiaoin-fuxiaoout as fx,pointBIn-pointBOut as xf,pointAIn-pointAOut as tzjb,TotalRemittances-TotalDefray as xfjf,b.ARate as sfsd,zzye-xuhao as sczh";
+        string clounms = "a.mobiletele,name,pointAIn-pointAOut as ablc,pointbIn-pointbOut as bblc,pointcIn-pointcOut as cblc,pointdIn-pointdOut as dblc,pointeIn-pointeOut as eblc ";
         StringBuilder sb = new StringBuilder();
         sb.Append(" 1=1 and a.number=b.number ");
         
         string number = "";
         if (txtnumber.Text.Trim() != "")
         {
-            string sql = "select number from MemberInfo where MobileTele='" + txtnumber.Text + "'";
+            string sql = "select mobiletele from MemberInfo where MobileTele='" + txtnumber.Text + "'";
             DataTable shj = DBHelper.ExecuteDataTable(sql);
             if (shj.Rows.Count > 0)
             {
@@ -68,10 +68,10 @@ public partial class Company_MemberAccount : BLL.TranslationBase
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert(' 无此手机号，请检查后再重新输入 ！')</script>");
                 return;
             }
-            sb.Append("  and a.Number='" + number + "'");
+             sb.Append("  and a.MobileTele='" + number + "'");
         }
         if (txtname.Text.Trim() != "")
         {

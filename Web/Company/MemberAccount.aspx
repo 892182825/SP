@@ -18,14 +18,14 @@
                 <td>
                     <asp:Button ID="Button1" runat="server" Text="查询" CssClass="anyes" 
                         onclick="Button1_Click" />&nbsp;
-                    <%=GetTran("000024", "会员编号")%>：<asp:TextBox ID="txtnumber" runat="server"></asp:TextBox>&nbsp;
+                     手机号/邮箱 ：<asp:TextBox ID="txtnumber" runat="server"></asp:TextBox>&nbsp;
                     <%=GetTran("000025","会员姓名")%>：<asp:TextBox ID="txtname" runat="server"></asp:TextBox>&nbsp;
                     <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem Value="Jackpot-Out">可用FTC账户</asp:ListItem>
-                        <asp:ListItem Value="fuxiaoin-fuxiaoout">冻结FTC</asp:ListItem>
-                        <asp:ListItem Value="pointBIn-pointBOut">报单账户</asp:ListItem>
-                         <asp:ListItem Value="pointAIn-pointAOut">奖金账户（USDT）</asp:ListItem>
-                        <asp:ListItem Value="zzye-xuhao">奖金账户（USDT）</asp:ListItem>
+                        <asp:ListItem Value="pointAIn-pointAOut">(水星)A币账户</asp:ListItem>
+                        <asp:ListItem Value="pointbIn-pointbOut">(金星)B币账户</asp:ListItem>
+                        <asp:ListItem Value="pointcIn-pointcOut">(土星)C币账户</asp:ListItem>
+                         <asp:ListItem Value="pointdIn-pointdOut">(木星)D币账户</asp:ListItem>
+                        <asp:ListItem Value="pointeIn-pointeOut"> (火星)E币账户</asp:ListItem>
                         
                     </asp:DropDownList>
                     <asp:DropDownList ID="DropDownList2" runat="server">
@@ -47,15 +47,14 @@
                         Width="100%" onrowdatabound="GridView1_RowDataBound">
                         <RowStyle HorizontalAlign="Center" />
                         <Columns>
-                            <asp:BoundField DataField="number" HeaderText="会员编号" />
+                            <asp:BoundField DataField="mobiletele" HeaderText="会员手机号" />
                             <asp:BoundField DataField="name" HeaderText="会员姓名" />
-                            <asp:BoundField DataField="kyjb" HeaderText="可用FTC账户" DataFormatString="{0:f4}" />
-                            <asp:BoundField DataField="fx" HeaderText="冻结FTC" DataFormatString="{0:f4}" />
-                            <asp:BoundField DataField="xf" HeaderText="报单账户" DataFormatString="{0:f4}" />
-                             <asp:BoundField DataField="tzjb" HeaderText="奖金账户（USDT）" DataFormatString="{0:f4}" />
-                            <asp:BoundField DataField="xfjf" HeaderText="消费积分" DataFormatString="{0:f4}" />
-                            <asp:BoundField DataField="sczh" HeaderText="锁仓账户" DataFormatString="{0:f4}" />
-                            <asp:BoundField DataField="sfsd" HeaderText="释放速度" DataFormatString="{0:f4}" />
+                            <asp:BoundField DataField="ablc" HeaderText="(水星)A币账户" DataFormatString="{0:f4}" />
+                            <asp:BoundField DataField="bblc" HeaderText="(金星)B币账户" DataFormatString="{0:f4}" />
+                            <asp:BoundField DataField="cblc" HeaderText="(土星)C币账户" DataFormatString="{0:f4}" />
+                             <asp:BoundField DataField="dblc" HeaderText="(木星)D币账户" DataFormatString="{0:f4}" />
+                            <asp:BoundField DataField="eblc" HeaderText="(火星)E币账户" DataFormatString="{0:f4}" />
+                          
                         </Columns>
                     </asp:GridView>
                 </td>

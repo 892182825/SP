@@ -33,7 +33,7 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
             this.Datepicker1.Text = CommonDataBLL.GetDateBegin().ToString();
             this.Datepicker2.Text = CommonDataBLL.GetDateEnd().ToString();
             //Label1.Text = "期末余额总计：<font color='red'>" + D_AccountBLL.GetTotalBalancemoney(1) + "</font>";
-            GetShopList3();
+            Bindlist();
         }
 
         Translations();
@@ -42,19 +42,19 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
     {
         this.TranControls(this.RadioButtonList1,
                 new string[][]{
-                    new string []{"010005","消费账户明细"},
-                    new string []{"000000","可用FTC账户明细"},
-                      new string []{ "000000", "报单账户明细"},
-                      new string []{ "000000", "保险账户明细"},
-                      new string []{ "000000", "锁仓FTC账户明细"},
-                       new string []{ "000000", "USDT账户明细"},
+                    new string []{"010000","A币账户明细"},
+                    new string []{"000000","B币账户明细"},
+                      new string []{ "000000", "C币账户明细"},
+                      new string []{ "000000", "D币账户明细"},
+                      new string []{ "000000", "E币账户明细"},
+                      
                 });
         this.TranControls(this.GridView2,
                 new string[][]{
-                    new string []{"001195","编号"},
+                    new string []{"00","手机号"},
                     new string []{"006615","科目"},
                     new string []{"006581","发生时间"},
-                    new string []{"000000","转入FTC"},
+                    new string []{"000000","转入"},
                     new string []{"000000","转出FTC"},
                     new string []{"000000","结余FTC"},
                     new string []{"006585","类型"},
@@ -76,13 +76,13 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
     }
 
     //绑定会员现金账户明细
-    private void GetShopList3()
+    private void GetShopList3(string actable)
     {
         zsf.Text = "";
         DateTime time = DateTime.Now.ToUniversalTime();
         bool b = true;
         StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
+        string table = actable+"    a  left join  memberinfo b on a.number=b.number ";
         condition.Append("1=1");
         string number = "";
         if (TextBox1.Text.Trim() != "")
@@ -95,10 +95,10 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('无此手机号，请检查后再重新输入！')</script>");
                 return;
             }
-            condition.Append(" and Number='" + number + "'");
+            condition.Append(" and MobileTele='" + number + "'");
         }
         condition.Append(" and sftype=0");
         string BeginRiQi = "";
@@ -149,8 +149,8 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
         
         string happenmoney = "happenmoney";
         string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
+        string cloumns = "  a.id,b.mobiletele,a.happentime,a.Direction,a.sftype,a.kmtype,a.remark" + "," + happenmoney + "," + Balancemoney;
+        string key = "a.id";
         ViewState["key"] = key;
         ViewState["PageColumn"] = cloumns;
         ViewState["table"] = table;
@@ -165,462 +165,11 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
         this.Pager1.PageSize = 10;
         this.Pager1.PageCount = 0;
         this.Pager1.PageBind();
-        Translations();
+       /// Translations();
 
 
 
-    }
-    //绑定可用石斛积分账户明细
-    private void GetShopList4()
-    {
-        zsf.Text = "";
-        DateTime time = DateTime.Now.ToUniversalTime();
-        bool b = true;
-        StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
-        condition.Append("1=1");
-        string number = "";
-        if (TextBox1.Text.Trim() != "")
-        {
-            string sql = "select number from MemberInfo where MobileTele='" + TextBox1.Text + "'";
-            DataTable shj = DBHelper.ExecuteDataTable(sql);
-            if (shj.Rows.Count > 0)
-            {
-                number = shj.Rows[0][0].ToString();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
-                return;
-            }
-            condition.Append(" and Number='" + number + "'");
-        }
-        condition.Append(" and sftype=1");
-        string BeginRiQi = "";
-        string EndRiQi = "";
-        if (this.Datepicker1.Text != "")
-        {
-            b = DateTime.TryParse(this.Datepicker1.Text, out time);
-            if (!b)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                return;
-            }
-            BeginRiQi = this.Datepicker1.Text.Trim().ToString();
-            DisposeString.DisString(BeginRiQi, "'", "");
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                DisposeString.DisString(EndRiQi, "'", "");
-
-                condition.Append(" and happentime>= '" + BeginRiQi + "' and happentime<='" + EndRiQi + "'");
-            }
-            else
-            {
-                condition.Append(" and happentime>= '" + BeginRiQi + "'");
-            }
-        }
-        else
-        {
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text.Trim()).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                condition.Append(" and happentime<='" + EndRiQi + "'");
-            }
-        }
-        condition.Append(" and Number!='8888888888'");
-        string happenmoney = "happenmoney";
-        string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
-        ViewState["key"] = key;
-        ViewState["PageColumn"] = cloumns;
-        ViewState["table"] = table;
-        ViewState["condition"] = condition.ToString();
-        this.GridView2.DataSourceID = null;
-        this.Pager1.ControlName = "GridView2";
-        this.Pager1.key = key;
-        this.Pager1.PageColumn = cloumns;
-        this.Pager1.Pageindex = 0;
-        this.Pager1.PageTable = table;
-        this.Pager1.Condition = condition.ToString();
-        this.Pager1.PageSize = 10;
-        this.Pager1.PageCount = 0;
-        this.Pager1.PageBind();
-        Translations();
-    }
-
-    //绑定投资石斛积分账户明细
-    private void GetShopList5()
-    {
-        DateTime time = DateTime.Now.ToUniversalTime();
-        bool b = true;
-        StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
-        condition.Append("1=1");
-        string number = "";
-        if (TextBox1.Text.Trim() != "")
-        {
-            string sql = "select number from MemberInfo where MobileTele='" + TextBox1.Text + "'";
-            DataTable shj = DBHelper.ExecuteDataTable(sql);
-            if (shj.Rows.Count > 0)
-            {
-                number = shj.Rows[0][0].ToString();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
-                return;
-            }
-            condition.Append(" and Number='" + number + "'");
-        }
-        condition.Append(" and sftype=6");
-        string BeginRiQi = "";
-        string EndRiQi = "";
-        if (this.Datepicker1.Text != "")
-        {
-            b = DateTime.TryParse(this.Datepicker1.Text, out time);
-            if (!b)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                return;
-            }
-            BeginRiQi = this.Datepicker1.Text.Trim().ToString();
-            DisposeString.DisString(BeginRiQi, "'", "");
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                DisposeString.DisString(EndRiQi, "'", "");
-
-                condition.Append(" and happentime>= '" + BeginRiQi + "' and happentime<='" + EndRiQi + "'");
-            }
-            else
-            {
-                condition.Append(" and happentime>= '" + BeginRiQi + "'");
-            }
-        }
-        else
-        {
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text.Trim()).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                condition.Append(" and happentime<='" + EndRiQi + "'");
-            }
-        }
-       
-        string happenmoney = "happenmoney";
-        string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
-        ViewState["key"] = key;
-        ViewState["PageColumn"] = cloumns;
-        ViewState["table"] = table;
-        ViewState["condition"] = condition.ToString();
-        this.GridView2.DataSourceID = null;
-        this.Pager1.ControlName = "GridView2";
-        this.Pager1.key = key;
-        this.Pager1.PageColumn = cloumns;
-        this.Pager1.Pageindex = 0;
-        this.Pager1.PageTable = table;
-        this.Pager1.Condition = condition.ToString();
-        this.Pager1.PageSize = 10;
-        this.Pager1.PageCount = 0;
-        this.Pager1.PageBind();
-        Translations();
-    }
-
-    //绑定奖励石斛积分账户明细
-    private void GetShopList6()
-    {
-        DateTime time = DateTime.Now.ToUniversalTime();
-        bool b = true;
-        StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
-        condition.Append("1=1");
-        string number = "";
-        if (TextBox1.Text.Trim() != "")
-        {
-            string sql = "select number from MemberInfo where MobileTele='" + TextBox1.Text + "'";
-            DataTable shj = DBHelper.ExecuteDataTable(sql);
-            if (shj.Rows.Count > 0)
-            {
-                number = shj.Rows[0][0].ToString();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
-                return;
-            }
-            condition.Append(" and Number='" + number + "'");
-        }
-        condition.Append(" and sftype=5");
-        string BeginRiQi = "";
-        string EndRiQi = "";
-        if (this.Datepicker1.Text != "")
-        {
-            b = DateTime.TryParse(this.Datepicker1.Text, out time);
-            if (!b)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                return;
-            }
-            BeginRiQi = this.Datepicker1.Text.Trim().ToString();
-            DisposeString.DisString(BeginRiQi, "'", "");
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                DisposeString.DisString(EndRiQi, "'", "");
-
-                condition.Append(" and happentime>= '" + BeginRiQi + "' and happentime<='" + EndRiQi + "'");
-            }
-            else
-            {
-                condition.Append(" and happentime>= '" + BeginRiQi + "'");
-            }
-        }
-        else
-        {
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text.Trim()).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                condition.Append(" and happentime<='" + EndRiQi + "'");
-            }
-        }
-       
-        string happenmoney = "happenmoney";
-        string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
-        ViewState["key"] = key;
-        ViewState["PageColumn"] = cloumns;
-        ViewState["table"] = table;
-        ViewState["condition"] = condition.ToString();
-        this.GridView2.DataSourceID = null;
-        this.Pager1.ControlName = "GridView2";
-        this.Pager1.key = key;
-        this.Pager1.PageColumn = cloumns;
-        this.Pager1.Pageindex = 0;
-        this.Pager1.PageTable = table;
-        this.Pager1.Condition = condition.ToString();
-        this.Pager1.PageSize = 10;
-        this.Pager1.PageCount = 0;
-        this.Pager1.PageBind();
-        Translations();
-    }
-    private void GetShopList7()
-    {
-        DateTime time = DateTime.Now.ToUniversalTime();
-        bool b = true;
-        StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
-        condition.Append("1=1");
-        string number = "";
-        if (TextBox1.Text.Trim() != "")
-        {
-            string sql = "select number from MemberInfo where MobileTele='" + TextBox1.Text + "'";
-            DataTable shj = DBHelper.ExecuteDataTable(sql);
-            if (shj.Rows.Count > 0)
-            {
-                number = shj.Rows[0][0].ToString();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
-                return;
-            }
-            condition.Append(" and Number='" + number + "'");
-        }
-        condition.Append(" and sftype=2");
-        string BeginRiQi = "";
-        string EndRiQi = "";
-        if (this.Datepicker1.Text != "")
-        {
-            b = DateTime.TryParse(this.Datepicker1.Text, out time);
-            if (!b)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                return;
-            }
-            BeginRiQi = this.Datepicker1.Text.Trim().ToString();
-            DisposeString.DisString(BeginRiQi, "'", "");
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                DisposeString.DisString(EndRiQi, "'", "");
-
-                condition.Append(" and happentime>= '" + BeginRiQi + "' and happentime<='" + EndRiQi + "'");
-            }
-            else
-            {
-                condition.Append(" and happentime>= '" + BeginRiQi + "'");
-            }
-        }
-        else
-        {
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text.Trim()).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                condition.Append(" and happentime<='" + EndRiQi + "'");
-            }
-        }
-       
-        string happenmoney = "happenmoney";
-        string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
-        ViewState["key"] = key;
-        ViewState["PageColumn"] = cloumns;
-        ViewState["table"] = table;
-        ViewState["condition"] = condition.ToString();
-        this.GridView2.DataSourceID = null;
-        this.Pager1.ControlName = "GridView2";
-        this.Pager1.key = key;
-        this.Pager1.PageColumn = cloumns;
-        this.Pager1.Pageindex = 0;
-        this.Pager1.PageTable = table;
-        this.Pager1.Condition = condition.ToString();
-        this.Pager1.PageSize = 10;
-        this.Pager1.PageCount = 0;
-        this.Pager1.PageBind();
-        Translations();
-    }
-    private void GetShopList8()
-    {
-        DateTime time = DateTime.Now.ToUniversalTime();
-        bool b = true;
-        StringBuilder condition = new StringBuilder();
-        string table = " MemberAccount ";
-        condition.Append("1=1");
-        string number = "";
-        if (TextBox1.Text.Trim() != "")
-        {
-            string sql = "select number from MemberInfo where MobileTele='" + TextBox1.Text + "'";
-            DataTable shj = DBHelper.ExecuteDataTable(sql);
-            if (shj.Rows.Count > 0)
-            {
-                number = shj.Rows[0][0].ToString();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('" + GetTran("002096", "无此编号，请检查后再重新输入") + "！')</script>");
-                return;
-            }
-            condition.Append(" and Number='" + number + "'");
-        }
-        condition.Append(" and sftype=8");
-        string BeginRiQi = "";
-        string EndRiQi = "";
-        if (this.Datepicker1.Text != "")
-        {
-            b = DateTime.TryParse(this.Datepicker1.Text, out time);
-            if (!b)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                return;
-            }
-            BeginRiQi = this.Datepicker1.Text.Trim().ToString();
-            DisposeString.DisString(BeginRiQi, "'", "");
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                DisposeString.DisString(EndRiQi, "'", "");
-
-                condition.Append(" and happentime>= '" + BeginRiQi + "' and happentime<='" + EndRiQi + "'");
-            }
-            else
-            {
-                condition.Append(" and happentime>= '" + BeginRiQi + "'");
-            }
-        }
-        else
-        {
-            if (this.Datepicker2.Text != "")
-            {
-                b = DateTime.TryParse(this.Datepicker2.Text, out time);
-                if (!b)
-                {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("000827", "时间格式不正确！") + "')</script>");
-                    return;
-                }
-                EndRiQi = (DateTime.Parse(this.Datepicker2.Text.Trim()).AddHours(23).AddMinutes(59).AddSeconds(59)).ToString();
-                condition.Append(" and happentime<='" + EndRiQi + "'");
-            }
-        }
-
-        string happenmoney = "happenmoney";
-        string Balancemoney = "Balancemoney";
-        string cloumns = "id,number,happentime,Direction,sftype,kmtype,remark" + "," + happenmoney + "," + Balancemoney;
-        string key = "id";
-        ViewState["key"] = key;
-        ViewState["PageColumn"] = cloumns;
-        ViewState["table"] = table;
-        ViewState["condition"] = condition.ToString();
-        this.GridView2.DataSourceID = null;
-        this.Pager1.ControlName = "GridView2";
-        this.Pager1.key = key;
-        this.Pager1.PageColumn = cloumns;
-        this.Pager1.Pageindex = 0;
-        this.Pager1.PageTable = table;
-        this.Pager1.Condition = condition.ToString();
-        this.Pager1.PageSize = 10;
-        this.Pager1.PageCount = 0;
-        this.Pager1.PageBind();
-        Translations();
-    }
+    } 
     protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -640,67 +189,41 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
 
     protected void BtnConfirm_Click(object sender, EventArgs e)
     {
-        if (this.RadioButtonList1.SelectedValue == "0")
-        {
-            //消费账户明细
-            GetShopList3();
-        }
-        if (this.RadioButtonList1.SelectedValue == "1")
-        {//可用石斛积分账户明细
-            GetShopList4();
-        }
+        Bindlist();
 
-        if (this.RadioButtonList1.SelectedValue == "6")
-        {//投资石斛积分账户明细
-            GetShopList5();
-        }
-        if (this.RadioButtonList1.SelectedValue == "5")
-        {
-            //奖励石斛积分账户明细
-            GetShopList6();
-        }
-        if (this.RadioButtonList1.SelectedValue == "2")
-        {
-            //奖励石斛积分账户明细
-            GetShopList7();
-        }
-        if (this.RadioButtonList1.SelectedValue == "8")
-        {
-            //奖励石斛积分账户明细
-            GetShopList8();
-        }
+
     }
+
+    private void Bindlist() {
+        string ck = this.RadioButtonList1.SelectedValue;
+        string tbname = "AccountA";
+        switch (ck)
+        {
+            case "0":
+                tbname = "AccountA";
+                break;
+            case "1":
+                tbname = "AccountB";
+                break;
+            case "2":
+                tbname = "AccountC";
+                break;
+            case "3":
+                tbname = "AccountD";
+                break;
+            case "4":
+                tbname = "AccountE";
+                break;
+
+        }
+        if (tbname != "")
+            GetShopList3(tbname);
+
+    }
+
     protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (this.RadioButtonList1.SelectedValue == "0")
-        {
-            //消费账户明细
-            GetShopList3();
-        }
-        if (this.RadioButtonList1.SelectedValue == "1")
-        {//可用石斛积分账户明细
-            GetShopList4();
-        }
-
-        if (this.RadioButtonList1.SelectedValue == "6")
-        {//投资石斛积分账户明细
-            GetShopList5();
-        }
-        if (this.RadioButtonList1.SelectedValue == "5")
-        {
-            //奖励石斛积分账户明细
-            GetShopList6();
-        }
-        if (this.RadioButtonList1.SelectedValue == "2")
-        {
-            //奖励石斛积分账户明细
-            GetShopList7();
-        }
-        if (this.RadioButtonList1.SelectedValue == "8")
-        {
-            //奖励石斛积分账户明细
-            GetShopList8();
-        }
+        Bindlist();
 
     }
     /// <summary>

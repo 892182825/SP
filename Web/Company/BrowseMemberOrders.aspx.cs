@@ -666,19 +666,7 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
          new string[] { "000521", "未支付" }});
 
         btnSearch.Text = GetTran("000048", "查 询");
-        this.TranControls(this.ddlContion, new string[][] 
-        {  
-         new string[] { "000024", "会员编号" },
-         new string[] { "000025", "会员姓名" },
-         //new string[] { "000027", "安置编号" },
-         //new string[] { "000083", "证件号码" },
-         //new string[] { "000087", "开户银行" },
-         //new string[] { "000088", "银行帐号" },
-         new string[] { "000079", "订单号" },
-         new string[] { "000322", "金额" },
-         new string[] { "010001", "石斛积分" },
-        });
-
+        
         this.TranControls(this.gv_browOrder, new string[][] 
         { 
          //new string[] { "000742", "错误信息" }, 
@@ -695,7 +683,7 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
          new string[] { "000079", "订单号" },
           new string[] { "000455", "报单类型 " },
          new string[] { "000322", "金额" },
-        new string[] { "000000", "USDT" },
+        new string[] { "000000", "业绩" },
          new string[] { "000064", "确认" } ,
          
          new string[] { "005942", "注册日期" },

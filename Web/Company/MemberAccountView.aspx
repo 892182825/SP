@@ -31,7 +31,7 @@
                         <td align="left" style="white-space: nowrap;">
                             <asp:Button ID="btnsearch" runat="server" Text="查 询" OnClick="BtnConfirm_Click" CssClass="anyes">
                             </asp:Button>
-                            &nbsp;<%=GetTran("000024", "会员编号")%>：<asp:TextBox ID="Number" runat="server" Width="80px"
+                            &nbsp;<%=GetTran("0000 ", "会员手机号")%>：<asp:TextBox ID="Number" runat="server" Width="80px"
                                 MaxLength="10"></asp:TextBox>
                             &nbsp;<%=GetTran("000025", "会员姓名")%>：<asp:TextBox ID="Name" runat="server" Width="80px"
                                 MaxLength="50"></asp:TextBox>
@@ -59,7 +59,7 @@
                                 <HeaderStyle CssClass="tablebt" />
                                 <RowStyle HorizontalAlign="Center" />
                                 <Columns>
-                                    <asp:BoundField DataField="Number" HeaderText="会员编号"></asp:BoundField>
+                                    <asp:BoundField DataField="Number" HeaderText="会员手机号"></asp:BoundField>
                                     <asp:TemplateField HeaderText="会员姓名">
                                         <ItemTemplate>
                                             <asp:Label ID="lblname" runat="server" Text='<%# Bind("Name") %>'></asp:Label>

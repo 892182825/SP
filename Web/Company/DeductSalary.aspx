@@ -89,7 +89,7 @@
                         <td>
                             <asp:DropDownList ID="DropDownList2" runat="server" Width="84px">
                                 <asp:ListItem Value="条件不限">条件不限</asp:ListItem>
-                                <asp:ListItem Value="MemberInfo.Number">编号</asp:ListItem>
+                                <asp:ListItem Value="MemberInfo.mobiletele">手机号</asp:ListItem>
                                 <asp:ListItem Value="MemberInfo.Name">姓名</asp:ListItem>
                             </asp:DropDownList>
                         </td>
@@ -125,7 +125,7 @@
                                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("IsAudit") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField HeaderText="编号" DataField="Number" SortExpression="Number" />
+                                    <asp:BoundField HeaderText="手机号" DataField="mobiletele" SortExpression="mobiletele" />
                                     <asp:TemplateField>
                                         <HeaderTemplate>
                                             姓名</HeaderTemplate>

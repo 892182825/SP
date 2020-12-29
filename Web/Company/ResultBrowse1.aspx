@@ -49,12 +49,12 @@
                 <td>
                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged"
                         RepeatDirection="Horizontal">
-                        <asp:ListItem Value="0" Selected="True">消费账户明细</asp:ListItem>
-                        <asp:ListItem Value="1">可用FTC账户明细</asp:ListItem>
-                          <asp:ListItem Value="6">报单账户明细</asp:ListItem>
-                        <asp:ListItem Value="8">保险账户明细</asp:ListItem>
-                        <asp:ListItem Value="2">锁仓FTC账户明细</asp:ListItem>
-                         <asp:ListItem Value="5">USDT账户明细</asp:ListItem>
+                        <asp:ListItem Value="0" Selected="True">A币账户明细</asp:ListItem>
+                        <asp:ListItem Value="1">B币账户明细</asp:ListItem>
+                          <asp:ListItem Value="2">C币账户明细</asp:ListItem>
+                        <asp:ListItem Value="3">D币账户明细</asp:ListItem>
+                        <asp:ListItem Value="4">E币账户明细</asp:ListItem>
+                        
                         
                     </asp:RadioButtonList>
                 </td>
@@ -82,7 +82,7 @@
                         Width="85px"></asp:TextBox>
                 </td>
                 <td>
-                    &nbsp;<%=GetTran("007866", "并且编号为")%>：<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    &nbsp;手机号/邮箱：<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                 </td>
                 <td><asp:Label ID="zsf" Runat="server" ></asp:Label></td>
             </tr>
@@ -97,7 +97,7 @@
                         <HeaderStyle CssClass="tablebt" />
                         <RowStyle HorizontalAlign="Center" />
                         <Columns>
-                            <asp:BoundField DataField="number" HeaderText="编号" />
+                            <asp:BoundField DataField="mobiletele" HeaderText="手机号" />
                             <asp:TemplateField HeaderText="科目">
                                 <ItemTemplate>
                                     <%#BLL.Logistics.D_AccountBLL.GetKmtype(Eval("kmtype").ToString()) %>
@@ -112,17 +112,17 @@
                                 </EditItemTemplate>
                                 <ItemStyle Wrap="False" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="转入FTC">
+                            <asp:TemplateField HeaderText="转入">
                                 <ItemTemplate>
                                     <%#Eval("Direction").ToString() == "0" ?double.Parse(Eval("happenmoney").ToString()).ToString("0.00") : ""%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="转出FTC">
+                            <asp:TemplateField HeaderText="转出">
                                 <ItemTemplate>
                                     <%#Eval("Direction").ToString()=="1"? Math.Abs(double.Parse(Eval("happenmoney").ToString())).ToString("0.00"):"" %>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Balancemoney" HeaderText="结余FTC" DataFormatString="{0:f2}"
+                            <asp:BoundField DataField="Balancemoney" HeaderText="结余" DataFormatString="{0:f2}"
                                 ItemStyle-HorizontalAlign="Right">
                                 <ItemStyle HorizontalAlign="Right"></ItemStyle>
                             </asp:BoundField>
