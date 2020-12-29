@@ -133,9 +133,9 @@ public partial class OrderList : BLL.TranslationBase
             ttm = Convert.ToDouble(dr["TotalMoney"]);
             neede = ((ttm * 0.05) / eprice);
 
-
+             
             ///
-           int ree=  MemberOrderDAL.payOrderEcoin(number,orderid,neede,"会员激活矿机支付E币"+neede.ToString("0.0000"));
+            int ree = 0;//等需要在更新 MemberOrderDAL.payOrderEcoin(number,orderid,neede,"会员激活矿机支付E币"+neede.ToString("0.0000"));
 
             if (ree == -1) {
                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('余额不足！');</script>", false);
