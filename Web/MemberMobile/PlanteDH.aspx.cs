@@ -131,7 +131,7 @@ public partial class PlanteDH : System.Web.UI.Page
         //請求執行支付
         if (rr == 1)
         {
-            string postf = CommandAPI.GetFunction(dhorderid, cuususdt.ToString("0.0000"), "plantedh.aspx");
+            string postf = CommandAPI.GetFunction(dhorderid, cuususdt.ToString("0.0000"), "plantedh.aspx", RadioButtonList1.SelectedValue);
             ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
             return;
         }

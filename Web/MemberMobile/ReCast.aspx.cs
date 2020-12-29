@@ -104,7 +104,7 @@ public partial class ReCast : BLL.TranslationBase
         if (lv < 5)
             h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
                     </li>" + h;
-        if (lv > 4)
+        if (lv < 4)
             h = @" <li onclick='showbuy(4)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X4' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X4</p> <p  class='p2'> " + x4p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x4cn + @"%</p><p class='p3'>日收益率</p>   </div>
                   </li>" + h;
         if (lv < 3)
@@ -346,7 +346,7 @@ public partial class ReCast : BLL.TranslationBase
         {
             if (jd==1 && chosenum > 1)//说明是第一阶段的所有购买都 必须使用USDT买 
             {
-                string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString(),"recast.aspx");
+                string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString(),"recast.aspx", RadioButtonList1.SelectedValue);
                 ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
                 return;
             }
