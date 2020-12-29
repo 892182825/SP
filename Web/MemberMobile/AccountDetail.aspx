@@ -182,7 +182,7 @@
         <div class="blance">
             <p> &nbsp;</p>
              <p id="blac" > </p>
-            <div>餘額</div>
+            <div>余额</div>
         </div>
 
         <div class="zhlist" >

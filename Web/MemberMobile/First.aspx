@@ -14,8 +14,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="../bower_components/jquery/jquery.min.js"></script>
-    <style>
+    <script type="text/javascript" src="../bower_components/jquery/jquery.min.js"></script>
+    <style type="text/css">
         .dv1 {width:80%;height:160px;margin-top:10px;position: absolute;    border-top: 2px transparent solid;
     border-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
     background-color: #1A202E;
@@ -51,13 +51,10 @@
         }
     </style>
 
-    <script type="text/javascript" language="javascript">
     
-     
-    </script>
 
 </head>
-<body style="height: 100%">
+<body style="height:100%">
     <form id="form2" runat="server">
         <div class="signin">
             <div class="gai">
@@ -213,7 +210,7 @@
                         </div>
                         <div class='dsc2'>
                             <p class='p1'>&nbsp;</p>
-                            <p class='p2'>$0.1</p>
+                            <asp:Label ID="Label8" Style="color: #797979; font-size: 12px" runat="server" Text="0.10"></asp:Label>
                         </div>
                     </li>
                     <li>
@@ -277,7 +274,7 @@
 
 
 
-        <script>
+        <script type="text/javascript">
             (function (select) {
                 //小左边滑动
                 var startX, moveX, movebox = document.querySelector(select);
@@ -332,7 +329,7 @@
         </script>
 
 
-        <script>
+        <script type="text/javascript">
         function alert(data, id) {
             
                 var x = document.getElementById("p");

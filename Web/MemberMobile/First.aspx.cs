@@ -54,11 +54,11 @@ public partial class Member_First : BLL.TranslationBase
             LoadMemberInfo();
 
 
-            string sql = "select COUNT(*) from memberorder where ordertype=23 and totalpv=1000 and DefrayType=1";
+            string sql = "select COUNT(*) from memberorder where ordertype=23 and totalpv=1000 and Defraystate=1";
             int countdls = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sql));
-            if(countdls<288)
+            if(countdls<233)
             {
-                ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('前300名1000U矿机还剩：" + (288- countdls) + "位！');</script>", false);
+                ClientScript.RegisterStartupScript(GetType(), "msg", "<script>alert('前300名1000U矿机还剩：" + (233 - countdls) + "位！');</script>", false);
             }
             
             //lblPay.Text = Common.GetnowPrice().ToString();
@@ -106,19 +106,16 @@ public partial class Member_First : BLL.TranslationBase
 
         DataTable dtmb = DAL.DBHelper.ExecuteDataTable("select ARate,pointAin,pointAout,fuxiaoin,isnull(jackpot,0)-isnull([out],0)-isnull([membership],0) as xjye,isnull( fuxiaoin-fuxiaoout,0) as djye, isnull( pointAin-pointAout,0) as pointA ,isnull(pointBIn-pointBOut,0) as pointB,isnull(pointCIn-pointCOut,0) as pointC,isnull(pointDIn-pointDOut,0) as pointD,isnull(pointEIn-pointEOut,0) as pointE ,Name,levelint,DefaultNumber,MobileTele,isnull(zzye-xuhao,0) as zzye  from MemberInfo where Number='" + number + "'");
         
-        double blv = AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()));
+       // double blv = AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString()));
         decimal mrsf=0m;
         if (dtmb!=null && dtmb.Rows.Count>0)
         { DataRow dr = dtmb.Rows[0];
-            if (blv == 0)
-            {
+            
                 //lblPay.Text = "0.00";
                 //lblFx.Text = "0.00";
                 //lblFxth.Text = "0.00";
-                lblBonse.Text = "0.00";
-            }
-            else
-            {
+                
+           
                 decimal djye = Convert.ToDecimal(dr["djye"]); 
                 decimal xjye = Convert.ToDecimal(dr["xjye"]);
            decimal  pointA = Convert.ToDecimal(dr["pointA"]);
@@ -139,6 +136,7 @@ public partial class Member_First : BLL.TranslationBase
                 lblPointD.Text = pointD.ToString("0.0000"); 
                 lblPointE.Text = pointE.ToString("0.0000");
                 Label3.Text = (pointA * cudayprice).ToString("0.0000");
+            Label8.Text = (cudayprice).ToString("0.0000");
                 int lv = Convert.ToInt16(dr["levelint"].ToString());
                 if (lv == 1)
                 { Label1.Text = "20U矿机"; }
@@ -159,8 +157,8 @@ public partial class Member_First : BLL.TranslationBase
 
                     Label1.Text = "无";
                 }
+            lblBonse.Text = (xjye + pointA* cudayprice+ pointE).ToString("0.0000");
 
-            }
         }
        
 
