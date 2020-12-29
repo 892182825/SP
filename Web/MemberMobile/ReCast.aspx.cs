@@ -344,7 +344,7 @@ public partial class ReCast : BLL.TranslationBase
         Session["choselv"] = chosenum;//保存当前选中级别
         if (flag)  //插入订单成功 开始支付
         {
-            if (lv <= 1 && chosenum > 1)//说明是第一次买 必须使用USDT买 
+            if (jd==1 && chosenum > 1)//说明是第一阶段的所有购买都 必须使用USDT买 
             {
                 string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString(),"recast.aspx");
                 ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
