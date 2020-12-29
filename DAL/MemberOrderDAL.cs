@@ -319,7 +319,7 @@ namespace DAL
                 //修改订单状态
                 int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark+"'  where orderid='" + orderid+"' ");
 
-                double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar( tran,"select totalpv  from memberorder  where  number='"+number+ "'  and DefrayState=1  and ordertype in(23,24)    ",CommandType.Text));
+                double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar( tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number+ "'  and DefrayState=1  and ordertype in(23,24)    ",CommandType.Text));
                 lv = 1;
                 switch (ttpv)
                 {
@@ -348,7 +348,7 @@ namespace DAL
                 DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance"+maxexpt+" set  level =" + lv + "  where number='" + number + "' ");
                 if (r == 0) tran.Rollback();
 
-                double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv    from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
+                double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
                 if (cupv > 0)
                 {
                     //计算业绩

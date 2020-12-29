@@ -210,7 +210,7 @@
                         </div>
                         <div class='dsc2'>
                             <p class='p1'>&nbsp;</p>
-                            <p class='p2'>$0.1</p>
+                            <asp:Label ID="Label8" Style="color: #797979; font-size: 12px" runat="server" Text="0.10"></asp:Label>
                         </div>
                     </li>
                     <li>
