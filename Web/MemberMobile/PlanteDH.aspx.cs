@@ -113,12 +113,12 @@ public partial class PlanteDH : System.Web.UI.Page
             return;
         }
 
-        if (actm < cuususdt) //usdt數量超多賬戶
-        {
-            double zdkd = actm / dprice;
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('当前USDT账户最多可购"+ zdkd.ToString("0.0000") + "！');", true); txtneed.Text = zdkd.ToString("0.0000") ;
-            return;
-        }
+        //if (actm < cuususdt) //usdt數量超多賬戶
+        //{
+        //    double zdkd = actm / dprice;
+        //    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('当前USDT账户最多可购"+ zdkd.ToString("0.0000") + "！');", true); txtneed.Text = zdkd.ToString("0.0000") ;
+        //    return;
+        //}
 
     
         //記錄兌換表中兌換情況
