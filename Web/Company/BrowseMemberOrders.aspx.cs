@@ -284,7 +284,7 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
 
         #endregion
 
-        condition += "  and ordertype in(22,23) " ;
+        condition += "  and ordertype in(22,23,24,25) " ;
 
         string columns = "B.isSend,(C.Country+C.Province+C.City+C.Xian+B.ConAddress) as ConAddress,a.MobileTele as ConMobilPhone,B.SendWay,A.ID,A.Number,A.Mobiletele,b.OrderID,B.IsReceivables,B.StoreID as OStoreID,A.Name,B.totalMoney,B.totalPv,B.InvestJB,B.OrderExpectNum,case B.PayExpectNum when -1 then '0' when 0 then '1' else convert(varchar,B.PayExpectNum) end as PayExpectNum,B.OrderDate,A.Remark,b.Error as Error,B.ordertype,case when B.ordertype=0 then '0' when B.ordertype = 3 then '3' when  B.ordertype = 4 then '4' else '5' end as RegisterWay ,  defraytype,B.defraytype,B.DefrayState, case when B.DefrayState = 0 then '0'  when  B.DefrayState = 1 then '1' else '2' end as PayStatus ,B.isAgain ,case B.isAgain when 0 then '注册报单' when 1 then '复销报单'  end as againType,case defraystate when 1 then 1 else case paymentmoney when 0 then 0 else 1 end end as dpqueren,defraystate as gsqueren";
         string table = "[MemberInfo]as A,MemberOrder as B left join City C  on C.CPCCode=B.CCPCCode";
