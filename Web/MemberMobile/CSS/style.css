@@ -1799,8 +1799,7 @@ span .orderTHOK {
     }
 
     #sell .blue {
-        background-color: #517bcd;
-        border-color: #517bcd;
+        background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
         color: #fff;
     }
 
@@ -1823,7 +1822,7 @@ span .orderTHOK {
         height: 60px;
         line-height: 25px;
         padding: 5px;
-        background-color: #fff;
+       
     }
 
         .djye ul li div {

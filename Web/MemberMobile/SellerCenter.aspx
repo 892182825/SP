@@ -113,10 +113,12 @@
                 var count = parseFloat($("#" + ecountid).val());
                 var cansell = parseFloat($("#hidblance").val());
                 var sgprice = parseFloat($("#hidprice").val());
-                var changem = 100; 
+                var changem = 10 ; 
         var canbuy = 500; 
-                var cans = 500; 
+                var cans = 500;
+             
                 cansell = cansell * sgprice;
+               
                 if (subtype == 0) //减少
                 {
                     if (count > 0) {
@@ -126,7 +128,9 @@
                 }
                 else if (subtype == 1) //增加
                 {
-                    if (issell == 1) {
+
+                    if (issell == 1) { 
+
                         if (cansell > cans) cansell = cans;
                         if (cansell >= count + changem)
                             count += changem;
@@ -154,10 +158,7 @@
             }
 
             //提现选择卡号
-            function choseCard(ele, cardtp) {
-
-
-
+            function choseCard(ele, cardtp) {  
                 var cardinfo = AjaxClass.GetChoseCardInfo(cardtp).value;
                 if (cardinfo == "-1") {
                     alert("长时间未操作，请先去登录！");
@@ -221,10 +222,10 @@
         }
         var mcmin = '<%=mcmin%>';
         var mc = parseInt(mcmin)
-        if (sellcount < mc) {
+      <%--  if (sellcount < mc) {
             alert("最少要卖出<%=mcmin%>");
             return;
-        }
+        }--%>
         var mcmax = <%=mcmax%>;
         if(zuida>mcmax)
         {
@@ -232,20 +233,20 @@
             return;
         }
         sellcount = sellcount / sgprice;
-        if (pass == "") {
-            alert("请输入二级密码！");
-            return;
-        }
-        if (yzm == "") {
-            alert("请输入验证码！");
-            return;
-        }
+        //if (pass == "") {
+        //    alert("请输入二级密码！");
+        //    return;
+        //}
+        //if (yzm == "") {
+        //    alert("请输入验证码！");
+        //    return;
+        //}
         
         
-        if (ctype == "-1") {
-            alert("请选择收款账户类型");
-            return;
-        }
+        //if (ctype == "-1") {
+        //    alert("请选择收款账户类型");
+        //    return;
+        //}
         sellintal = setInterval(enablesell, 1000);
         $("#Button1").attr("class", "btn btn-defaultb btn-lg");
         $("#Button1").attr("onclick", "");
@@ -666,7 +667,7 @@
                         <div class="changeRt">
                             <span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span>
                             <asp:TextBox ID="buysz" ReadOnly="true" placeholder="买入金额" CssClass="form-control" runat="server" Text="0" Style="width: 120px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>&yen;
+                                MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>USDT
                         </div>
 
                         <%--<input type="button" id="sub"  name="sub" value="提 交" onclick="popDiv()" />--%>
@@ -716,7 +717,7 @@
                         <div class="changeRt">
                             <span style="" class="spmp" onclick="Fosub('sellsz','txtsellcount',0,1)">-</span>
                             <asp:TextBox ID="sellsz" ReadOnly="true" placeholder="卖出金额" CssClass="form-control" runat="server" Text="0" Style="width: 120px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span class="spmp " onclick="Fosub('sellsz','txtsellcount',1,1)">+</span>&yen;
+                                MaxLength="20"></asp:TextBox><span class="spmp " onclick="Fosub('sellsz','txtsellcount',1,1)">+</span>USDT
 
 
                         </div>
@@ -748,13 +749,13 @@
                         </div>
                     </li>
                     
-                    <li>
+                    <li  style="display:none;">
                         <div class="changeLt">收款账户：</div>
                         <div class="changeRt">
                             <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,0)" style="width: 33%;border: 1px solid #517bcd;">银行卡</a>
                             <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,1)" style="width: 33%;border: 1px solid #517bcd;">支付宝</a>
                             <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,2)" style="width: 30%;border: 1px solid #517bcd;">微信</a>
-                            <asp:HiddenField ID="hidcardtype" Value="-1" runat="server" />
+                            <asp:HiddenField ID="hidcardtype" Value="0" runat="server" />
                         </div>
                     </li>
                     <li>

@@ -6624,11 +6624,11 @@ public class AjaxClass : BLL.TranslationBase
             int ispay = Convert.ToInt32(item["DefrayState"]);
             if (ispay == 0)
             {
-                curstr += " <li><span class='glyphicon glyphicon-user greay'></span><div class='ctinfo'> " + GetsubString(item["Petname"].ToString(), 4) + "</div><div class='ctinfo2'> <p class='p1'>" + item["number"].ToString() + "</p><p>" + item["MobileTele"].ToString() + "</p></div><div class='ctinfo3'>&yen;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</div> <a   href='../payserver/chosepaysjpay.aspx?blif=" + EncryKey.GetEncryptstr(item["orderid"].ToString(), 1, 1) + "' class='btn  btn-danger '> 激活</a></li>";
+                curstr += " <li><span class='glyphicon glyphicon-user greay'></span><div class='ctinfo'> " + GetsubString(item["Petname"].ToString(), 4) + "</div><div class='ctinfo2'> <p class='p1'>" + item["number"].ToString() + "</p><p>" + item["MobileTele"].ToString() + "</p></div><div class='ctinfo3'>U;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</div> <a   href='../payserver/chosepaysjpay.aspx?blif=" + EncryKey.GetEncryptstr(item["orderid"].ToString(), 1, 1) + "' class='btn  btn-danger '> 激活</a></li>";
             }
             else if (ispay == 1)
             {
-                curstr += " <li><span class='glyphicon glyphicon-user blue'></span><div class='ctinfo'> " + GetsubString(item["Petname"].ToString(), 4) + "</div><div class='ctinfo2'> <p  class='p1'>" + item["number"].ToString() + "</p><p>" + item["MobileTele"].ToString() + "</p></div><div class='ctinfo3'>&yen;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</div> <a class='glyphicon glyphicon-ok-sign blue'   >正常</a></li>";
+                curstr += " <li><span class='glyphicon glyphicon-user blue'></span><div class='ctinfo'> " + GetsubString(item["Petname"].ToString(), 4) + "</div><div class='ctinfo2'> <p  class='p1'>" + item["number"].ToString() + "</p><p>" + item["MobileTele"].ToString() + "</p></div><div class='ctinfo3'>U;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</div> <a class='glyphicon glyphicon-ok-sign blue'   >正常</a></li>";
             }
         }
         return curstr;
@@ -6662,11 +6662,11 @@ public class AjaxClass : BLL.TranslationBase
             int ispay = Convert.ToInt32(item["DefrayState"]);
             if (ispay == 0)
             {
-                curstr += "<tr  onclick=\"location.href='../payserver/chosepaysjpay.aspx?blif=" + EncryKey.GetEncryptstr(item["OrderID"].ToString(), 1, 1) + "'\"><td>" + Convert.ToDateTime(item["OrderDate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td><span style=''>&yen;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</span></br><span style=''>" + Convert.ToDouble(item["Totalpv"]).ToString("0.00") + "</span></td><td><a class='glyphicon glyphicon-exclamation-sign' >未支付</a></td>";
+                curstr += "<tr  onclick=\"location.href='../payserver/chosepaysjpay.aspx?blif=" + EncryKey.GetEncryptstr(item["OrderID"].ToString(), 1, 1) + "'\"><td>" + Convert.ToDateTime(item["OrderDate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td><span style=''>U;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</span></br><span style=''>" + Convert.ToDouble(item["Totalpv"]).ToString("0.00") + "</span></td><td><a class='glyphicon glyphicon-exclamation-sign' >未支付</a></td>";
             }
             else if (ispay == 1)
             {
-                curstr += "<tr><td>" + Convert.ToDateTime(item["OrderDate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td><span style=''>&yen;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</span></br><span style=''>" + Convert.ToDouble(item["Totalpv"]).ToString("0.00") + "</span></td><td><a class='glyphicon glyphicon-ok' style='color: gray;'  >已支付</a></td>";
+                curstr += "<tr><td>" + Convert.ToDateTime(item["OrderDate"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("yy-MM-dd HH:mm:ss") + "</td><td><span style=''>U;" + Convert.ToDouble(item["TotalMoney"]).ToString("0.00") + "</span></br><span style=''>" + Convert.ToDouble(item["Totalpv"]).ToString("0.00") + "</span></td><td><a class='glyphicon glyphicon-ok' style='color: gray;'  >已支付</a></td>";
             }
         }
         return curstr;
@@ -7434,22 +7434,22 @@ public class AjaxClass : BLL.TranslationBase
         string smscode = "";
         if (DAL.MemberInfoDAL.CheckState(number)) { return "-2"; }
 
-        if (Session["smscode"] == null)
-        {
-            return "验证码不正确！";
-        }
-        else
-        {
-            smscode = Session["smscode"].ToString();
-        }
-        if (yzm == "" || yzm == null)
-        {
-            return "请输入验证码！";
-        }
-        if (smscode != yzm)
-        {
-            return "验证码不正确！";
-        }
+        //if (Session["smscode"] == null)
+        //{
+        //    return "验证码不正确！";
+        //}
+        //else
+        //{
+        //    smscode = Session["smscode"].ToString();
+        //}
+        //if (yzm == "" || yzm == null)
+        //{
+        //    return "请输入验证码！";
+        //}
+        //if (smscode != yzm)
+        //{
+        //    return "验证码不正确！";
+        //}
 
         string sqlss = "select COUNT(0)  from withdraw  where  number='" + number + "' and shenhestate in (0,1,11,20) and DateDiff(dd,WithdrawTime,getutcdate())=0";
         int bc = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sqlss));
@@ -7474,16 +7474,16 @@ public class AjaxClass : BLL.TranslationBase
             return "请输入卖出数量";
         }
 
-        string word = Encryption.Encryption.GetEncryptionPwd(password, number);
-        int blean = ECRemitDetailBLL.ValidatePwd(number, word);
-        if (blean == 1)
-        {
-            return "二级密码不正确";
-        }
-        else if (blean == 2)
-        {
-            return "对不起，您连续5次输入密码错，请2小时候在进行此操作";
-        }
+        //string word = Encryption.Encryption.GetEncryptionPwd(password, number);
+        //int blean = ECRemitDetailBLL.ValidatePwd(number, word);
+        //if (blean == 1)
+        //{
+        //    return "二级密码不正确";
+        //}
+        //else if (blean == 2)
+        //{
+        //    return "对不起，您连续5次输入密码错，请2小时候在进行此操作";
+        //}
 
         #endregion
 
@@ -7496,7 +7496,7 @@ public class AjaxClass : BLL.TranslationBase
         decimal wyjjb = wyjbl * sellcount; //违约金石斛积分数量
         decimal sxfjb = sxfbl * sellcount;  //手续费石斛积分数量
 
-        decimal xjye = Convert.ToDecimal(BLL.CommonClass.CommonDataBLL.GetLeftMoney(number)); //现金账户余额【单位：美元】
+        decimal xjye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointAin-pointAout  from memberinfo where number='"+number+"'")); //A币账户
 
         try
         {
@@ -7518,7 +7518,7 @@ public class AjaxClass : BLL.TranslationBase
             decimal leftMoney = Convert.ToDecimal(DBHelper.ExecuteScalar(strSql, para, CommandType.Text));
             xjye = xjye - leftMoney;
 
-            if (((sellcount + wyjjb + sxfjb)) > xjye)
+            if ( sellcount  > xjye)
             {
 
                 return "超出最大可卖数量";
@@ -7564,7 +7564,7 @@ public class AjaxClass : BLL.TranslationBase
         wDraw.WithdrawMoney = Convert.ToDouble(txMoney);
         wDraw.WithdrawTime = DateTime.UtcNow;
         wDraw.OperateIP = BLL.CommonClass.CommonDataBLL.OperateIP;
-        wDraw.Remark = "会员卖出石斛积分";
+        wDraw.Remark = "会员卖出A币";
 
         wDraw.Wyj = Convert.ToDouble(wyj);  //违约金
         wDraw.WithdrawSXF = Convert.ToDouble(sxf);//手续费
@@ -7576,36 +7576,36 @@ public class AjaxClass : BLL.TranslationBase
         wDraw.blmoney = Convert.ToDouble(sxfbl); //提现手续费比例
         wDraw.Wyjbl = Convert.ToDouble(wyjbl);//违约金比例 
 
-        string sqls = "select  Name ,isnull(BankBook,'') BankBook,isnull(BankCard,'') BankCard,isnull(mb.BankName,'') BankName,isnull(m.zhifubao ,'') zhifubao,isnull(m.weixin,'') weixin  from  memberinfo m left join MemberBank mb on m.BankCode=mb.BankCode   where number='" + number + "'";
-        DataTable dtt = DBHelper.ExecuteDataTable(sqls);
-        if (dtt != null && dtt.Rows.Count > 0)
-        {
-            string Name = dtt.Rows[0]["Name"].ToString();
-            string bankbook = dtt.Rows[0]["BankBook"].ToString();
-            string bankname = dtt.Rows[0]["BankName"].ToString();
-            string BankCard = dtt.Rows[0]["BankCard"].ToString();
-            string zhifubao = dtt.Rows[0]["zhifubao"].ToString();
-            string weixin = dtt.Rows[0]["weixin"].ToString();
+        //string sqls = "select  Name ,isnull(BankBook,'') BankBook,isnull(BankCard,'') BankCard,isnull(mb.BankName,'') BankName,isnull(m.zhifubao ,'') zhifubao,isnull(m.weixin,'') weixin  from  memberinfo m left join MemberBank mb on m.BankCode=mb.BankCode   where number='" + number + "'";
+        //DataTable dtt = DBHelper.ExecuteDataTable(sqls);
+        //if (dtt != null && dtt.Rows.Count > 0)
+        //{
+        //    string Name = dtt.Rows[0]["Name"].ToString();
+        //    string bankbook = dtt.Rows[0]["BankBook"].ToString();
+        //    string bankname = dtt.Rows[0]["BankName"].ToString();
+        //    string BankCard = dtt.Rows[0]["BankCard"].ToString();
+        //    string zhifubao = dtt.Rows[0]["zhifubao"].ToString();
+        //    string weixin = dtt.Rows[0]["weixin"].ToString();
 
-            if (ctype == 0)  //选择银行卡
-            {
-                wDraw.Bankcard = BankCard;
-                wDraw.Bankname = bankname;
-                wDraw.Khname = bankbook;
-            }
-            if (ctype == 1)  //选择支付宝
-            {
-                wDraw.Khname = Name;
-                wDraw.AliNo = zhifubao;
-            }
-            if (ctype == 2)  //选择微信号
-            {
-                wDraw.Khname = Name;
-                wDraw.WeiXNo = weixin;
-            }
+        //    if (ctype == 0)  //选择银行卡
+        //    {
+        //        wDraw.Bankcard = BankCard;
+        //        wDraw.Bankname = bankname;
+        //        wDraw.Khname = bankbook;
+        //    }
+        //    if (ctype == 1)  //选择支付宝
+        //    {
+        //        wDraw.Khname = Name;
+        //        wDraw.AliNo = zhifubao;
+        //    }
+        //    if (ctype == 2)  //选择微信号
+        //    {
+        //        wDraw.Khname = Name;
+        //        wDraw.WeiXNo = weixin;
+        //    }
 
 
-        }
+        //}
 
 
         bool isSure = false;
@@ -7615,7 +7615,7 @@ public class AjaxClass : BLL.TranslationBase
 
         if (isSure)
         {
-            AutoPipeiWithdraw(); //自动匹配
+            //AutoPipeiWithdraw(); //自动匹配
             return "0";
         }
         else return "-3";
@@ -7681,7 +7681,7 @@ public class AjaxClass : BLL.TranslationBase
                       <a href='Sellbuydetails.aspx?rmid=" + item["id"] + @"' style='color: #dd4814;' > 
                           <div class='firstdiv'><p>买入</p>
                         <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>   </div>
-                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>&yen;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
+                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>U" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
                         <div class='secdiv'>" + GetRemitStateStr(Convert.ToInt32(item["Ispipei"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"</div>
                           </a>
                         <div  class='fourdiv'>" + GetRemitStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"    </div>         </li>";
@@ -7694,7 +7694,7 @@ public class AjaxClass : BLL.TranslationBase
                              <div  class='firstdiv' ><p>卖出</p>
                         <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>
                                       </div>
-                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>&yen;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
+                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
                         <div class='secdiv'>" + GetDrawStateStr(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"])) + @"</div>
                             </a>
                         <div  class='fourdiv'>" + GetDrawStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"])) + "  </div>    </li>";
@@ -7746,7 +7746,7 @@ public class AjaxClass : BLL.TranslationBase
                             </div>
                             <div>
                                 <p>" + Convert.ToInt32(item["investJB"]).ToString() + @"</p>
-                                <p>&yen;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
+                                <p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
                             </div>
 
                             <div class='fourdiv'>
@@ -7772,7 +7772,7 @@ public class AjaxClass : BLL.TranslationBase
                             </div>
                             <div>
                                 <p>" + Convert.ToInt32(item["investJB"]).ToString() + @"</p>
-                                <p>&yen;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
+                                <p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
                             </div>
 
                             <div class='fourdiv'>

@@ -24,14 +24,14 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
     public string mcmin= "100";
     public string mcmax = "1000";
     public string mairu="100";
-    public string zuida="1000";
+    public string zuida="0";
     protected void Page_Load(object sender, EventArgs e)
     {
         Permissions.MemRedirect(Page, Permissions.redirUrl);
         //获取标准币种
         AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
         bzCurrency = CommonDataBLL.GetStandard();
-        huilv = (AjaxClass.GetCurrency(Convert.ToInt32(bzCurrency), Convert.ToInt32(Session["Default_Currency"].ToString())));
+        huilv = 0;
         //判断会员账户是否被冻结
         if (MemberInfoDAL.CheckState(Session["Member"].ToString())) { Page.ClientScript.RegisterStartupScript(GetType(), null, "<script language='javascript'>alert('您的账户被冻结，不能使用交易系统');window.location.href='First.aspx';</script>"); return; }       
 
@@ -58,18 +58,9 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
             }
             sdr.Close();
             sdr.Dispose();
-            SqlDataReader sdr1 = DAL.DBHelper.ExecuteReader("SELECT SUM(WithdrawMoney) as zuida FROM withdraw WHERE number='" + number + "' and shenhestate in (0,1,11,20) and DateDiff(dd,WithdrawTime,getutcdate())=0");
 
-            while (sdr1.Read())
-            {
-                zuida = sdr1["zuida"].ToString().Trim();
-                if (zuida == "")
-                {
-                    zuida = "0";
-                }
-            }
-            sdr1.Close();
-            sdr1.Dispose();
+            zuida = DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='"+number+"'").ToString();
+
             if (Session["Default_Currency"] == null) Session["Default_Currency"] = bzCurrency;
             LoadDataAAA();
             setStoreInfo();
@@ -100,13 +91,13 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
         lblzzlv.Text =( Common.GetSxfWyjblv(2)*100).ToString("0.00")+"%";
 
-        decimal blace = mb.Jackpot - mb.EctOut - mb.Memberships-mb.Zzye;
+        double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
         decimal sxfbl = Common.GetSxfWyjblv(0);
         decimal wyjbl = Common.GetSxfWyjblv(1);
         //decimal wyjjb = blace*wyjbl; //违约金石斛积分数量
         //decimal sxfjb =sxfbl*blace ;  //手续费石斛积分数量
 
-        hidblance.Value = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
+        hidblance.Value =  blace .ToString("0.0000");
       //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
         mairu = (300 / todayprice).ToString("0.0000");

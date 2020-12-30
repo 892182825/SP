@@ -336,9 +336,9 @@ public class Common
         decimal reb=0;
         DataTable de = DBHelper.ExecuteDataTable("select top 1 para12,para13,para14   from config order by ExpectNum desc");
         if(de!=null && de.Rows.Count>0){
-            if (type == 0) reb = Convert.ToDecimal(de.Rows[0]["para13"]);
-            if (type == 1) reb = Convert.ToDecimal(de.Rows[0]["para12"]);
-            if (type == 2) reb = Convert.ToDecimal(de.Rows[0]["para14"]);
+            if (type == 0) reb = 0;
+            if (type == 1) reb =0;
+            if (type == 2) reb =Convert.ToDecimal( 0.005);
 
         }
         return reb;
