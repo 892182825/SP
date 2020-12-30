@@ -89,7 +89,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
       
         lbltodayprice.Text = todayprice.ToString("0.0000");
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
-        lblzzlv.Text =( Common.GetSxfWyjblv(2)*100).ToString("0.00")+"%";
+        lblzzlv.Text = "+"+( Common.GetSxfWyjblv(2)*100).ToString("0.00");
 
         double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
         decimal sxfbl = Common.GetSxfWyjblv(0);
@@ -101,7 +101,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
       //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
         mairu = (300 / todayprice).ToString("0.0000");
-        MobileTele.Value = mb.MobileTele;
+        //MobileTele.Value = mb.MobileTele;
 
     }
 

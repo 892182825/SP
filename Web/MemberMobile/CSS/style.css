@@ -1676,18 +1676,18 @@ span .orderTHOK {
     line-height: 30px;
     width: 100%;
     position: absolute;
-    top: 50px;
+    top: 70px;
     font-size: 16px;
 }
 
 .middle .topscrll {
     position: absolute;
-    top: 82px;
+    top: 65px;
     height: 30px;
     line-height: 30px;
     width: 100%;
      
-    color: #fa0000;
+    color: #fff;
     font-size: 14px;
 }
 
@@ -1709,7 +1709,7 @@ span .orderTHOK {
 }
 
 .middle .scttjy .cur {
-    color: #dd4814;
+    color: #fff;
     font-weight: bold;
     border-bottom: 2px solid rgb(255, 106, 0);
 }
@@ -1717,11 +1717,11 @@ span .orderTHOK {
 .middle .content {
     display: none;
     padding: 0px;
-    width: 100%;
+    width: 92%;
     min-height: 500px;
     margin-bottom: 60px;
     font-size: 16px;
-    margin-top: 70px;
+    margin-left: 8%
 }
 
 .middle .buy ul li, .sell ul li {
@@ -1738,8 +1738,7 @@ span .orderTHOK {
     font-weight: bold;
     line-height: 30px;
     float: left;
-    margin-left: 3px;
-    margin-right: 3px;
+    border-radius: 5px;
 }
 
 .middle .content #cardinfo {
@@ -1766,13 +1765,32 @@ span .orderTHOK {
     float: left;
     line-height: 40px;
 }
-
+.jiaoyi {
+    width:60%;
+    float:left;
+}
+.gmlb {
+    width:35%;
+    float:right;
+}
+.busub {
+    color: #fff;
+    margin: auto;
+    width: 100%;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0E4A93), to(#5F0BC1));
+    background: -moz-linear-gradient(top, #0E4A93, #5F0BC1);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#0E4A93', endColorstr='#5F0BC1');
+}
 #buy input[type="text"] {
-    border-color: #dd4814;
+    border-color: #eee;
 }
 
 #buy {
-    color: #dd4814;
+    color: #666;
 }
 
     #buy .red {
@@ -1783,7 +1801,7 @@ span .orderTHOK {
     }
 
     #buy .spmp {
-        border: 1px solid #dd4814;
+        border: 1px solid #eee;
     }
 
 #sell input[type="text"] {
@@ -1791,11 +1809,11 @@ span .orderTHOK {
 }
 
 #sell {
-    color: #517bcd;
+    color: #c71c22;
 }
 
     #sell .spmp {
-        border: 1px solid #517bcd;
+        border: 1px solid #c71c22;
     }
 
     #sell .blue {

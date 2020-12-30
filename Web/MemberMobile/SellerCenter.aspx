@@ -619,13 +619,7 @@
 <body>
     <!--页面内容宽-->
     <form id="form1" runat="server" name="form1" method="post">
-        <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-inner">
-                <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="first.aspx"><i class="glyphicon glyphicon-chevron-left glyphicon-white"></i></a>
-
-                <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%); font-weight: 600;">交易中心</span>
-            </div>
-        </div>
+        
         <%--  <div class="moneyInfo3" style="left:0px;overflow:hidden;zoom:1;width:100%;background-color:#fff">
             <a href="OnlinePayment.aspx" class="moneyInfoSlt">买入</a>
            <a href="OnlinePayment.aspx" class="moneyInfoSlt">卖出</a>
@@ -633,58 +627,54 @@
             <a href="DetailDCS.aspx">已汇出</a>
             <a href="DetailYDZ.aspx">查询</a>
         </div>--%>
+        <div style="margin-left:8%;margin-top:40px;margin-bottom:40px;"><h4 style="color:#fff">Saturn/USDT</h4></div>
         <div class="middle">
-            <ul class="scttjy">
-                <li class="cur" atr="0">买入</li>
-                <li atr="1">卖出</li>
-                <li atr="2">待交易</li>
-                <li atr="3">查询</li>
-            </ul>
-            <div class="topscrll"  >
+             <div class="topscrll"  >
 
-                <span style="float: left;">今日最新价：<asp:Label ID="lbltodayprice" runat="server" Text="0.00"></asp:Label></span><span style="float: right; text-align: right;">增长率：<asp:Label ID="lblzzlv" runat="server" Text="0.00%"></asp:Label></span>
+               <asp:Label ID="lbltodayprice" style="float:right;text-align: right; font-size: 18px;" runat="server" Text="0.00"></asp:Label>
+                <br />
+                <asp:Label ID="lblzzlv" runat="server" style="float:right;text-align: right;margin-top: -16px; font-size: 12px;color:darkgray"  Text="+0.00"></asp:Label>
                 <asp:HiddenField ID="hidprice" Value="0" runat="server" />
             </div>
-
+            <ul class="scttjy">
+                <li atr="0">买入</li>
+                <li class="cur" atr="1">卖出</li>
+                
+            </ul>
+           
+            <div class="jiaoyi">
             <div class="content buy" id="buy">
                 <ul>
-
+                     <li style=" font-size: 12px;color:darkgray">设置价格</li>
                     <li> 
                         <div class="changeRt">
-                            <ul>
-                                <asp:HiddenField ID="hidBZ" Value="A" runat="server" />
-                                <li onclick="check(this)" it="A">A币</li>
-                                 <li onclick="check(this)"  it="B">B币</li>
-                                 <li onclick="check(this)"  it="C">C币</li>
-                                 <li onclick="check(this)"  it="D">D币</li>
-                            </ul>
-                             
+                            
+                            <asp:TextBox ID="mrjg" ReadOnly="true" placeholder="买入价格" CssClass="form-control" runat="server" Text="0" Style="width: 130px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                                MaxLength="20"></asp:TextBox><span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
+                            
                         </div>
                     </li>
-
+                    <li style=" font-size: 12px;color:darkgray">≈$<span id="Money">0.0000 </span></li>
                     <li>
                         
                         <div class="changeRt">
-                            <span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span>
-                            <asp:TextBox ID="buysz" ReadOnly="true" placeholder="买入金额" CssClass="form-control" runat="server" Text="0" Style="width: 120px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>USDT
+                            
+                            <asp:TextBox ID="buysz" placeholder="买入量" CssClass="form-control" runat="server" Text="0" Style="width: 100%;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                                MaxLength="20"></asp:TextBox>
                         </div>
 
                         <%--<input type="button" id="sub"  name="sub" value="提 交" onclick="popDiv()" />--%>
 
                         <input type="hidden" value="0" id="hid_fangzhi" runat="server" />
                     </li>
-                    <li> 
-                        <div class="changeRt">
-                            <span id="Money">0.0000 </span>
-
-                        </div>
+                    <li  style=" font-size: 12px;color:darkgray">                  
+                            可用：<asp:Label ID="qbye"  runat="server" Text="0.00"></asp:Label>
                     </li>
 
                     
 
                     <li>
-                        <input id="sub"  type="button" runat="server" value="买入" style="width: 100%; text-align: center;" class="btn btn-primary red btn-lg" onclick="return abc();" />
+                        <input id="sub"  type="button" runat="server" value="买入" class="busub" onclick="return abc();" />
 
                     </li>
 
@@ -693,84 +683,66 @@
             </div>
             <div class="content sell" id="sell">
                 <ul>
-
+                    <li style=" font-size: 12px;color:darkgray">设置价格</li>
                     <li>
                         
-                        <div class="changeRt"><ul>
-                           <asp:HiddenField ID="hidsellBZ" Value="A" runat="server" />
-                                <li onclick="check2(this)" it="A">A币</li>
-                                 <li onclick="check2(this)"  it="B">B币</li>
-                                 <li onclick="check2(this)"  it="C">C币</li>
-                                 <li onclick="check2(this)"  it="D">D币</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li style="display:none;">
-                        <div class="changeLt">可卖数量：</div>
                         <div class="changeRt">
-                           <p></p>
+                          <asp:TextBox ID="mcjg" ReadOnly="true" placeholder="卖出价格" CssClass="form-control" runat="server" Text="0" Style="width: 130px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                                MaxLength="20"></asp:TextBox><span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
                         </div>
                     </li>
+                     <li style=" font-size: 12px;color:darkgray">≈$<span id="txtsellcount">0.0000 </span></li>
 
                     <li>
                        
                         <div class="changeRt">
-                            <span style="" class="spmp" onclick="Fosub('sellsz','txtsellcount',0,1)">-</span>
-                            <asp:TextBox ID="sellsz" ReadOnly="true" placeholder="卖出金额" CssClass="form-control" runat="server" Text="0" Style="width: 120px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span class="spmp " onclick="Fosub('sellsz','txtsellcount',1,1)">+</span>USDT
+                            
+                            <asp:TextBox ID="sellsz" placeholder="卖出数量" CssClass="form-control" runat="server" Text="0" Style="width: 100%;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                                MaxLength="20"></asp:TextBox>
 
-
+                            <input type="hidden" value="0" id="hidblance" runat="server" />
                         </div>
 
                         <%--<input type="button" id="sub"  name="sub" value="提 交" onclick="popDiv()" />--%>
 
                         <input type="hidden" value="0" id="Hidden1" runat="server" />
                     </li>
+                   <li  style=" font-size: 12px;color:darkgray">                  
+                            可用：<asp:Label ID="bdye"  runat="server" Text="0.00"></asp:Label>
+                    </li>
+                                                          
                     <li>
-                        <asp:HiddenField ID="hidblance" Value="0" runat="server" />
-                     
-                        <div class="changeRt">
-                            <span id="txtsellcount">0.0000 </span>
-
-                        </div>
-                    </li>
-                    <li style="display:none;">
-                        <asp:HiddenField ID="MobileTele" Value="0" runat="server" />
-                       
-                        <div class="changeLt">手机验证：</div>
-                        <div class="changeRt">
-                            <asp:TextBox ID="yzm" runat="server" CssClass="form-control" style="width: 40%;float: left;"  Text="" MaxLength="6"></asp:TextBox>
-                            <input id="zphone" type="button" style="width:55%;" CssClass="form-control" value="发送手机验证码" onClick="get_mobile_code();" /></div>
-                    </li>
-                    <li style="display:none;">
-                        <div class="changeLt">二级密码：</div>
-                        <div class="changeRt">
-                            <input id="advpass" class="form-control" type="password" maxlength="15" />
-                        </div>
-                    </li>
-                    
-                    <li  style="display:none;">
-                        <div class="changeLt">收款账户：</div>
-                        <div class="changeRt">
-                            <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,0)" style="width: 33%;border: 1px solid #517bcd;">银行卡</a>
-                            <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,1)" style="width: 33%;border: 1px solid #517bcd;">支付宝</a>
-                            <a class="btn btn-defaultb btn-lg" onclick="choseCard(this,2)" style="width: 30%;border: 1px solid #517bcd;">微信</a>
-                            <asp:HiddenField ID="hidcardtype" Value="0" runat="server" />
-                        </div>
-                    </li>
-                    <li>
-                        <span id="cardinfo" style=""></span>
-                    </li>
-
-                    <li style ="height:auto; padding:5px;color:#177cf6; display:none;" >
-                        交易提醒：卖出挂单成功后，请实时关注单据状态，如有匹配到交易对方，请及时查看收款账户是否收到对应款项并及时点击确认收款完成交易，如果您已收到款但没有及时点击收款确认，系统扣除您的卖出石斛积分的同时作为惩罚要扣除一定比例的违约金，请您慎重操作此功能。                    </li>
-                    <li>
-                        <input id="Button1"  type="button" runat="server" value="卖出" style="width: 100%; text-align: center;" class="btn btn-primary btn-lg blue" onclick="return addwithdrow();" />
+                        <input id="Button1"  type="button" runat="server" value="卖出" class="busub" onclick="return addwithdrow();" />
 
                     </li>
 
                 </ul>
             </div>
+                </div>
+            <div class="gmlb">
+                <div class="blance">
+                    <p></p>
+                    <div style="width:100%"><span style="float:left;">价格</span><span style="float:right;">数量</span></div>
+                </div>
+
+                <div class="zhlist" style="height:130px;margin-top: 40px;">
+                    <ul id="buylist" >
+
+                    </ul>
+                </div>
+                <div style="border-bottom: 1px solid #ccc;width:90%"></div>
+                <div class="zhlist" style="height:130px;margin-top: 25px;">
+                    <ul id="selllist">
+
+                    </ul>
+                </div>
+                <div style="margin-top: 10px;">深度4┳</div>
+            </div>
+            <ul class="scttjy" style="top: 55%;">
+                
+                <li atr="2">待交易</li>
+                <li atr="3">查询</li>
+            </ul>
             <div class="content djye" id="djye">
                 <ul>
                     <li class="title">
@@ -797,34 +769,7 @@
             </div>
             <div id="bakg"></div>
 
-            <div class="confirmRemit" id="chosbank">
-                <ul>
-                    <li>
-                        <div onclick="closeremit()" style="text-align: center; width: 100%; font-size: 20px;">关闭</div>
-                    </li>
-                    <li>
-                        <div class="changeLt">汇款方式 </div>
-                        <div class="changeRt">
-                            <a class="btn btn-defaultr btn-lg" onclick="choseCardRem(this,0)" style="width: 33%">银行卡</a>
-                            <a class="btn btn-defaultr btn-lg" onclick="choseCardRem(this,1)" style="width: 33%">支付宝</a>
-                            <a class="btn btn-defaultr btn-lg" onclick="choseCardRem(this,2)" style="width: 30%">微信</a>
-                            <asp:HiddenField ID="hidremtype" Value="-1" runat="server" />
-
-                        </div>
-                    </li>
-                    <li>
-                        <input class="form-control" type="text" id="txtrname" value="" placeholder="真实姓名" /></li>
-                    <li id="bkn" style="display: none;">
-                        <input class="form-control" type="text" id="txtbankname" value="" placeholder="银行名称" /></li>
-                    <li>
-                        <input class="form-control" type="text" id="cardacc" value="" placeholder="银行卡尾数/支付宝号/微信号" /></li>
-
-                    <li>
-                        <input type="hidden" value="0" id="hidremid" />
-                        <input id="Text1"  type="button" runat="server" value="确认汇款" style="width: 100%; text-align: center;" class="btn btn-primary btn-lg" onclick="return confirmRmitSub();" />
-                    </li>
-                </ul>
-            </div>
+            
              
             <!-- #include file = "comcode.html" -->
 
