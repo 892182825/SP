@@ -68,9 +68,9 @@ namespace DAL
             return dt;
         }
 
-        public DataTable GetMemberByOrderID(string orderid,int currency)
+        public DataTable GetMemberByOrderID(string orderid, int currency)
         {
-            string sql = "select h.RegisterDate,o.OrderExpectNum,o.PayExpectNum,o.OrderID,o.defraytype,o.Number,o.TotalMoney*"+currency+" as TotalMoney ,o.StoreID,o.Totalpv,o.OrderDate,h.Name,o.defraystate ,o.ordertype " +
+            string sql = "select h.RegisterDate,o.OrderExpectNum,o.PayExpectNum,o.OrderID,o.defraytype,o.Number,o.TotalMoney*" + currency + " as TotalMoney ,o.StoreID,o.Totalpv,o.OrderDate,h.Name,o.defraystate ,o.ordertype " +
                          " from memberorder o,memberinfo h  " +
                          " where o.number=h.number and o.orderid=@OrderID";
             SqlParameter[] parms = { new SqlParameter("@OrderID", SqlDbType.VarChar, 40) };
@@ -78,9 +78,9 @@ namespace DAL
             return DBHelper.ExecuteDataTable(sql, parms, CommandType.Text);
         }
 
-        public DataTable GetMemberByOrderID1(string orderid,double currency)
+        public DataTable GetMemberByOrderID1(string orderid, double currency)
         {
-            string sql = "select h.RegisterDate,o.OrderExpectNum,o.PayExpectNum,o.OrderID,o.defraytype,o.Number,o.TotalMoney*"+ currency + " as TotalMoney ,o.StoreID,o.Totalpv,o.OrderDate,h.Name,o.defraystate ,o.ordertype " +
+            string sql = "select h.RegisterDate,o.OrderExpectNum,o.PayExpectNum,o.OrderID,o.defraytype,o.Number,o.TotalMoney*" + currency + " as TotalMoney ,o.StoreID,o.Totalpv,o.OrderDate,h.Name,o.defraystate ,o.ordertype " +
                          " from memberorder o,memberinfo h  " +
                          " where o.number=h.number and o.orderid=@OrderID";
             SqlParameter[] parms = { new SqlParameter("@OrderID", SqlDbType.VarChar, 40) };
@@ -95,9 +95,9 @@ namespace DAL
         public static DataTable GetBankName(int CountryCode)
         {
             string sql = "select BankCode,BankName from MemberBank m,Country c where m.CountryCode=c.ID and c.CountryCode= @CountryCode";
-            SqlParameter[] parms = { new SqlParameter("@CountryCode",CountryCode) };
+            SqlParameter[] parms = { new SqlParameter("@CountryCode", CountryCode) };
             parms[0].Value = CountryCode;
-            return DBHelper.ExecuteDataTable(sql,parms,CommandType.Text);
+            return DBHelper.ExecuteDataTable(sql, parms, CommandType.Text);
         }
 
 
@@ -122,7 +122,7 @@ namespace DAL
         /// </summary>
         /// <param name="storeid"></param>
         /// <returns></returns>
-        public DataTable GetMemberDetailsByOrderID(string orderid,double currency)
+        public DataTable GetMemberDetailsByOrderID(string orderid, double currency)
         {
             string sql = "select m.productid,m.orderid,m.storeid,m.Quantity,m.Price*" + currency + "as Price ,m.Pv,m.Quantity*m.Price*" + currency + " as TotalMoney ,p.ProductName,ptype.ProductTypeName" +
                          " from memberdetails m,product  p,producttype ptype " +
@@ -133,9 +133,9 @@ namespace DAL
         }
 
 
-        public DataTable GetMemberDetailsByOrderID1(string orderid,double currency)
+        public DataTable GetMemberDetailsByOrderID1(string orderid, double currency)
         {
-            string sql = "select m.productid,m.orderid,m.storeid,m.Quantity,m.Price*"+ currency + " as Price,m.Pv,m.Quantity*m.Price*" + currency + " as TotalMoney ,p.ProductName,ptype.ProductTypeName" +
+            string sql = "select m.productid,m.orderid,m.storeid,m.Quantity,m.Price*" + currency + " as Price,m.Pv,m.Quantity*m.Price*" + currency + " as TotalMoney ,p.ProductName,ptype.ProductTypeName" +
                          " from memberdetails m,product  p,producttype ptype " +
                          " where m.ProductID=p.ProductID and p.producttypeid=ptype.producttypeid and orderid=@OrderID";
             SqlParameter[] parms = { new SqlParameter("@OrderID", SqlDbType.VarChar, 40) };
@@ -204,7 +204,7 @@ namespace DAL
         /// <returns></returns>
         public static int GetOrderCount(string orderid)
         {
-            return Convert.ToInt32(DBHelper.ExecuteScalar("select count(0) from memberorder where orderid=@orderid ",new SqlParameter[]{new SqlParameter("@orderid",orderid)},CommandType.Text));
+            return Convert.ToInt32(DBHelper.ExecuteScalar("select count(0) from memberorder where orderid=@orderid ", new SqlParameter[] { new SqlParameter("@orderid", orderid) }, CommandType.Text));
         }
 
         public static MemberOrderModel GetMemberOrder(string orderId)
@@ -252,7 +252,7 @@ namespace DAL
                 model.OrderType = Convert.ToInt32(dr["OrderType"]);
                 model.IsreceiVables = Convert.ToInt32(dr["IsreceiVables"]);
                 model.PaymentMoney = Convert.ToDecimal(dr["PaymentMoney"]);
-                model.ReceivablesDate =Convert.ToDateTime( dr["ReceivablesDate"] );
+                model.ReceivablesDate = Convert.ToDateTime(dr["ReceivablesDate"]);
                 model.ConAddress = dr["ConAddress"].ToString();
                 model.LackProductMoney = Convert.ToDecimal(dr["LackProductMoney"]);
                 model.SendWay = Convert.ToInt32(dr["SendWay"]);
@@ -262,7 +262,7 @@ namespace DAL
                 model.ConCity.Xian = dr["Xian"].ToString();
                 model.InvestJB = Convert.ToDecimal((dr["InvestJB"] == DBNull.Value ? 0 : dr["InvestJB"]));
                 model.PriceJB = Convert.ToDecimal((dr["PriceJB"] == DBNull.Value ? 0 : dr["PriceJB"]));
-                    
+
 
             }
             dr.Close();
@@ -270,131 +270,143 @@ namespace DAL
         }
 
         //使用本地账户支付
-        public static int  PayOrder(string number, string orderid, double aneed, double bneed, double cneed ,double eneed,int lv,string remark)
+        public static int PayOrder(string number, string orderid, double aneed, double bneed, double cneed, double eneed, int lv, string remark)
         {
-            int maxexpt = ConfigDAL.GetMaxExpectNum();
+
+            //判断订单 
             int res = 0;
-             
-            SqlTransaction tran = null;
-            SqlConnection conn = null;
-            using (conn = DBHelper.SqlCon()) {
-                conn.Open();
-                tran = conn.BeginTransaction();
-
-                if (aneed > 0 || bneed > 0 || cneed > 0|| eneed > 0)
+            int ispay = Convert.ToInt32(DBHelper.ExecuteScalar("select DefrayState  from memberorder where orderid='" + orderid + "'"));
+            if (ispay > 0) return 1;
+            else
+            { 
+                int maxexpt = ConfigDAL.GetMaxExpectNum();
+                 
+                SqlTransaction tran = null;
+                SqlConnection conn = null;
+                using (conn = DBHelper.SqlCon())
                 {
+                    conn.Open();
+                    tran = conn.BeginTransaction();
+
+                    if (aneed > 0 || bneed > 0 || cneed > 0 || eneed > 0)
+                    {
+                        //修改会员账户
+                        int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "  ,pointEout=pointEout+" + eneed + "    where number='" + number + "'");
+                        //更新销毁字段 
+                        DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
+
+                        if (r1 == 0) tran.Rollback();
+                    }
+
+                    string ddremark = "支付订单:";
+                    //插入对账单
+                    if (aneed > 0)
+                    {
+                        ddremark += "A币支付  " + aneed;
+                        int c = D_AccountDAL.AddAccount("A", number, aneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付", tran);
+                        if (c == 0) tran.Rollback();
+                    }
+                    if (bneed > 0)
+                    {
+                        ddremark += "  B币支付  " + bneed;
+                        int c = D_AccountDAL.AddAccount("B", number, bneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                        if (c == 0) tran.Rollback();
+                    }
+                    if (cneed > 0)
+                    {
+                        ddremark += "  C币支付  " + cneed;
+                        int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                        if (c == 0) tran.Rollback();
+                    }
+                    if (eneed > 0)
+                    {
+                        ddremark += "  E币支付  " + cneed;
+                        int c = D_AccountDAL.AddAccount("E", number, eneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                        if (c == 0) tran.Rollback();
+                    }
+                    //修改订单状态
+                    int rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
+
+                    double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number + "'  and DefrayState=1  and ordertype in(23,24)    ", CommandType.Text));
+                    lv = 1;
+                    switch (ttpv)
+                    {
+                        case 50:
+                            lv = 2;
+                            break;
+                        case 100:
+                            lv = 3;
+                            break;
+                        case 500:
+                            lv = 4;
+                            break;
+                        case 1000:
+                            lv = 5;
+                            break;
+                        case 1500:
+                            lv = 6;
+                            break;
+                        case 3000:
+                            lv = 7;
+                            break;
+                    }
                     //修改会员账户
-                    int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "  ,pointEout=pointEout+" + eneed + "    where number='" + number + "'");
-                    //更新销毁字段 
-                    DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
+                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
 
-                    if (r1 == 0) tran.Rollback();
-                }
+                    DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance" + maxexpt + " set  level =" + lv + "  where number='" + number + "' ");
+                    if (r == 0) tran.Rollback();
 
-                string ddremark = "支付订单:";
-                //插入对账单
-                if (aneed > 0) {
-                    ddremark += "A币支付  "+ aneed ;
-                int c=    D_AccountDAL.AddAccount("A",number,aneed,D_AccountSftype.MemberType, D_AccountKmtype.Declarations,DirectionEnum.AccountReduced,"购买矿机支付",tran);
-                    if (c == 0) tran.Rollback();
-                }
-                if (bneed > 0)
-                {
-                    ddremark += "  B币支付  " + bneed;
-                    int c = D_AccountDAL.AddAccount("B", number, bneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号"+orderid, tran);
-                    if (c == 0) tran.Rollback();
-                }
-                if (cneed > 0)
-                {
-                    ddremark += "  C币支付  " + cneed;
-                    int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
-                    if (c == 0) tran.Rollback();
-                }
-                if (eneed > 0)
-                {
-                    ddremark += "  E币支付  " + cneed;
-                    int c = D_AccountDAL.AddAccount("E", number, eneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
-                    if (c == 0) tran.Rollback();
-                }
-                //修改订单状态
-                int rr=  DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark+"'  where orderid='" + orderid+"' ");
+                    double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
 
-                double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar( tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number+ "'  and DefrayState=1  and ordertype in(23,24)    ",CommandType.Text));
-                lv = 1;
-                switch (ttpv)
-                {
-                    case 50:
-                        lv = 2;
-                        break;
-                    case 100:
-                        lv = 3;
-                        break;
-                    case 500:
-                        lv = 4;
-                        break;
-                    case 1000:
-                        lv = 5;
-                        break;
-                    case 1500:
-                        lv = 6;
-                        break;
-                    case 3000:
-                        lv = 7;
-                        break; 
-                }
-                //修改会员账户
-                int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
-               
-                DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance"+maxexpt+" set  level =" + lv + "  where number='" + number + "' ");
-                if (r == 0) tran.Rollback();
 
-                double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
-                if (cupv > 0)
-                {
-                    //计算业绩
-                    SqlParameter[] sp = new SqlParameter[] {
+                    if (cupv > 0)
+                    {
+                        //计算业绩
+                        SqlParameter[] sp = new SqlParameter[] {
                 new SqlParameter ("@Number",number),
                 new SqlParameter ("@CurrentOneMark",cupv),
                 new SqlParameter ("@ExpectNum",maxexpt)
                 };
-                    DBHelper.ExecuteNonQuery(tran, "js_addnew_PV", sp, CommandType.StoredProcedure);
-                }
+                        DBHelper.ExecuteNonQuery(tran, "js_addnew_PV", sp, CommandType.StoredProcedure);
+                    }
 
-                if (rr == 1)
-                {
-                    tran.Commit();
-                    res =1;
-                }
-                else tran.Rollback();
+                    if (rr == 1)
+                    {
+                        tran.Commit();
+                        res = 1;
+                    }
+                    else tran.Rollback();
 
+                }
             }
+
             return res;
-            
+
         }
 
-   /// <summary>
-   /// 創建兌換記錄
-   /// </summary>
-   /// <param name="number"></param>
-   /// <param name="orderid"></param>
-   /// <param name="useusdt"></param>
-   /// <param name="plantEprice"></param>
-   /// <param name="getplantE"></param>
-   /// <param name="remark"></param>
-   /// <returns></returns>
-        public static int createDHOrder(string number, string orderid, double useusdt, double plantEprice, double getplantE,   string remark)
+        /// <summary>
+        /// 創建兌換記錄
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="orderid"></param>
+        /// <param name="useusdt"></param>
+        /// <param name="plantEprice"></param>
+        /// <param name="getplantE"></param>
+        /// <param name="remark"></param>
+        /// <returns></returns>
+        public static int createDHOrder(string number, string orderid, double useusdt, double plantEprice, double getplantE, string remark)
         {
             int res = 0;
 
-            res = DBHelper.ExecuteNonQuery(" insert into dhlist(dhorderid,number,dhdate,useusdt,plantEprice,getplantE,issuc,remark) values('" + orderid + "','" + number + "', getdate(), "+useusdt+", "+plantEprice+", "+getplantE+", 0, '"+remark+"') ");
-                     
+            res = DBHelper.ExecuteNonQuery(" insert into dhlist(dhorderid,number,dhdate,useusdt,plantEprice,getplantE,issuc,remark) values('" + orderid + "','" + number + "', getdate(), " + useusdt + ", " + plantEprice + ", " + getplantE + ", 0, '" + remark + "') ");
+
             return res;
 
         }
 
         //使用本地账户支付
-        public static int dhOrdersuc(string number, string dhorderid,   double
-            getpE )
+        public static int dhOrdersuc(string number, string dhorderid, double
+            getpE)
         {
             int res = 0;
 
@@ -417,10 +429,10 @@ namespace DAL
                 //插入对账单
                 if (getpE > 0)
                 {
-                     
+
                     int c = D_AccountDAL.AddAccount("E", number, getpE, D_AccountSftype.MemberType, D_AccountKmtype.AccountTransfer, DirectionEnum.AccountsIncreased, ddremark, tran);
                     if (c == 0) tran.Rollback();
-                } 
+                }
                 //修改订单状态
                 int rr = DBHelper.ExecuteNonQuery(tran, "update  dhlist set  issuc=1  ,remark=remark+' 兌換成功'  where dhorderid='" + dhorderid + "' ");
                 if (rr == 1)
@@ -450,7 +462,7 @@ namespace DAL
                         where a.orderid=b.orderId and  a.orderid=@orderId";
             SqlParameter para = new SqlParameter("@orderId", orderId);
             SqlDataReader dr = DBHelper.ExecuteReader(sql, para, CommandType.Text);
-            if (dr.Read()) 
+            if (dr.Read())
             {
                 model = new MemberInfoModel();
                 model.Number = dr.GetString(0);
@@ -467,10 +479,10 @@ namespace DAL
         public static DataSet GetAllList(string productid)
         {
             string sql = "";
-                      
+
             if (productid != "")
             {
-                string pid = productid+",";
+                string pid = productid + ",";
                 string pidstr = productid + ",";
                 while (1 == 1)
                 {
@@ -501,7 +513,7 @@ currency.name as currency from Product,currency where Product.currency=currency.
 currency.name as currency from Product,currency where Product.currency=currency.id and Product.isfold=0  and Product.issell=0 and (Product.Yongtu=0 or Product.Yongtu=2)";
             }
 
-            SqlDataAdapter da = DBHelper.ExecuteDataAdapter(sql,CommandType.Text);
+            SqlDataAdapter da = DBHelper.ExecuteDataAdapter(sql, CommandType.Text);
             DataSet ds = new DataSet();
             da.Fill(ds);
             return ds;
@@ -526,9 +538,9 @@ currency.name as currency from Product,currency where Product.currency=currency.
         public static MemberInfoModel GetMemberInfo(string orderId, SqlTransaction tran)
         {
             MemberInfoModel model = null;
-//            string sql = @"select top 1 a.Number,a.Placement,a.Direct,b.TotalPv,a.ExpectNum 
-//                        from memberinfo a,memberorder b 
-//                        where a.orderid=b.orderId and  a.orderid=@orderId";
+            //            string sql = @"select top 1 a.Number,a.Placement,a.Direct,b.TotalPv,a.ExpectNum 
+            //                        from memberinfo a,memberorder b 
+            //                        where a.orderid=b.orderId and  a.orderid=@orderId";
             string sql = "select top 1 a.Number,a.Placement,a.Direct,b.TotalPv,a.ExpectNum from memberinfo a,memberorder b  where a.orderid=b.orderId and  a.orderid=@orderId";
             SqlParameter[] para = {
                                       new SqlParameter("@orderId",orderId)
@@ -567,7 +579,7 @@ currency.name as currency from Product,currency where Product.currency=currency.
         public static bool Batch(double PayMentMoney, DateTime ShouDateTime, string OrderID)
         {
             string sql = "update MemberOrder set IsReceivables=1,PayMentMoney=@Money, ReceivablesDate=@Date where OrderID=@OrderID";
-            SqlParameter[] parm = new SqlParameter[] { 
+            SqlParameter[] parm = new SqlParameter[] {
                 new SqlParameter("@Money",SqlDbType.Decimal),
                 new SqlParameter("@Date",SqlDbType.DateTime),
                 new SqlParameter("OrderID",SqlDbType.VarChar,50)
@@ -662,7 +674,7 @@ currency.name as currency from Product,currency where Product.currency=currency.
             string sproc = "Clearuttimenopay";
             SqlParameter[] sps = new SqlParameter[] {
               new SqlParameter("@outtime",time),
-             
+
             };
             DBHelper.ExecuteNonQuery(sproc, sps, CommandType.StoredProcedure);
         }
