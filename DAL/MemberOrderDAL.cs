@@ -271,10 +271,12 @@ namespace DAL
 
         //使用本地账户支付
         public static int PayOrder(string number, string orderid, double aneed, double bneed, double cneed, double eneed, int lv, string remark)
-        {
+        { int res = 0;
+            try
+            {
 
             //判断订单 
-            int res = 0;
+           
             int ispay = Convert.ToInt32(DBHelper.ExecuteScalar("select DefrayState  from memberorder where orderid='" + orderid + "'"));
             if (ispay > 0) return 1;
             else
@@ -378,6 +380,11 @@ namespace DAL
                     else tran.Rollback();
 
                 }
+                }
+            }
+            catch (Exception ee)
+            {
+                return res;
             }
 
             return res;
