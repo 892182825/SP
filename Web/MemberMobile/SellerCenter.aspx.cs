@@ -19,12 +19,12 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
 {
     int bzCurrency = 0;
     public double huilv;
-    public string mrmin;
-    public string mrmax;
-    public string mcmin;
-    public string mcmax;
-    public string mairu;
-    public string zuida;
+    public string mrmin="100";
+    public string mrmax="1000";
+    public string mcmin= "100";
+    public string mcmax = "1000";
+    public string mairu="100";
+    public string zuida="1000";
     protected void Page_Load(object sender, EventArgs e)
     {
         Permissions.MemRedirect(Page, Permissions.redirUrl);
@@ -93,7 +93,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         Session["cpage"] = tp;
 
         string number = Session["member"].ToString();
-        decimal todayprice= Common.GetnowPrice();
+        decimal todayprice =   Common.GetnowPrice();
         hidprice.Value =  todayprice.ToString("0.0000");
       
         lbltodayprice.Text = todayprice.ToString("0.0000");
@@ -107,7 +107,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         //decimal sxfjb =sxfbl*blace ;  //手续费石斛积分数量
 
         hidblance.Value = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
-        lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
+      //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
         mairu = (300 / todayprice).ToString("0.0000");
         MobileTele.Value = mb.MobileTele;

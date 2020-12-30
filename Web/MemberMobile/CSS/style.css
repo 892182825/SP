@@ -630,7 +630,7 @@ body {
         .changeBox ul li .changeRt {
             float: left;
             text-align: left;
-            width: 75%;
+            width: 100%;
         }
 
             .changeBox ul li .changeRt .radioBox {
@@ -640,7 +640,7 @@ body {
             .changeBox ul li .changeRt .textBox {
                 height: 28px;
                 line-height: 28px;
-                width: 70%;
+                width: 100%;
                 border: 1px solid #ccc;
                 color: #8c8c8c;
                 border: 1px solid #ccc;
@@ -653,7 +653,7 @@ body {
     }
 
     .changeBox ul li .changeRt {
-        width: 67%;
+        width: 100%;
     }
 }
 
@@ -1686,7 +1686,7 @@ span .orderTHOK {
     height: 30px;
     line-height: 30px;
     width: 100%;
-    background-color: #ffe4e4;
+     
     color: #fa0000;
     font-size: 14px;
 }
@@ -1762,7 +1762,7 @@ span .orderTHOK {
 }
 
 .middle ul li .changeRt {
-    width: 70%;
+    width: 100%;
     float: left;
     line-height: 40px;
 }
