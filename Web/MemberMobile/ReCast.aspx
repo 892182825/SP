@@ -83,14 +83,14 @@
         </div>
 
          <div id="shid" class="showhid">
-            <div id="sbuyinfo"  style=""> </div>
-             <div><asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" meta:resourcekey="RadioButtonList1Resource1" AutoPostBack="true">
+            <div id="sbuyinfo"  class="rawz"> </div>
+             <div class="radb"><asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" meta:resourcekey="RadioButtonList1Resource1">
                                 <asp:ListItem Selected="True" Value="USDT">USDT</asp:ListItem>
                                 <asp:ListItem  Value="USDTERC20">USDTERC20</asp:ListItem>
                                  <asp:ListItem  Value="TUSDT">TUSDT</asp:ListItem>
                                     
                                 </asp:RadioButtonList></div>
-            <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
+            <div class="radgm"> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
                 <input type="button" class="canc" value="取消" onclick="hidediv()" />
                 <asp:Button ID="Button1" CssClass="qr" runat="server" Text="确认购买" OnClick="Button1_Click" /> 
             </div>
