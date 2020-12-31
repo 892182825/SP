@@ -7426,11 +7426,11 @@ public class AjaxClass : BLL.TranslationBase
     }
 
     [AjaxPro.AjaxMethod]
-    public string AddWithdawNew(decimal sellcount, string password, int ctype, string yzm)
+    public string AddWithdawNew(decimal sellcount, string password, int ctype, string yzm,decimal sellprice)
     {
         if (Session["Member"] == null) return "-1";
         string number = Session["Member"].ToString();
-        decimal sgprice = Common.GetnowPrice();
+        decimal sgprice = sellprice;
         string smscode = "";
         if (DAL.MemberInfoDAL.CheckState(number)) { return "-2"; }
 
@@ -7521,7 +7521,7 @@ public class AjaxClass : BLL.TranslationBase
             if ( sellcount  > xjye)
             {
 
-                return "超出最大可卖数量";
+                return "超出最大可卖数量sellcount"+ sellcount+" xjye:"+xjye;
             }
 
 
@@ -7649,6 +7649,33 @@ public class AjaxClass : BLL.TranslationBase
 
 
 
+    }
+
+    [AjaxPro.AjaxMethod]
+    public string Loadsellbuytop5(int issell) {
+        string html = "";
+        if (Session["Member"] == null) return "";
+        string number = Session["Member"].ToString();
+
+        if (issell == 1)
+        {
+            string sqls = @" select  top 5 InvestJB,priceJB  from  Withdraw  where number = '" + number + "' and IsJL = 1 and iscl = 0 and  shenhestate in(0, 1, 3, 11) and HkDj = 0   order by priceJB  ";
+
+            DataTable dtt = DBHelper.ExecuteDataTable(sqls);
+            if (dtt != null && dtt.Rows.Count > 0)
+            {
+                DataRow dr = null;
+                for (int i = dtt.Rows.Count; i > 0; i++)
+                {
+                    dr=dtt.Rows[i];
+                    html += " <li><p class='pl'>" + Convert.ToDecimal(dr["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(dr["InvestJB"]) + "</p></li>";
+                }
+
+            }
+
+        }
+
+        return html;
     }
 
 

@@ -40,9 +40,9 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
             DateTime dtnow = DateTime.Now;
 
             Session["smscode"] = null;
-            if (Common.GetISCanCharge()==0) {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>  window.location.href='first.aspx'; </script>"); return;
-            }
+            //if (Common.GetISCanCharge()==0) {
+            //    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>  window.location.href='first.aspx'; </script>"); return;
+            //}
             string number=Session["member"].ToString();
             //object obj = DAL.DBHelper.ExecuteScalar("select papernumber  from memberinfo where number='" + number + "'");
             //if (obj == DBNull.Value || obj == null || obj.ToString() == "") {
@@ -86,10 +86,10 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         string number = Session["member"].ToString();
         decimal todayprice =   Common.GetnowPrice();
         hidprice.Value =  todayprice.ToString("0.0000");
-      
-        lbltodayprice.Text = todayprice.ToString("0.0000");
+        mcjg.Text= todayprice.ToString("0.0000");
+        lbltodayprice.Text = todayprice.ToString("0.0000")+"USD";
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
-        lblzzlv.Text = "+"+( Common.GetSxfWyjblv(2)*100).ToString("0.00");
+        lblzzlv.Text = "&yen; "+(todayprice*7).ToString("0.0000");
 
         double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
         decimal sxfbl = Common.GetSxfWyjblv(0);
@@ -98,7 +98,9 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         //decimal sxfjb =sxfbl*blace ;  //手续费石斛积分数量
 
         hidblance.Value =  blace .ToString("0.0000");
-      //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
+
+        sellsz.Text = Convert.ToInt32(blace).ToString();
+        //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
         mairu = (300 / todayprice).ToString("0.0000");
         //MobileTele.Value = mb.MobileTele;

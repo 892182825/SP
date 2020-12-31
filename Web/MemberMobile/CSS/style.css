@@ -125,7 +125,7 @@ body {
     cursor: pointer;
 }
 
- 
+
 
 .xs_yjxx {
     height: 100px;
@@ -1651,146 +1651,134 @@ span .orderTHOK {
                 white-space: nowrap;
             }
 
-.middle .sctt {
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
+.middle {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-    .middle .sctt li {
+    .middle .sctt {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+    }
+
+        .middle .sctt li {
+            list-style: none;
+            float: left;
+            width: 33.33%;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .middle .sctt .cur {
+            color: #dd4814;
+            font-weight: bold;
+            border-bottom: 2px solid rgb(255, 106, 0);
+        }
+
+    .middle .scttjy {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        font-size: 16px;
+    }
+
+    .middle .topscrll {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+        margin-top: -20px;
+        color: #fa0000;
+        font-size: 14px;
+    }
+
+        .middle .topscrll span {
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 50%;
+            line-height: 30px;
+            height: 30px;
+        }
+
+
+    .middle .scttjy li {
         list-style: none;
         float: left;
-        width: 33.33%;
+        width: 25%;
         text-align: center;
         border-bottom: 1px solid #ccc;
     }
 
-    .middle .sctt .cur {
+    .middle .scttjy .cur {
         color: #dd4814;
         font-weight: bold;
         border-bottom: 2px solid rgb(255, 106, 0);
     }
 
-.middle .scttjy {
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
-    position: absolute;
-    top: 70px;
-    font-size: 16px;
-}
-
-.middle .topscrll {
-    position: absolute;
-    top: 65px;
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
-     
-    color: #fff;
-    font-size: 14px;
-}
-
-    .middle .topscrll span {
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 50%;
-        line-height: 30px;
-        height: 30px;
+    .middle .content {
+        display: none;
+        padding: 0px;
+        width: 65%;
+        min-height: 500px;
+        margin-bottom: 60px;
+        font-size: 16px;
+        float:left;
     }
 
+    .middle .buy ul li, .sell ul li {
+        list-style: none;
+        margin-top: 10px;
+        line-height: 20px;
+        vertical-align: middle
+    }
 
-.middle .scttjy li {
-    list-style: none;
-    float: left;
-    width: 25%;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-}
+    .middle .content ul li .spmp {
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 30px;
+        float: left;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
 
-.middle .scttjy .cur {
-    color: #fff;
-    font-weight: bold;
-    border-bottom: 2px solid rgb(255, 106, 0);
-}
+    .middle .content #cardinfo {
+        line-height: 40px;
+        text-align: right;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-.middle .content {
-    display: none;
-    padding: 0px;
-    width: 92%;
-    min-height: 500px;
-    margin-bottom: 60px;
-    font-size: 16px;
-    margin-left: 8%
-}
+    .middle .cur {
+        display: block;
+    }
 
-.middle .buy ul li, .sell ul li {
-    list-style: none;
-    margin-top: 10px;
-    height: 40px;
-}
+    .middle ul li .changeLt {
+        width: 30%;
+        float: left;
+        line-height: 40px;
+        text-align: center;
+    }
 
-.middle .content ul li .spmp {
-    width: 38px;
-    height: 38px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 30px;
-    float: left;
-    border-radius: 5px;
-}
+    .middle ul li .changeRt {
+        width: 100%;
+        float: left;
+        line-height: 40px;
+    }
 
-.middle .content #cardinfo {
-    line-height: 40px;
-    text-align: right;
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.middle .cur {
-    display: block;
-}
-
-.middle ul li .changeLt {
-    width: 30%;
-    float: left;
-    line-height: 40px;
-    text-align: center;
-}
-
-.middle ul li .changeRt {
-    width: 100%;
-    float: left;
-    line-height: 40px;
-}
-.jiaoyi {
-    width:60%;
-    float:left;
-}
-.gmlb {
-    width:35%;
-    float:right;
-}
-.busub {
-    color: #fff;
-    margin: auto;
-    width: 100%;
-    border-radius: 5px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0E4A93), to(#5F0BC1));
-    background: -moz-linear-gradient(top, #0E4A93, #5F0BC1);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#0E4A93', endColorstr='#5F0BC1');
-}
 #buy input[type="text"] {
-    border-color: #eee;
+    border-color: #dd4814;
 }
 
 #buy {
-    color: #666;
+    color: #dd4814;
 }
 
     #buy .red {
@@ -1801,7 +1789,7 @@ span .orderTHOK {
     }
 
     #buy .spmp {
-        border: 1px solid #eee;
+        border: 1px solid #dd4814;
     }
 
 #sell input[type="text"] {
@@ -1809,19 +1797,31 @@ span .orderTHOK {
 }
 
 #sell {
-    color: #c71c22;
+    color: #517bcd;
 }
 
     #sell .spmp {
-        border: 1px solid #c71c22;
+        border: 1px solid #517bcd;
     }
 
     #sell .blue {
-        background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
+        background-image: linear-gradient(#0E4A93, #5F0BC1);
+        line-height: 38px;
+        height: 38px;
+        width: 100%;
         color: #fff;
     }
-
-
+#buy .busub {
+    background-image: linear-gradient(#dd4814, #5F0BC1);
+    line-height: 38px;
+    height: 38px;
+    width: 100%;
+    color: #fff;
+}
+.gmlb {
+  width:35%;float:right;
+  padding-top:20px;
+}
 .djye ul {
     width: 100%;
     min-height: 500px;
@@ -1840,7 +1840,7 @@ span .orderTHOK {
         height: 60px;
         line-height: 25px;
         padding: 5px;
-       
+        background-color: #fff;
     }
 
         .djye ul li div {
@@ -2138,8 +2138,32 @@ span .orderTHOK {
     padding-left: 8px;
     box-sizing: border-box;
 }
+.zhlist {
+    width: 100%;
+    height: 80px;
+    
+}
+    .zhlist ul li { 
+    list-style:none;
+   font-size:6px;  
+   line-height:10px; 
+   font-family:宋体;
+  
+    }
+    .zhlist ul li .pl {
+        float:left ; width:50%;
+        margin-bottom:2px;
+    }
+        .zhlist ul li .pr {
+            text-align: right;
+            float: right;
+            width: 50%;
+            margin-bottom: 2px;
+        }
 
-
+#selllist{ color:green;}
+#buylist { color:red;
+}
 .buylist {
     width: 100%;
     padding-bottom: 20px;
@@ -2206,7 +2230,7 @@ span .orderTHOK {
                 line-height: 14px;
                 margin: 2px;
                 color: #5D6678;
-                font-size:10px;
+                font-size: 10px;
             }
 
             .buylist ul li input {
@@ -2225,7 +2249,7 @@ span .orderTHOK {
     background: lightgoldenrodyellow;
     display: none;
     width: 80%;
-    border: 1px ;
+    border: 1px;
     border-radius: 10px;
     background-color: #1A202E;
     padding: 10px;
@@ -2237,33 +2261,34 @@ span .orderTHOK {
     height: 150px;
 }
 
-    .rawz {
-        width: 100%;
-        text-align: center;
-        line-height: 60px;
-        vertical-align: middle;
-        height: 80px;
-        color: #eee;
-        font-size: 20px;
-    }
+.rawz {
+    width: 100%;
+    text-align: center;
+    line-height: 60px;
+    vertical-align: middle;
+    height: 80px;
+    color: #eee;
+    font-size: 20px;
+}
 
-        .radgm input {
-            text-align: center;
-            padding:10px 20px;
-            border-radius: 20px;
-            background-color: #3E475A;
-            color: #fff; 
-            width: 30%;
-            margin: 10px;
-            font-size: 12px; 
-        }
+.radgm input {
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #3E475A;
+    color: #fff;
+    width: 30%;
+    margin: 10px;
+    font-size: 12px;
+}
 
-        .showhid div .canc { 
-            color: #999;
-        }
-        .showhid div .qr {
-            background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
-        }
+.showhid div .canc {
+    color: #999;
+}
+
+.showhid div .qr {
+    background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
+}
 
 .pricelist {
     width: 100%;
@@ -2277,79 +2302,80 @@ span .orderTHOK {
         width: 80%;
         margin: auto;
     }
+
     .pricelist img {
         width: 40px;
-        height:40px;
+        height: 40px;
     }
 
-        .pricelist ul li {
-            list-style: none;
-            width: 100%;
-            /*border-top: 2px transparent solid;*/
-            height: 60px;
-            text-align: left;
-            background-color: #1A202E;
-            box-shadow: inset;
-            padding: 10px 5px 10px 5px;
+    .pricelist ul li {
+        list-style: none;
+        width: 100%;
+        /*border-top: 2px transparent solid;*/
+        height: 60px;
+        text-align: left;
+        background-color: #1A202E;
+        box-shadow: inset;
+        padding: 10px 5px 10px 5px;
+    }
+
+        .pricelist ul li .ltimg {
+            float: left;
+            margin-top: 5px;
+            /*margin-right: 20px;*/
+            width: 15%;
         }
 
-            .pricelist ul li .ltimg {
-                float: left;
-                margin-top: 5px;
-                /*margin-right: 20px;*/
-                width:15%;
-            }
+        .pricelist ul li div {
+            float: left;
+            height: 45px;
+            margin: 5px 0px 5px 0px;
+        }
 
-            .pricelist ul li div {
-                float: left;
-                height: 45px;
-                margin: 5px 0px 5px 0px;
-            }
+        .pricelist ul li .dsc1 {
+            width: 55%;
+            float: left;
+            border-bottom: 1px solid #484848 !important;
+            margin-left: 5%;
+        }
 
-            .pricelist ul li .dsc1 {
-                width: 55%;
-                float: left;
-                border-bottom: 1px solid #484848 !important;
-                margin-left:5%;
-            }
+        .pricelist ul li .dsc2 {
+            width: 25%;
+            float: right;
+            border-bottom: 1px solid #484848 !important;
+            text-align: right;
+        }
 
-            .pricelist ul li .dsc2 {
-                width: 25%;
-                float: right;
-                border-bottom: 1px solid #484848 !important;
-                text-align: right;
-            }
+        .pricelist ul li div .p1 {
+            line-height: 15px;
+            margin: 2px;
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
 
-            .pricelist ul li div .p1 {
-                line-height: 15px;
-                margin: 2px;
-                color: #fff;
-                font-size: 15px;
-                margin-bottom: 5px;
-            }
+        .pricelist ul li div .p2 {
+            line-height: 15px;
+            margin: 2px;
+            font-size: 15px;
+            color: #fff;
+            margin-top: -10px;
+        }
 
-            .pricelist ul li div .p2 {
-                line-height: 15px;
-                margin: 2px;
-                font-size: 15px;
-                color: #fff;
-                margin-top: -10px;
-            }
+        .pricelist ul li div .p3 {
+            line-height: 15px;
+            margin: 2px;
+            color: #5D6678;
+        }
 
-            .pricelist ul li div .p3 {
-                line-height: 15px;
-                margin: 2px;
-                color: #5D6678;
-            }
-
-            .pricelist ul li input {
-                text-align: center;
-                padding: 5px;
-                border-radius: 20px;
-                background-color: #3E475A;
-                color: #fff;
-                float: right;
-                width: 80px;
-                margin: 20px 5px;
-                font-size: 13px;
-            }
+        .pricelist ul li input {
+            text-align: center;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: #3E475A;
+            color: #fff;
+            float: right;
+            width: 80px;
+            margin: 20px 5px;
+            font-size: 13px;
+        }
