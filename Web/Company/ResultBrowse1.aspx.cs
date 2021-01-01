@@ -51,12 +51,12 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
                 });
         this.TranControls(this.GridView2,
                 new string[][]{
-                    new string []{"00","手机号"},
+                    new string []{"00","会员账号"},
                     new string []{"006615","科目"},
                     new string []{"006581","发生时间"},
                     new string []{"000000","转入"},
-                    new string []{"000000","转出FTC"},
-                    new string []{"000000","结余FTC"},
+                    new string []{"000000","转出"},
+                    new string []{"000000","结余"},
                     new string []{"006585","类型"},
                     new string []{"006616","摘要"}
                 });
@@ -100,7 +100,7 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
             }
             condition.Append(" and MobileTele='" + number + "'");
         }
-        condition.Append(" and sftype=0");
+       /// condition.Append(" and sftype=0");
         string BeginRiQi = "";
         string EndRiQi = "";
         if (this.Datepicker1.Text != "")

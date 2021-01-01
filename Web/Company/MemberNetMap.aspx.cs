@@ -26,7 +26,8 @@ public partial class Company_MemberNetMap : BLL.TranslationBase
         // 在此处放置用户代码以初始化页面
         Response.Cache.SetExpires(DateTime.Now);
         AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-        DataTable dt = Jiegou.ShowTopNumber("d2918447acbc262fbcb01efce558752c", isAnZhi());
+        DataTable dt = Jiegou.ShowTopNumber("9999999999", isAnZhi());
+        TextBox1.Text = "9999999999";
         string firstky = Request.QueryString["EndNumber"] + "";
         bool isQX = true;
         //for (int i = 0; i < dt.Rows.Count; i++)
@@ -145,6 +146,7 @@ public partial class Company_MemberNetMap : BLL.TranslationBase
         }
         txt_PressKeyFlag.Text = "n";
         Translations();
+        Button1_Click(null, null);
     }
 
     /// <summary>
@@ -228,7 +230,7 @@ public partial class Company_MemberNetMap : BLL.TranslationBase
         }
         else
         {
-            dt = WTreeBLL.SetLianLuTu_C_II(HiddenField1.Value == "" ? "d2918447acbc262fbcb01efce558752c" : HiddenField1.Value, TextBox1.Text, DropDownList_QiShu.SelectedValue);
+            dt = WTreeBLL.SetLianLuTu_C_II(HiddenField1.Value == "" ? SfType.getBH() : HiddenField1.Value, TextBox1.Text, DropDownList_QiShu.SelectedValue);
         }
         divDH.InnerHtml = "";
         for (int i = 0; i < dt.Rows.Count; i++)

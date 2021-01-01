@@ -34,7 +34,7 @@
     <h4><%=GetTran("001240", "参数设置")%></h4>
     <br />
     <table width="80%" border="0" cellpadding="0" cellspacing="0" class="tablemb" style="text-align:right;">
-        <tr>
+        <tr style="display:none;">
             <td colspan="3" align="center">
                <asp:DropDownList ID="ddlExpectNum" runat="server" AutoPostBack="True" onselectedindexchanged="ddlExpectNum_SelectedIndexChanged"></asp:DropDownList>
             </td>
@@ -45,111 +45,144 @@
         </tr>
         <tr>
             <td class="style1">
-                投资金额1&nbsp;<asp:TextBox Id = "txtPara1" runat="server" MaxLength="7"></asp:TextBox>
+              X1矿机价格 &nbsp;<asp:TextBox Id = "txtPara1" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+              <td class="style2">
+                X1矿机收益率&nbsp;<asp:TextBox Id = "txtPara8" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+            
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style1">
+                X2矿机价格&nbsp;<asp:TextBox Id = "txtPara2" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+               <td class="style2">
+                X2矿机收益率&nbsp;<asp:TextBox Id = "txtPara9" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+             
+          
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style1">
+               X3矿机价格&nbsp;<asp:TextBox Id = "txtPara3" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td class="style2">
-                分配石斛积分比例1&nbsp;<asp:TextBox Id = "txtPara4" runat="server" MaxLength="7"></asp:TextBox>
+              X3矿机收益率&nbsp;<asp:TextBox Id = "txtPara10" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+            
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style1">
+                X4矿机价格&nbsp;<asp:TextBox Id = "txtPara4" runat="server" MaxLength="7"></asp:TextBox>
               
             </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                投资金额2&nbsp;<asp:TextBox Id = "txtPara2" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
             <td class="style2">
-                分配石斛积分比例2&nbsp;<asp:TextBox Id = "txtPara5" runat="server" MaxLength="7"></asp:TextBox>
+                X4矿机收益率&nbsp;<asp:TextBox Id = "txtPara11" runat="server" MaxLength="7"></asp:TextBox>
             </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                投资金额3&nbsp;<asp:TextBox Id = "txtPara3" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
-            <td class="style2">
-                分配石斛积分比例3&nbsp;<asp:TextBox Id = "txtPara6" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                释放石斛积分初始比例1&nbsp;<asp:TextBox Id = "txtPara7" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
-            <td class="style2">
-                释放石斛积分扣除消费比例&nbsp;<asp:TextBox Id = "txtPara8" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
+           
+          
             <td>&nbsp;</td>
         </tr>
         
         <tr>
+              <td class="style1">
+                X5矿机价格&nbsp;<asp:TextBox Id = "txtPara5" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+             <td class="style2">
+              X5矿机收益率&nbsp;<asp:TextBox Id = "txtPara12" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+          
+         
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
             <td class="style1">
-                释放石斛积分初始比例2&nbsp;<asp:TextBox Id = "txtPara17" runat="server" MaxLength="7"></asp:TextBox>
+                X6矿机价格&nbsp;<asp:TextBox Id = "txtPara6" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+             <td class="style2">
+                X6矿机收益率&nbsp;<asp:TextBox Id = "txtPara13" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+           
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+             <td class="style1">
+               X7矿机价格&nbsp;<asp:TextBox Id = "txtPara7" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td class="style2">
-                业绩奖释放比例&nbsp;<asp:TextBox Id = "txtPara9" runat="server" MaxLength="7"></asp:TextBox>
+                X7矿机收益率&nbsp;<asp:TextBox Id = "txtPara14" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr><td class="style1">
+                A币每日涨幅 &nbsp;<asp:TextBox Id = "txtPara15" runat="server" MaxLength="15"></asp:TextBox>
+            </td>
+             <td class="style2">
+                1代代数奖比例&nbsp;<asp:TextBox Id = "txtPara20" runat="server" MaxLength="15"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            
+            <td class="style1">
+                B币每日涨幅&nbsp;<asp:TextBox Id = "txtPara16" runat="server" MaxLength="15"></asp:TextBox>
+            </td>
+              <td class="style2">
+              2代代数奖比例&nbsp;<asp:TextBox Id = "txtPara21" runat="server" MaxLength="15"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+             <td class="style1">
+                 C币每日涨幅&nbsp;<asp:TextBox Id = "txtPara17" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+          
+             <td class="style1">
+                3代代数奖比例&nbsp;<asp:TextBox Id = "txtPara22" runat="server" MaxLength="15"></asp:TextBox>
+            </td>
+           
+          
+            <td>&nbsp;</td>
+        </tr>
+        <tr> 
+            <td class="style1">
+                D币每日涨幅&nbsp;<asp:TextBox Id = "txtPara18" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+          
+            <td class="style2">
+                4代代数奖比例&nbsp;<asp:TextBox Id = "txtPara23" runat="server" MaxLength="15"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="style1">
-                释放石斛积分初始比例3&nbsp;<asp:TextBox Id = "txtPara18" runat="server" MaxLength="7"></asp:TextBox>
+                 E币每日涨幅&nbsp;<asp:TextBox Id = "txtPara19" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td class="style2">
-              业绩奖释放速度比例&nbsp;<asp:TextBox Id = "txtPara10" runat="server" MaxLength="7"></asp:TextBox>
+                5代代数奖比例&nbsp;<asp:TextBox Id = "txtPara24" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
-        <tr>
-            <td class="style1">
-                业绩奖释放封顶比例&nbsp;<asp:TextBox Id = "txtPara11" runat="server" MaxLength="7"></asp:TextBox>
+
+        <tr> <td class="style1">
+                小区比例&nbsp;<asp:TextBox Id = "txtPara26" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td class="style2">
-               违约金比例&nbsp;<asp:TextBox Id = "txtPara12" runat="server" MaxLength="7"></asp:TextBox>
+                 6代代数奖比例&nbsp;<asp:TextBox Id = "txtPara25" runat="server" MaxLength="7"></asp:TextBox>
             </td>
+           
             <td>&nbsp;</td>
         </tr>
+
         <tr>
             <td class="style1">
-                手续费比例&nbsp;<asp:TextBox Id = "txtPara13" runat="server" MaxLength="7"></asp:TextBox>
+                代数奖层级&nbsp;<asp:TextBox Id = "txtPara27" runat="server" MaxLength="7"></asp:TextBox>
             </td>
             <td class="style2">
-                石斛积分增长速度比例&nbsp;<asp:TextBox Id = "txtPara14" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                石斛积分发行量&nbsp;<asp:TextBox Id = "txtPara15" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td class="style2">
-                封顶石斛积分量&nbsp;<asp:TextBox Id = "txtPara16" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                积分最低买入金额&nbsp;<asp:TextBox Id = "txtPara20" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td class="style2">
-                积分最高买入金额&nbsp;<asp:TextBox Id = "txtPara21" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                积分最低卖出金额&nbsp;<asp:TextBox Id = "txtPara22" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td class="style2">
-                积分最高卖出金额&nbsp;<asp:TextBox Id = "txtPara23" runat="server" MaxLength="15"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1">
-                奖金日封顶倍数&nbsp;<asp:TextBox Id = "txtPara19" runat="server" MaxLength="7"></asp:TextBox>
-            </td>
-            <td class="style2">
-                买入赠送比例&nbsp;<asp:TextBox Id = "txtPara24" runat="server" MaxLength="7"></asp:TextBox>
+                 
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -160,38 +193,7 @@
             </td>
         </tr>
     </table>
-    </div>
-    <div id="cssrain" style="width:100%">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/DMdp.gif">
-            <tr>
-                <td width="80px">
-                    <table width="100%" height="28" border="0" cellpadding="0" cellspacing="0" id="secTable">
-                        <tr>
-                            <td class="sec2">
-                                <span id="span1" title="" onmouseover="cutDescription()"><%=BLL.CommonClass.CommonDataBLL.cut(GetTran("000033", "说 明"))%></span>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td><a href="#"><img src="images/dis1.GIF" name="imgX" width="18" height="22" border="0" id="imgX" onclick="down2()" /></a></td>
-            </tr>
-        </table>
-        <div id="divTab2">
-            <table width="100%" height="68" border="0" cellspacing="0" class="DMbk" id="mainTable">
-                <tbody style="display: block" id="tbody1">
-                    <tr>
-                        <td style="padding-left: 20px">
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td><%=GetTran("006869", "1、设置某一期的结算参数的数值，当结算该期时，系统自动按照设置的数值进行结算。")%></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </div> 
     </form>
 </body>
 </html>

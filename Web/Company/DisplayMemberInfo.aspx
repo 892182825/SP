@@ -25,34 +25,25 @@
                     <tr>
                         <td align="left" style="white-space: nowrap;">
                             <asp:Button ID="btnsearch" runat="server" Text="查 询" OnClick="BtnConfirm_Click" CssClass="anyes"></asp:Button>
-                            &nbsp;&nbsp;<%=GetTran("000029", "注册期数")%>：<asp:DropDownList ID="DropDownExpectNum" runat="server">
+                            <asp:DropDownList ID="DropDownExpectNum" runat="server" Visible="false">
                             </asp:DropDownList>
-                            &nbsp;<%=GetTran("000024", "会员编号")%>：<asp:TextBox ID="Number" runat="server" Width="80px"
+                            &nbsp; 手机号：<asp:TextBox ID="Number" runat="server" Width="80px"
                                 MaxLength="10"></asp:TextBox>
-                            &nbsp;<%=GetTran("000025", "会员姓名")%>：<asp:TextBox ID="Name" runat="server" Width="80px"
+                            &nbsp;<%=GetTran("000025", "会员姓名")%>：<asp:TextBox ID="Name" runat="server" Width="80px" 
                                 MaxLength="50"></asp:TextBox>
-                            &nbsp;<%=GetTran("000026", "推荐编号")%>：<asp:TextBox ID="Recommended" runat="server"
+                            &nbsp;<%=GetTran("0000", "推荐账号")%>：<asp:TextBox ID="Recommended" runat="server"
                                 Width="80px" MaxLength="10"></asp:TextBox>
                                  &nbsp;<%=GetTran("000192", "推荐姓名")%>：<asp:TextBox ID="DName" runat="server"
                                 Width="80px" MaxLength="10"></asp:TextBox>
-                            &nbsp;<%=GetTran("000027", "安置编号")%>：<asp:TextBox ID="Placement" runat="server" Width="80px"
-                                MaxLength="10"></asp:TextBox>
-                                &nbsp;<%=GetTran("000097", "安置姓名")%>：<asp:TextBox ID="PName" runat="server" Width="80px"
-                                MaxLength="10"></asp:TextBox>
+                              <br/><br/>
                             &nbsp;<%=GetTran("000031", "注册时间")%>：<asp:TextBox ID="txtBox_OrderDateTimeStart"
                                 runat="server" Width="80px" CssClass="Wdate" onfocus="new WdatePicker()"></asp:TextBox>
                             <%=GetTran("000068")%>：<asp:TextBox ID="txtBox_OrderDateTimeEnd" runat="server" Width="80px"
                                 onfocus="new WdatePicker()" CssClass="Wdate"></asp:TextBox>
-                            &nbsp;<%=GetTran("000000", "注册金额")%>：<asp:TextBox ID="zcPrice" runat="server"
-                                Width="80px" MaxLength="10"></asp:TextBox>
-                                &nbsp;<%=GetTran("007301", "激活时间")%>：<asp:TextBox ID="txtBox_AdvTimeStart"
-                                runat="server" Width="80px" CssClass="Wdate" onfocus="new WdatePicker()"></asp:TextBox>
-                            <%=GetTran("000068")%> <asp:TextBox ID="txtBox_AdvTimeEnd" runat="server" Width="80px"
-                                onfocus="new WdatePicker()" CssClass="Wdate"></asp:TextBox>
+                         
                             &nbsp; &nbsp;<%=GetTran("008025", "会员状态")%>：<asp:DropDownList ID="ddl_zxState" runat="server">
                                 <asp:ListItem Value="-1" Text="全部"></asp:ListItem>
-                                <asp:ListItem Value="0" Text="未激活"></asp:ListItem>
-                                <asp:ListItem Value="1" Text="已激活"></asp:ListItem>
+                                
                                 <asp:ListItem Value="2" Text="已注销"></asp:ListItem>
                                 <asp:ListItem Value="3" Text="已冻结"></asp:ListItem>
                             </asp:DropDownList>
@@ -60,7 +51,7 @@
                     </tr>
                 </table>
                 <br />
-                <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tablemb">
+                <table cellspacing="0" cellpadding="0" border="0" width="1000px" class="tablemb">
                     <tr>
                         <td valign="top" align="left">
                             <asp:GridView ID="GridView1" runat="server" Width="100%" AllowSorting="true" AutoGenerateColumns="False"
@@ -69,7 +60,7 @@
                                 <HeaderStyle CssClass="tablebt" />
                                 <RowStyle HorizontalAlign="Center" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="详细信息">
+                                    <asp:TemplateField HeaderText="详细信息"  Visible="false">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
                                         <ItemTemplate>
                                             <img src="images/fdj.gif" />
@@ -78,31 +69,19 @@
                                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("MemberState") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="Number" HeaderText="会员编号"></asp:BoundField>
-                                     <asp:TemplateField HeaderText="会员昵称">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPetname" runat="server" Text='<%# Bind("Petname") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
+                                    <asp:BoundField DataField="mobiletele" HeaderText="会员手机号"></asp:BoundField>
+                                      
+                                  
                                     <asp:TemplateField HeaderText="会员姓名">
                                         <ItemTemplate>
                                             <asp:Label ID="lblname" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="安置编号">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPlacement" runat="server" Text='<%# Bind("Placement") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="安置姓名">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPlacementName" runat="server" Text='<%# Bind("PlacementName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                   
+                                   
                                     <asp:TemplateField HeaderText="推荐编号">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDirect" runat="server" Text='<%# Bind("Direct") %>'></asp:Label>
+                                            <asp:Label ID="lblDirect" runat="server" Text='<%# Bind("dtele") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="推荐姓名">
@@ -116,12 +95,12 @@
                                             <asp:Label ID="lblregisterdate" runat="server" Text=""></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="注册金额">
+                                    <asp:TemplateField HeaderText="注册金额" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblzcPrive" runat="server" Text='<%# Bind("zcPrice") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="激活时间">
+                                     <asp:TemplateField HeaderText="激活时间" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lbladvtime" runat="server" Text=""></asp:Label>
                                         </ItemTemplate>

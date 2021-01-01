@@ -44,8 +44,8 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         //ddl_zxState
         this.TranControls(this.ddl_zxState, new string[][]{
                     new string []{"000633","全部"},
-                       new string []{"007525","未激活"},
-                        new string []{"007524","已激活"},
+                       //new string []{"007525","未激活"},
+                       // new string []{"007524","已激活"},
                         new string []{"001286","已注销"},
                         new string []{"007542","已冻结"}
                     });
@@ -54,12 +54,11 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         this.TranControls(this.GridView1,
                 new string[][]{
                     new string []{"000035","详细信息"},
-                    new string []{"000024","会员编号"},
-                    new string []{"000063","会员昵称"},
+                    new string []{"000000","会员账号"},
+                 
                     new string []{"000025","会员姓名"},
-                    new string []{"000027","安置编号"},
-                    new string []{"000097","安置姓名"},
-                    new string []{"000026","推荐编号"},
+                   
+                    new string []{"0000","推荐账号"},
                     new string []{"000192","推荐姓名"},
                     new string []{"000029","注册期数"},
                     new string []{"000031","注册时间"},
@@ -79,9 +78,9 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         string Number = DisposeString.DisString(this.Number.Text.Trim()); //去空格后赋值
         string Name = Encryption.Encryption.GetEncryptionName(DisposeString.DisString(this.Name.Text.Trim()));
         string Recommended = DisposeString.DisString(this.Recommended.Text.Trim());
-        string Placement = DisposeString.DisString(this.Placement.Text.Trim());
+        
         string DName = DisposeString.DisString(this.DName.Text.Trim());
-        string PName = DisposeString.DisString(this.PName.Text.Trim());
+        string PName = DisposeString.DisString(this.Name.Text.Trim());
         int ExpectNum = 0;
         if (this.DropDownExpectNum.SelectedValue.ToString() == "")
         {
@@ -95,7 +94,7 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         sb.Append(" 1=1 ");
         if (Number.Length > 0)
         {
-            sb.Append(" and m.Number like'%" + Number + "%'");
+            sb.Append(" and m.mobiletele like'%" + Number + "%'");
         }
         if (Name.Length > 0)
         {
@@ -109,10 +108,10 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         {
             sb.Append(" and d.name like'%" + DName + "%'");
         }
-        if (Placement.Length > 0)
-        {
-            sb.Append(" and m.Placement like'%" + Placement + "%'");
-        }
+        //if (Placement.Length > 0)
+        //{
+        //    sb.Append(" and m.Placement like'%" + Placement + "%'");
+        //}
         if (PName.Length > 0)
         {
             sb.Append(" and p.name like'%" + PName + "%'");
@@ -150,23 +149,23 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
             Convert.ToDateTime(totalDataEnd);
             sb.Append(" and dateadd(hour," + sphours + ",m.RegisterDate)<='" + totalDataEnd + " 23:59:59'");
         }
-        string advtimeStart = txtBox_AdvTimeStart.Text.Trim();
-        string advtimeEnd = txtBox_AdvTimeEnd.Text.Trim();
-        if (advtimeStart != "")
-        {
-            Convert.ToDateTime(advtimeStart);
-            sb.Append(" and dateadd(hour," + sphours + ",m.ActiveDate)>='" + advtimeStart + " 00:00:00'");
-        }
-        if (advtimeEnd != "")
-        {
-            Convert.ToDateTime(advtimeEnd);
-            sb.Append(" and dateadd(hour," + sphours + ",m.ActiveDate)<='" + advtimeEnd + " 23:59:59'");
-        }
+        //string advtimeStart = txtBox_AdvTimeStart.Text.Trim();
+        //string advtimeEnd = txtBox_AdvTimeEnd.Text.Trim();
+        //if (advtimeStart != "")
+        //{
+        //    Convert.ToDateTime(advtimeStart);
+        //    sb.Append(" and dateadd(hour," + sphours + ",m.ActiveDate)>='" + advtimeStart + " 00:00:00'");
+        //}
+        //if (advtimeEnd != "")
+        //{
+        //    Convert.ToDateTime(advtimeEnd);
+        //    sb.Append(" and dateadd(hour," + sphours + ",m.ActiveDate)<='" + advtimeEnd + " 23:59:59'");
+        //}
         if (sb.ToString().Contains("ActiveDate"))
         {
             sb.Append(" and m.MemberState=1");
         }
-        ViewState["SQLSTR"] = "SELECT m.MemberState,m.Placement,p.name as PlacementName,m.Number,m.Name,m.PetName,m.StoreID,m.Direct,d.name as directName,m.ExpectNum,m.RegisterDate,m.ActiveDate,(select top 1 PayMoney from MemberOrder where Number=m.Number) as zcPrice FROM MemberInfo m left join Memberinfo d on m.direct=d.number left join Memberinfo p on m.placement=p.number  WHERE " + sb.ToString() + " order by m.id desc";
+        ViewState["SQLSTR"] = "SELECT m.MemberState,  m.Number,m.Name  , d.mobiletele dtele, m.Direct,d.name as directName,m.ExpectNum,m.RegisterDate,m.ActiveDate,(select top 1 PayMoney from MemberOrder where Number=m.Number) as zcPrice FROM MemberInfo m left join Memberinfo d on m.direct=d.number    WHERE " + sb.ToString() + " order by m.id desc";
         Pager pager = Page.FindControl("Pager1") as Pager;
         //pager.Pageindex = 0;
         //pager.PageSize = 10;
@@ -175,7 +174,7 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         //pager.PageColumn = "*";
         //pager.ControlName = "GridView1";
         //pager.key = "ID";
-        pager.PageBind(0, 10, " MemberInfo m left join Memberinfo d on m.direct=d.number left join Memberinfo p on m.placement=p.number", "m.MemberState,m.Placement,p.name as PlacementName,m.Number,m.Name,m.PetName,m.StoreID,m.Direct,d.name as directName,m.ExpectNum,m.RegisterDate,m.ActiveDate,(select top 1 PayMoney from MemberOrder where Number=m.Number) as zcPrice", sb.ToString(), "m.ID", "GridView1");
+        pager.PageBind(0, 10, " MemberInfo m left join Memberinfo d on m.direct=d.number  ", "m.MemberState, m.number,m.mobiletele,m.Name  ,  d.mobiletele dtele,m.Direct,d.name as directName,m.ExpectNum,m.RegisterDate,m.ActiveDate,(select top 1 PayMoney from MemberOrder where Number=m.Number) as zcPrice", sb.ToString(), "m.ID", "GridView1");
         ViewState["condition"] = sb.ToString();
         Translations();
     }
@@ -218,7 +217,7 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
             lblDirectName.Text = Encryption.Encryption.GetDecipherName(drv["DirectName"].ToString());
 
             Label lblPlacementName = (Label)e.Row.FindControl("lblPlacementName");
-            lblPlacementName.Text = Encryption.Encryption.GetDecipherName(drv["PlacementName"].ToString());
+            
             Label lblPlacement = (Label)e.Row.FindControl("lblPlacement");
             Label lblDirect = (Label)e.Row.FindControl("lblDirect");
             string comuser = Session["Company"].ToString();
@@ -304,7 +303,7 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
         foreach (DataRow row in dt.Rows)
         {
             row["Name"] = Encryption.Encryption.GetDecipherName(row["Name"].ToString());//解密姓名
-            row["PlacementName"] = Encryption.Encryption.GetDecipherName(row["PlacementName"].ToString());//解密姓名
+            
             row["DirectName"] = Encryption.Encryption.GetDecipherName(row["DirectName"].ToString());//解密姓名
             try
             {
@@ -322,7 +321,7 @@ public partial class Company_DisplayMemberInfo : BLL.TranslationBase
             {
             }
         }
-        StringBuilder sb = Excel.GetExcelTable(dt, GetTran("005006", "会员信息编辑"), new string[] { "Number=" + GetTran("000024", "会员编号"), "Name=" + GetTran("000025", "会员姓名"), "Placement=" + GetTran("000027", "安置编号"), "PlacementName=" + GetTran("000097", "安置姓名"), "Direct=" + GetTran("000026", "推荐编号"), "DirectName=" + GetTran("000192", "推荐姓名"), "ExpectNum=" + GetTran("000029", "注册期数"), "RegisterDate=" + GetTran("000031", "注册日期"),"zcPrice=注册金额", "activetimestr=" + GetTran("007301", "激活日期") });
+        StringBuilder sb = Excel.GetExcelTable(dt, GetTran("005006", "会员信息编辑"), new string[] { "Number=" + GetTran("000024", "会员编号"), "Name=" + GetTran("000025", "会员姓名"),    "Direct=" + GetTran("000026", "推荐编号"), "DirectName=" + GetTran("000192", "推荐姓名"), "ExpectNum=" + GetTran("000029", "注册期数"), "RegisterDate=" + GetTran("000031", "注册日期"),"zcPrice=注册金额", "activetimestr=" + GetTran("007301", "激活日期") });
 
         Response.Write(sb.ToString());
 

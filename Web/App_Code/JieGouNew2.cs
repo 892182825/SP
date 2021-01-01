@@ -40,7 +40,7 @@ public class JieGouNew2
         //
     }
     public static string GetOneTable(DataTable dt, string bh, int isAnTj)
-    {
+    { 
         BLL.TranslationBase tran = new BLL.TranslationBase();
 
         StringBuilder sb = new StringBuilder();
@@ -114,8 +114,9 @@ public class JieGouNew2
 
             //isAnTj == 2 为推荐
 
+            string mt = row[0]["mt"].ToString();
 
-            sb.Append("<table width='" + row[0]["Lenth"].ToString() + "' height='100%' cellspacing='0' cellpadding='0' bordercolor='#cccccc' border='1' bordercolordark='#ffffff' class='Tb22'><tbody><tr><td height='" + height1 + "' bgcolor='#649d2e' align='center' colspan='" + (qs + 1) + "'><a href='MemberNetMap.aspx?net=" + strAzTj + "&amp;SelectGrass=" + qs1 + "&amp;bianhao=" + bh + "'><font color='#fff'>" + bh + "</font></a></td></tr><tr><td height='" + height2 + "' align='center'  colspan='" + (qs + 1) + "'>" + GetLevelStr(row[0]["LevelInt"].ToString()) + "</td></tr><tr><td  bgcolor='#edf1f8' align='center' ><tr><td height='" + height3 + "' style=' width: 30px;'>&nbsp;</td>");
+            sb.Append("<table width='" + row[0]["Lenth"].ToString() + "' height='100%' cellspacing='0' cellpadding='0' bordercolor='#cccccc' border='1' bordercolordark='#ffffff' class='Tb22'><tbody><tr><td height='" + height1 + "' bgcolor='#649d2e' align='center' colspan='" + (qs + 1) + "'><a href='MemberNetMap.aspx?net=" + strAzTj + "&amp;SelectGrass=" + qs1 + "&amp;bianhao=" + bh + "'><font color='#fff'>" + mt + "</font></a></td></tr><tr><td height='" + height2 + "' align='center'  colspan='" + (qs + 1) + "'>" + GetLevelStr(row[0]["LevelInt"].ToString()) + "</td></tr><tr><td  bgcolor='#edf1f8' align='center' ><tr><td height='" + height3 + "' style=' width: 30px;'>&nbsp;</td>");
 
             for (int i = 0; i < qs; i++)
             {

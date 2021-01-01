@@ -69,27 +69,38 @@ public partial class Company_BauseParam : BLL.TranslationBase
         this.txtPara17.Text = model.Para17.ToString();
         this.txtPara18.Text = model.Para18.ToString();
         this.txtPara19.Text = model.Para19.ToString();
-        SqlDataReader sdr = DAL.DBHelper.ExecuteReader("Select Top 1 * From jykz ORDER BY ID");
-        while (sdr.Read())
-        {
-            this.txtPara20.Text = sdr["mrMinjf"].ToString().Trim();
-            this.txtPara21.Text = sdr["mrMaxjf"].ToString();
-            this.txtPara22.Text = sdr["mcMinjf"].ToString();
-            this.txtPara23.Text = sdr["mcMaxjf"].ToString();
-            this.txtPara24.Text = sdr["Mrzs"].ToString();
-        }
-        sdr.Close();
-        sdr.Dispose();
+        this.txtPara19.Text = model.Para19.ToString();
+
+        this.txtPara20.Text = model.Para20.ToString();
+        this.txtPara21.Text = model.Para21.ToString();
+        this.txtPara22.Text = model.Para22.ToString();
+        this.txtPara23.Text = model.Para23.ToString();
+        this.txtPara24.Text = model.Para24.ToString();
+        this.txtPara25.Text = model.Para25.ToString();
+        this.txtPara26.Text = model.Para26.ToString();
+        this.txtPara27.Text = model.Para27.ToString();
+        
+        //SqlDataReader sdr = DAL.DBHelper.ExecuteReader("Select Top 1 * From jykz ORDER BY ID");
+        //while (sdr.Read())
+        //{
+        //    this.txtPara20.Text = sdr["mrMinjf"].ToString().Trim();
+        //    this.txtPara21.Text = sdr["mrMaxjf"].ToString();
+        //    this.txtPara22.Text = sdr["mcMinjf"].ToString();
+        //    this.txtPara23.Text = sdr["mcMaxjf"].ToString();
+        //    this.txtPara24.Text = sdr["Mrzs"].ToString();
+        //}
+        //sdr.Close();
+        //sdr.Dispose();
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         ConfigModel model = null;
-        decimal mrmin=300;
-        decimal mrmax=30000;
-        decimal mcmin=300;
-        decimal mcmax=30000;
-        decimal mrzs = 0.5m;
+        //decimal mrmin=300;
+        //decimal mrmax=30000;
+        //decimal mcmin=300;
+        //decimal mcmax=30000;
+        //decimal mrzs = 0.5m;
         try
         {
             model = new ConfigModel();
@@ -114,11 +125,17 @@ public partial class Company_BauseParam : BLL.TranslationBase
             model.Para17= double.Parse(this.txtPara17.Text);
             model.Para18 = double.Parse(this.txtPara18.Text);
             model.Para19 = double.Parse(this.txtPara19.Text);
-            mrmin = decimal.Parse(this.txtPara20.Text);
-            mrmax = decimal.Parse(this.txtPara21.Text);
-            mcmin = decimal.Parse(this.txtPara22.Text);
-            mcmax = decimal.Parse(this.txtPara23.Text);
-            mrzs = decimal.Parse(this.txtPara24.Text);
+
+            model.Para20 = double.Parse(this.txtPara20.Text);
+            model.Para21 = double.Parse(this.txtPara21.Text);
+            model.Para22 = double.Parse(this.txtPara22.Text);
+            model.Para23 = double.Parse(this.txtPara23.Text);
+            model.Para24 = double.Parse(this.txtPara24.Text);
+            model.Para25 = double.Parse(this.txtPara25.Text);
+            model.Para26 = double.Parse(this.txtPara26.Text);
+            model.Para27 = double.Parse(this.txtPara27.Text);
+
+        
         }
         catch (FormatException)
         {
@@ -141,16 +158,16 @@ public partial class Company_BauseParam : BLL.TranslationBase
         ChangeLogs cl = new ChangeLogs("config", "ExpectNum");
         cl.AddRecord((int)ViewState["ExpectNum"]);
         int n = ConfigSetBLL.UpdateConfig(model);
-        SqlParameter[] paras = new SqlParameter[]{
-              new SqlParameter("@Para1",mrmin),
-              new SqlParameter("@Para2",mrmax),
-              new SqlParameter("@Para3",mcmin),
-              new SqlParameter("@Para4",mcmax),
-              new SqlParameter("@Para5",mrzs),
-            };
-        string sql = @"UPDATE jykz SET mrMinjf =@Para1,mrMaxjf=@Para2,mcMinjf=@Para3,mcMaxjf=@Para4,Mrzs=@Para5";
-        int m = DBHelper.ExecuteNonQuery(sql, paras, CommandType.Text);
-        if (n == 1 && m==1)
+        //SqlParameter[] paras = new SqlParameter[]{
+        //      new SqlParameter("@Para1",mrmin),
+        //      new SqlParameter("@Para2",mrmax),
+        //      new SqlParameter("@Para3",mcmin),
+        //      new SqlParameter("@Para4",mcmax),
+        //      new SqlParameter("@Para5",mrzs),
+        //    };
+        //string sql = @"UPDATE jykz SET mrMinjf =@Para1,mrMaxjf=@Para2,mcMinjf=@Para3,mcMaxjf=@Para4,Mrzs=@Para5";
+        //int m = DBHelper.ExecuteNonQuery(sql, paras, CommandType.Text);
+        if (n == 1  )
         {
             cl.ModifiedIntoLogs(ChangeCategory.company15, GetTran("000156", "第") + model.ExpectNum.ToString() + GetTran("000157", "期"), ENUM_USERTYPE.objecttype3);
             ScriptHelper.SetAlert(Page, GetTran("000001", "修改成功"));

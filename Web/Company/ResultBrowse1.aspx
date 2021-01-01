@@ -97,7 +97,7 @@
                         <HeaderStyle CssClass="tablebt" />
                         <RowStyle HorizontalAlign="Center" />
                         <Columns>
-                            <asp:BoundField DataField="mobiletele" HeaderText="手机号" />
+                            <asp:BoundField DataField="mobiletele" HeaderText="会员账号" />
                             <asp:TemplateField HeaderText="科目">
                                 <ItemTemplate>
                                     <%#BLL.Logistics.D_AccountBLL.GetKmtype(Eval("kmtype").ToString()) %>
