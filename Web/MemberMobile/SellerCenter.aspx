@@ -62,6 +62,14 @@
         }    .csbz{
             background-color:#909090;
         }
+
+          .ydq {
+          
+display: inline-block;/*行内元素*/
+    width: 100%;/*可以挤掉文字，保证不跟文字在同一行*/
+    height: 0;
+    visibility: hidden;
+}
     </style>
  
     <script language="javascript" type="text/javascript">
@@ -694,11 +702,11 @@
         </div>--%>
         <div style="margin-left:8%;margin-top:40px;margin-bottom:40px;"><h4 style="color:#fff">Saturn/USDT</h4></div>
         <div class="middle">
-             <div class="topscrll"  >
+             <div class="topscrll" style="text-align-last:right;" >
 
-               <asp:Label ID="lbltodayprice" style="float:right;text-align: right; font-size: 18px;" runat="server" Text="0.00"></asp:Label>
+               <asp:Label ID="lbltodayprice" style="float:right;text-align: right; font-size: 18px; color:#fff;" runat="server" Text="0.00"></asp:Label>
                 <br />
-                <asp:Label ID="lblzzlv" runat="server" style="float:right;text-align: right;margin-top: -16px; font-size: 12px;color:darkgray"  Text="0.00"></asp:Label>
+                <i class="ydq"></i><asp:Label ID="lblzzlv"  style="float: right;margin-top: -16px; font-size: 12px;color:darkgray;" runat="server"  Text="0.00"></asp:Label><i class="ydq"></i>
                 <asp:HiddenField ID="hidprice" Value="0" runat="server" />
             </div>
             <ul class="scttjy">
@@ -714,7 +722,7 @@
                     <li> 
                         <div class="changeRt">
                             <span style="" onclick="Fosub('mrjg','Money',0,0)" class="spmp">-</span>
-                            <asp:TextBox ID="mrjg" ReadOnly="true" placeholder="买入价格" CssClass="form-control" runat="server" Text="0" Style="width: 115px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                            <asp:TextBox ID="mrjg" ReadOnly="true" placeholder="买入价格" CssClass="form-control" runat="server" Text="0" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
                                 MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
                             
                         </div>
@@ -724,7 +732,7 @@
                         
                         <div class="changeRt">
                             <span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span>
-                            <asp:TextBox ID="buysz" placeholder="买入量" CssClass="form-control" runat="server" Text="0" Style="width:115px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                            <asp:TextBox ID="buysz" placeholder="买入量" CssClass="form-control" runat="server" Text="0" Style="width:120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
                                 MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
                         </div>
 
@@ -739,7 +747,7 @@
                     
 
                     <li>
-                        <input id="sub"  type="button" runat="server" value="买入" class="busub" onclick="return abc();" />
+                        <input id="sub"  type="button" runat="server" value="买入" class="blue" onclick="return abc();" />
 
                     </li>
 
@@ -752,7 +760,7 @@
                     <li>
                         
                         <div class="changeRt">
-                        <span style="" onclick="Fosubprice('mcjg','txtsellcount',0,1)" class="spmp">-</span>  <asp:TextBox ID="mcjg" ReadOnly="true" placeholder="卖出价格" CssClass="form-control" runat="server" Text="" Style="width: 115px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                        <span style="" onclick="Fosubprice('mcjg','txtsellcount',0,1)" class="spmp">-</span>  <asp:TextBox ID="mcjg" ReadOnly="true" placeholder="卖出价格" CssClass="form-control" runat="server" Text="" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
                                 MaxLength="20"></asp:TextBox><span onclick="Fosubprice('mcjg','txtsellcount',1,1)" class="spmp ">+</span>
                         </div>
                     </li>
@@ -762,7 +770,7 @@
                        
                         <div class="changeRt">
                              <span style="" onclick="Fosubsc('sellsz','cnsel',0,1)" class="spmp">-</span> 
-                            <asp:TextBox ID="sellsz" placeholder="卖出数量" CssClass="form-control" runat="server" Text="" Style="width: 115px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
+                            <asp:TextBox ID="sellsz" placeholder="卖出数量" CssClass="form-control" runat="server" Text="" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
                                 MaxLength="20"></asp:TextBox>
                             <span onclick="Fosubsc('sellsz','cnsel',1,1)" class="spmp ">+</span>
                             <input type="hidden" value="0" id="hidblance" runat="server" />
@@ -789,7 +797,7 @@
             <div class="gmlb">
                 <div class="blance">
                     <p></p>
-                    <div style="width:100%"><span style="float:left;">价格</span><span style="float:right;">数量</span></div>
+                    <div style="width:100%;color: #a9a9a9"><span style="float:left;">价格</span><span style="float:right;">数量</span></div>
                 </div>
 
                 <div class="zhlist" style=" ">

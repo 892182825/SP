@@ -87,9 +87,9 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         decimal todayprice =   Common.GetnowPrice();
         hidprice.Value =  todayprice.ToString("0.0000");
         mcjg.Text= todayprice.ToString("0.0000");
-        lbltodayprice.Text = todayprice.ToString("0.0000")+"USD";
+        lbltodayprice.Text = todayprice.ToString("0.0000");
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
-        lblzzlv.Text = "&yen; "+(todayprice*7).ToString("0.0000");
+        lblzzlv.Text = "+5%";
 
         double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
         decimal sxfbl = Common.GetSxfWyjblv(0);
@@ -99,7 +99,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
 
         hidblance.Value =  blace .ToString("0.0000");
 
-        sellsz.Text = Convert.ToInt32(blace).ToString();
+        sellsz.Text = "0";
         //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
         mairu = (300 / todayprice).ToString("0.0000");

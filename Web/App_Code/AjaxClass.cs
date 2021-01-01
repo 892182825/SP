@@ -7662,14 +7662,12 @@ public class AjaxClass : BLL.TranslationBase
             string sqls = @" select  top 5 InvestJB,priceJB  from  Withdraw  where number = '" + number + "' and IsJL = 1 and iscl = 0 and  shenhestate in(0, 1, 3, 11) and HkDj = 0   order by priceJB  ";
 
             DataTable dtt = DBHelper.ExecuteDataTable(sqls);
-            if (dtt != null && dtt.Rows.Count > 0)
+            foreach (DataRow item in dtt.Rows)
             {
-                DataRow dr = null;
-                for (int i = dtt.Rows.Count; i > 0; i++)
-                {
-                    dr=dtt.Rows[i];
-                    html += " <li><p class='pl'>" + Convert.ToDecimal(dr["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(dr["InvestJB"]) + "</p></li>";
-                }
+               
+                    
+                    html += " <li><p class='pl'>" + Convert.ToDecimal(item["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(item["InvestJB"]) + "</p></li>";
+               
 
             }
 

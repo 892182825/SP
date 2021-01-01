@@ -1683,7 +1683,7 @@ span .orderTHOK {
         line-height: 30px;
         width: 100%;
         position: absolute;
-        top: 50px;
+        top: 70px;
         font-size: 16px;
     }
 
@@ -1691,7 +1691,7 @@ span .orderTHOK {
         height: 30px;
         line-height: 30px;
         width: 100%;
-        margin-top: -20px;
+        margin-top: -30px;
         color: #fa0000;
         font-size: 14px;
     }
@@ -1714,9 +1714,9 @@ span .orderTHOK {
     }
 
     .middle .scttjy .cur {
-        color: #dd4814;
+        color: #75b1e2;
         font-weight: bold;
-        border-bottom: 2px solid rgb(255, 106, 0);
+        border-bottom: 2px solid rgb(37 57 160);
     }
 
     .middle .content {
@@ -1808,11 +1808,14 @@ span .orderTHOK {
         background-image: linear-gradient(#0E4A93, #5F0BC1);
         line-height: 38px;
         height: 38px;
-        width: 100%;
+        width: 95%;
         color: #fff;
     }
+    #sell li {
+        line-height:40px;
+    }
 #buy .busub {
-    background-image: linear-gradient(#dd4814, #5F0BC1);
+    background-image: linear-gradient(#0E4A93, #5F0BC1);
     line-height: 38px;
     height: 38px;
     width: 100%;
@@ -1820,7 +1823,6 @@ span .orderTHOK {
 }
 .gmlb {
   width:35%;float:right;
-  padding-top:20px;
 }
 .djye ul {
     width: 100%;
@@ -2140,7 +2142,8 @@ span .orderTHOK {
 }
 .zhlist {
     width: 100%;
-    height: 80px;
+    height: 120px;
+    margin-top:30px;
     
 }
     .zhlist ul li { 
@@ -2153,16 +2156,19 @@ span .orderTHOK {
     .zhlist ul li .pl {
         float:left ; width:50%;
         margin-bottom:2px;
+        font-size:14px;
     }
         .zhlist ul li .pr {
             text-align: right;
             float: right;
             width: 50%;
             margin-bottom: 2px;
+            font-size: 14px;
         }
 
 #selllist{ color:green;}
-#buylist { color:red;
+#buylist {
+    color: #75b1e2;
 }
 .buylist {
     width: 100%;

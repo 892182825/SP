@@ -94,13 +94,13 @@ public partial class ReCast : BLL.TranslationBase
 </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x1cn + @"%</p><p class='p3'>日收益率</p>   </div>
                 </li>";
         }
-//        if (lv < 7)
-//            h = @"<li onclick='showbuy(7)'  ><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
-//<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
-//                   </li>";
-//        if (lv < 6)
-//            h = @"<li onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
-//                   </li>" + h;
+        if (lv < 7)
+            h = @"<li><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7(未开放)</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
+<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
+                   </li>";
+        if (lv < 6)
+            h = @"<li><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6(未开放)</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
+                   </li>" + h;
         if (lv < 5)
             h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
                     </li>" + h;
