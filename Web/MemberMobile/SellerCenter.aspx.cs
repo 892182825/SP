@@ -89,7 +89,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         mcjg.Text= todayprice.ToString("0.0000");
         lbltodayprice.Text = todayprice.ToString("0.0000");
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
-        lblzzlv.Text = "+5%";
+        lblzzlv.Text = "+3.51%";
 
         double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
         decimal sxfbl = Common.GetSxfWyjblv(0);
