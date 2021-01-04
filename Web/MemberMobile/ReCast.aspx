@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;"><h2 style="color:#fff">购买矿机</h2></div>
+        <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;width:80%;"><h2 style="color:#fff">购买矿机</h2><a href="OrderList.aspx" style="font-size:18px;color:#FFFFFF;float:right;text-decoration: revert;">去激活-></a></div>
 
         <div id="getshow" runat="server" class="buylist">
              

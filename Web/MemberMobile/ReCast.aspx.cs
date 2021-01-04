@@ -150,7 +150,7 @@ public partial class ReCast : BLL.TranslationBase
         }
         string number = Session["Member"].ToString();
 
-        int cc = Convert.ToInt32(DBHelper.ExecuteScalar("select  count(0)  from memberorder where  DefrayState=1   and  isactive=0 and  number='" + number + "' "));
+        int cc = Convert.ToInt32(DBHelper.ExecuteScalar("select  count(0)  from memberorder where  DefrayState=1   and  isactive=0 and ordertype<>0  and  number='" + number + "' "));
         if (cc > 0)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('您有未激活的矿机，请激活后再升级！'); setTimeout(function(){ window.location.href='orderlist.aspx'},2000);  </script>", false);
