@@ -326,10 +326,12 @@ namespace DAL
                         if (lv > 1)
                         {
                              rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
-
+                           
                         }
                         if (lv == 1)
                         {
+                            
+                            DBHelper.ExecuteNonQuery(tran, "update  memberinfo  set  levelint=1   where number='" + number + "' ; update  memberinfobalance1  set  level=1   where number='" + number + "' "); 
                              rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "',isactive=1,activeExpectNum=" + maxexpt + "  where orderid='" + orderid + "' ");
 
                         }
