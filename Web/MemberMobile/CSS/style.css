@@ -2293,6 +2293,7 @@ span .orderTHOK {
 }
 
 .showhid div .qr {
+    background-color:#740bf5;
     background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
 }
 

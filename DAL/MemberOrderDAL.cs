@@ -271,115 +271,67 @@ namespace DAL
 
         //使用本地账户支付
         public static int PayOrder(string number, string orderid, double aneed, double bneed, double cneed, double eneed, int lv, string remark)
-        { int res = 0;
+        {
+            int res = 0;
             try
             {
 
-            //判断订单 
-           
-            int ispay = Convert.ToInt32(DBHelper.ExecuteScalar("select DefrayState  from memberorder where orderid='" + orderid + "'"));
-            if (ispay > 0) return 1;
-            else
-            { 
-                int maxexpt = ConfigDAL.GetMaxExpectNum();
-                 
-                SqlTransaction tran = null;
-                SqlConnection conn = null;
-                using (conn = DBHelper.SqlCon())
+                //判断订单 
+
+                int ispay = Convert.ToInt32(DBHelper.ExecuteScalar("select DefrayState  from memberorder where orderid='" + orderid + "'"));
+                if (ispay > 0) return 1;
+                else
                 {
-                    conn.Open();
-                    tran = conn.BeginTransaction();
+                    int maxexpt = ConfigDAL.GetMaxExpectNum();
 
-                    if (aneed > 0 || bneed > 0 || cneed > 0 || eneed > 0)
+                    SqlTransaction tran = null;
+                    SqlConnection conn = null;
+                    using (conn = DBHelper.SqlCon())
                     {
-                        //修改会员账户
-                        int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "  ,pointEout=pointEout+" + eneed + "    where number='" + number + "'");
-                        //更新销毁字段 
-                        DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;update CoinPlant set   CoinDestroy=CoinDestroy+" + eneed + "   where CoinIndex='CoinE' ;");
+                        conn.Open();
+                        tran = conn.BeginTransaction();
 
-                        if (r1 == 0) tran.Rollback();
+                        if (aneed > 0 || bneed > 0 || cneed > 0  )
+                        {
+                            //修改会员账户
+                            int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "   where number='" + number + "'");
+                            //更新销毁字段 
+                            DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;   ");
+
+                            if (r1 == 0) tran.Rollback();
+                        }
+
+                        string ddremark = "支付订单:";
+                        //插入对账单
+                        if (aneed > 0)
+                        {
+                            ddremark += "A币支付  " + aneed;
+                            int c = D_AccountDAL.AddAccount("A", number, aneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付", tran);
+                            if (c == 0) tran.Rollback();
+                        }
+                        if (bneed > 0)
+                        {
+                            ddremark += "  B币支付  " + bneed;
+                            int c = D_AccountDAL.AddAccount("B", number, bneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                            if (c == 0) tran.Rollback();
+                        }
+                        if (cneed > 0)
+                        {
+                            ddremark += "  C币支付  " + cneed;
+                            int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
+                            if (c == 0) tran.Rollback();
+                        }
+                       
+                        //修改订单状态
+                        int rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");  
+                        if (rr == 1)
+                        {
+                            tran.Commit();
+                            res = 1;
+                        }
+                        else tran.Rollback();
+
                     }
-
-                    string ddremark = "支付订单:";
-                    //插入对账单
-                    if (aneed > 0)
-                    {
-                        ddremark += "A币支付  " + aneed;
-                        int c = D_AccountDAL.AddAccount("A", number, aneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付", tran);
-                        if (c == 0) tran.Rollback();
-                    }
-                    if (bneed > 0)
-                    {
-                        ddremark += "  B币支付  " + bneed;
-                        int c = D_AccountDAL.AddAccount("B", number, bneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
-                        if (c == 0) tran.Rollback();
-                    }
-                    if (cneed > 0)
-                    {
-                        ddremark += "  C币支付  " + cneed;
-                        int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
-                        if (c == 0) tran.Rollback();
-                    }
-                    if (eneed > 0)
-                    {
-                        ddremark += "  E币支付  " + cneed;
-                        int c = D_AccountDAL.AddAccount("E", number, eneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
-                        if (c == 0) tran.Rollback();
-                    }
-                    //修改订单状态
-                    int rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
-
-                    double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number + "'  and DefrayState=1  and ordertype in(23,24)    ", CommandType.Text));
-                    lv = 1;
-                    switch (ttpv)
-                    {
-                        case 50:
-                            lv = 2;
-                            break;
-                        case 100:
-                            lv = 3;
-                            break;
-                        case 500:
-                            lv = 4;
-                            break;
-                        case 1000:
-                            lv = 5;
-                            break;
-                        case 1500:
-                            lv = 6;
-                            break;
-                        case 3000:
-                            lv = 7;
-                            break;
-                    }
-                    //修改会员账户
-                    int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
-
-                    DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance" + maxexpt + " set  level =" + lv + "  where number='" + number + "' ");
-                    if (r == 0) tran.Rollback();
-
-                    double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv from memberorder  where  orderid='" + orderid + "'  and DefrayState=1     ", CommandType.Text));
-
-
-                    if (cupv > 0)
-                    {
-                        //计算业绩
-                        SqlParameter[] sp = new SqlParameter[] {
-                new SqlParameter ("@Number",number),
-                new SqlParameter ("@CurrentOneMark",cupv),
-                new SqlParameter ("@ExpectNum",maxexpt)
-                };
-                        DBHelper.ExecuteNonQuery(tran, "js_addnew_PV", sp, CommandType.StoredProcedure);
-                    }
-
-                    if (rr == 1)
-                    {
-                        tran.Commit();
-                        res = 1;
-                    }
-                    else tran.Rollback();
-
-                }
                 }
             }
             catch (Exception ee)
@@ -390,6 +342,106 @@ namespace DAL
             return res;
 
         }
+
+        public static int payOrderEcoin(string number, string orderid, double neede, string remark)
+        {
+            int res = 0;
+
+            if (neede > 0)
+            {
+                try
+                {
+
+              
+                int maxexpt = ConfigDAL.GetMaxExpectNum();
+                //判断订单是否支付 未激活
+
+                int ckorder = Convert.ToInt32(DBHelper.ExecuteScalar("select   isnull(count(0),0)  from memberorder where  orderid='" + orderid + "' and   DefrayState=1 and  isactive =0 "));
+                if (ckorder == 1)
+                {
+                    //判断E币是否足够支付
+                    double blac = Convert.ToDouble(DBHelper.ExecuteScalar("select   pointEin -pointEout  from  memberinfo where  number='" + number + "'"));
+                    if (neede > blac) return -1; //余额不足
+
+                    // 扣除对应 E币
+                    SqlTransaction tran = null;
+                    SqlConnection conn = null;
+                    using (conn = DBHelper.SqlCon())
+                    {
+                        conn.Open();
+                        tran = conn.BeginTransaction();
+                        int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointEout=pointEout+" + neede + "    where number='" + number + "'"); 
+                        if(r1==0) tran.Rollback();
+                        int c = D_AccountDAL.AddAccount("E", number, neede, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, remark, tran);
+                      if (c == 0) tran.Rollback();
+
+                        //更新订单  激活业绩
+
+                        //修改订单状态
+                        int rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  isactive=1  ,activeExpectNum="+ maxexpt + " ,remark=remark+'，会员支付E币激活'  where orderid='" + orderid + "' ");
+
+                        double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number + "'  and DefrayState=1 and isactive=1  and ordertype in(23,24)    ", CommandType.Text));
+                     int   lv = 1;
+                        switch (ttpv)
+                        {
+                            case 50:
+                                lv = 2;
+                                break;
+                            case 100:
+                                lv = 3;
+                                break;
+                            case 500:
+                                lv = 4;
+                                break;
+                            case 1000:
+                                lv = 5;
+                                break;
+                            case 1500:
+                                lv = 6;
+                                break;
+                            case 3000:
+                                lv = 7;
+                                break;
+                        }
+                        //修改会员账户
+                        int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
+
+                        DBHelper.ExecuteNonQuery(tran, "update     memberinfobalance" + maxexpt + " set  level =" + lv + "  where number='" + number + "' ");
+                        if (r == 0) tran.Rollback();
+
+                        double cupv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select totalpv from memberorder  where  orderid='" + orderid + "'  and DefrayState=1   and isactive=1  ", CommandType.Text));
+
+
+                        if (cupv > 0)
+                        {
+                            //计算业绩
+                            SqlParameter[] sp = new SqlParameter[] {
+                new SqlParameter ("@Number",number),
+                new SqlParameter ("@CurrentOneMark",cupv),
+                new SqlParameter ("@ExpectNum",maxexpt)
+                };
+                            DBHelper.ExecuteNonQuery(tran, "js_addnew_PV", sp, CommandType.StoredProcedure);
+                        }
+
+                        if (rr == 1)
+                        {
+                            tran.Commit();
+                            res = 1;
+                        }
+                        else tran.Rollback();
+
+                    } 
+
+                }
+                }
+                catch (Exception)
+                {
+                    res = -2;
+                }
+            }
+            return res;
+        }
+
 
         /// <summary>
         /// 創建兌換記錄

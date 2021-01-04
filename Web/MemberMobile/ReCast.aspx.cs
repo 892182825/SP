@@ -27,12 +27,23 @@ public partial class ReCast : BLL.TranslationBase
                     string number = Session["Member"].ToString();
                     int choselv = Convert.ToInt32(Session["choselv"]);
                     double eneed=Convert.ToDouble(  Session["Eneed"] );
-                    int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, eneed, choselv, "USDT账户支付成功");
+                    int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
 
 
                     if (rr == 1)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机成功！');</script>", false); Bind();
+                        if (eneed > 0)
+                        {
+                       int  ee=     MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
+                            if (ee == 1)
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机激活成功！');</script>", false);
+                            }
+                            else { 
+                            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('支付成功，请使用E币激活矿机！'); setTimeout(function(){ window.location.href='orderlist.aspx'},3000); </script>", false);
+                            }
+                        } 
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机支付成功！');</script>", false); Bind();
                         return;
                     }
                     else
@@ -59,6 +70,9 @@ public partial class ReCast : BLL.TranslationBase
         int lv = 0;
 
         DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select LevelInt from memberinfo where Number='" + number + "'");
+
+
+
         if (dt_one.Rows != null && dt_one.Rows.Count > 0)
         {
             lv = Convert.ToInt32(dt_one.Rows[0]["LevelInt"]);//获取账户等级
@@ -135,6 +149,13 @@ public partial class ReCast : BLL.TranslationBase
             return;  //未登录
         }
         string number = Session["Member"].ToString();
+
+        int cc = Convert.ToInt32(DBHelper.ExecuteScalar("select  count(0)  from memberorder where  DefrayState=1   and  isactive=0 and  number='" + number + "' "));
+        if (cc > 0)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('您有未激活的矿机，请激活后再升级！'); setTimeout(function(){ window.location.href='orderlist.aspx'},2000);  </script>", false);
+            return;
+        }
 
         int re = 0;
         ///获取usdt账户 
@@ -361,9 +382,22 @@ public partial class ReCast : BLL.TranslationBase
                     if (aneed > 0) CommandAPI.Destruction("A", aneed);
                     if (bneed > 0) CommandAPI.Destruction("B", bneed);
                     if (cneed > 0) CommandAPI.Destruction("C", cneed);
-                    if (eneed > 0) CommandAPI.Destruction("E", eneed);
+                    // if (eneed > 0) CommandAPI.Destruction("E", eneed);
+                    if (eneed > 0)
+                    {
+                        int ee = MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功");
+                        if (ee == 1)
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机激活成功！');</script>", false);
+                        }
+                        else
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('支付成功，请使用E币激活矿机！'); setTimeout(function(){ window.location.href='orderlist.aspx'},3000); </script>", false);
+                        }
+                    }
 
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买成功！');</script>", false); Bind();
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买成功！');</script>", false);  
                     return;
                 }
                 else

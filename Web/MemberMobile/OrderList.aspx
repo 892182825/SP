@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
      
     <script src="../bower_components/jquery/jquery.min.js"></script>
     <title>矿机列表</title>
@@ -48,9 +48,9 @@
         ///点击购买
         function showbuy(num) {
             $("#shid").show();
-            var blc=  $("#hideye").val();
+        var blc=  $("#hideye").val();
            var nde= $("#hidpayE").val(); 
-            var html = "需支付E币" + nde + "<br/> 余额 " + blc;
+            var html = "需支付E币" + nde + "  余额 " + blc;
             $("#sbuyinfo").html(html);
         }
 
@@ -74,21 +74,23 @@
     <div>
  
          <div id="shscid" class="showhid">
-            <div id="sbuyinfo1"  style=""> </div>
-            <div> 
+            <div id="sbuyinfo1"   class="rawz"   > </div>
+            <div class="radgm"> 
                 <input type="button" class="qr"  value="关闭" onclick="hidediv1()" /> 
             </div>
         </div>
 
-         <div id="shid" class="showhid">
-            <div id="sbuyinfo"  style=""> </div>
+         <div id="shid" class="showhid" style="">
+            <div id="sbuyinfo"   class="rawz"  > </div>
             <div> <asp:HiddenField ID="hidetp" runat="server"  Value="0"/>
                  <asp:HiddenField ID="hidpayE" runat="server"  Value="0"/>
+                <div class="radgm" >
                 <input type="button" class="canc" value="取消" onclick="hidediv()" />
                 <asp:Button ID="Button1" CssClass="qr" runat="server" Text="确认激活" OnClick="Button1_Click" /> 
+                    </div>
             </div>
         </div>
-
+        <asp:HiddenField ID="hideye" runat="server" Value="0" />
         <div style="margin-left:10%;margin-top:40px;margin-bottom:40px;"><h2 style="color:#fff">已买矿机</h2></div>
 
         <div id="getshow" runat="server" class="buylist">
