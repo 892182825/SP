@@ -7487,17 +7487,17 @@ public class AjaxClass : BLL.TranslationBase
 
         #endregion
 
-        decimal sxfbl = Common.GetSxfWyjblv(0); //手续费比例
-        decimal wyjbl = Common.GetSxfWyjblv(1); //违约金比例
+        decimal sxfbl = 0.2m; //手续费比例
+        decimal wyjbl = 0; //违约金比例
 
         decimal wyj = Convert.ToDecimal(txMoney.ToString()) * wyjbl; //违约金
-        decimal sxf = Convert.ToDecimal(txMoney.ToString()) * sxfbl;  //手续费
+        decimal sxf = Convert.ToDecimal(txMoney.ToString()) * sgprice* sxfbl;  //手续费
 
         decimal wyjjb = wyjbl * sellcount; //违约金石斛积分数量
         decimal sxfjb = sxfbl * sellcount;  //手续费石斛积分数量
 
         decimal xjye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointAin-pointAout  from memberinfo where number='"+number+"'")); //A币账户
-
+        decimal ebye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointEin-pointEout  from memberinfo where number='" + number + "'")); //A币账户
         try
         {
             //string hkxz = " select value from JLparameter where jlcid=5";
@@ -7510,6 +7510,11 @@ public class AjaxClass : BLL.TranslationBase
             //    this.money.Text = "";
             //    return;
             //}
+            if (sxf > ebye)
+            {
+
+                return "卖币需要燃烧20%的火星币，火星币不足！";
+            }
             string strSql = "select top 1 zzye from memberInfo where number=@number";
             SqlParameter[] para = {
                                       new SqlParameter("@number",SqlDbType.NVarChar,30)
@@ -7659,14 +7664,14 @@ public class AjaxClass : BLL.TranslationBase
 
         if (issell == 1)
         {
-            string sqls = @" select  top 5 InvestJB,priceJB  from  Withdraw  where number = '" + number + "' and IsJL = 1 and iscl = 0 and  shenhestate in(0, 1, 3, 11) and HkDj = 0   order by priceJB  ";
+            string sqls = @"select  top 5 SUM(InvestJB) as IJB,priceJB  from  Withdraw  where IsJL = 1 and iscl = 0 and  shenhestate in(0, 1, 3, 11) and HkDj = 0 group by priceJB  order by priceJB desc";
 
             DataTable dtt = DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
                
                     
-                    html += " <li><p class='pl'>" + Convert.ToDecimal(item["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(item["InvestJB"]) + "</p></li>";
+                    html += " <li><p class='pl'>" + Convert.ToDecimal(item["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(item["IJB"]) + "</p></li>";
                
 
             }

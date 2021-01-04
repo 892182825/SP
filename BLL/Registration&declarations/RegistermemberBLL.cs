@@ -165,14 +165,14 @@ product)
                         tran.Rollback();
                         return false;
                     }
-                    if (wDraw.IsJL == 0)
+                    if (wDraw.IsJL == 1)
                     {
                         //冻结提现金额和违约金 和手续费 ，以石斛积分额度冻结
-                        //if (!DAL.ECTransferDetailDAL.SetMemberShip1JB(tran, wDraw))
-                        //{
-                        //    tran.Rollback();
-                        //    return false;
-                        //}
+                        if (!DAL.ECTransferDetailDAL.SetMemberShip1JB(tran, wDraw))
+                        {
+                            tran.Rollback();
+                            return false;
+                        }
                     }
 
                     tran.Commit();

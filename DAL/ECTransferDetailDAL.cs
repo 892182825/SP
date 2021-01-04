@@ -112,15 +112,17 @@ namespace DAL
         /// <returns></returns>
         public static bool SetMemberShip1JB(SqlTransaction tran, WithdrawModel wDraw)
         {
-            string strSql = "Update MemberInfo Set MemberShip=MemberShip+@Money where number=@Number";
+            string strSql = "Update MemberInfo Set pointAFz=pointAFz+@Money,pointEFz=pointEFz+@sxf where number=@Number";
             SqlParameter[] para = {
                                       new SqlParameter("@Money",SqlDbType.Money),
+                                      new SqlParameter("@sxf",SqlDbType.Money),
                                       new SqlParameter("@Number",SqlDbType.NVarChar,50),
                                       
                                   };
             para[0].Value = wDraw.WithdrawMoney;
-            para[1].Value =  wDraw.Number;
-            
+            para[1].Value =  wDraw.WithdrawSXF;
+            para[2].Value = wDraw.Number;
+
 
             int count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
             if (count <= 0)
