@@ -294,7 +294,7 @@ namespace DAL
                         if (aneed > 0 || bneed > 0 || cneed > 0  )
                         {
                             //修改会员账户
-                            int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + " ,pointCout=pointCout+" + cneed + "   where number='" + number + "'");
+                            int r1 = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  pointAout=pointAOut+" + aneed + " ,pointBout=pointBout+" + bneed + ", ,pointCout=pointCout+" + cneed + "   where number='" + number + "'");
                             //更新销毁字段 
                             DBHelper.ExecuteNonQuery(tran, "update CoinPlant set  CoinDestroy=CoinDestroy+" + aneed + "   where CoinIndex='CoinA' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + bneed + "   where CoinIndex='CoinB' ;update CoinPlant set  CoinDestroy=CoinDestroy+" + cneed + "   where CoinIndex='CoinC' ;   ");
 
@@ -321,9 +321,18 @@ namespace DAL
                             int c = D_AccountDAL.AddAccount("C", number, cneed, D_AccountSftype.MemberType, D_AccountKmtype.Declarations, DirectionEnum.AccountReduced, "购买矿机支付,订单号" + orderid, tran);
                             if (c == 0) tran.Rollback();
                         }
-                       
+                        int rr = 0;
                         //修改订单状态
-                        int rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");  
+                        if (lv > 1)
+                        {
+                             rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
+
+                        }
+                        if (lv == 1)
+                        {
+                             rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "',isactive=1,activeExpectNum=" + maxexpt + "  where orderid='" + orderid + "' ");
+
+                        }
                         if (rr == 1)
                         {
                             tran.Commit();
