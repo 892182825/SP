@@ -114,7 +114,14 @@ namespace DAL
         /// <returns></returns>
         public static bool SetMemberShip1JB(SqlTransaction tran, WithdrawModel wDraw)
         {
-            string strSql = "Update MemberInfo Set pointAFz=pointAFz+@Money,pointEFz=pointEFz+@sxf where number=@Number";
+            string rsql = "";
+            if(wDraw.Actype==1) rsql = " pointAFz=pointAFz+@Money ";
+           else if (wDraw.Actype == 2) rsql = " pointBFz=pointBFz+@Money ";
+          else  if (wDraw.Actype == 3) rsql = " pointCFz=pointCFz+@Money ";
+           else if (wDraw.Actype ==4) rsql = " pointDFz=pointDFz+@Money ";
+           
+
+            string strSql = "Update MemberInfo Set  "+ rsql + ",pointEFz=pointEFz+@sxf where number=@Number";
             SqlParameter[] para = {
                                       new SqlParameter("@Money",SqlDbType.Money),
                                       new SqlParameter("@sxf",SqlDbType.Money),
