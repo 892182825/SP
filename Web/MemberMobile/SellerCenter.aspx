@@ -79,27 +79,28 @@ display: inline-block;/*行内元素*/
         $(".glyphicon").removeClass("a_cur");
         $("#c2").addClass("a_cur");
         //加载
-       // var tp = '<%= Session["cpage"]%>';
+       
         showbs(0);
-     
+         LoadJYZList();
+        LoadJYWCList(0);
         // if (tp == 2) {$("#djye").show(); LoadJYZList(); }
         //if (tp == 3) {$("#sech").show(); LoadJYWCList(0); }
         loadsellandbuylist();
         //加载点击事件
+
+        $(".scdjy li").click(function () {
+            $(".scdjy li").removeClass("cur");
+            $(this).addClass("cur");
+            var ck = $(this).attr("atr");
+            if (ck == 1) { $("#djye").show(); $("#sech").hide(); }
+            if (ck == 2) { $("#sech").show(); $("#djye").hide(); }
+        });
+
+
         $(".scttjy li").click(function () {
             var ck = $(this).attr("atr");
             showbs(ck);
-            //window.location.href = "sellercenter.aspx?tp=" + ck;
-            //$(".scttjy li").removeClass("cur");
-            //$(this).addClass("cur");
-            //$("#buy").hide();
-            //$("#sell").hide();
-            //$("#djye").hide();
-            //$("#sech").hide();
-            //if (ck == 0) $("#buy").show();
-            //if (ck == 1) $("#sell").show();
-            //if (tp == 2) {$("#djye").show(); LoadJYZList(); }
-            //if (tp == 3) {$("#sech").show(); LoadJYWCList(0); }
+             
 
         });
 
@@ -113,7 +114,7 @@ display: inline-block;/*行内元素*/
 
             $("#buy").hide();
             $("#sell").hide();
-            $("#djye").hide();
+           // $("#djye").hide();
             $("#sech").hide();
             if (tp == 0) {
                 $("#buy").show(); $("#showcu10").show();
@@ -437,24 +438,20 @@ display: inline-block;/*行内元素*/
     function LoadJYZList() {
 
         var djyhtml = AjaxClass.LoadSellerList(0).value;
-
+      
         $("#djye ul").html(djyhtml);
+        var rehtml = AjaxClass.LoadSellerSuccessList(0).value;
+      
+        $("#sech ul").html(rehtml);
 
-        window.setInterval(function () {
-            var divname = $('p[name="ddjs"]');
-            for (var i = 0; i < divname.length; ){
-                var retime = $(divname[i]).attr("retime");
+        }
+       
 
-                ShowCountDown(retime, divname[i]);
-            }
-                }, interval);
-
-    }
 
     //交易完成列表
     function LoadJYWCList(pgidx) {
-        var rehtml = AjaxClass.LoadSellerSuccessList(0).value;
-        $("#sech").html(rehtml);
+        var rehtml = AjaxClass.LoadSellerSuccessList(pgidx).value; 
+        $("#sech ul").html(rehtml);
     }
 
 
@@ -481,15 +478,11 @@ display: inline-block;/*行内元素*/
     //取消未匹配到的汇款
     function cancelbuy(elem, hkid) {
         var recb = AjaxClass.CancelRemittance(hkid).value;
-        if (recb == "-1") {
-            alert("长时间未操作，请先去登录！");
-            window.location.href = 'index.aspx';
-            return;
-        }
+       
         if (recb == "1") {
             alert("撤销买入成功！");
             $(elem).parent().parent().hide();
-        } else if (recb == "0") {
+        } else  {
             alert("操作失败！");
         }
 
@@ -497,14 +490,10 @@ display: inline-block;/*行内元素*/
 
 
     //取消未匹配到的汇款
-    function cancelsell(elem, hkid) {
-
-
+    function cancelsell(elem, hkid) { 
         var recb = AjaxClass.CancelWithdraw(hkid).value;
         if (recb == "-1") {
-            alert("长时间未操作，请先去登录！");
-            window.location.href = 'index.aspx';
-            return;
+            alert("操作失败！");  
         }
         if (recb == "1") {
             alert("撤销卖出成功！");
@@ -805,14 +794,14 @@ display: inline-block;/*行内元素*/
                 <div style="margin-top: 10px;"> </div>
             </div>
 
-
-                 </div>
-            <ul class="scttjy" style="top:350px; display:none;">
-                
-                <li atr="2">待交易</li>
-                <li atr="3">查询</li>
+                </div>
+            </div>
+                <div class="botm"  >
+            <ul class="scdjy" style=""> 
+                <li atr="1" class="cur">待交易</li>
+                <li atr="2">已成交</li>
             </ul>
-            <div class="content djye" id="djye">
+            <div class="content djye" id="djye" style="display:block;">
                 <ul>
                     <li class="title">
                         <div class="firstdiv">委托时间</div>
@@ -828,8 +817,8 @@ display: inline-block;/*行内元素*/
                 <ul>
                     <li class="title">
                         <div class="firstdiv">委托时间</div>
-                        <div>数量/市值</div>
-                        <div class="fourdiv">交易方</div>
+                        <div>数量/价格</div>
+                        <div class="fourdiv">市值</div>
                         <div class="secdiv" style="float: right;">状态</div>
                     </li>
                    
@@ -838,7 +827,7 @@ display: inline-block;/*行内元素*/
             </div>
             <div id="bakg"></div>
 
-            
+             </div>
              
             <!-- #include file = "comcode.html" -->
 

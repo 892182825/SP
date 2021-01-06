@@ -7706,27 +7706,28 @@ public class AjaxClass : BLL.TranslationBase
         if (Session["Member"] == null) return "-1";//and ReceivablesDate>  DATEADD(hour,-2,GETutcDATE()))
         string number = Session["Member"].ToString();
         string sqls = @"  select  * from (
-  (select 0 as ratid , id  , 0 as bs,RemittancesDate as  trantime, investJB ,remitmoney as ttpriec,Ispipei,shenhestate,ReceivablesDate  as strartime   from remittances   where remitnumber=@number   and IsJL=1  and   (    shenhestate in(11, 3,1,0)    ) and id  not in (select  hkid from withdraw where iscl=1 ) )
-  union(select hkid as ratid , id, 1 as bs, WithdrawTime as  trantime, investJB ,WithdrawMoney as ttpriec, 0 as Ispipei,shenhestate, hktime as strartime from Withdraw where number=@number and IsJL=1 and  iscl=0 and  shenhestate in(0,1, 3,11) and HkDj=0 )) as td order by td.trantime desc";
+  (select   id  , 0 as bs,RemittancesDate as  trantime, investJB,pricejb ,remitmoney as ttpriec     from remittances   where remitnumber=@number    and shenhestate=0  )
+  union(select   id, 1 as bs, WithdrawTime as  trantime, investJB,pricejb ,WithdrawMoney as ttpriec  from Withdraw where number=@number and    shenhestate =0 )) as td order by td.trantime desc   ";
 
         SqlParameter[] sps = new SqlParameter[]{
            new SqlParameter("@number",number)
           };
         DataTable dtt = DBHelper.ExecuteDataTable(sqls, sps, CommandType.Text);
-        string rechtml = " <li class='title' ><div class='firstdiv' >委托时间</div><div>数量/市值</div><div class='secdiv'>状态</div><div class='fourdiv'>操作</div></li> ";
+        string rechtml = " <li class='title' ><div class='firstdiv' >委托时间</div><div>数量/价格</div><div class='secdiv'>状态</div><div class='fourdiv'>操作</div></li> ";
         foreach (DataRow item in dtt.Rows)
-        {
+        {int id= Convert.ToInt32(item["id"]);
             int bs = Convert.ToInt32(item["bs"]);
             if (bs == 0)
             {
+               
                 rechtml += @" <li class='buyli'  > 
                       <a href='Sellbuydetails.aspx?rmid=" + item["id"] + @"' style='color: #dd4814;' > 
                           <div class='firstdiv'><p>买入</p>
-                        <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>   </div>
-                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>U" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
-                        <div class='secdiv'>" + GetRemitStateStr(Convert.ToInt32(item["Ispipei"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"</div>
+                        <p>" + Convert.ToDateTime(item["trantime"]). ToString("MM-dd HH:mm") + @"</p>   </div>
+                        <div><p>" + Convert.ToDouble(item["investJB"]).ToString( ) + "</p><p>" + Convert.ToDouble(item["pricejb"]).ToString("0.0000") + @"</p></div>
+                        <div class='secdiv'>待交易</div>
                           </a>
-                        <div  class='fourdiv'>" + GetRemitStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"]), Convert.ToDateTime(item["strartime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours())) + @"    </div>         </li>";
+                        <div  class='fourdiv'><a  class='btn btn-danger'  onclick='cancelbuy(this," + id + @")'  >买入<br/>撤销</a> </div>         </li>";
 
             }
             if (bs == 1)
@@ -7734,12 +7735,12 @@ public class AjaxClass : BLL.TranslationBase
                 rechtml += @" <li class='sellli'  > 
                         <a href='Selldetails.aspx?wdid=" + item["id"] + @"' > 
                              <div  class='firstdiv' ><p>卖出</p>
-                        <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>
+                        <p>" + Convert.ToDateTime(item["trantime"]) .ToString("MM-dd HH:mm") + @"</p>
                                       </div>
-                        <div><p>" + Convert.ToInt32(item["investJB"]).ToString() + "</p><p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p></div>
-                        <div class='secdiv'>" + GetDrawStateStr(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"])) + @"</div>
+                        <div><p>" + Convert.ToDouble(item["investJB"]).ToString( ) + "</p><p> " + Convert.ToDouble(item["pricejb"]).ToString("0.0000") + @"</p></div>
+                        <div class='secdiv'> 待交易</div>
                             </a>
-                        <div  class='fourdiv'>" + GetDrawStateButton(Convert.ToInt32(item["id"]), Convert.ToInt32(item["shenhestate"])) + "  </div>    </li>";
+                        <div  class='fourdiv'><a  class='btn btn-danger ' onclick='cancelsell(this," + id + ")' style='color:#fff;'  >卖出<br/>撤销</a> </div>    </li>";
 
             }
         }
@@ -7758,11 +7759,9 @@ public class AjaxClass : BLL.TranslationBase
     {
         if (Session["Member"] == null) return "-1";
         string number = Session["Member"].ToString();
-        string sqls = @"    select  *from (
-  (select w.number as Trnumber, w.DrawCardtype AS sktyep, 0 as ratid , r.id  , 0 as bs,RemittancesDate as  trantime,r.investJB ,r.RemitMoney as ttpriec, Ispipei,r.shenhestate,ReceivablesDate  as strartime   from remittances  r   join Withdraw w on r.ID=w.hkid   where remitnumber=@number   and r.IsJL=1  and   r. shenhestate=20 and  DateDiff(dd,RemittancesDate,getutcdate())<2  ) 
-  union(select r.remitnumber as Trnumber, r.RemitCardtype AS sktyep,    hkid as ratid , w.id, 1 as bs, WithdrawTime as  trantime, w.investJB ,WithdrawMoney as ttpriec, 0 as Ispipei,w.shenhestate, hktime as strartime from Withdraw w   join  Remittances r  on w.hkid=r.id where number=@number  and w.IsJL=1 and  w.shenhestate =20   and  DateDiff(dd,WithdrawTime,getutcdate())<2   )) as td order by td.trantime desc
-  
-  ";
+        string sqls = @"    select  * from (
+  (select   id  , 0 as bs,RemittancesDate as  trantime, investJB,pricejb ,remitmoney as ttpriec     from remittances   where remitnumber=@number    and shenhestate=1  )
+  union(select   id, 1 as bs, WithdrawTime as  trantime, investJB,pricejb ,WithdrawMoney as ttpriec  from Withdraw where number=@number and    shenhestate =1 )) as td order by td.trantime desc ";
 
         SqlParameter[] sps = new SqlParameter[]{
            new SqlParameter("@number",number)
@@ -7770,8 +7769,8 @@ public class AjaxClass : BLL.TranslationBase
         DataTable dtt = DBHelper.ExecuteDataTable(sqls, sps, CommandType.Text);
         string rechtml = @" <ul>  <li class='title'>
                         <div class='firstdiv'>委托时间</div>
-                        <div>数量/市值</div>
-                        <div class='fourdiv'>交易方</div>
+                        <div>数量/价格</div> 
+  <div class='fourdiv'>市值</div>
                         <div class='secdiv' style='float: right;'>状态</div>
                     </li> ";
         foreach (DataRow item in dtt.Rows)
@@ -7780,24 +7779,20 @@ public class AjaxClass : BLL.TranslationBase
             if (bs == 0)
             {
 
-                rechtml += @"<li class='buyli'>
-                        <a href='Sellbuydetails.aspx?rmid=" + item["id"] + @"'>
+                rechtml += @"<li class='buyli' href='Sellbuydetails.aspx?rmid=" + item["id"] + @"'>
+                      
                             <div class='firstdiv'>
                                 <p>买入</p>
-                                <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>
+                                <p>" + Convert.ToDateTime(item["trantime"]). ToString("MM-dd HH:mm") + @"</p>
                             </div>
                             <div>
-                                <p>" + Convert.ToInt32(item["investJB"]).ToString() + @"</p>
-                                <p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
-                            </div>
+                                <p>" + Convert.ToDouble(item["investJB"]).ToString( ) + @"</p>
+                                <p>" + Convert.ToDouble(item["pricejb"]).ToString("0.0000") + @"</p>
+                            </div> 
 
-                            <div class='fourdiv'>
-                                <p>" + item["Trnumber"].ToString() + @"</p>
-                                <p>" + Gettrantype(Convert.ToInt32(item["sktyep"])) + @"</p>
-                            </div>
-
-                            <div class='secdiv' style='color: forestgreen; float: right;'>买入已成</div>
-                        </a>
+  <div>" + Convert.ToDouble(item["ttpriec"]).ToString("0.0000") + @"</div>   
+                            <div class='secdiv' style='color: forestgreen; float: right;'>买入<br/>已成</div>
+                       
                     </li>";
 
 
@@ -7806,24 +7801,18 @@ public class AjaxClass : BLL.TranslationBase
             if (bs == 1)
             {
 
-                rechtml += @"<li class='sellli'>
-                        <a href='Selldetails.aspx?wdid=" + item["id"] + @"'>
+                rechtml += @"<li class='sellli' href='Selldetails.aspx?wdid=" + item["id"] + @"'>
+                         
                             <div class='firstdiv'>
                                 <p>卖出</p>
-                                <p>" + Convert.ToDateTime(item["trantime"]).AddHours(BLL.other.Company.WordlTimeBLL.ConvertAddHours()).ToString("HH:mm:ss") + @"</p>
+                                <p>" + Convert.ToDateTime(item["trantime"]). ToString("MM-dd HH:mm") + @"</p>
                             </div>
                             <div>
-                                <p>" + Convert.ToInt32(item["investJB"]).ToString() + @"</p>
-                                <p>U;" + Convert.ToDouble(item["ttpriec"]).ToString("0.00") + @"</p>
-                            </div>
-
-                            <div class='fourdiv'>
-                                <p>" + item["Trnumber"].ToString() + @"</p>
-                                <p>" + Gettrantype(Convert.ToInt32(item["sktyep"])) + @"</p>
-                            </div>
-
-                            <div class='secdiv' style='color: forestgreen; float: right;'>卖出已成</div>
-                        </a>
+                                <p>" + Convert.ToDouble(item["investJB"]).ToString( ) + @"</p>
+                                <p> " + Convert.ToDouble(item["pricejb"]).ToString("0.0000") + @"</p>
+                            </div> 
+  <div>" + Convert.ToDouble(item["ttpriec"]).ToString("0.0000") + @"</div>  <div class='secdiv' style='color: forestgreen; float: right;'>卖出<br/>已成</div>
+                        
                     </li>";
 
             }
@@ -8048,12 +8037,32 @@ public class AjaxClass : BLL.TranslationBase
     [AjaxPro.AjaxMethod]
     public string CancelRemittance(int rmid)
     {
-        string sql7s = "update   withdraw   set  hkid=0  where  hkid= " + rmid;
+        if (Session["member"] == null) return "-1";
+        string num = Session["member"].ToString();
+        DataTable dtt = DBHelper.ExecuteDataTable("select  shenhestate ,remitnumber,RemitMoney,InvestJB,priceJB   from remittances  where id ="+rmid);
+        int st = -1;
+        string number = "";
+        double remoney = 0;
+
+        if(dtt!=null&&dtt.Rows.Count>0)
+        { DataRow dr = dtt.Rows[0];
+            st = Convert.ToInt32(dr["shenhestate"]);
+              number = dr["remitnumber"].ToString();
+            remoney = Convert.ToDouble(dr["RemitMoney"]) ;
+        }
+        int ccc = 0;
+        if (number != num) return "-1";
+        if (st != 0) return "-1";
+        else {  string sql7s = "update   memberinfo   set membership =membership-"+ remoney + "    where  number='"+number+"' "  ;
 
         DAL.DBHelper.ExecuteNonQuery(sql7s);
         string sqls = "update   remittances   set  shenhestate=-1  where  id= " + rmid;
+   ccc = DAL.DBHelper.ExecuteNonQuery(sqls);
+        
+        }
 
-        int ccc = DAL.DBHelper.ExecuteNonQuery(sqls);
+       
+       
 
         return ccc.ToString();
     }
@@ -8084,27 +8093,44 @@ public class AjaxClass : BLL.TranslationBase
     {
         if (Session["Member"] == null) { return "-1"; }
         string rec = "0";
-        int rc = Convert.ToInt32(DBHelper.ExecuteScalar("select hkid from Withdraw where id =" + wdid));
-        if (rc > 0)
+        DataTable dt =  DBHelper.ExecuteDataTable(" select number,shenHestate ,actype  ,InvestJB,priceJB,InvestJBSXF  from Withdraw  where id =" + wdid);
+        string num = Session["Member"].ToString();
+        
+        int st = -1;
+        int actype = 1;
+        string number = "";
+        double sellcount = 0;
+        double sellprice = 0;
+        double sellsxf = 0;
+        if (dt != null && dt.Rows.Count > 0)
         {
-            rec = "-2";
-
+            DataRow dr = dt.Rows[0];
+            actype = Convert.ToInt32( dr["actype"]);
+            number = dr["number"].ToString();
+            st = Convert.ToInt32(dr["shenHestate"]);
+            sellcount = Convert.ToDouble(dr["InvestJB"]);
+              sellprice = Convert.ToDouble(dr["priceJB"]);
+              sellsxf = Convert.ToDouble(dr["InvestJBSXF"]);
         }
-        else
-        {
+        if(number!= num) return "-1";
+        if (st == -1) return "-1";
+        else if (st == 1) return "1";
+       else  if (st ==0)
+        { 
 
             SqlTransaction tran = null;
-            SqlConnection conn = null;
-
-
+            SqlConnection conn = null; 
             try
             {
                 conn = DBHelper.SqlCon();
                 conn.Open();
                 tran = conn.BeginTransaction();
-                string sql1 = @" update  memberinfo set MemberShip= MemberShip- w.dj  from 
-  (    select wd.number, SUM( InvestJB+InvestJBSXF+InvestJBWYJ) as dj  from Withdraw  wd  where  wd.id=" + wdid + @"  group by wd.number)  w where memberinfo .Number=w.number";
-
+                string sl = "";
+                if(actype==1) sl = " pointAFz =pointAFz-"+ sellcount;
+                else if (actype == 2) sl = " pointBFz =pointBFz-" + sellcount;
+                else if (actype == 3) sl = " pointCFz =pointCFz-" + sellcount;
+                else if (actype == 4) sl = " pointDFz =pointDFz-" + sellcount;
+                string sql1 = @" update  memberinfo set "+sl+ " ,pointEFz=pointEFz-"+ sellsxf + "     where number='" + number + "'  "; 
                 int c = DBHelper.ExecuteNonQuery(tran, sql1);
 
                 string sql2 = " UPDATE Withdraw	SET shenHestate = -1	WHERE  id =" + wdid;

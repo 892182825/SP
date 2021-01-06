@@ -1681,9 +1681,7 @@ span .orderTHOK {
     .middle .scttjy {
         height: 30px;
         line-height: 30px;
-        width: 100%;
-        position: absolute;
-        top: 70px;
+        width: 100%; 
         font-size: 16px;
     }
 
@@ -1712,7 +1710,13 @@ span .orderTHOK {
         text-align: center;
         border-bottom: 1px solid #ccc;
     }
-
+.scdjy li {
+    list-style: none;
+    float: left;
+    width: 25%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
     .middle .scttjy .cur0 {
         color: #ef3a05;
         font-weight: bold;
@@ -1728,8 +1732,8 @@ span .orderTHOK {
         display: none;
         padding: 0px;
         width: 65%;
-        min-height: 500px;
-        margin-bottom: 60px;
+        height: 300px;
+        
         font-size: 16px;
         float:left;
     }
@@ -1777,19 +1781,40 @@ span .orderTHOK {
         float: left;
         line-height: 40px;
     }
-.cc {
-    width: 100%;
-    float: left;
+.botm {
+width:100%;
+
+margin-top:300px;
 }
+    .botm .djye { 
+    }
+    .botm .scdjy li {
+        list-style: none;
+        float: left;
+        width: 50%;
+        line-height: 35px;
+        text-align: center;
+        color:#bcbcbc;
+    }
+    .botm .scdjy   .cur {
+        border-bottom: 1px solid #6507fb;
+        font-weight: bold;
+        color: #6507fb;
+    }
+
+    .cc {
+        width: 100%;
+        float: left;
+    }
     .cc li {
         list-style: none;
        
         float: left;
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
          margin:3px;
         border: 1px solid #666;
-        line-height: 50px;
+        line-height: 40px;
         font-size: 25px;
         font-weight: bold;
         color: #999;
@@ -1865,22 +1890,24 @@ span .orderTHOK {
     width: 100%;
     min-height: 500px;
 }
+ 
+.djye ul .title {
+    float:left;
+    height: 35px; 
+    line-height: 25px;
+    background: #232323;
+    font-weight: normal;
+}
 
-    .djye ul .title {
-        height: 35px;
-        line-height: 25px;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        font-weight: normal;
-    }
-
-    .djye ul li {
-        list-style: none;
-        height: 60px;
-        line-height: 25px;
-        padding: 5px;
-        background-color: #fff;
-    }
+.djye ul li {
+    list-style: none;
+    height: 60px;
+    line-height: 25px;
+    padding: 5px;
+    width: 100%;
+    float: left;
+    color: #c8c4c4;
+}
 
         .djye ul li div {
             height: 100%;
@@ -2179,7 +2206,7 @@ span .orderTHOK {
 }
 .zhlist {
     width: 100%;
-    height: 120px;
+    height: 114px;
     margin-top:30px;
     
 }
