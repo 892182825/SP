@@ -7517,7 +7517,7 @@ public class AjaxClass : BLL.TranslationBase
             //    this.money.Text = "";
             //    return;
             //}
-            if (sxf > ebye)
+            if (sxfjb > ebye)
             {
 
                 return "卖币需要燃烧20%的火星币，火星币不足！";
