@@ -103,7 +103,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
            djq = Convert.ToDouble(dts.Rows[0]["djq"].ToString());
         }
         double jdjy=0;
-        rmoney.Text = leftMoney;
+        //rmoney.Text = leftMoney;
         if (level2>0)
         {
             if (Convert.ToDouble(leftMoney) + djq > 10000)
@@ -121,7 +121,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 jdjy = 0;
                 
             }
-            rmoney.Text = jdjy.ToString();
+           // rmoney.Text = jdjy.ToString();
         }
         
         double b2 = Convert.ToDouble(DAL.MemberInfoDAL.Sxfparameter());
@@ -227,7 +227,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
 
         double wyj = 0; //违约金
-        double sxf = Convert.ToDouble(new AjaxClass().Getsxf(txMoney.ToString())) *0.01;  //手续费
+        double sxf = 0;  //手续费
         double xjye = Convert.ToDouble(BLL.CommonClass.CommonDataBLL.GetLeftMoney(bianhao)); //现金账户余额【单位：美元】
 
         try
@@ -275,11 +275,11 @@ public partial class Member_MemberCash : BLL.TranslationBase
         if (DropDownList1.SelectedValue == "1")
         {
             isjl = 0;
-            if (txMoney > Convert.ToDouble(rmoney.Text.Trim()))
-            {
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
-                return;
-            }
+            //if (txMoney > Convert.ToDouble(rmoney.Text.Trim()))
+            //{
+            //    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
+            //    return;
+            //}
             if (txMoney > xjye)
             {
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
@@ -307,14 +307,9 @@ public partial class Member_MemberCash : BLL.TranslationBase
         wDraw.Bankcard = "";
         wDraw.Bankname = "";
         wDraw.Wyj =Convert.ToDouble(RadioButtonList1.SelectedValue);  //违约金
-        if (DropDownList1.SelectedValue == "1")
-        {
-            wDraw.WithdrawSXF = txMoney * 0.1;//手续费
-        }
-        else
-        {
-            wDraw.WithdrawSXF = txMoney * 0.05;//手续费
-        }
+       
+            wDraw.WithdrawSXF = 0;//手续费
+        
         wDraw.IsJL = isjl;
         wDraw.blmoney =0; //提现手续费比例
         wDraw.Wyjbl = 0;//违约金比例
@@ -330,12 +325,12 @@ public partial class Member_MemberCash : BLL.TranslationBase
         bool isSure = false;
         if (ViewState["edit"].ToString() == "0")
         {
-            if (DropDownList1.SelectedValue == "1")
-            {
-                isSure = BLL.Registration_declarations.RegistermemberBLL.WithdrawMoney1(wDraw);
-            }
-            else
-            {
+            //if (DropDownList1.SelectedValue == "1")
+            //{
+            //    isSure = BLL.Registration_declarations.RegistermemberBLL.WithdrawMoney(wDraw);
+            //}
+            //else
+            //{
                 SqlTransaction tran = null;
                 SqlConnection con = DBHelper.SqlCon();
                 try
@@ -349,7 +344,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                         return;
                     }
 
-                    string strSql = "Update MemberInfo Set pointAOut = pointAOut + @Money Where number=@Number";
+                    string strSql = "Update MemberInfo Set Out = Out + @Money Where number=@Number";
                     SqlParameter[] para1 = {
                                        new SqlParameter("@Money",SqlDbType.Money),
                                        new SqlParameter("@Number",SqlDbType.NVarChar,50)
@@ -376,7 +371,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 {
                     con.Close();
                 }
-            }
+            //}
         }
         else
         {
@@ -399,12 +394,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 return;
             }
 
-            if (DropDownList1.SelectedValue == "1")
-            {
-                isSure = BLL.Registration_declarations.RegistermemberBLL.WithdrawMoney1(wDraw);
-            }
-            else
-            {
+          
                 SqlTransaction tran = null;
                 SqlConnection con = DBHelper.SqlCon();
                 try
@@ -445,7 +435,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 {
                     con.Close();
                 }
-            }
+            
             ViewState["edit"] = "0";
             //isSure = BLL.Registration_declarations.RegistermemberBLL.updateWithdraw(wDraw);
         }

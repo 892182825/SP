@@ -178,6 +178,28 @@
                       
                 </a>
             </div>
+            <div style="width: 90%; height: 70px; margin-top: 20px; margin-left: 5%;">
+                <a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="../MemberMobile/MemberCashXF.aspx">
+                    <img src="img/充值.png" width="32" height="32" /><br />
+                    充值
+                </a>
+                
+                <a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="../MemberMobile/MemberCash.aspx">
+                    <img src="img/提现.png" width="32" height="32" /><br />
+                    提现
+                      
+                </a>
+                <%--<a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="PlanteDH.aspx">
+                    <img src="img/交易.png" width="32" height="32" /><br />
+                    抢购
+                </a>
+                <a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="sellercenter.aspx?tp=1">
+                    <img src="img/星球.png" width="32" height="32" /><br />
+                    交易
+                      
+                </a>--%>
+            </div>
+
             <div style="box-shadow: #e8e5e5 0px 0px 10px; width: 100%; height: 70px; background-color: #f9f9ff; margin-top: 10px; display: none">
                 <div style="margin-left: 10px; font-size: 18px; padding-top: 23px; font-weight: bold;"><a href="../MemberMobile/AccountDetail.aspx?type=AccountXJ" style="text-decoration: underline; color: #666;">USDT账户</a></div>
                 <%--<div style="margin-left:10px;float:left;font-size:12px;margin-top:5px;color:#797979;">钱包里可用的FTC</div>--%>
@@ -207,7 +229,7 @@
                         </div>
                         <div class='dsc1'>
                             <p class='p1'>Saturn(土星)</p>
-                            <p class='p3'>3.51%</p>
+                            <p class='p3'>2.85%</p>
                         </div>
                         <div class='dsc2'>
                             <p class='p1'>&nbsp;</p>
