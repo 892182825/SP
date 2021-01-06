@@ -181,7 +181,7 @@
                         <div class="changeRt">
                             <asp:TextBox CssClass="ctConPgTxt" ID="money" runat="server"  MaxLength="15" style="width:280px;height:40px;border-radius: 5px;"></asp:TextBox>
                             <div style="text-align: center;width:280px;">
-                        <div style=" font-size: 12px;">提现会扣除<asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>%作为提现手续费,提U扣5%。
+                        <div style=" font-size: 12px;display:none;">提现会扣除<asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>%作为提现手续费,提U扣5%。
                             
                                                      
                         </div>
