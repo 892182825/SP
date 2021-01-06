@@ -18,7 +18,8 @@ namespace Model
 		#region Model
 
 		private int id;
-        private string remittancesid;
+		private int actype;
+		private string remittancesid;
         private string remitNumber;
         private int remitStatus;
 		private decimal remitMoney;
@@ -49,6 +50,11 @@ namespace Model
         private int isJL;
         private string Name;
         private decimal investJB;
+		public int Actype
+		{
+            get { return actype; }
+            set { actype = value; }
+        }
         /// <summary>
         /// 交易石斛积分数量
         /// </summary>

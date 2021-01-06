@@ -86,23 +86,37 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         string number = Session["member"].ToString();
         decimal todayprice =   Common.GetnowPrice();
         hidprice.Value =  todayprice.ToString("0.0000");
+        mrjg.Text = todayprice.ToString("0.0000");
         mcjg.Text= todayprice.ToString("0.0000");
         lbltodayprice.Text = todayprice.ToString("0.0000");
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
         lblzzlv.Text = "+3.51%";
 
-        double blace =Convert.ToDouble(DBHelper.ExecuteScalar("select pointAin-pointAout from memberinfo where number='" + number + "'")) ;
+        decimal ca = 0 ;
+        decimal usdt = 0;
+
+        DataTable dt = DBHelper.ExecuteDataTable("select  jackpot-out-membership  as usdt ,pointAin-pointAout-pointAfz as ca from memberinfo where number='" + number + "'");
+         if (dt != null && dt.Rows.Count > 0) {
+            DataRow dr = dt.Rows[0];
+            ca = Convert.ToDecimal(dr["ca"]);
+              usdt = Convert.ToDecimal(dr["usdt"]);
+        }
+
         decimal sxfbl = Common.GetSxfWyjblv(0);
         decimal wyjbl = Common.GetSxfWyjblv(1);
         //decimal wyjjb = blace*wyjbl; //违约金石斛积分数量
         //decimal sxfjb =sxfbl*blace ;  //手续费石斛积分数量
 
-        hidblance.Value =  blace .ToString("0.0000");
+        hidblance.Value =  ca .ToString("0.0000");  ///卖出数量余额
 
         sellsz.Text = "0";
         //  lblmaxsell.Text = (blace / (1 + sxfbl + wyjbl)).ToString("0.00");
 
-        mairu = (300 / todayprice).ToString("0.0000");
+        mairu = Convert.ToInt32(usdt/todayprice).ToString();
+        qbye.Text = mairu;
+        hidusdtblc.Value =usdt.ToString("0.0000");
+
+
         //MobileTele.Value = mb.MobileTele;
 
     }

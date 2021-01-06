@@ -623,7 +623,8 @@ namespace DAL
             new SqlParameter("@IsJL",SqlDbType.Int),
             new SqlParameter("@name",SqlDbType.NVarChar,50),
               new SqlParameter("@PriceJB",info.PriceJB),
-                new SqlParameter("@InvestJB",info.InvestJB)
+                new SqlParameter("@InvestJB",info.InvestJB),
+                 new SqlParameter("@actype",info.Actype)
             };
 
             parm[0].Value = 1;
@@ -653,7 +654,8 @@ namespace DAL
             parm[24].Value = info.Remittancesid;
             parm[25].Value = info.RemitStatus;
             parm[26].Value = info.IsJL;
-            parm[27].Value = info.name;
+                parm[27].Value = info.name;
+            
             mm=  DBHelper.ExecuteNonQuery("Remittances_MakeRemitMoney", parm, CommandType.StoredProcedure);
 
             }

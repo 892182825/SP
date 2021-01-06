@@ -7246,75 +7246,89 @@ public class AjaxClass : BLL.TranslationBase
     /// <param name="Mcount"></param>
     /// <returns></returns>
     [AjaxPro.AjaxMethod]
-    public int AddRemittance(decimal Mcount)
+    public int AddRemittance(decimal Mcount,decimal sgprice, int acttype)
     {
+        int r =0;
         if (Session["Member"] == null) return -1;
 
         string number = Session["Member"].ToString();
-
-        string sqls = "select COUNT(0)  from Remittances  where  RemitNumber='" + number + "' and shenhestate in (0,1,11,20)  and DateDiff(dd,RemittancesDate,getutcdate())=0";
-        int bc = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sqls));
-        if (Mcount > 5000)
-        {
-            return -3;  //单笔买入不能超过21000
-        }
-        if (bc >= 100)
-        {
-            return -2;  //当前还有未完成交易的买入单，不能继续交易
-        }
-        else
+        //输入错误
+        if (Mcount <= 0 || sgprice <= 0|| acttype<1) return -2;
+        try
         {
 
-            decimal sgprice = Common.GetnowPrice();
+            //判断会员的余额
+            decimal usdtblc =Convert.ToDecimal( DBHelper.ExecuteScalar("select jackpot-out-membership  as usdt    from memberinfo where number='" + number+"'"));
 
-            RemittancesModel info = new RemittancesModel();
-            info.InvestJB = Mcount;
-            info.PriceJB = sgprice;
-            info.ReceivablesDate = DateTime.UtcNow;
-            info.RemittancesDate = DateTime.UtcNow;
-            info.IsJL = 1;
-            info.ImportBank = "";
-            info.ImportNumber = "";
-            info.name = "";
-            info.RemittancesAccount = "";
-            info.RemittancesBank = "";
-            info.SenderID = "";
-            info.Sender = "";
-            info.RemitNumber = number;
-
-            info.RemitMoney = Mcount * sgprice;//价格是根据购买石斛积分数量计算出来的
-            info.StandardCurrency = 0;
-            info.Use = 0; /*int.Parse(this.DeclarationType.SelectedValue)*/
-            info.PayexpectNum = BLL.CommonClass.CommonDataBLL.getMaxqishu();
-            info.Managers = number;
-            info.ConfirmType = 0;
-            info.Remark = "";
-            info.RemittancesCurrency = int.Parse(Session["Default_Currency"].ToString());
-            info.RemittancesMoney = Mcount * sgprice;//价格是根据购买石斛积分数量计算出来的
-            info.OperateIp = CommonDataBLL.OperateIP;
-            info.OperateNum = Session["Member"].ToString();
-
-            //获取汇单号
-            string huidan = "HK" + Model.Other.MYDateTime.ToYYMMDDHHmmssString();
-            //判断汇单号是否存在:true存在,false不存在
-            bool isExist = RemittancesBLL.isMemberExistsHuiDan(huidan);
-            while (isExist)
+        decimal buysum = Mcount * sgprice;
+            if (usdtblc < buysum) return -3;
+            else
             {
-                huidan = "HK" + Model.Other.MYDateTime.ToYYMMDDHHmmssString();
-                isExist = RemittancesBLL.isMemberExistsHuiDan(huidan);
-            }
-            info.RemitStatus = 1;
-            info.IsGSQR = false;
-            info.Remittancesid = huidan;
+                RemittancesModel info = new RemittancesModel();
+                info.InvestJB = Mcount;
+                info.PriceJB = sgprice;
+                info.Actype = acttype;
+                info.ReceivablesDate = DateTime.UtcNow;
+                info.RemittancesDate = DateTime.UtcNow;
+                info.IsJL = 1;
+                info.ImportBank = "";
+                info.ImportNumber = "";
+                info.name = "";
+                info.RemittancesAccount = "";
+                info.RemittancesBank = "交易中心买入";
+                info.SenderID = "";
+                info.Sender = "";
+                info.RemitNumber = number; 
+                info.RemitMoney = Mcount * sgprice;//价格是根据购买石斛积分数量计算出来的
+                info.StandardCurrency = 0;
+                info.Use = 0; /*int.Parse(this.DeclarationType.SelectedValue)*/
+                info.PayexpectNum = BLL.CommonClass.CommonDataBLL.getMaxqishu();
+                info.Managers = number;
+                info.ConfirmType = 0;
+                info.Remark = "";
+                info.RemittancesCurrency = int.Parse(Session["Default_Currency"].ToString());
+                info.RemittancesMoney = Mcount * sgprice;//价格是根据购买石斛积分数量计算出来的
+                info.OperateIp = CommonDataBLL.OperateIP;
+                info.OperateNum = Session["Member"].ToString();
 
-            int rc = RemittancesBLL.RemitDeclare(info, "1", "1");
+                //获取汇单号
+                string huidan = "HK" + Model.Other.MYDateTime.ToYYMMDDHHmmssString();
+                //判断汇单号是否存在:true存在,false不存在
+                bool isExist = RemittancesBLL.isMemberExistsHuiDan(huidan);
+                while (isExist)
+                {
+                    huidan = "HK" + Model.Other.MYDateTime.ToYYMMDDHHmmssString();
+                    isExist = RemittancesBLL.isMemberExistsHuiDan(huidan);
+                }
+                info.RemitStatus = 1;
+                info.IsGSQR = false;
+                info.Remittancesid = huidan;
 
-            DataTable dt_one = DAL.DBHelper.ExecuteDataTable("select ID from remittances where RemittancesID='" + huidan + "'");
-            int HkID = 0;
-            if (dt_one != null && dt_one.Rows.Count > 0) HkID = Convert.ToInt32(dt_one.Rows[0]["ID"]);//汇款ID
-            int bishu = 4;
-            return HkID;
+                int rc = RemittancesBLL.RemitDeclare(info, "1", "1");
+
+                int id = 0;
+                try
+                { 
+                    id  =Convert.ToInt32(  DAL.DBHelper.ExecuteScalar("select  ID from remittances where RemittancesID='" + huidan + "'"));
+               }
+                catch (Exception)
+                {
+                      
+                }
+                if(id>0)
+                r=      PiepeiRemittanceGO(id);
+    
+               
+
+            } 
         }
+        catch (Exception)
+        {
+             
+        }
+
+
+        return r;
 
 
     }
@@ -7330,11 +7344,8 @@ public class AjaxClass : BLL.TranslationBase
         if (Session["Member"] == null) num = -1;
         string number = Session["Member"].ToString();
         int bishu = 4;
-        DataTable dt = RemittancesBLL.jinliucx(hkid.ToString(), bishu);
-        if (dt != null) num = dt.Rows.Count;
-
-
-
+        num =   RemittancesBLL.jinliucx(hkid.ToString() );
+       
         return num;
     }
     /// <summary>
@@ -7344,23 +7355,8 @@ public class AjaxClass : BLL.TranslationBase
     /// <returns></returns>
     [AjaxPro.AjaxMethod]
     public int PiepeiRemittanceGO(int hkid)
-    {
-
-        int c = PiepeiRemittance(hkid);
-        if (c > 0)
-        {
-            DAL.DBHelper.ExecuteNonQuery("update  remittances set shenhestate =1  where id=" + hkid);
-            DataTable dtt = DAL.DBHelper.ExecuteDataTable(" select top 1   r.RemitNumber,r.RemitMoney  from Remittances r  where  r.id= " + hkid);
-            if (dtt != null && dtt.Rows.Count > 0)
-            {
-                double wm = Convert.ToDouble(dtt.Rows[0]["RemitMoney"]);
-                string rnumber = dtt.Rows[0]["RemitNumber"].ToString();
-
-                string content = "<b style='margin:20px; '>系统匹配邮件</b> <p> 系统已为您的买入石斛积分完成匹配 ，请立即到交易中心查看买单并在两小时内完成汇款。<a href='Sellbuydetails.aspx?rmid=" + hkid + "'  >点击进入>></a></p> <p>系统邮件</p>";
-                SendEmail.SendSystemEmail("System", "1", content, rnumber);
-            }
-        }
-
+    { 
+        int c = PiepeiRemittance(hkid); 
         return c;
     }
     /// <summary>
@@ -7426,7 +7422,7 @@ public class AjaxClass : BLL.TranslationBase
     }
 
     [AjaxPro.AjaxMethod]
-    public string AddWithdawNew(decimal sellcount, string password, int ctype, string yzm,decimal sellprice)
+    public string AddWithdawNew(decimal sellcount, string password, int ctype, string yzm,decimal sellprice,int acttype)
     {
         if (Session["Member"] == null) return "-1";
         string number = Session["Member"].ToString();
@@ -7490,13 +7486,24 @@ public class AjaxClass : BLL.TranslationBase
         decimal sxfbl = 0.2m; //手续费比例
         decimal wyjbl = 0; //违约金比例
 
-        decimal wyj = Convert.ToDecimal(txMoney.ToString()) * wyjbl; //违约金
-        decimal sxf = Convert.ToDecimal(txMoney.ToString()) * sgprice* sxfbl;  //手续费
+        decimal wyj =0; //违约金
+        decimal sxf =0;  //手续费
 
         decimal wyjjb = wyjbl * sellcount; //违约金石斛积分数量
-        decimal sxfjb = sxfbl * sellcount;  //手续费石斛积分数量
+        decimal sxfjb = sxfbl * sellcount;  //手续费CoinE数量
 
-        decimal xjye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointAin-pointAout  from memberinfo where number='"+number+"'")); //A币账户
+
+        decimal xjye = 0;
+        string actstr = "pointAin-pointAout-pointAfz";
+        if (acttype == 1) actstr = "pointAin-pointAout-pointAfz";
+        else if (acttype == 2) actstr = "pointBin-pointBout-pointBfz";
+        else if (acttype == 3) actstr = "pointCin-pointCout-pointCfz";
+        else if (acttype == 4) actstr = "pointDin-pointDout-pointDfz";
+        else {
+            return "请选择币种";
+        }
+
+        xjye = Convert.ToDecimal(DBHelper.ExecuteScalar("select "+actstr+"  from memberinfo where number='"+number+"'")); //A币账户
         decimal ebye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointEin-pointEout  from memberinfo where number='" + number + "'")); //A币账户
         try
         {
@@ -7573,14 +7580,14 @@ public class AjaxClass : BLL.TranslationBase
 
         wDraw.Wyj = Convert.ToDouble(wyj);  //违约金
         wDraw.WithdrawSXF = Convert.ToDouble(sxf);//手续费
-
+       
         wDraw.InvestJBWYJ = wyjjb;  //违约金石斛积分数量
         wDraw.InvestJBSXF = sxfjb;//手续费石斛积分数量
 
         wDraw.IsJL = 1;
         wDraw.blmoney = Convert.ToDouble(sxfbl); //提现手续费比例
         wDraw.Wyjbl = Convert.ToDouble(wyjbl);//违约金比例 
-
+        wDraw.Actype = acttype;
         //string sqls = "select  Name ,isnull(BankBook,'') BankBook,isnull(BankCard,'') BankCard,isnull(mb.BankName,'') BankName,isnull(m.zhifubao ,'') zhifubao,isnull(m.weixin,'') weixin  from  memberinfo m left join MemberBank mb on m.BankCode=mb.BankCode   where number='" + number + "'";
         //DataTable dtt = DBHelper.ExecuteDataTable(sqls);
         //if (dtt != null && dtt.Rows.Count > 0)
@@ -7657,20 +7664,28 @@ public class AjaxClass : BLL.TranslationBase
     }
 
     [AjaxPro.AjaxMethod]
-    public string Loadsellbuytop5(int issell) {
+    public string Loadsellbuytop5(int issell,int actype) {
         string html = "";
         if (Session["Member"] == null) return "";
         string number = Session["Member"].ToString();
-
-        if (issell == 1)
-        {
-            string sqls = @"select  top 5 SUM(InvestJB) as IJB,priceJB  from  Withdraw  where IsJL = 1 and iscl = 0 and  shenhestate in(0, 1, 3, 11) and HkDj = 0 group by priceJB  order by priceJB desc";
+        if (issell == 0) {
+            string sqls = @"select  top 5 SUM(InvestJB) as IJB,priceJB  from  Remittances  where   shenhestate =0 and actype="+actype+"  group by priceJB  order by priceJB desc";
 
             DataTable dtt = DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
-               
-                    
+                html += " <li><p class='pl'>" + Convert.ToDecimal(item["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(item["IJB"]) + "</p></li>";
+
+
+            }
+        }
+          else  if (issell == 1)
+        {
+            string sqls = @"select  top 5 SUM(InvestJB) as IJB,priceJB  from  Withdraw  where    shenhestate =0  and actype=" + actype + "  group by priceJB  order by priceJB desc";
+
+            DataTable dtt = DBHelper.ExecuteDataTable(sqls);
+            foreach (DataRow item in dtt.Rows)
+            {  
                     html += " <li><p class='pl'>" + Convert.ToDecimal(item["priceJB"]).ToString("0.0000") + "</p><p class='pr'>" + Convert.ToInt32(item["IJB"]) + "</p></li>";
                
 

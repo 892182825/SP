@@ -1713,10 +1713,15 @@ span .orderTHOK {
         border-bottom: 1px solid #ccc;
     }
 
-    .middle .scttjy .cur {
+    .middle .scttjy .cur0 {
+        color: #ef3a05;
+        font-weight: bold;
+        border-bottom: 2px solid #ef3a05;
+    }
+    .middle .scttjy .cur1 {
         color: #75b1e2;
         font-weight: bold;
-        border-bottom: 2px solid rgb(37 57 160);
+        border-bottom: 2px solid #6507fb;
     }
 
     .middle .content {
@@ -1731,7 +1736,7 @@ span .orderTHOK {
 
     .middle .buy ul li, .sell ul li {
         list-style: none;
-        margin-top: 10px;
+        /*margin-top: 10px;*/
         line-height: 20px;
         vertical-align: middle
     }
@@ -1772,36 +1777,65 @@ span .orderTHOK {
         float: left;
         line-height: 40px;
     }
-
-#buy input[type="text"] {
-    border-color: #dd4814;
+.cc {
+    width: 100%;
+    float: left;
 }
+    .cc li {
+        list-style: none;
+       
+        float: left;
+        height: 50px;
+        width: 50px;
+         margin:3px;
+        border: 1px solid #666;
+        line-height: 50px;
+        font-size: 25px;
+        font-weight: bold;
+        color: #999;
+        text-align:center;
+
+    }
+    .cc .cr1 {
+        color: #ef3a05;
+        border-color: #ef3a05;
+    }
+    .cc .cr2 {
+        color: #6507fb;
+        border-color: #6507fb;
+    }
+
+
+        #buy input[type="text"] {
+            border-color: #dd4814;
+        }
 
 #buy {
-    color: #dd4814;
+    color: #ef3a05;
 }
 
     #buy .red {
-        background-color: #dd4814;
-        border-color: #dd4814;
+        line-height: 38px;
+        height: 38px;
+        width: 95%;
         color: #fff;
-        background-image: linear-gradient(#dd4814, #dd4814 60%, #dd4814);
+        background-image: linear-gradient(#6507fb, red);
     }
 
     #buy .spmp {
-        border: 1px solid #dd4814;
+        border: 1px solid #ef3a05;
     }
 
 #sell input[type="text"] {
-    border-color: #517bcd;
+    border-color: #6507fb;
 }
 
 #sell {
-    color: #517bcd;
+    color: #6507fb;
 }
 
     #sell .spmp {
-        border: 1px solid #517bcd;
+        border: 1px solid #6507fb;
     }
 
     #sell .blue {
@@ -1815,14 +1849,17 @@ span .orderTHOK {
         line-height:40px;
     }
 #buy .busub {
-    background-image: linear-gradient(#0E4A93, #5F0BC1);
+    background-image: linear-gradient(#ff6600, red);
     line-height: 38px;
     height: 38px;
     width: 100%;
     color: #fff;
 }
+#buy li {
+    line-height: 40px;
+}
 .gmlb {
-  width:35%;float:right;
+  width:35%;float:right; display:none;
 }
 .djye ul {
     width: 100%;
@@ -1880,16 +1917,16 @@ span .orderTHOK {
 
     .djye ul .sellli {
         border-bottom: 1px #b3c0e4 solid;
-        color: #517bcd;
+        color: #6507fb;
     }
 
         .djye ul .sellli a {
-            color: #517bcd;
+            color: #6507fb;
         }
 
     .djye ul .buyli {
         border-bottom: 1px #ffd5d5 solid;
-        color: #dd4814;
+        color: #6507fb;
     }
 
 

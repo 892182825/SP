@@ -16,8 +16,8 @@ namespace DAL
 
         public static bool Withdraw(SqlTransaction tran, WithdrawModel dModel)
         {
-            string strSql = @"insert into Withdraw(number,applicationExpectNum,auditExpectNum,isAuditing,WithdrawMoney,WithdrawTime,OperateIP,remark,bankcard,bankname,WithdrawSXF,Khname,IsJL,Wyj,blmoney,Wyjbl ,InvestJB,priceJB,DrawCardtype,AliNo,WeiXNo,InvestJBSXF,InvestJBWYJ)
-                                values(@Number,@ApplicationExpectNum,@AuditingExpectNum,@IsAuditing,@WithdrawMoney,@WithdrawTime,@OperateIP,@Remark,@bankcard,@bankname,@WithdrawSXF,@Khname,@IsJL,@Wyj,@blmoney,@Wyjbl,@InvestJB,@priceJB,@DrawCardtype,@AliNo,@WeiXNo,@InvestJBSXF,@InvestJBWYJ)";
+            string strSql = @"insert into Withdraw(number,applicationExpectNum,auditExpectNum,isAuditing,WithdrawMoney,WithdrawTime,OperateIP,remark,bankcard,bankname,WithdrawSXF,Khname,IsJL,Wyj,blmoney,Wyjbl ,InvestJB,priceJB,DrawCardtype,AliNo,WeiXNo,InvestJBSXF,InvestJBWYJ ,actype)
+                                values(@Number,@ApplicationExpectNum,@AuditingExpectNum,@IsAuditing,@WithdrawMoney,@WithdrawTime,@OperateIP,@Remark,@bankcard,@bankname,@WithdrawSXF,@Khname,@IsJL,@Wyj,@blmoney,@Wyjbl,@InvestJB,@priceJB,@DrawCardtype,@AliNo,@WeiXNo,@InvestJBSXF,@InvestJBWYJ ,@actype)";
             SqlParameter[] para = {
                                       new SqlParameter("@Number",SqlDbType.NVarChar,50),
                                       new SqlParameter("@ApplicationExpectNum",SqlDbType.Int),
@@ -42,7 +42,8 @@ namespace DAL
  new SqlParameter("@AliNo",dModel.AliNo),
  new SqlParameter("@WeiXNo",dModel.WeiXNo),
  new SqlParameter("@InvestJBSXF",dModel.InvestJBSXF),
- new SqlParameter("@InvestJBWYJ",dModel.InvestJBWYJ) 
+ new SqlParameter("@InvestJBWYJ",dModel.InvestJBWYJ) ,
+  new SqlParameter("@actype",dModel.Actype)
                                   };
             para[0].Value = dModel.Number;
             para[1].Value = dModel.ApplicationExpecdtNum;
@@ -60,6 +61,7 @@ namespace DAL
             para[13].Value = dModel.Wyj;
             para[14].Value = dModel.blmoney;
             para[15].Value = dModel.Wyjbl;
+            para[16].Value = dModel.Actype;
 
             int count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
             if (count <= 0)

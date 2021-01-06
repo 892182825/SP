@@ -267,17 +267,26 @@ namespace BLL.MoneyFlows
         /// </summary>
         /// <param name="HkID"></param>
         /// <param name="bishu"></param>
-        public static DataTable jinliucx(string HkID,int bishu)
+        public static int jinliucx(string HkID )
         {
+            int res = 0;
+            try
+            { 
+        
             SqlParameter[] parm = new SqlParameter[] {
-            new SqlParameter("@hkid",SqlDbType.NVarChar,50),
-            new SqlParameter("@ppTimes",SqlDbType.Int),
+            new SqlParameter("@hkid",SqlDbType.NVarChar,50) 
             };
-            parm[0].Value = HkID;
-            parm[1].Value = bishu;
-            //DBHelper.ExecuteNonQuery("zfpp", parm, CommandType.StoredProcedure);
-            DataTable dt = DAL.DBHelper.ExecuteDataTable("zfpp", parm, CommandType.StoredProcedure);
-            return dt;
+            parm[0].Value = HkID;  
+             DAL.DBHelper.ExecuteNonQuery("zfpp", parm, CommandType.StoredProcedure);
+                res = 1;
+            }
+            catch (Exception)
+            {
+               
+                res =-1;
+                
+            }
+            return res;
         }
         /// <summary>
         /// 0 成功 ，1 不成功

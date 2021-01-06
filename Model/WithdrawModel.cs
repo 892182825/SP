@@ -13,7 +13,15 @@ namespace Model
             get { return id; }
             set { id = value; }
         }
-
+        /// <summary>
+        /// 交易账户类型
+        /// </summary>
+     int actype;  
+        public int Actype
+        {
+            get { return actype; }
+            set { actype = value; }
+        }
         string number;
         public string Number
         {

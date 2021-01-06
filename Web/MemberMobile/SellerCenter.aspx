@@ -79,24 +79,17 @@ display: inline-block;/*行内元素*/
         $(".glyphicon").removeClass("a_cur");
         $("#c2").addClass("a_cur");
         //加载
-        var tp = '<%= Session["cpage"]%>';
-
-        $(".scttjy li").removeClass("cur");
-        $(".scttjy li:eq(" + tp + ")").addClass("cur");
-
-        $("#buy").hide();
-        $("#sell").hide();
-        $("#djye").hide();
-        $("#sech").hide();
-        if (tp == 0) $("#buy").show();
-        if (tp == 1) $("#sell").show();
+       // var tp = '<%= Session["cpage"]%>';
+        showbs(0);
+     
         // if (tp == 2) {$("#djye").show(); LoadJYZList(); }
         //if (tp == 3) {$("#sech").show(); LoadJYWCList(0); }
         loadsellandbuylist();
         //加载点击事件
         $(".scttjy li").click(function () {
             var ck = $(this).attr("atr");
-            window.location.href = "sellercenter.aspx?tp=" + ck;
+            showbs(ck);
+            //window.location.href = "sellercenter.aspx?tp=" + ck;
             //$(".scttjy li").removeClass("cur");
             //$(this).addClass("cur");
             //$("#buy").hide();
@@ -113,7 +106,24 @@ display: inline-block;/*行内元素*/
 
     });
 
+        function showbs( tp) {
+            $(".scttjy li").removeClass("cur0");
+            $(".scttjy li").removeClass("cur1");
+            $(".scttjy li:eq(" + tp + ")").addClass("cur" + tp);
 
+            $("#buy").hide();
+            $("#sell").hide();
+            $("#djye").hide();
+            $("#sech").hide();
+            if (tp == 0) {
+                $("#buy").show(); $("#showcu10").show();
+                Fosubprice('mrjg', 'Money', -1, 0);
+            }
+            if (tp == 1) {
+                $("#sell").show(); $("#showcu10").show();
+                Fosubprice('mcjg', 'txtsellcount', -1, 0);
+            }
+        }
 
 
 
@@ -123,7 +133,7 @@ display: inline-block;/*行内元素*/
         var cansell = parseFloat($("#hidblance").val());
         var sgprice = parseFloat($("#hidprice").val());
         var changem = 10;
-        var canbuy = 500;
+        var canbuy = <%=mairu %>;
         var cans = 500; 
         cansell = cansell * sgprice; 
         if (subtype == 0) //减少
@@ -147,7 +157,7 @@ display: inline-block;/*行内元素*/
 
                 if (canbuy >= count + changem)
                     count += changem;
-                else alert("已达到单次买入最大价格");
+                else return;
             }
         }
         $("#" + ecountid).val(count);
@@ -276,6 +286,7 @@ display: inline-block;/*行内元素*/
         var sellcount = parseFloat($("#sellsz").val());
         var sellprice = parseFloat($("#mcjg").val());
         var ctype = $("#hidcardtype").val();
+        var acttype = $("#hidbscs").val(); //卖币类型
         var pass = $("#advpass").val();
         var yzm = $("#yzm").val();
         var sgprice = parseFloat($("#mcjg").val());
@@ -312,7 +323,7 @@ display: inline-block;/*行内元素*/
         $("#Button1").attr("class", "btn btn-defaultb btn-lg");
         $("#Button1").attr("onclick", "");
         alert(sellcount);
-        var rec = AjaxClass.AddWithdawNew(sellcount, pass, ctype, yzm, sellprice).value;
+        var rec = AjaxClass.AddWithdawNew(sellcount, pass, ctype, yzm, sellprice, acttype).value;
         if (rec == "-1") {
         alert("长时间未操作，请先去登录！");
             window.location.href = 'index.aspx';
@@ -324,8 +335,8 @@ display: inline-block;/*行内元素*/
             return;
         }
         if (rec == "0") {
-            if (confirm("卖出成功，请转到交易列表查看交易状态，并在收到款之后及时确认！")) {
-        window.location.href = "sellerCenter.aspx?tp=1";
+            if (confirm("卖出成功！")) {
+        window.location.href = "sellerCenter.aspx";
             }
             return;
         }
@@ -339,8 +350,11 @@ display: inline-block;/*行内元素*/
 
 
         function loadsellandbuylist() {
-            var sellhtml = AjaxClass.Loadsellbuytop5(1).value;
+            var actype = $("#hidbscs").val();
+            var sellhtml = AjaxClass.Loadsellbuytop5(1, actype).value;
+            var sellhtml1 = AjaxClass.Loadsellbuytop5(0, actype).value;
             $("#buylist").html(sellhtml);
+            $("#selllist").html(sellhtml1);
     }
 
     var buytime = 5;
@@ -393,58 +407,29 @@ display: inline-block;/*行内元素*/
 
         function abc() {
 
-        alert("敬请期待..");
-            return;
-        var mrjb = parseFloat($("#Money").html());
-        var mrje=parseFloat($("#buysz").val());
-        if (mrje <= 0) {alert("请输入买入金额！"); return false; }
-        var mrmin = '<%=mrmin%>';
-        var mr = parseInt(mrmin)
-        if (mrje < mr) {
-            alert("最少要买入<%=mcmin%>");
-            return false;
-        }
-        if (window.confirm('您确定要买入吗！')) {
-            buyintal = setInterval(enablebuy, 1000);
+       // alert("敬请期待..");
+           
+        
+            var mrje = parseFloat($("#buysz").val());
+            var mrjg = parseFloat($("#mrjg").val()); //买入价格
+            var acttype =  $("#hidbscs").val() ;
+        if (mrje <= 0) {alert("请输入买入数量！"); return false; }
+            if (mrjg <= 0) {alert("请输入买入价格！"); return false; }
+      
+          //  buyintal = setInterval(enablebuy, 1000);
             $("#sub").attr("class", "btn btn-default btn-lg");
             $("#sub").attr("onclick", "");
-            var sgprice = parseFloat($("#hidprice").val());
-            //mrjb = mrjb / sgprice;
-            var rec = AjaxClass.AddRemittance(mrjb).value;
-
-            if (rec > 0) {
-                if (window.confirm('您确定会在两小时内完成汇款吗！')) {
-                    var repp = AjaxClass.PiepeiRemittanceGO(rec).value;
-                    if (repp > 0) {
-                        alert("买入已成，请在两小时内将交易款项转入对方提供的收款账户中！");
-                        window.location.href = "sellerCenter.aspx?tp=2";
-                    }
-                    else if (repp == -1) {
-                        alert("长时间未操作，请先去登录！");
-                        window.location.href = 'index.aspx';
-                    }
-                    else if (repp == 0) {
-                        alert("交易进行中，请到交易列表中处理！");
-                        window.location.href = "sellerCenter.aspx?tp=2";
-                    }
+           
+            var rec = AjaxClass.AddRemittance(mrje, mrjg, acttype).value;
+         
+            if (rec ==1) { 
+                alert("买入成功！");
+               
+                       
                 } else {
-                    window.location.href = "sellerCenter.aspx?tp=2";
-                }
-            } else if (rec == 0) {
-                alert("系统繁忙，请稍后提交！")
-            }
-            else if (rec == -2) {
-                alert("您当前还有多条买入交易未完成，请在交易完成之后再进行买入操作！")
-            } else if (rec == -3) {
-                alert("已超出单笔买入最大限额！")
-            }
-            else if (rec == -1) {
-                alert("长时间未操作，请先去登录！");
-                window.location.href = 'index.aspx';
-            }
-
-        } else { return false; }
-
+                alert("买入失败");
+                } 
+ window.location.href = "sellerCenter.aspx";
         return false;
     }
 
@@ -550,6 +535,7 @@ display: inline-block;/*行内元素*/
             var cardno = $("#cardacc").val();
             var name = $("#txtrname").val();
             var bkname = $("#txtbankname").val();
+      
             if (rtype == "-1") { alert("请选择汇出类型"); return; };
 
             if (name == "") { alert("请输入姓名"); return; };
@@ -711,43 +697,45 @@ display: inline-block;/*行内元素*/
             </div>
             <ul class="scttjy">
                 <li atr="0">买入</li>
-                <li class="cur" atr="1">卖出</li>
-                
+                <li  atr="1">卖出</li>
+                 <asp:HiddenField ID="hidbscs" runat="server"  Value="1" />
             </ul>
            
             <div class="jiaoyi">
-            <div class="content buy" id="buy">
+            <div class="content buy" id="buy"> 
                 <ul>
+                    <li>
+                       
+                        <ul id="buycc" class="cc"><li class="cr1" >A</li><li>B</li><li>C</li><li>D</li>
+                            </ul>
+                    </li> 
                      <li style=" font-size: 12px;color:darkgray">设置价格</li>
                     <li> 
                         <div class="changeRt">
-                            <span style="" onclick="Fosub('mrjg','Money',0,0)" class="spmp">-</span>
-                            <asp:TextBox ID="mrjg" ReadOnly="true" placeholder="买入价格" CssClass="form-control" runat="server" Text="0" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
-                            
+                            <span style="" onclick="Fosubprice('mrjg','Money',0,0)" class="spmp">-</span>
+                            <asp:TextBox ID="mrjg" ReadOnly="true" placeholder="买入价格" CssClass="form-control" runat="server" Text="0" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;" onblur="Fosubprice('mrjg','Money',-1,0)"
+                                MaxLength="6"></asp:TextBox><span onclick="Fosubprice('mrjg','Money',1,0)" class="spmp ">+</span> 
                         </div>
                     </li>
                     <li style=" font-size: 12px;color:darkgray">≈&yen;<span id="Money">0.0000 </span></li>
                     <li>
                         
                         <div class="changeRt">
-                            <span style="" onclick="Fosub('buysz','Money',0,0)" class="spmp">-</span>
-                            <asp:TextBox ID="buysz" placeholder="买入量" CssClass="form-control" runat="server" Text="0" Style="width:120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span onclick="Fosub('buysz','Money',1,0)" class="spmp ">+</span>
+                            <span style="" onclick="Fosub('buysz','mmp',0,0)" class="spmp">-</span>
+                            <asp:TextBox ID="buysz" placeholder="买入量" CssClass="form-control" runat="server" Text="0" Style="width:120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;" onblur="Fosub('buysz','Money',-1,0)"
+                                MaxLength="3"></asp:TextBox><span onclick="Fosub('buysz','mmp',1,0)" class="spmp ">+</span>
                         </div>
 
                         <%--<input type="button" id="sub"  name="sub" value="提 交" onclick="popDiv()" />--%>
 
                         <input type="hidden" value="0" id="hid_fangzhi" runat="server" />
+                        <p id ="mmp" style="display:none;"></p>
                     </li>
-                    <li  style=" font-size: 12px;color:darkgray">                  
-                            可用：<asp:Label ID="qbye"  runat="server" Text="0.00"></asp:Label>
-                    </li>
-
-                    
-
+                    <li  style=" font-size: 12px;color:darkgray">             <asp:HiddenField ID="hidusdtblc" runat="server" Value="0" />     
+                            最多可买：<asp:Label ID="qbye"  runat="server" Text="0.00"></asp:Label>
+                    </li> 
                     <li>
-                        <input id="sub"  type="button" runat="server" value="买入" class="blue" onclick="return abc();" />
+                        <input id="sub"  type="button" runat="server" value="买入" class="busub" onclick="return abc();" />
 
                     </li>
 
@@ -755,23 +743,25 @@ display: inline-block;/*行内元素*/
                 </ul>
             </div>
             <div class="content sell" id="sell">
-                <ul>
+                <ul> <li>
+                        <ul id="sellcc" class="cc"><li class="cr2" >A</li><li>B</li><li>C</li><li>D</li>
+                            </ul>
+                    </li> 
                     <li style=" font-size: 12px;color:darkgray">设置价格</li>
                     <li>
                         
                         <div class="changeRt">
                         <span style="" onclick="Fosubprice('mcjg','txtsellcount',0,1)" class="spmp">-</span>  <asp:TextBox ID="mcjg" ReadOnly="true" placeholder="卖出价格" CssClass="form-control" runat="server" Text="" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox><span onclick="Fosubprice('mcjg','txtsellcount',1,1)" class="spmp ">+</span>
+                                MaxLength="6"></asp:TextBox><span onclick="Fosubprice('mcjg','txtsellcount',1,1)" class="spmp ">+</span>
                         </div>
                     </li>
-                     <li style=" font-size: 12px;color:darkgray">≈&yen;<span id="txtsellcount">0.0000 </span></li>
-
+                     <li style=" font-size: 12px;color:darkgray">≈&yen;<span id="txtsellcount">0.0000 </span></li> 
                     <li>
                        
                         <div class="changeRt">
                              <span style="" onclick="Fosubsc('sellsz','cnsel',0,1)" class="spmp">-</span> 
-                            <asp:TextBox ID="sellsz" placeholder="卖出数量" CssClass="form-control" runat="server" Text="" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;"
-                                MaxLength="20"></asp:TextBox>
+                            <asp:TextBox ID="sellsz" placeholder="卖出数量" CssClass="form-control" runat="server" Text="" Style="width: 120px;border-radius: 5px; font-size: 18px; text-align: center; float: left; border-radius: 0px;" onblur="Fosubsc('sellsz','cnsel',-1,1)"
+                                MaxLength="3"></asp:TextBox>
                             <span onclick="Fosubsc('sellsz','cnsel',1,1)" class="spmp ">+</span>
                             <input type="hidden" value="0" id="hidblance" runat="server" />
 
@@ -783,7 +773,7 @@ display: inline-block;/*行内元素*/
                         <input type="hidden" value="0" id="Hidden1" runat="server" />
                     </li>
                    <li  style=" font-size: 12px;color:darkgray">                  
-                            可用：<span id="cnsel">0.0000</span> 
+                            可用：<span id="cnsel" runat="server">0.0000</span> 
                     </li>
                                                           
                     <li>
@@ -794,7 +784,7 @@ display: inline-block;/*行内元素*/
                 </ul>
             </div>
                
-            <div class="gmlb">
+            <div class="gmlb" id="showcu10">
                 <div class="blance">
                     <p></p>
                     <div style="width:100%;color: #a9a9a9"><span style="float:left;">价格</span><span style="float:right;">数量</span></div>

@@ -33,7 +33,7 @@ public partial class MemberMobile_OnlinePayQD : BLL.TranslationBase
             rmoney.Text = RemitMoney;
             rmoney1.Value = RemitMoney;
             hkid.Value = HkID;
-            DataTable dt = RemittancesBLL.jinliucx(HkID, bishu1);
+            DataTable dt = null;// RemittancesBLL.jinliucx(HkID);
             bishucount.Text = (dt.Rows.Count).ToString();
 
             string sm = "select describe from JLparameter where jlcid=8";
