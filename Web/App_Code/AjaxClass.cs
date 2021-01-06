@@ -7482,7 +7482,7 @@ public class AjaxClass : BLL.TranslationBase
         //}
 
         #endregion
-
+        decimal hxbprice = Convert.ToDecimal(DBHelper.ExecuteScalar("select  CoinnewPrice from  CoinPlant where CoinIndex='CoinE' "));
         decimal sxfbl = 0.2m; //手续费比例
         decimal wyjbl = 0; //违约金比例
 
@@ -7490,7 +7490,7 @@ public class AjaxClass : BLL.TranslationBase
         decimal sxf =0;  //手续费
 
         decimal wyjjb = wyjbl * sellcount; //违约金石斛积分数量
-        decimal sxfjb = sxfbl * sellcount;  //手续费CoinE数量
+        decimal sxfjb = sxfbl *( (sellcount*sellprice)/ hxbprice);  //手续费CoinE数量
 
 
         decimal xjye = 0;
