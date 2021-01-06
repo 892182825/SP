@@ -126,7 +126,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
         
         double b2 = Convert.ToDouble(DAL.MemberInfoDAL.Sxfparameter());
         Label6.Text = b2.ToString();
-        string sql = "select isnull(pointAIn-pointAOut,0) as usdt from memberinfo  where  number='" + Session["Member"].ToString() + "'";
+        string sql = "select isnull(Jackpot-Out,0) as usdt from memberinfo  where  number='" + Session["Member"].ToString() + "'";
         DataTable dt = DAL.DBHelper.ExecuteDataTable(sql);
         if (dt.Rows.Count > 0)
         {
@@ -445,7 +445,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
         {
             if (ViewState["edit"].ToString() == "0")
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('提现申请完成！');setInterval('myInterval()',3000);function myInterval(){window.location.href='First.aspx'};</script>", false);
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('提现申请完成！');setInterval('myInterval()',5000);function myInterval(){window.location.href='First.aspx'};</script>", false);
             }
             else
             {

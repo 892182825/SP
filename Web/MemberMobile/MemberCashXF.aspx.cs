@@ -494,7 +494,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
             {"trade_type", "H5"},
             {"trade_timeout_express", "600"},
-            {"return_url", "http://zd.factorde.com/MemberMobile/MemberCashXF.aspx"}
+            {"return_url", "http://sp.factorde.com/MemberMobile/MemberCashXF.aspx"}
             
      
 };
@@ -511,7 +511,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
             myDictionary.Add("openid", Session["Member"].ToString());
            
             string signjs = PublicClass.GetSignContent(myDictionary);
-            string jsonStr = PublicClass.HmacSHA256(signjs + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
+            string jsonStr = PublicClass.HmacSHA256(signjs + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
             
               myDictionary.Add("sign", jsonStr);
 
@@ -529,8 +529,8 @@ public partial class Member_MemberCash : BLL.TranslationBase
             {
                 string ddhbm = "prepay_id%3D" + studentsJson["data"]["trade_no"].ToString();
                 string sjc = GetTimeStamp();
-                string zfqm = PublicClass.HmacSHA256("appId=4f95ab748e204c65d0bdaa61b4e3f1d7&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&key=bb7c82380fd09174db6cd53369bbf961", "bb7c82380fd09174db6cd53369bbf961");
-                ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://api.hicoin.vip/hicoinfe/payment?appId=4f95ab748e204c65d0bdaa61b4e3f1d7&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&paySign=" + zfqm + "';</script>");
+                string zfqm = PublicClass.HmacSHA256("appId=58b7824b8b4f5c339bddf6079d153145&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
+                ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>window.location.href = 'https://api.hicoin.vip/hicoinfe/payment?appId=58b7824b8b4f5c339bddf6079d153145&nonceStr=2K426TILTKCH16CQ25145I8ZNMTM67VS&package=" + ddhbm + "&signType=HMAC-SHA256&timeStamp=" + sjc + "&paySign=" + zfqm + "';</script>");
                 return;
                
             }

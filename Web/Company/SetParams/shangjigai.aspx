@@ -37,20 +37,20 @@
             <tr >
                 <td align="right">下级手机号</td>
                 <td>
-                    <asp:TextBox ID="txtOpen" onblur="getname()" runat="server" MaxLength="11"></asp:TextBox>
+                    <asp:TextBox ID="txtOpen" onblur="getname()" runat="server" MaxLength="30"></asp:TextBox>
                     <%--<input type="text" id="txtMemBaseLine" maxlength="8" runat="server" value="0" onkeyup="value=value.replace(/[^\d]/g,'')" />--%>
                 </td>
             </tr>
             <tr>
                <td align="right">姓名：</td>
                 <td>
-                    <asp:Label ID="txtName" runat="server" MaxLength="10"></asp:Label>
+                    <asp:Label ID="txtName" runat="server" MaxLength="30"></asp:Label>
                 </td>
             </tr>
             <tr>
                <td align="right">上级手机号</td>
                 <td>
-                    <asp:TextBox ID="txtClose" onblur="getnamee()" runat="server" MaxLength="11"></asp:TextBox>
+                    <asp:TextBox ID="txtClose" onblur="getnamee()" runat="server" MaxLength="30"></asp:TextBox>
                 </td>
             </tr>
             <tr>
