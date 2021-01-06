@@ -322,7 +322,7 @@ display: inline-block;/*行内元素*/
         sellintal = setInterval(enablesell, 1000);
         $("#Button1").attr("class", "btn btn-defaultb btn-lg");
         $("#Button1").attr("onclick", "");
-        alert(sellcount);
+      
         var rec = AjaxClass.AddWithdawNew(sellcount, pass, ctype, yzm, sellprice, acttype).value;
         if (rec == "-1") {
         alert("长时间未操作，请先去登录！");
