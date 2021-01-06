@@ -431,10 +431,14 @@ public partial class BrowseMemberOrders : BLL.TranslationBase
                 }
 
                 int rr = MemberOrderDAL.PayOrder(num, orderid, 0, 0, 0, nedde, choselv, "USDT账户支付订单,支付中断,后台协助支付");
+
                 if (rr == 1)
-                {
-                   
-                    ScriptHelper.SetAlert(Page,   "协助支付成功" );
+                {  
+                    int ee =     MemberOrderDAL.payOrderEcoin(num, orderid, nedde, "E币支付激活，激活成功！");  if (ee == 1)
+                    {
+
+                        ScriptHelper.SetAlert(Page, "协助支付成功");
+                    }
                     btnSearch_Click(null, null);
                     return;
                 }
