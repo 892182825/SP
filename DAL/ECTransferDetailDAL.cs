@@ -61,7 +61,7 @@ namespace DAL
             para[13].Value = dModel.Wyj;
             para[14].Value = dModel.blmoney;
             para[15].Value = dModel.Wyjbl;
-            para[16].Value = dModel.Actype;
+            
 
             int count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
             if (count <= 0)
