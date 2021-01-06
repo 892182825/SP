@@ -346,11 +346,12 @@ public partial class ReCast : BLL.TranslationBase
             if (jd > 0&& chosenum>1) ///  如果是20u以上 则需要额外支付 5% 的E
             {
                 eneed = (ttmoney * 0.05) / cep;
-                if (eneed > eblc)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('火星币余额不足，请先去抢购兑换！');</script>", false);
-                    return;
-                }//余额不足
+                //if (eneed > eblc)
+                //{
+                //    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('火星币余额不足，请先去抢购兑换！');</script>", false);
+                //    return;
+                //}
+                //余额不足
 
                 Session["Eneed"] = eneed;
             }
