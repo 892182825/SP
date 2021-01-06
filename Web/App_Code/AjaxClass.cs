@@ -7447,14 +7447,11 @@ public class AjaxClass : BLL.TranslationBase
         //    return "验证码不正确！";
         //}
 
-        string sqlss = "select COUNT(0)  from withdraw  where  number='" + number + "' and shenhestate in (0,1,11,20) and DateDiff(dd,WithdrawTime,getutcdate())=0";
-        int bc = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sqlss));
+        //string sqlss = "select COUNT(0)  from withdraw  where  number='" + number + "' and shenhestate in (0,1,11,20) and DateDiff(dd,WithdrawTime,getutcdate())=0";
+        //int bc = Convert.ToInt32(DAL.DBHelper.ExecuteScalar(sqlss));
 
 
-        if (bc >= 1)
-        {
-            return "每天最多只能卖出一单";
-        }
+       
 
         #region 为空验证
 
