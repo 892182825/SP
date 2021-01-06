@@ -323,16 +323,15 @@ namespace DAL
                         }
                         int rr = 0;
                         //修改订单状态
-                        if (lv > 1)
-                        {
+                        
                              rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
                            
-                        }
+                        
                         double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select  isnull(sum(totalpv),0)  from memberorder  where orderid='" + orderid + "'   ", CommandType.Text)); 
                         if (ttpv == 0)
                         { 
                             DBHelper.ExecuteNonQuery(tran, "update  memberinfo  set  levelint=1   where number='" + number + "' ; update  memberinfobalance1  set  level=1   where number='" + number + "' "); 
-                             rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "',isactive=1,activeExpectNum=" + maxexpt + "  where orderid='" + orderid + "' ");
+                             DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "',isactive=1,activeExpectNum=" + maxexpt + "  where orderid='" + orderid + "' ");
 
                         }
                         if (rr == 1)
