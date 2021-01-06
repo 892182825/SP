@@ -98,7 +98,7 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('无此手机号，请检查后再重新输入！')</script>");
                 return;
             }
-            condition.Append(" and MobileTele='" + number + "'");
+            condition.Append(" and MobileTele='" + TextBox1.Text + "'");
         }
        /// condition.Append(" and sftype=0");
         string BeginRiQi = "";
