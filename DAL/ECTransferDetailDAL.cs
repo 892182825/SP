@@ -121,8 +121,8 @@ namespace DAL
                                       new SqlParameter("@Number",SqlDbType.NVarChar,50),
                                       
                                   };
-            para[0].Value = wDraw.WithdrawMoney;
-            para[1].Value =  wDraw.WithdrawSXF;
+            para[0].Value = wDraw.InvestJB;
+            para[1].Value =  wDraw.InvestJBSXF;
             para[2].Value = wDraw.Number;
 
 
