@@ -152,26 +152,15 @@
     <b id="lang" style="display:none"><%=Session["LanguageCode"] %></b>
  
     <form id="form2" runat="server">
-        <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-inner">
-                <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-chevron-left glyphicon-white"></i></a>
-
-                <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);">	    申请提现</span>
-            </div>
-        </div>
+        
       
         <div class="middle">
             <div class="changeBox zcMsg" style="position:relative;background-color: #f1f0f0;padding-top: 5%;">
                 
                 <div style="background-image:url(img/jb-1.png);width:90%;height:150px;margin-left: 5%;color:#fff;background-repeat: no-repeat;background-size: 100% 100%;text-align: center;-moz-background-size: 100% 100%;">
-                  <div class="l_left">
-                        <div class="changeLt"  style=" font-size: 16px;">静态FTC：</div>
-                        <div class="changeRt">
-                            <asp:Label ID="rmoney" runat="server" style="color:#fff;font-size: 23px;"></asp:Label>
-                        </div>
-                   </div>
+                  
                     <div class="l_right">
-                        <div class="changeLt"  style=" font-size: 16px;">动态USDT：</div>
+                        <div class="changeLt"  style=" font-size: 16px;">USDT：</div>
                         <div class="changeRt">
                             <asp:Label ID="Label1" runat="server" style="color:#fff;font-size: 23px;"></asp:Label>
                         </div>
@@ -213,8 +202,9 @@
                            <div class="changeLt"  style=" font-size: 14px;width: 100%;text-align: left;font-weight: 600;">账户选择</div>
                            <div class="changeRt">
                         <asp:RadioButtonList ID="DropDownList1" RepeatDirection="Horizontal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                            <asp:ListItem Value="1" Text="静态FTC" Selected="True"></asp:ListItem>
-                            <asp:ListItem Value="2" Text="动态U"></asp:ListItem>
+                            <asp:ListItem Selected="True" Value="1">USDT</asp:ListItem>
+                                <asp:ListItem  Value="2">USDTERC20</asp:ListItem>
+                                 <asp:ListItem  Value="3">TUSDT</asp:ListItem>
                             
                             </asp:RadioButtonList>
                             </div>
