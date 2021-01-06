@@ -328,9 +328,31 @@ namespace DAL
                              rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "'  where orderid='" + orderid + "' ");
                            
                         }
-                        if (lv == 1)
+                        double ttpv = Convert.ToDouble(DBHelper.ExecuteScalar(tran, "select  isnull(sum(totalpv),0)  from memberorder  where  number='" + number + "'  and DefrayState=1   and ordertype in(22,23,24)    ", CommandType.Text));
+                         lv = 1;
+                        switch (ttpv)
                         {
-                            
+                            case 50:
+                                lv = 2;
+                                break;
+                            case 100:
+                                lv = 3;
+                                break;
+                            case 500:
+                                lv = 4;
+                                break;
+                            case 1000:
+                                lv = 5;
+                                break;
+                            case 1500:
+                                lv = 6;
+                                break;
+                            case 3000:
+                                lv = 7;
+                                break;
+                        }
+                        if (lv == 1)
+                        { 
                             DBHelper.ExecuteNonQuery(tran, "update  memberinfo  set  levelint=1   where number='" + number + "' ; update  memberinfobalance1  set  level=1   where number='" + number + "' "); 
                              rr = DBHelper.ExecuteNonQuery(tran, "update  memberorder set  DefrayState=1  ,PayExpectNum=" + maxexpt + " ,remark='" + remark + "',isactive=1,activeExpectNum=" + maxexpt + "  where orderid='" + orderid + "' ");
 
