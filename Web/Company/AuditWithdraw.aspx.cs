@@ -80,7 +80,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
             new string[]{"006986","提现时间"},
             new string[]{"001155","审核时间"},
             new string[]{"000000","提现位置"},
-            new string[]{"000000","是否回本"},
+            
             new string[]{"000744","查看备注"},
             new string[]{"000022","删除"}
         });
@@ -112,7 +112,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
     private void GetShopList2()
     {
         StringBuilder condition = new StringBuilder();
-        string table = " Withdraw W ,MemberInfo M ";
+        string table = " MemberCash W ,MemberInfo M ";
         condition.Append(" M.Number=w.Number  ");
 
         string BeginRiQi = "";
@@ -215,7 +215,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
             condition.Append(" and w.withdrawMoney " + fuhao + Convert.ToDouble(this.txtMoney.Text.Trim()));
         }
 
-        string cloumns = " w.withdrawMoney-w.WithdrawSXF as withdrawMoneys,w.Number,w.isauditing,w.Id,w.withdrawsxf,w.withdrawMoney,w.WithdrawSXF,w.wyj,w.WithdrawTime,w.bankcard,w.AuditingTime,w.Remark,w.IsJL,m.name as name,(case when (select sum(withdrawMoney)+SUM(HappenMoney) from Withdraw a,MemberAccount b where a.number=b.Number and a.number=w.number and isAuditing=2 and Direction=1 and SfType=1 and KmType=5 )>(select sum(TotalPv/PriceJB) from memberorder where number=w.Number and ordertype in(22,23) and PayExpectNum=0 ) then 0 else 1 end) as sfhb";
+        string cloumns = " w.withdrawMoney-w.WithdrawSXF as withdrawMoneys,w.Number,w.isauditing,w.Id,w.withdrawsxf,w.withdrawMoney,w.WithdrawSXF,w.wyj,w.WithdrawTime,w.bankcard,w.AuditingTime,w.Remark,w.IsJL,m.name as name";
         string key = " w.id ";
         ViewState["key"] = key;
         ViewState["PageColumn"] = cloumns;
@@ -321,14 +321,14 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
 
         if(e.CommandName.ToString() == "Lbtn")
         {
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007176", "该申请单已经审核，不可以重复审核！") + "')</script>");
                 this.BtnConfirm_Click(null, null);
                 return;
             }
 
-            if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+            if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007177", "该申请单已经被删除！") + "')</script>");
                 this.BtnConfirm_Click(null, null);
@@ -362,25 +362,25 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
         }
         if (e.CommandName == "Del")
         {
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 1)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 1)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007174", "该申请单已经审核，不可以删除！") + "');</script>");
                 return;
             }
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 3)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 3)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007173", "该申请单账号错误，不可以删除！") + "');</script>");
                 return;
             }
 
-            if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+            if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007178", "该申请单已经删除，不可以删除！") + "')</script>");
                 this.BtnConfirm_Click(null, null);
                 return;
             }
 
-            ChangeLogs cl = new ChangeLogs("Withdraw", "ltrim(rtrim(str(id)))");
+            ChangeLogs cl = new ChangeLogs("MemberCash", "ltrim(rtrim(str(id)))");
             cl.AddRecord(wDraw.Id);
             Application.Lock();
             bool isSure = BLL.Registration_declarations.RegistermemberBLL.DeleteWithdraw(wDraw);
@@ -403,78 +403,31 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
         //账号错误
         if (e.CommandName == "carderror")
         {
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007181", "该申请单已经审核，不可以转成账号错误！") + "');</script>");
                 return;
             }
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 3)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 3)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007180", "该申请单已经是账号错误，不可以重复账号错误！") + "');</script>");
                 return;
             }
 
-            if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+            if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007179", "该申请单已经删除，不可以转成账号错误！") + "')</script>");
                 this.BtnConfirm_Click(null, null);
                 return;
             }
 
-            ChangeLogs cl = new ChangeLogs("Withdraw", "ltrim(rtrim(str(id)))");
+            ChangeLogs cl = new ChangeLogs("MemberCash", "ltrim(rtrim(str(id)))");
             cl.AddRecord(wDraw.Id);
             Application.Lock();
             bool isSure = false;
-            if (wDraw.IsJL == 1)
-            {
-                SqlTransaction tran = null;
-                SqlConnection con = DBHelper.SqlCon();
-                try
-                {
-                    con.Open();
-                    tran = con.BeginTransaction();
-                    string strSql = "update Withdraw set isAuditing=3,AuditingTime='" + DateTime.Now.ToUniversalTime() + "'  Where id=@Id";
-                    SqlParameter[] para = {
-                                      new SqlParameter("@Id",id)
-                                  };
-                    int count = 0;
-                    count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
-                    if (count == 0)
-                    {
-                        tran.Rollback();
-                        isSure = false;
-                    }
-                    strSql = "Update MemberInfo Set pointAOut = pointAOut - @Money Where number=@Number";
-                    SqlParameter[] para1 = {
-                                       new SqlParameter("@Money",SqlDbType.Money),
-                                       new SqlParameter("@Number",SqlDbType.NVarChar,50)
-                                   };
-                    para1[0].Value = wDraw.WithdrawMoney;
-                    para1[1].Value = wDraw.Number;
-                    count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para1, CommandType.Text);
-                    if (count == 0)
-                    {
-                        tran.Rollback();
-                        isSure = false;
-                    }
-                   
-                    tran.Commit();
-                    isSure = true;
-                }
-                catch
-                {
-                    tran.Rollback();
-                    isSure = false;
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-            else
-            {
+           
                 isSure = BLL.Registration_declarations.RegistermemberBLL.updateCardEorror(wDraw.Id, wDraw.WithdrawMoney , wDraw.Number);
-            }
+            
             Application.UnLock();
             if (isSure)
             {
@@ -494,23 +447,23 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
         //开始处理
         if (e.CommandName == "kscl")
         {
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 1)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 1)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007182", "该申请单已经审核，不可以在开始处理！") + "');</script>");
                 return;
             }
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007183", "该申请单已经开始处理，不可以在开始处理！") + "');</script>");
                 return;
             }
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 3)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 3)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007184", "该申请单已经是账号错误，不可以在开始处理！") + "');</script>");
                 return;
             }
 
-            if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+            if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007185", "该申请单已经删除，不可以在开始处理！") + "')</script>");
                 this.BtnConfirm_Click(null, null);
@@ -686,10 +639,10 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
 
     public void getTotal()
     {
-        Label1.Text = GetTran("007825", "提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "Withdraw", "") + "</font>";
-        Label3.Text = GetTran("007826", "已汇出提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "Withdraw", " where isauditing=2") + "</font>";
-        Label4.Text = GetTran("007827", "待审核提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "Withdraw", " where isauditing=0") + "</font>";
-        Label5.Text = GetTran("007828", "开始处理提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "Withdraw", " where isauditing=1") + "</font>";
+        Label1.Text = GetTran("007825", "提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "MemberCash", "") + "</font>";
+        Label3.Text = GetTran("007826", "已汇出提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "MemberCash", " where isauditing=2") + "</font>";
+        Label4.Text = GetTran("007827", "待审核提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "MemberCash", " where isauditing=0") + "</font>";
+        Label5.Text = GetTran("007828", "开始处理提现金额总计") + "：<font color='red'>" + RemittancesBLL.GetTotalMoney("withdrawMoney", "MemberCash", " where isauditing=1") + "</font>";
     }
 
     /// <summary>
@@ -730,7 +683,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                 //已汇出
                 if (rad_list.SelectedValue == "1" && chb.Checked == true && LinkButton1.Visible == true)
                 {
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007176", "的该申请单已经审核，不可以重复审核！") + "')</script>");
@@ -738,7 +691,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                         break;
                     }
 
-                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007177", "该申请单已经被删除！") + "')</script>");
@@ -775,20 +728,20 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                 else if (rad_list.SelectedValue == "2" && chb.Checked == true && LinkButton2.Visible == true)
                 {
 
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007181", "该申请单已经审核，不可以转成账号错误！") + "');</script>");
                         break;
                     }
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 3)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 3)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007180", "该申请单已经是账号错误，不可以重复账号错误！") + "');</script>");
                         break;
                     }
 
-                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007179", "该申请单已经删除，不可以转成账号错误！") + "')</script>");
@@ -796,7 +749,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                         break;
                     }
 
-                    ChangeLogs cl = new ChangeLogs("Withdraw", "ltrim(rtrim(str(id)))");
+                    ChangeLogs cl = new ChangeLogs("MemberCash", "ltrim(rtrim(str(id)))");
                     cl.AddRecord(wDraw.Id);
                     Application.Lock();
                     bool isSure = BLL.Registration_declarations.RegistermemberBLL.updateCardEorror(wDraw.Id, wDraw.WithdrawMoney, wDraw.Number);
@@ -818,26 +771,26 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                 }//开始处理
                 else if (rad_list.SelectedValue == "3" && chb.Checked == true && LinkButton3.Visible == true)
                 {
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 1)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 1)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007182", "该申请单已经审核，不可以在开始处理！") + "');</script>");
                         break;
                     }
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 2)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 2)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007183", "该申请单已经开始处理，不可以在开始处理！") + "');</script>");
                         break;
                     }
-                    if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(id) == 3)
+                    if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(id) == 3)
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007184", "该申请单已经是账号错误，不可以在开始处理！") + "');</script>");
                         break;
                     }
 
-                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelWithdraw(id))
+                    if (!BLL.Registration_declarations.RegistermemberBLL.isDelMemberCash(id))
                     {
                         ret = -1;
                         Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('" + GetTran("007829", "编号为") + id + GetTran("007185", "该申请单已经删除，不可以在开始处理！") + "')</script>");
@@ -845,7 +798,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
                         break;
                     }
 
-                    ChangeLogs cl = new ChangeLogs("Withdraw", "ltrim(rtrim(str(id)))");
+                    ChangeLogs cl = new ChangeLogs("MemberCash", "ltrim(rtrim(str(id)))");
                     cl.AddRecord(wDraw.Id);
                     Application.Lock();
                     bool isSure = BLL.Registration_declarations.RegistermemberBLL.updateKscl(wDraw.Id);

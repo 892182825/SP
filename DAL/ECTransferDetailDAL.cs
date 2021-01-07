@@ -69,6 +69,61 @@ namespace DAL
             return true;
         }
 
+        public static bool MemberCash(SqlTransaction tran, WithdrawModel dModel)
+        {
+            string strSql = @"insert into MemberCash(number,applicationExpectNum,auditExpectNum,isAuditing,WithdrawMoney,WithdrawTime,OperateIP,remark,bankcard,bankname,WithdrawSXF,Khname,IsJL,Wyj,blmoney,Wyjbl ,InvestJB,priceJB,DrawCardtype,AliNo,WeiXNo,InvestJBSXF,InvestJBWYJ ,actype)
+                                values(@Number,@ApplicationExpectNum,@AuditingExpectNum,@IsAuditing,@WithdrawMoney,@WithdrawTime,@OperateIP,@Remark,@bankcard,@bankname,@WithdrawSXF,@Khname,@IsJL,@Wyj,@blmoney,@Wyjbl,@InvestJB,@priceJB,@DrawCardtype,@AliNo,@WeiXNo,@InvestJBSXF,@InvestJBWYJ ,@actype)";
+            SqlParameter[] para = {
+                                      new SqlParameter("@Number",SqlDbType.NVarChar,50),
+                                      new SqlParameter("@ApplicationExpectNum",SqlDbType.Int),
+                                      new SqlParameter("@AuditingExpectNum",SqlDbType.Int),
+                                      new SqlParameter("@IsAuditing",SqlDbType.Int),
+                                      new SqlParameter("@WithdrawMoney",SqlDbType.Money),
+                                      new SqlParameter("@WithdrawTime",SqlDbType.DateTime,8),
+                                      new SqlParameter("@OperateIP",SqlDbType.NVarChar,30),
+                                      new SqlParameter("@Remark",SqlDbType.NVarChar,1000),
+                                      new SqlParameter("@bankcard",SqlDbType.NVarChar,50),
+                                      new SqlParameter("@bankname",SqlDbType.NVarChar,50),
+                                      new SqlParameter("@WithdrawSXF",SqlDbType.Money),
+                                      new SqlParameter("@Khname",SqlDbType.NVarChar,50),
+                                      new SqlParameter("@IsJL",SqlDbType.Int),
+                                      new SqlParameter("@Wyj",SqlDbType.Money),
+                                      new SqlParameter("@blmoney",SqlDbType.Float),
+                                      new SqlParameter("@Wyjbl",SqlDbType.Float),
+
+ new SqlParameter("@InvestJB",dModel.InvestJB),
+ new SqlParameter("@priceJB",dModel.PriceJB),
+ new SqlParameter("@DrawCardtype",dModel.DrawCardtype),
+ new SqlParameter("@AliNo",dModel.AliNo),
+ new SqlParameter("@WeiXNo",dModel.WeiXNo),
+ new SqlParameter("@InvestJBSXF",dModel.InvestJBSXF),
+ new SqlParameter("@InvestJBWYJ",dModel.InvestJBWYJ) ,
+  new SqlParameter("@actype",dModel.Actype)
+                                  };
+            para[0].Value = dModel.Number;
+            para[1].Value = dModel.ApplicationExpecdtNum;
+            para[2].Value = 0;
+            para[3].Value = 0;
+            para[4].Value = dModel.WithdrawMoney;
+            para[5].Value = dModel.WithdrawTime;
+            para[6].Value = dModel.OperateIP;
+            para[7].Value = dModel.Remark;
+            para[8].Value = dModel.Bankcard;
+            para[9].Value = dModel.Bankname;
+            para[10].Value = dModel.WithdrawSXF;
+            para[11].Value = dModel.Khname;
+            para[12].Value = dModel.IsJL;
+            para[13].Value = dModel.Wyj;
+            para[14].Value = dModel.blmoney;
+            para[15].Value = dModel.Wyjbl;
+
+
+            int count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
+            if (count <= 0)
+                return false;
+            return true;
+        }
+
         public static bool SetMemberShip(SqlTransaction tran, string number, double money, decimal WithdrawSXF)
         {
             string strSql = "Update MemberInfo Set MemberShip=MemberShip+@Money where number=@Number";
@@ -147,7 +202,7 @@ namespace DAL
         /// <returns></returns>
         public static bool SetWithdrawState(SqlTransaction tran, WithdrawModel dModel)
         {
-            string strSql = "Update withdraw set isAuditing=2,auditExpectNum=@ExpectNum,AuditingTime=@auditTime,AuditingmanageId=@AuditingManageId,AuditingIp=@AuditingIp where id=@id";
+            string strSql = "Update MemberCash set isAuditing=2,auditExpectNum=@ExpectNum,AuditingTime=@auditTime,AuditingmanageId=@AuditingManageId,AuditingIp=@AuditingIp where id=@id";
             SqlParameter[] para = {
                                       new SqlParameter("@ExpectNum",SqlDbType.Int),
                                       new SqlParameter("@auditTime",SqlDbType.DateTime),
@@ -186,6 +241,23 @@ namespace DAL
         }
 
         /// <summary>
+        /// 是否已删除提现申请——ds2012——tianfeng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool isDelMemberCash(int id)
+        {
+            string strSql = "Select Count(1) from MemberCash where id=@id";
+            SqlParameter[] para = {
+                                      new SqlParameter("@id",id)
+                                  };
+            int count = (int)DBHelper.ExecuteScalar(strSql, para, CommandType.Text);
+            if (count == 0)
+                return false;
+            return true;
+        }
+
+        /// <summary>
         /// 是否已审核提现申请——ds2012——tianfeng
         /// </summary>
         /// <param name="id"></param>
@@ -193,6 +265,20 @@ namespace DAL
         public static int GetAuditState(int id)
         {
             string strSql = "Select isAuditing from withdraw where id=@id";
+            SqlParameter[] para = {
+                                      new SqlParameter("@id",id)
+                                  };
+            int count = (int)DBHelper.ExecuteScalar(strSql, para, CommandType.Text);
+            return count;
+        }
+        /// <summary>
+        /// 是否已审核提现申请——ds2012——tianfeng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static int GetMemberCashAuditState(int id)
+        {
+            string strSql = "Select isAuditing from MemberCash where id=@id";
             SqlParameter[] para = {
                                       new SqlParameter("@id",id)
                                   };
@@ -244,7 +330,7 @@ namespace DAL
         /// <returns></returns>
         public static bool DeleteWithdraw(SqlTransaction tran, int id, double money, string number)
         {
-            string strSql = "Delete from Withdraw Where id=@Id";
+            string strSql = "Delete from MemberCash Where id=@Id";
             SqlParameter[] para = {
                                       new SqlParameter("@Id",id)
                                   };
@@ -312,7 +398,7 @@ namespace DAL
             {
                 con.Open();
                 tran = con.BeginTransaction();
-                string strSql = "update Withdraw set isAuditing=3,AuditingTime='" + DateTime.Now.ToUniversalTime() + "'  Where id=@Id";
+                string strSql = "update MemberCash set isAuditing=3,AuditingTime='" + DateTime.Now.ToUniversalTime() + "'  Where id=@Id";
                 SqlParameter[] para = {
                                       new SqlParameter("@Id",id)
                                   };
@@ -433,7 +519,7 @@ namespace DAL
         /// <returns></returns>
         public static bool updateKscl(int id)
         {
-            string sql = "update withdraw set isAuditing=1 where id=@id";
+            string sql = "update MemberCash set isAuditing=1 where id=@id";
             SqlParameter[] par = new SqlParameter[]{
                 new SqlParameter("@id",id)
             };
