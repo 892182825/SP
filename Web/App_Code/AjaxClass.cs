@@ -6104,16 +6104,22 @@ public class AjaxClass : BLL.TranslationBase
         return str;
     }
     [AjaxPro.AjaxMethod]
-    public string GetNamebyphone(string phone)
+    public string GetNamebyphone(string phone,int actype)
     {
         string str = "";
-        string sql = "select name from memberinfo where mobiletele=@phone";
-        SqlParameter par = new SqlParameter("@phone", phone);
-        object name = DAL.DBHelper.ExecuteScalar(sql, par, CommandType.Text);
-        if (name != null)
+        string sql = "select name , isnull(jackpot-out,0)  as usdt  ,isnull(pointEin -pointEout,0)  as eblac  from memberinfo where mobiletele='"+ phone + "'"; 
+        DataTable dtt = DBHelper.ExecuteDataTable(sql );
+        if (dtt != null && dtt.Rows.Count > 0)
         {
-            str = Encryption.Encryption.GetDecipherName(name.ToString());
+            DataRow dr = dtt.Rows[0];
+            string name = dr["name"].ToString();
+            double usdt = Convert.ToDouble(dr["usdt"]);
+            double eblac= Convert.ToDouble(dr["eblac"]);
+            if (actype == 0) str = name + "  USD余额 " + usdt.ToString("0.0000");
+            if (actype == 1) str = name + "  E币余额 " + eblac.ToString("0.0000");
+             
         }
+      
         return str;
     }
     /// <summary>

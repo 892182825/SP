@@ -117,35 +117,20 @@ namespace BLL.MoneyFlows
                         tran.Rollback();
                         return false;
                     }
-                    if (!ReleaseDAL.UpdateDeductOutBD(tran, info.Number, info.IsDeduct, info.DeductMoney))
+                    if (!ReleaseDAL.UpdateDeductOutBD(tran, info.Number, info.IsDeduct,info.Actype, info.DeductMoney))
                     {
                         tran.Rollback();
                         return false;
                     }
-                    DirectionEnum de = DirectionEnum.AccountsIncreased;
-                    if (info.IsDeduct == 4 || info.IsDeduct == 6 || info.IsDeduct == 8 || info.IsDeduct == 10 || info.IsDeduct == 12)
-                    {
-                        de = DirectionEnum.AccountReduced;
+                    DirectionEnum de = DirectionEnum.AccountReduced;
+                    D_AccountKmtype km = D_AccountKmtype.AddMoneycut;
+                    string remark = "管理员协助扣款" + info.DeductMoney.ToString();
+                    if (info.IsDeduct == 1) {
+                        de = DirectionEnum.AccountsIncreased;
+                        km = D_AccountKmtype.AddMoneyget ;
+                        remark = "管理员协助补款" + info.DeductMoney.ToString();
                     }
-                    D_Sftype sf = D_Sftype.EleAccount;
-                    D_AccountSftype dasf = D_AccountSftype.MemberCoshType;
-                    if (info.IsDeduct == 4 || info.IsDeduct == 5) { dasf = D_AccountSftype.MemberCoshType; sf = D_Sftype.EleAccount; }
-                    if (info.IsDeduct == 6 || info.IsDeduct == 7) { dasf = D_AccountSftype.zzye; sf = D_Sftype.zzye; }
-                    if (info.IsDeduct == 8 || info.IsDeduct == 9) { dasf = D_AccountSftype.MemberTypeBd; sf = D_Sftype.baodanFTC; }
-                    if (info.IsDeduct == 10 || info.IsDeduct == 11) { dasf = D_AccountSftype.MemberTypeFxth; sf = D_Sftype.CancellationofgoodsAccount; }
-                    if (info.IsDeduct == 12 || info.IsDeduct == 13) { dasf = D_AccountSftype.usdtjj; sf = D_Sftype.usdtjj; }
-                    string remark = "";
-                    if (info.IsDeduct == 4 || info.IsDeduct == 6 || info.IsDeduct == 8 || info.IsDeduct == 10 || info.IsDeduct == 12)
-                    {
-                        remark = "008021~【" + info.Number + "】~000153~" + info.ExpectNum + "~008022";
-                        D_AccountDAL.AddAccountWithdraw1(info.Number, info.DeductMoney, dasf, sf, D_AccountKmtype.AddMoneycut, de, remark, tran);
-                    }
-                    else if (info.IsDeduct == 5 || info.IsDeduct == 7 || info.IsDeduct == 9 || info.IsDeduct == 11 || info.IsDeduct == 13)
-                    {
-                        remark = "008021~【" + info.Number + "】~000153~" + info.ExpectNum + "~008023";
-                        D_AccountDAL.AddAccountWithdraw1(info.Number, info.DeductMoney, dasf, sf, D_AccountKmtype.AddMoneyget, de, remark, tran);
-                    }
-
+                    D_AccountDAL.AddAccountWithdraw1(info.Number, info.DeductMoney,D_AccountSftype.MemberType, D_Sftype.BounsAccount, km, de, remark, tran);  
                     tran.Commit();
                     return true;
                 }

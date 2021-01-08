@@ -88,7 +88,7 @@ public partial class Company_DeductSalary : BLL.TranslationBase
             search = TxtSearch.Text;
         }
 
-        string sql = "  Deduct.Number=MemberInfo.Number and IsDeduct in(0,1) ";
+        string sql = "  Deduct.Number=MemberInfo.Number and IsDeduct in(0,1) and actype=1 ";
         if (expct != -1)
         {
             sql = sql + " and Deduct.ExpectNum=" + expct;

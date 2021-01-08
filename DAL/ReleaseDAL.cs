@@ -1426,21 +1426,27 @@ namespace DAL
         /// <param name="IsDeduct">扣款/补款</param>
         /// <param name="DeductMoney">金额</param>
         /// <returns></returns>
-        public static bool UpdateDeductOutBD(SqlTransaction tran, string number, int IsDeduct, double DeductMoney)
+        public static bool UpdateDeductOutBD(SqlTransaction tran, string number, int IsDeduct,int actype, double DeductMoney)
         {
             string mid = "";
 
-            if (IsDeduct == 4) // 4 扣款消费  5 补款消费  6 扣重购  7 补重购 
-                mid = "[TotalDefray]=[TotalDefray]+" + DeductMoney;
-            if (IsDeduct == 5) mid = "TotalRemittances =TotalRemittances +" + DeductMoney;
-            if (IsDeduct == 6) mid = "xuhao =xuhao +" + DeductMoney;
-            if (IsDeduct == 7) mid = "zzye =zzye +" + DeductMoney;
-            if (IsDeduct == 8) mid = "pointBOut =pointBOut +" + DeductMoney;
-            if (IsDeduct == 9) mid = "pointBIn =pointBIn +" + DeductMoney;
-            if (IsDeduct == 10) mid = "fuxiaothout =fuxiaothout +" + DeductMoney;
-            if (IsDeduct == 11) mid = "fuxiaothin =fuxiaothin +" + DeductMoney;
-            if (IsDeduct == 12) mid = "pointAOut =pointAOut +" + DeductMoney;
-            if (IsDeduct == 13) mid = "pointAIn =pointAIn +" + DeductMoney;
+            if (actype == 0) {
+                if (IsDeduct == 0) mid = "out=out+"+DeductMoney;
+                if (IsDeduct == 1) mid = "jackpot=jackpot+" + DeductMoney;
+            }
+
+
+            //if (IsDeduct == 4) // 4 扣款消费  5 补款消费  6 扣重购  7 补重购 
+            //    mid = "[TotalDefray]=[TotalDefray]+" + DeductMoney;
+            //if (IsDeduct == 5) mid = "TotalRemittances =TotalRemittances +" + DeductMoney;
+            //if (IsDeduct == 6) mid = "xuhao =xuhao +" + DeductMoney;
+            //if (IsDeduct == 7) mid = "zzye =zzye +" + DeductMoney;
+            //if (IsDeduct == 8) mid = "pointBOut =pointBOut +" + DeductMoney;
+            //if (IsDeduct == 9) mid = "pointBIn =pointBIn +" + DeductMoney;
+            //if (IsDeduct == 10) mid = "fuxiaothout =fuxiaothout +" + DeductMoney;
+            //if (IsDeduct == 11) mid = "fuxiaothin =fuxiaothin +" + DeductMoney;
+            //if (IsDeduct == 12) mid = "pointAOut =pointAOut +" + DeductMoney;
+            //if (IsDeduct == 13) mid = "pointAIn =pointAIn +" + DeductMoney;
             int cc = 0;
             if (mid != "") cc = DBHelper.ExecuteNonQuery(tran, "update memberinfo set " + mid + " where number='" + number + "'");
 

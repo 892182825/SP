@@ -82,6 +82,15 @@ namespace Model
             get { return isDeduct; }
             set { isDeduct = value; }
         }
+        int actype = 0;
+        /// <summary>
+        ///  0 现金账户  1  E币
+        /// </summary>
+        public int Actype
+        {
+            get { return actype; }
+            set { actype = value; }
+        }
         private DateTime keyInDate;
         /// <summary>
         /// 录入时间

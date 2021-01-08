@@ -73,11 +73,8 @@ public partial class Company_DeductBD : BLL.TranslationBase
     public string GetActtypestr(object isk)
     {
         int iskk = Convert.ToInt32(isk);
-        if (iskk == 4 || iskk == 5) return "消费积分";
-        if (iskk == 6 || iskk == 7) return "保险钱包";
-        if (iskk == 8 || iskk == 9) return "报单钱包";
-        if (iskk == 10 || iskk == 11) return "别墅锁仓";
-        if (iskk == 12 || iskk == 13) return "动态钱包";
+        if (iskk==0) return "USDT";
+        if (iskk == 1) return "E币";
         return "";
     }
 
@@ -99,7 +96,7 @@ public partial class Company_DeductBD : BLL.TranslationBase
             search = TxtSearch.Text;
         }
 
-        string sql = "  Deduct.Number=MemberInfo.Number and IsDeduct in(4,5,6,7,8,9,10,11,12,13) ";
+        string sql = "  Deduct.Number=MemberInfo.Number and actype=0 ";
         if (expct != -1)
         {
             sql = sql + " and Deduct.ExpectNum=" + expct;
@@ -122,7 +119,7 @@ public partial class Company_DeductBD : BLL.TranslationBase
         }
         ViewState["sql"] = "select isAudit,MemberInfo.Number,MemberInfo.[Name],case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as typeE,Deduct.DeductMoney, Deduct.ExpectNum,KeyinDate,Deduct.OperateNum,Deduct.DeductReason from MemberInfo,Deduct where" + sql + " order by Deduct.id desc";
         Pager pager = Page.FindControl("Pager1") as Pager;
-        pager.PageBind(0, 10, "MemberInfo,Deduct", "isAudit,MemberInfo.Number,MemberInfo.Name,Deduct.ID,Deduct.DeductMoney,Deduct.DeductReason,Deduct.ExpectNum,case when Deduct.IsDeduct = 4 then '" + GetTran("000251", "扣款") + "'   when Deduct.IsDeduct = 5 then   '" + GetTran("000252", "补款") + "' when Deduct.IsDeduct = 8 then '" + GetTran("000251", "扣款") + "'   when Deduct.IsDeduct = 9 then   '" + GetTran("000252", "补款") + "' when Deduct.IsDeduct = 10 then '" + GetTran("000251", "扣款") + "'   when Deduct.IsDeduct = 11 then   '" + GetTran("000252", "补款") + "' when Deduct.IsDeduct = 6 then '" + GetTran("000251", "扣款") + "'   when Deduct.IsDeduct = 7 then   '" + GetTran("000252", "补款") + "'when Deduct.IsDeduct = 12 then '" + GetTran("000251", "扣款") + "'   when Deduct.IsDeduct = 13 then   '" + GetTran("000252", "补款") + "' else '" + GetTran("000252", "补款") + "' end as typeE, IsDeduct,KeyinDate,Deduct.OperateNum",
+        pager.PageBind(0, 10, "MemberInfo,Deduct", "isAudit,MemberInfo.Number,MemberInfo.Name,Deduct.ID,Deduct.DeductMoney,Deduct.DeductReason,Deduct.ExpectNum,case when Deduct.IsDeduct = 0 then '" + GetTran("000251", "扣款") + "' else '" + GetTran("000252", "补款") + "' end as typeE, IsDeduct,KeyinDate,Deduct.OperateNum,actype",
             sql, "Deduct.id", "gvdeduct");
         Translations_More();
     }
@@ -234,6 +231,7 @@ public partial class Company_DeductBD : BLL.TranslationBase
             model.OperateNum = Session["Company"].ToString();
             model.AuditingTime = DateTime.Now.ToUniversalTime();
             model.Auditingexctnum = CommonDataBLL.getMaxqishu();
+            model.Actype = Convert.ToInt32(dt.Rows[0]["Actype"]); ;
         }
         if (e.CommandName == "ok")
         {
