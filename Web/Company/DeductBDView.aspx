@@ -10,7 +10,7 @@
     <script language="javascript" type="text/javascript">
         function getname() {
             var number = document.getElementById("txtbh").value;
-            var name = AjaxClass.GetName(number).value;
+            var name = AjaxClass.GetNamebyphone(number,0).value;
             document.getElementById("lit_name").innerHTML = name;
         }
     </script>
@@ -138,7 +138,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" style="white-space: nowrap;" bgcolor="#EBF1F1">
-                                        <%=GetTran("000024", "会员编号")%>：
+                                      会员手机号/邮箱：
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtbh" runat="server" onblur="getname()" MaxLength="30" Width="88px"></asp:TextBox>
@@ -148,14 +148,14 @@
                                     <td align="right" style="white-space: nowrap;" bgcolor="#EBF1F1"><%=GetTran("000025","会员姓名")%>：</td>
                                     <td><asp:Label ID="lit_name" runat="server"></asp:Label></td>
                                 </tr>
-<tr>
+<tr style="display:none;">
                                     <td align="right" style="white-space: nowrap;" bgcolor="#EBF1F1">
                                         <%= GetTran("0000","操作钱包")%>：
                                     </td>
                                     <td>
                                         <asp:RadioButtonList ID="rad_Account" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                                            <asp:ListItem Value="2"  Selected="True" Text="报单钱包"></asp:ListItem>
-                                            <asp:ListItem Value="0" Text="消费积分"></asp:ListItem>
+                                            <asp:ListItem Value="2"  Text="报单钱包"></asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True"  Text="现金账户"></asp:ListItem>
                                             <asp:ListItem Value="1" Text="保险钱包"></asp:ListItem>
                                             <asp:ListItem Value="4" Text="动态钱包"></asp:ListItem>
                                             <asp:ListItem Value="3" Text="别墅锁仓"></asp:ListItem>

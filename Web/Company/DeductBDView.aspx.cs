@@ -95,19 +95,16 @@ public partial class Company_DeductBDView : BLL.TranslationBase
             }
             else
             {
-                int iskou = 0; //0为扣，1为补，2为注册积分扣，3为注册积分补,4.消费积分扣,5.消费积分补 6.重购积分扣,7.重购积分补
-                if (rad_Account.SelectedValue == "0") { if (rad_Deduct.SelectedValue == "0")iskou = 4; if (rad_Deduct.SelectedValue == "1")iskou = 5; }
-                if (rad_Account.SelectedValue == "1") { if (rad_Deduct.SelectedValue == "0")iskou = 6; if (rad_Deduct.SelectedValue == "1")iskou = 7; }
-                if (rad_Account.SelectedValue == "2") { if (rad_Deduct.SelectedValue == "0")iskou = 8; if (rad_Deduct.SelectedValue == "1")iskou = 9; }
-                if (rad_Account.SelectedValue == "3") { if (rad_Deduct.SelectedValue == "0")iskou = 10; if (rad_Deduct.SelectedValue == "1")iskou = 11; }
-                if (rad_Account.SelectedValue == "4") { if (rad_Deduct.SelectedValue == "0")iskou = 12; if (rad_Deduct.SelectedValue == "1")iskou = 13; }
+             
                 vquestion = this.question.Text.Trim();
                 DeductModel model = new DeductModel();
                 model.Number = DisposeString.DisString(number.Trim(), "<,>,',-", "&lt;,&gt;,&#39;,&nbsp;", ",");
                 model.DeductMoney = d;
                 model.DeductReason = vquestion;
+                model.IsDeduct = Convert.ToInt32(rad_Deduct.SelectedValue);
+                model.Actype = Convert.ToInt32(rad_Account.SelectedValue);
                 model.ExpectNum = CommonDataBLL.getMaxqishu();
-                model.IsDeduct = iskou;
+            
                 model.OperateIP = CommonDataBLL.OperateIP;
                 model.OperateNum = CommonDataBLL.OperateBh;
                 try

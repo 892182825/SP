@@ -10,7 +10,7 @@
     <script language="javascript" type="text/javascript">
         function getname() {
             var number = document.getElementById("txtbh").value;
-            var name = AjaxClass.GetNamebyphone(number).value;
+            var name = AjaxClass.GetNamebyphone(number,1).value;
             document.getElementById("lit_name").innerHTML = name;
         }
     </script>

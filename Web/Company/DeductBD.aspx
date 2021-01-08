@@ -140,7 +140,7 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <span>
-                                                <%#GetActtypestr( Eval("IsDeduct")) %></span> <span>
+                                                <%#GetActtypestr( Eval("actype")) %></span> <span>
                                                     
                                                 </span>
                                         </ItemTemplate>

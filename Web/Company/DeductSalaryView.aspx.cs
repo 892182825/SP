@@ -110,6 +110,7 @@ public partial class Company_DeductSalaryView : BLL.TranslationBase
                 model.DeductReason = vquestion;
                 model.ExpectNum = CommonDataBLL.getMaxqishu();
                 model.IsDeduct = iskou;
+                model.Actype = 1;
                 model.OperateIP = CommonDataBLL.OperateIP;
                 model.OperateNum = CommonDataBLL.OperateBh;
                 try

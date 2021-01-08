@@ -64,7 +64,8 @@ namespace DAL
             new SqlParameter("@IsDeduct",SqlDbType.Int),
             new SqlParameter("@OperateIP",SqlDbType.VarChar,50),
             new SqlParameter("@OperateNum",SqlDbType.VarChar,50),
-            new SqlParameter("@KeyinDate",SqlDbType.DateTime)
+            new SqlParameter("@KeyinDate",SqlDbType.DateTime),
+              new SqlParameter("@actype",info.Actype)
             };
             parm[0].Value = info.Number;
             parm[1].Value = info.DeductMoney;
@@ -74,7 +75,7 @@ namespace DAL
             parm[5].Value = info.OperateIP;
             parm[6].Value = info.OperateNum;
             parm[7].Value = DateTime.Now.ToUniversalTime();
-            return DBHelper.ExecuteNonQuery("Deduct_Withhold", parm, CommandType.StoredProcedure) > 0 ? true : false;
+            return DBHelper.ExecuteNonQuery("insert into Deduct   (Number,DeductMoney,DeductReason,ExpectNum,IsDeduct,OperateIP,OperateNum,KeyinDate,actype) values (@Number,@DeductMoney,@DeductReason,@ExpectNum,@IsDeduct,@OperateIP,@OperateNum,@KeyinDate,@actype)", parm, CommandType.Text) > 0 ? true : false;
         }
         /// <summary>
         /// 添加扣款或补款信息

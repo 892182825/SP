@@ -74,8 +74,8 @@ display: inline-block;/*行内元素*/
  
     <script language="javascript" type="text/javascript">
  
-    $(function () {
-
+        $(function () {
+         
         $(".glyphicon").removeClass("a_cur");
         $("#c2").addClass("a_cur");
         //加载
@@ -105,7 +105,15 @@ display: inline-block;/*行内元素*/
         });
 
 
-    });
+        });
+
+        function alertt(remark) {
+            $("#shscid").show();
+            $("#sbuyinfo1").html(remark);
+        }
+        function hidediv1() {
+            $("#shscid").hide();
+        } 
 
         function showbs( tp) {
             $(".scttjy li").removeClass("cur0");
@@ -152,7 +160,7 @@ display: inline-block;/*行内元素*/
                 if (cansell > cans) cansell = cans;
                 if (cansell >= count + changem)
                     count += changem;
-                else alert("已达到单笔最大可卖出价格");
+                else alertt("已达到单笔最大可卖出价格");
             }
             if (issell == 0) {
 
@@ -206,13 +214,13 @@ display: inline-block;/*行内元素*/
             if (issell == 1) { 
                 if (cansell >= count + changem)
                     count += changem;
-                else alert("已达到单笔最大可卖出价格");
+                else alertt("已达到单笔最大可卖出价格");
             }
             if (issell == 0) {
 
                 if (canbuy >= count + changem)
                     count += changem;
-                else alert("已达到单次买入最大价格");
+                else alertt("已达到单次买入最大价格");
             }
         }
         var canuse = cansell - count;
@@ -235,7 +243,7 @@ display: inline-block;/*行内元素*/
     function choseCard(ele, cardtp) {
         var cardinfo = AjaxClass.GetChoseCardInfo(cardtp).value;
         if (cardinfo == "-1") {
-            alert("长时间未操作，请先去登录！");
+            alertt("长时间未操作，请先去登录！");
             window.location.href = 'index.aspx';
             return;
         }
@@ -293,7 +301,7 @@ display: inline-block;/*行内元素*/
         var sgprice = parseFloat($("#mcjg").val());
         //var zuida =/********/;
         if (sellcount == 0) {
-            alert("请输入卖出数量");
+            alertt("请输入卖出数量");
             return;
         }
        /// var mcmin = '/********/';
@@ -302,54 +310,55 @@ display: inline-block;/*行内元素*/
        // var mcmax = /********/;
         //if(zuida>mcmax)
         //{
-        //alert("每天最多挂单/********/");
+        //alertt("每天最多挂单/********/");
         //    return;
         //}
        // sellcount = sellcount / sgprice;
         //if (pass == "") {
-        //    alert("请输入二级密码！");
+        //    alertt("请输入二级密码！");
         //    return;
         //}
         //if (yzm == "") {
-        //    alert("请输入验证码！");
+        //    alertt("请输入验证码！");
         //    return;
         //}
 
 
         //if (ctype == "-1") {
-        //    alert("请选择收款账户类型");
+        //    alertt("请选择收款账户类型");
         //    return;
         //}
-        sellintal = setInterval(enablesell, 1000);
-        $("#Button1").attr("class", "btn btn-defaultb btn-lg");
-        $("#Button1").attr("onclick", "");
+        //sellintal = setInterval(enablesell, 1000);
+       // $("#Button1").attr("class", "btn btn-defaultb btn-lg");
+       // $("#Button1").attr("onclick", "");
       
         var rec = AjaxClass.AddWithdawNew(sellcount, pass, ctype, yzm, sellprice, acttype).value;
         if (rec == "-1") {
-        alert("长时间未操作，请先去登录！");
+        alertt("长时间未操作，请先去登录！");
             window.location.href = 'index.aspx';
             return;
         }
         if (rec == "-2") {
-        alert("您的账户被冻结，无法完成操作！");
+        alertt("您的账户被冻结，无法完成操作！");
             window.location.href = 'index.aspx';
             return;
         }
         if (rec == "0") {
-            if (confirm("卖出成功！")) {
-        window.location.href = "sellerCenter.aspx";
-            }
+             alertt("卖出成功！") 
+                $("#sellsz").val("0");
+                LoadJYZList();
+                loadsellandbuylist();
+          
             return;
         }
         if (rec == "1") {
-        alert("操作失败！"); return;
+        alertt("操作失败！"); return;
         }
         else {
-        alert(rec);
+        alertt(rec);
         }
-    }
 
-
+    } 
         function loadsellandbuylist() {
             var actype = $("#hidbscs").val();
             var sellhtml = AjaxClass.Loadsellbuytop5(1, actype).value;
@@ -393,46 +402,46 @@ display: inline-block;/*行内元素*/
     function delcsdj(elem,rmid) {
         var recb = AjaxClass.DelRemittance(rmid).value;
         if (recb == "-1") {
-        alert("长时间未操作，请先去登录！");
+        alertt("长时间未操作，请先去登录！");
             window.location.href = 'index.aspx';
             return;
         }
         if (recb == "1") {
-        alert("删除成功！");
+        alertt("删除成功！");
             $(elem).parent().parent().hide();
         } else if (recb == "0") {
-        alert("操作失败！");
+        alertt("操作失败！");
         }
     }
 
 
         function abc() {
 
-       // alert("敬请期待..");
-           
+       // alertt("敬请期待.."); 
         
             var mrje = parseFloat($("#buysz").val());
             var mrjg = parseFloat($("#mrjg").val()); //买入价格
             var acttype =  $("#hidbscs").val() ;
-        if (mrje <= 0) {alert("请输入买入数量！"); return false; }
-            if (mrjg <= 0) {alert("请输入买入价格！"); return false; }
+        if (mrje <= 0) {alertt("请输入买入数量！"); return false; }
+            if (mrjg <= 0) {alertt("请输入买入价格！"); return false; }
       
           //  buyintal = setInterval(enablebuy, 1000);
-            $("#sub").attr("class", "btn btn-default btn-lg");
-            $("#sub").attr("onclick", "");
+          //  $("#sub").attr("class", "btn btn-default btn-lg");
+            //$("#sub").attr("onclick", "");
            
             var rec = AjaxClass.AddRemittance(mrje, mrjg, acttype).value;
          
             if (rec ==1) { 
-                alert("买入成功！");
-               
-                       
+                alertt("买入成功！"); 
                 } else {
-                alert("买入失败");
-                } 
- window.location.href = "sellerCenter.aspx";
+                alertt("买入失败");
+            } 
+            $("#buysz").val("0");
+            LoadJYZList();
+            loadsellandbuylist();
         return false;
-    }
+        }
+      
 
     //交易中列表
     function LoadJYZList() {
@@ -460,12 +469,12 @@ display: inline-block;/*行内元素*/
         if (confirm("确认已收到对方转账了吗？")) {
             var rec = AjaxClass.ConfirmWithdrawSK(wdid).value;
             if (rec == "-1") {
-                alert("长时间未操作，请先去登录！");
+                alertt("长时间未操作，请先去登录！");
                 window.location.href = 'index.aspx';
                 return;
             }
             if (rec == "1") {
-                alert("收款成功！");
+                alertt("收款成功！");
                 window.location.href = 'sellercenter.aspx?tp=3';
             }
 
@@ -480,10 +489,10 @@ display: inline-block;/*行内元素*/
         var recb = AjaxClass.CancelRemittance(hkid).value;
        
         if (recb == "1") {
-            alert("撤销买入成功！");
+            alertt("撤销买入成功！");
             $(elem).parent().parent().hide();
         } else  {
-            alert("操作失败！");
+            alertt("操作失败！");
         }
 
     }
@@ -493,17 +502,17 @@ display: inline-block;/*行内元素*/
     function cancelsell(elem, hkid) { 
         var recb = AjaxClass.CancelWithdraw(hkid).value;
         if (recb == "-1") {
-            alert("操作失败！");  
+            alertt("操作失败！");  
         }
         if (recb == "1") {
-            alert("撤销卖出成功！");
+            alertt("撤销卖出成功！");
             $(elem).parent().parent().hide();
         }
         else if (recb == "0") {
-            alert("操作失败！");
+            alertt("操作失败！");
         }
         else if (recb == "-2") {
-            alert("卖出已匹配到汇款，不能撤销！");
+            alertt("卖出已匹配到汇款，不能撤销！");
         }
 
     }
@@ -525,23 +534,23 @@ display: inline-block;/*行内元素*/
             var name = $("#txtrname").val();
             var bkname = $("#txtbankname").val();
       
-            if (rtype == "-1") { alert("请选择汇出类型"); return; };
+            if (rtype == "-1") { alertt("请选择汇出类型"); return; };
 
-            if (name == "") { alert("请输入姓名"); return; };
+            if (name == "") { alertt("请输入姓名"); return; };
             if (rtype == "0") {
                 if (bkname == "") {
-                    alert("请输入银行名称"); return;
+                    alertt("请输入银行名称"); return;
                 }
             };
-            if (cardno == "") { alert("请输入汇出账号"); return; };
+            if (cardno == "") { alertt("请输入汇出账号"); return; };
             var red = AjaxClass.ConfirmRemittance(rmid, rtype, name, bkname, cardno).value;
             if (red == "1") {
-                alert("确认汇款完成，立即查看汇入账号，进行汇款");
+                alertt("确认汇款完成，立即查看汇入账号，进行汇款");
                 $("#chosbank").hide(); $("#bakg").hide();
                 window.location.href = "Sellbuydetails.aspx?rmid=" + rmid;
             }
             else {
-                alert("在线交易匹配中,请稍后查看交易状态！");
+                alertt("在线交易匹配中,请稍后查看交易状态！");
                 window.location.href = "sellerCenter.aspx?tp=2";
                 $("#chosbank").hide(); $("#bakg").hide();
             }
@@ -556,7 +565,7 @@ display: inline-block;/*行内元素*/
         var endDate = new Date(dates);
         var leftTime = endDate.getTime() - now.getTime();
 
-        //alert(leftTime);
+        //alertt(leftTime);
         var leftsecond = parseInt(leftTime / 1000);
         //var day1=parseInt(leftsecond/(24*60*60*6));
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
@@ -592,14 +601,14 @@ display: inline-block;/*行内元素*/
     function sendRemitmesg(ele, rmid) {
         var cor = AjaxClass.ConfirmRemittanceSendMsg(rmid).value;
         if (cor == "-1") {
-            alert("长时间未操作，请先去登录！");
+            alertt("长时间未操作，请先去登录！");
             window.location.href = 'index.aspx';
             return;
         }
         if (cor == "1") {
             $(ele).val("已通知");
             $(ele).attr("class", "btn btn-default");
-            alert("通知成功！");
+            alertt("通知成功！");
 
 
         }
@@ -619,7 +628,7 @@ display: inline-block;/*行内元素*/
             var yzm=RndNum(6);
             
             $.get('POS.aspx', {mobile:jQuery.trim($('#MobileTele').val())}, function(msg) {
-                alert(jQuery.trim(unescape(msg)));
+                alertt(jQuery.trim(unescape(msg)));
                 if(msg=='提交成功'){
                     RemainTime();
                 }
@@ -661,6 +670,7 @@ display: inline-block;/*行内元素*/
                 rnd+=Math.floor(Math.random()*10);
             return rnd;
         }
+    
     </script>
 </head>
 
@@ -675,6 +685,12 @@ display: inline-block;/*行内元素*/
             <a href="DetailDCS.aspx">已汇出</a>
             <a href="DetailYDZ.aspx">查询</a>
         </div>--%>
+         <div id="shscid" class="showhid">
+            <div id="sbuyinfo1"   class="textdiv"  > </div>
+            <div> 
+                <input type="button" class="qr"  value="确定" onclick="hidediv1()" /> 
+            </div>
+        </div>
         <div style="margin-left:8%;margin-top:40px;margin-bottom:40px;"><h4 style="color:#fff">Saturn/USDT</h4></div>
         <div class="middle">
              <div class="topscrll" style="text-align-last:right;" >
