@@ -28,7 +28,6 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
         ///判断会员账户是否被冻结
         //if (DAL.MemberInfoDAL.CheckState(Session["Member"].ToString())) { Page.ClientScript.RegisterStartupScript(GetType(), null, "<script language='javascript'>alert('您的账户被冻结，不能使用提现申请');window.location.href='First.aspx';</script>"); return; }
-        if (DAL.MemberInfoDAL.GetPetNameByNumber(Session["Member"].ToString()) == "") { Page.ClientScript.RegisterStartupScript(GetType(), null, "<script language='javascript'>$('#tiaoz').show();document.getElementById('tiaoz').href = 'First.aspx'; ;alertt('订单已生成，请及时支付！');alertt('您的账户未实名，不能使用提现申请');</script>"); return; }
         if (!IsPostBack)
         {
             if (Session["Default_Currency"] == null) Session["Default_Currency"] = bzCurrency;
@@ -272,31 +271,21 @@ public partial class Member_MemberCash : BLL.TranslationBase
             sxfbl = o_one2.ToString();
 
         int isjl = 0;
-        if (DropDownList1.SelectedValue == "1")
-        {
-            isjl = 0;
-            //if (txMoney > Convert.ToDouble(rmoney.Text.Trim()))
-            //{
-            //    System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
-            //    return;
-            //}
+       
             if (txMoney > xjye)
             {
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
                 return;
             }
-        }
-        else
-        {
-            isjl = 1;
+      
             if (txMoney > Convert.ToDouble(Label1.Text.Trim()))
             {
                 System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('金额超出最大可转金额！');", true);
                 return;
             }
-        }
+        isjl =Convert.ToInt32(DropDownList1.SelectedValue);
 
-        WithdrawModel wDraw = new WithdrawModel();
+         WithdrawModel wDraw = new WithdrawModel();
        // wDraw.Number = Session["Member"].ToString();
         wDraw.ApplicationExpecdtNum = BLL.CommonClass.CommonDataBLL.getMaxqishu();
 
@@ -337,7 +326,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 {
                     con.Open();
                     tran = con.BeginTransaction();
-                    if (!DAL.ECTransferDetailDAL.Withdraw(tran, wDraw))
+                    if (!DAL.ECTransferDetailDAL.MemberCash(tran, wDraw))
                     {
                         tran.Rollback();
                         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('提现申请失败！');", true);
@@ -401,14 +390,14 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 {
                     con.Open();
                     tran = con.BeginTransaction();
-                    if (!DAL.ECTransferDetailDAL.Withdraw(tran, wDraw))
+                    if (!DAL.ECTransferDetailDAL.MemberCash(tran, wDraw))
                     {
                         tran.Rollback();
                         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('提现申请失败！');", true);
                         return;
                     }
 
-                    string strSql = "Update MemberInfo Set pointAOut = pointAOut + @Money Where number=@Number";
+                    string strSql = "Update MemberInfo Set Out = Out + @Money Where number=@Number";
                     SqlParameter[] para1 = {
                                        new SqlParameter("@Money",SqlDbType.Money),
                                        new SqlParameter("@Number",SqlDbType.NVarChar,50)
@@ -471,15 +460,5 @@ public partial class Member_MemberCash : BLL.TranslationBase
     {
         Response.Redirect("MemberWithdraw.aspx");
     }
-    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (DropDownList1.SelectedValue == "2")
-        {
-            RadioButtonList1.Visible = false;
-        }
-        if (DropDownList1.SelectedValue == "1")
-        {
-            RadioButtonList1.Visible = true;
-        }
-    }
+   
 }

@@ -161,11 +161,11 @@
                                             </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="审核" ItemStyle-Wrap="false">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>' CommandName="Lbtn"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>'><%#GetTran("007169", "已汇出")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="Lbtn"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>'><%#GetTran("007169", "已汇出")%></asp:LinkButton>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                                       <asp:LinkButton ID="LinkButton2" runat="server"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>' CommandName="carderror"><%=GetTran("007171", "账号错误")%></asp:LinkButton>
+                                                       <asp:LinkButton ID="LinkButton2" runat="server"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="carderror"><%=GetTran("007171", "账号错误")%></asp:LinkButton>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <asp:LinkButton ID="LinkButton3" runat="server" CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>' CommandName="kscl"><%=GetTran("007170", "开始处理")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="LinkButton3" runat="server" CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="kscl"><%=GetTran("007170", "开始处理")%></asp:LinkButton>
                                                         <input id="HidisAuditingr" type="hidden" value='<%# DataBinder.Eval(Container, "DataItem.isAuditing")%>'
                                                             name="Hidden3" runat="server" />
                                                         <input id="HidId" type="hidden" value='<%# DataBinder.Eval(Container,"DataItem.Id")%>'
@@ -196,7 +196,7 @@
                                                 <asp:TemplateField HeaderText="提现币种">
                                                     <ItemStyle HorizontalAlign="Center" />
                                                     <ItemTemplate>
-                                                        <%# Eval("IsJL").ToString()=="0"?"静态FTC":"动态USDT"%>
+                                                        <%# Eval("IsJL").ToString()=="1"?"TUSDT":"USDTERC20"%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 
@@ -224,12 +224,7 @@
                                                         <%# Convert.ToInt32(Eval("wyj"))==1?"钱包":"商城"%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="是否回本">
-                                                    <ItemStyle HorizontalAlign="Center" />
-                                                    <ItemTemplate>
-                                                        <%# Eval("sfhb").ToString()=="0"?"回本":"未回本"%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                
 
                                                 <asp:TemplateField HeaderText="查看备注">
                                                     <EditItemTemplate>

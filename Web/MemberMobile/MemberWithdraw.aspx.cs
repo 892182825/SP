@@ -248,7 +248,7 @@ public partial class Member_MemberWithdraw : BLL.TranslationBase
         }
         condition.Append(" and Number='" + Session["Member"].ToString() + "' and shenHestate not in(-1,99,98) and id>txid_ys");
 
-        string sql = "select * from Withdraw where 1=1 and  " + condition.ToString() + " order by id desc ";
+        string sql = "select * from MemberCash where 1=1 and  " + condition.ToString() + " order by id desc ";
         this.ucPagerMb1.PageSize = 10;
         this.ucPagerMb1.PageInit(sql, "rep_TransferList");
         //this.Pager1.ControlName = "rep_TransferList";

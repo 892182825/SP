@@ -229,7 +229,7 @@
                         </div>
                         <div class='dsc1'>
                             <p class='p1'>Saturn(土星)</p>
-                            <p class='p3'>2.85%</p>
+                            <p class='p3'>3%</p>
                         </div>
                         <div class='dsc2'>
                             <p class='p1'>&nbsp;</p>

@@ -201,10 +201,10 @@
                           
                            <div class="changeLt"  style=" font-size: 14px;width: 100%;text-align: left;font-weight: 600;">账户选择</div>
                            <div class="changeRt">
-                        <asp:RadioButtonList ID="DropDownList1" RepeatDirection="Horizontal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                            <asp:ListItem Selected="True" Value="1">USDT</asp:ListItem>
+                        <asp:RadioButtonList ID="DropDownList1" RepeatDirection="Horizontal" runat="server" >
+                            <asp:ListItem Selected="True" Value="1">TUSDT</asp:ListItem>
                                 <asp:ListItem  Value="2">USDTERC20</asp:ListItem>
-                                 <asp:ListItem  Value="3">TUSDT</asp:ListItem>
+                                 <%--<asp:ListItem  Value="3">USDT</asp:ListItem>--%>
                             
                             </asp:RadioButtonList>
                             </div>

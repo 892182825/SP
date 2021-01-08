@@ -249,6 +249,15 @@ product)
         {
             return ECTransferDetailDAL.isDelWithdraw(id);
         }
+        /// <summary>
+        /// 是否已删除核提现申请——ds2012——tianfeng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool isDelMemberCash(int id)
+        {
+            return ECTransferDetailDAL.isDelMemberCash(id);
+        }
 
         /// <summary>
         /// 是否已审核提现申请——ds2012——tianfeng
@@ -258,6 +267,15 @@ product)
         public static int GetAuditState(int id)
         {
             return ECTransferDetailDAL.GetAuditState(id);
+        }
+        /// <summary>
+        /// 是否已审核提现申请——ds2012——tianfeng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static int GetMemberCashAuditState(int id)
+        {
+            return ECTransferDetailDAL.GetMemberCashAuditState(id);
         }
 
         /// <summary>

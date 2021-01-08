@@ -302,7 +302,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
 
             if (txMoney > xjye)
             {
-                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('钱包内余额不足，请核对输入FTC数量！');", true);
+                System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "alert('钱包内余额不足，请核对输入的数量！');", true);
                 return;
             }
 
@@ -392,7 +392,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                 string sql = "update memberinfo set Jackpot=Jackpot+" + skje + " where number='" + Session["Member"].ToString() + "'";
                 int cg = DBHelper.ExecuteNonQuery(tran,sql);
 
-                ret = DBHelper.ExecuteNonQuery(tran, "INSERT INTO MemberAccount(Number,HappenTime,HappenMoney,BalanceMoney,Direction,SfType,KmType,Remark)SELECT j.number,GETutcDATE()," + skje + " ,j.Jackpot-j.Out,0,1,2,'成功充值FTC" + skje + "'from memberinfo j WHERE j.Number='" + Session["Member"].ToString() + "'");
+                ret = DBHelper.ExecuteNonQuery(tran, "INSERT INTO MemberAccount(Number,HappenTime,HappenMoney,BalanceMoney,Direction,SfType,KmType,Remark)SELECT j.number,GETutcDATE()," + skje + " ,j.Jackpot-j.Out,0,1,2,'成功充值USDT" + skje + "'from memberinfo j WHERE j.Number='" + Session["Member"].ToString() + "'");
 
                 if (cg > 0 && ret > 0)
                 {

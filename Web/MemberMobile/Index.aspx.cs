@@ -138,10 +138,11 @@ public partial class Member_Index : BLL.TranslationBase
                         //    string sqll = "update MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " set Direct='" + dtt.Rows[0][0].ToString() + "' where number='" + Session["Member"].ToString() + "'";
                         //    DBHelper.ExecuteNonQuery(sqll);
                         //}
+                        
                     }
 
-                 
-                else
+
+                    else
                 {
 
 
