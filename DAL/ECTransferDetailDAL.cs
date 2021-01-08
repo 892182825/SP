@@ -295,8 +295,7 @@ namespace DAL
         public static bool SetMemberOut(SqlTransaction tran, string number, double money,double wyj)
         {
             string strSql = "";
-            if (wyj == 0)
-            {
+            
                 strSql = "Update MemberInfo Set Out = Out + @Money,MemberShip = MemberShip - @Money where number=@Number";
                 
 
@@ -312,12 +311,6 @@ namespace DAL
             if (count <= 0)
                 return false;
 
-            }
-            else
-            {
-
-                return true;
-            }
             return true;
         }
         /// <summary>

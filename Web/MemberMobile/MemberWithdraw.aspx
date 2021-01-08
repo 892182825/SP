@@ -129,7 +129,7 @@
                                         <p>
                                           <%-- <%# GetWithdrawTime(DataBinder.Eval(Container.DataItem, "WithdrawTime").ToString())%>--%>
                                          <%# DateTime.Parse(Eval("WithdrawTime").ToString()).AddHours(8)%>
-                                            <label><%# GetWState(DataBinder.Eval(Container.DataItem,"hkid").ToString(), DataBinder.Eval(Container.DataItem,"shenhestate").ToString(), DataBinder.Eval(Container.DataItem,"isAuditing").ToString()) %> </label>
+                                            <label><%# GetWState("0", DataBinder.Eval(Container.DataItem,"shenhestate").ToString(), DataBinder.Eval(Container.DataItem,"isAuditing").ToString()) %> </label>
                                         </p>
                                         </a>
                                     </li>

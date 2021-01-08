@@ -41,7 +41,7 @@ public partial class Sellbuydetails : BLL.TranslationBase
             lblttbuy.Text="+"+jbsl.ToString("0.00");
             litstate.Text=GetSHState(shstate);
             string buyhtml=@"  <li><div class='fdiv'>买方账号</div><div class='sdiv'>"+dr["number"].ToString()+@"</div></li>
-                 <li><div class='fdiv'>买方姓名</div><div class='sdiv'>" + dr["name"].ToString() + "</div></li>  <li><div class='fdiv'>挂单时间</div><div class='sdiv'>" + Convert.ToDateTime(dr["trantime"]).AddHours(8).ToString("yyyy-MM-dd HH:mm:ss") + " </div></li> <li><div class='fdiv'>买入石斛积分</div><div class='sdiv'>" + jbsl.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入价格</div><div class='sdiv'>" + Convert.ToDecimal(dr["priceJB"]).ToString("0.0000") + "</div></li>   <li><div class='fdiv'>买入市值</div><div class='sdiv'>&yen;" + Convert.ToDouble(dr["ttpriec"]).ToString("0.00") + "</div></li> "; 
+                 <li><div class='fdiv'>买方姓名</div><div class='sdiv'>" + dr["name"].ToString() + "</div></li>  <li><div class='fdiv'>挂单时间</div><div class='sdiv'>" + Convert.ToDateTime(dr["trantime"]).AddHours(8).ToString("yyyy-MM-dd HH:mm:ss") + " </div></li> <li><div class='fdiv'>买入</div><div class='sdiv'>" + jbsl.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入价格</div><div class='sdiv'>" + Convert.ToDecimal(dr["priceJB"]).ToString("0.0000") + "</div></li>   <li><div class='fdiv'>买入市值</div><div class='sdiv'>" + Convert.ToDouble(dr["ttpriec"]).ToString("0.00") + "</div></li> "; 
             litbuyinfo.Text = buyhtml;
             litdjdut.Text = GetSHStatejdt(shstate);
             //获取凭证图片名
@@ -73,18 +73,18 @@ public partial class Sellbuydetails : BLL.TranslationBase
                     wdlist += " <ul class='sellif' > ";
                     if (dtw.Rows.Count > 1) wdlist += " <li class='title'><div class='fdiv'>第" + (i + 1) + "笔</div><div class='sdiv'>交易对方信息  </div> </li>";
                
-                    wdlist += " <li class='title'><div class='fdiv'> 交易状态</div><div class='sdiv'>" + GetSHState(sst) + "</div> </li>";
+                    //wdlist += " <li class='title'><div class='fdiv'> 交易状态</div><div class='sdiv'>" + GetSHState(sst) + "</div> </li>";
 
-                    wdlist += " <li    ><div >请向以下账户中汇入<span style='font-size:20px;color:red;'>" + dbttp .ToString("0.00")+ "</span> 元</div></li>";
+                    //wdlist += " <li    ><div >请向以下账户中汇入<span style='font-size:20px;color:red;'>" + dbttp .ToString("0.00")+ "</span> 元</div></li>";
 
-                    if (dtype == 0) wdlist += "  <li style='height:70px;'><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  " + bankname + " " + bankcard + "    </div> </li>";
-                    if (dtype == 1) wdlist += "  <li><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  支付宝 " + alino + "    </div> </li>";
-                    if (dtype == 2) wdlist += "  <li><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  微信 " + weixno + "    </div> </li>";
-                        wdlist += " <li class='title' style='height:70px;'  ><div class='fdiv'> 对方账号</div><div class='sdiv'>" + number+"<br/>" +name+"-"+phone+ "</div> </li>";
-if (hkjs!=""||imgs!="")
-    wdlist += "<li><div class='fdiv'>汇款说明</div><div class='sdiv'>" + hkjs + "</div></li><li><div class='fdiv'>汇款凭证</div><div class='sdiv'><a href='#' onclick=\"showimg('" + imgsrc + "')\">查看凭证</a></div></li>";
-if (hkjs == ""&&imgs=="")
-    wdlist += "<li  style='height:70px;'><div class='fdiv'><input type='button'  onclick=\"addhksm('" + wid + "');\" value='买入汇款说明' class='btn btn-primary btn-lg'  /></div><div class='sdiv'></div></li>";
+                    //if (dtype == 0) wdlist += "  <li style='height:70px;'><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  " + bankname + " " + bankcard + "    </div> </li>";
+                    //if (dtype == 1) wdlist += "  <li><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  支付宝 " + alino + "    </div> </li>";
+                    //if (dtype == 2) wdlist += "  <li><div class='fdiv'>收款账户</div><div class='sdiv'>" + name + "  微信 " + weixno + "    </div> </li>";
+                        //wdlist += " <li class='title' style='height:70px;'  ><div class='fdiv'> 对方账号</div><div class='sdiv'>" + number+"<br/>" +name+"-"+phone+ "</div> </li>";
+//if (hkjs!=""||imgs!="")
+//    wdlist += "<li><div class='fdiv'>汇款说明</div><div class='sdiv'>" + hkjs + "</div></li><li><div class='fdiv'>汇款凭证</div><div class='sdiv'><a href='#' onclick=\"showimg('" + imgsrc + "')\">查看凭证</a></div></li>";
+//if (hkjs == ""&&imgs=="")
+//    wdlist += "<li  style='height:70px;'><div class='fdiv'><input type='button'  onclick=\"addhksm('" + wid + "');\" value='买入汇款说明' class='btn btn-primary btn-lg'  /></div><div class='sdiv'></div></li>";
 
 
                     wdlist += "</ul>";
@@ -96,7 +96,7 @@ if (hkjs == ""&&imgs=="")
             }
             else
             {
-                wdlist = "  <ul class='sellif'><li>未匹配 请到交易中心操作确认汇出</li></ul>";
+                wdlist = "  <ul class='sellif'><li>未匹配 </li></ul>";
             
             } 
             lblwdrlist.Text = wdlist; 

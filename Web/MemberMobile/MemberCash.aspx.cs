@@ -333,7 +333,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                         return;
                     }
 
-                    string strSql = "Update MemberInfo Set Out = Out + @Money Where number=@Number";
+                    string strSql = "Update MemberInfo Set MemberShip = MemberShip + @Money Where number=@Number";
                     SqlParameter[] para1 = {
                                        new SqlParameter("@Money",SqlDbType.Money),
                                        new SqlParameter("@Number",SqlDbType.NVarChar,50)
@@ -371,13 +371,13 @@ public partial class Member_MemberCash : BLL.TranslationBase
             //    Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('该申请单账号错误，不可以修改！');</script>");
             //    return;
             //}
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(wDraw.Id) == 1)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(wDraw.Id) == 1)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('已提交申请不可以重复提交！');</script>");
                 return;
             }
 
-            if (BLL.Registration_declarations.RegistermemberBLL.GetAuditState(wDraw.Id) == 0)
+            if (BLL.Registration_declarations.RegistermemberBLL.GetMemberCashAuditState(wDraw.Id) == 0)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('已提交申请不可以重复提交！');</script>");
                 return;
@@ -397,7 +397,7 @@ public partial class Member_MemberCash : BLL.TranslationBase
                         return;
                     }
 
-                    string strSql = "Update MemberInfo Set Out = Out + @Money Where number=@Number";
+                    string strSql = "Update MemberInfo Set MemberShip = MemberShip + @Money Where number=@Number";
                     SqlParameter[] para1 = {
                                        new SqlParameter("@Money",SqlDbType.Money),
                                        new SqlParameter("@Number",SqlDbType.NVarChar,50)

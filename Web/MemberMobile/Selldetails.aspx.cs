@@ -53,11 +53,11 @@ public partial class Selldetails : BLL.TranslationBase
             litjbbb.Text = "-" + sellbb.ToString("0.00");
             litstate.Text = GetSHState(shenhestate);
             litjindu.Text = GetSHStatejdt(shenhestate);
-            wdlist += "<li><div class='fdiv'>卖方账号</div><div class='sdiv'>" + drw["Number"].ToString() + " </div></li> <li><div class='fdiv'>挂单时间</div><div class='sdiv'>" + Convert.ToDateTime(drw["trantime"]).AddHours(8).ToString("yyyy-MM-dd HH:mm:ss") + " </div></li> <li><div class='fdiv'>卖出石斛积分</div><div class='sdiv'>" + sellbb.ToString("0.00") + "</div></li>   <li><div class='fdiv'>卖出价格</div><div class='sdiv'>" + price.ToString("0.00") + "</div></li>     <li><div class='fdiv'>石斛积分市值</div><div class='sdiv'>&yen;" + ttprice.ToString("0.00") + "</div></li>";
+            wdlist += "<li><div class='fdiv'>卖方账号</div><div class='sdiv'>" + drw["Number"].ToString() + " </div></li> <li><div class='fdiv'>挂单时间</div><div class='sdiv'>" + Convert.ToDateTime(drw["trantime"]).AddHours(8).ToString("yyyy-MM-dd HH:mm:ss") + " </div></li> <li><div class='fdiv'>卖出</div><div class='sdiv'>" + sellbb.ToString("0.00") + "</div></li>   <li><div class='fdiv'>卖出价格</div><div class='sdiv'>" + price.ToString("0.00") + "</div></li>     <li><div class='fdiv'>市值</div><div class='sdiv'>" + ttprice.ToString("0.00") + "</div></li>";
 
-            if (dtype == 0) wdlist += "  <li style='height:70px;' ><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  " + bankname + " " + bankcard + "    </div> </li>";
-            if (dtype == 1) wdlist += "  <li><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  支付宝 " + alino + "    </div> </li>";
-            if (dtype == 2) wdlist += "  <li><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  微信 " + weixno + "    </div> </li>";
+            //if (dtype == 0) wdlist += "  <li style='height:70px;' ><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  " + bankname + " " + bankcard + "    </div> </li>";
+            //if (dtype == 1) wdlist += "  <li><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  支付宝 " + alino + "    </div> </li>";
+            //if (dtype == 2) wdlist += "  <li><div class='fdiv'>收款账号</div><div class='sdiv'>" + name + "  微信 " + weixno + "    </div> </li>";
             litseller.Text = wdlist;
 
              
@@ -89,20 +89,20 @@ public partial class Selldetails : BLL.TranslationBase
 
                     buystr += " <li><div class='fdiv'>买方信息</div><div class='sdiv'>" + number + "(" + buyname + ")</div></li>     ";
 
-                    buystr += " <li    ><div > 买方汇款信息</div></li>";
+                    //buystr += " <li    ><div > 买方汇款信息</div></li>";
 
-                    if (bdtype == 0) buystr += "  <li style='height:70px;'><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  " + bbankname + " " + bbankcard + "    </div> </li>";
-                    if (bdtype == 1) buystr += "  <li><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  支付宝 " + balino + "    </div> </li>";
-                    if (bdtype == 2) buystr += "  <li><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  微信 " + bweixno + "    </div> </li>";
+                    //if (bdtype == 0) buystr += "  <li style='height:70px;'><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  " + bbankname + " " + bbankcard + "    </div> </li>";
+                    //if (bdtype == 1) buystr += "  <li><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  支付宝 " + balino + "    </div> </li>";
+                    //if (bdtype == 2) buystr += "  <li><div class='fdiv'>汇款账户</div><div class='sdiv'>" + buyname + "  微信 " + bweixno + "    </div> </li>";
 
-                    // <li><div class='fdiv'>买入石斛积分/div><div class='sdiv'>" + jbsl.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入价格</div><div class='sdiv'>" + buypr.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入市值</div><div class='sdiv'>&yen;" + RemitMoney.ToString("0.00") + "</div></li>
-
-
-                    if (hkjs != "" || imgs!="") buystr += "<li><div class='fdiv'>买方解释</div><div class='sdiv'> " + hkjs + "</div></li><li><div class='fdiv'>汇款凭证</div><div class='sdiv'><a href='#' onclick=\"showimg('" + imgsrc + "')\">查看凭证</a></div></li>";
+                    //// <li><div class='fdiv'>买入石斛积分/div><div class='sdiv'>" + jbsl.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入价格</div><div class='sdiv'>" + buypr.ToString("0.00") + "</div></li>  <li><div class='fdiv'>买入市值</div><div class='sdiv'>&yen;" + RemitMoney.ToString("0.00") + "</div></li>
 
 
-                    if (shenhestate!=20)
-                    buystr += "<li><div >  <input type='button' style='width:100%;' class='btn btn-primary '  onclick='shoukuan(this," + wdid + ");' value='确认收款' /></div></li>";
+                    //if (hkjs != "" || imgs!="") buystr += "<li><div class='fdiv'>买方解释</div><div class='sdiv'> " + hkjs + "</div></li><li><div class='fdiv'>汇款凭证</div><div class='sdiv'><a href='#' onclick=\"showimg('" + imgsrc + "')\">查看凭证</a></div></li>";
+
+
+                    //if (shenhestate!=20)
+                    //buystr += "<li><div >  <input type='button' style='width:100%;' class='btn btn-primary '  onclick='shoukuan(this," + wdid + ");' value='确认收款' /></div></li>";
                     
 
                 }
