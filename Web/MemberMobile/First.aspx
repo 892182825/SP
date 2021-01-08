@@ -229,7 +229,7 @@
                         </div>
                         <div class='dsc1'>
                             <p class='p1'>Saturn(土星)</p>
-                            <p class='p3'>3%</p>
+                            <p class='p3'><asp:Label ID="Label9" runat="server" Text="0.03"></asp:Label>%</p>
                         </div>
                         <div class='dsc2'>
                             <p class='p1'>&nbsp;</p>

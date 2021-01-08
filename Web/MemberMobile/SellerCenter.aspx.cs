@@ -90,7 +90,9 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         mcjg.Text= todayprice.ToString("0.0000");
         lbltodayprice.Text = todayprice.ToString("0.0000");
         MemberInfoModel mb = MemberInfoDAL.getMemberInfo(number);
-        lblzzlv.Text = "+3.51%";
+        decimal de = Convert.ToDecimal(DBHelper.ExecuteScalar("select para15  from config where ExpectNum=" + CommonDataBLL.getMaxqishu() + "  "));
+        lblzzlv.Text = (de * 100).ToString("0.00")+"%";
+        
 
         decimal ca = 0 ;
         decimal usdt = 0;
