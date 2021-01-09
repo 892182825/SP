@@ -246,7 +246,7 @@ public partial class Member_MemberWithdraw : BLL.TranslationBase
         if (begin != "" && end != "") {
             condition.Append(" and WithdrawTime between '" + begin + "' and '" + end + "'");
         }
-        condition.Append(" and Number='" + Session["Member"].ToString() + "' and shenHestate not in(-1,99,98) and id>txid_ys");
+        condition.Append(" and Number='" + Session["Member"].ToString() + "' ");
 
         string sql = "select * from MemberCash where 1=1 and  " + condition.ToString() + " order by id desc ";
         this.ucPagerMb1.PageSize = 10;

@@ -160,7 +160,10 @@ public partial class Member_First : BLL.TranslationBase
             lblBonse.Text = (xjye + pointA* cudayprice+ pointE).ToString("0.0000");
 
         }
-       
+
+        decimal de = Convert.ToDecimal(DBHelper.ExecuteScalar("select para15  from config where ExpectNum=" + CommonDataBLL.getMaxqishu() + "  "));
+        Label9.Text = (de*100).ToString("0.00");
+
 
         //string sql = "select isnull(fxlj,0) as ffxlj, * from MemberInfoBalance" + CommonDataBLL.getMaxqishu() + " where number='" + Session["Member"].ToString() + "'";
         //DataTable dt = DBHelper.ExecuteDataTable(sql);
@@ -204,7 +207,7 @@ public partial class Member_First : BLL.TranslationBase
 
         //    Label2.Text = "";
         //}
-           
+
         //}
     }
 

@@ -161,7 +161,7 @@
                                             </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="审核" ItemStyle-Wrap="false">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="Lbtn"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL")+","+Eval("sfhb") %>'><%#GetTran("007169", "已汇出")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="Lbtn"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>'><%#GetTran("007169", "已汇出")%></asp:LinkButton>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                                        <asp:LinkButton ID="LinkButton2" runat="server"  CommandArgument='<%#Eval("Number")+","+Eval("isauditing")+","+Eval("Id")+","+Eval("withdrawMoney")+","+Eval("withdrawsxf")+","+Eval("wyj")+","+Eval("IsJL") %>' CommandName="carderror"><%=GetTran("007171", "账号错误")%></asp:LinkButton>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -209,13 +209,13 @@
                                                 <asp:TemplateField HeaderText="提现时间">
                                                     <ItemStyle HorizontalAlign="Center" />
                                                     <ItemTemplate>
-                                                        <%# GetWithdrawTime(DataBinder.Eval(Container.DataItem, "WithdrawTime").ToString())%>
+                                                        <%# DataBinder.Eval(Container.DataItem, "WithdrawTime").ToString() %>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="审核时间">
                                                     <ItemStyle HorizontalAlign="Center" />
                                                     <ItemTemplate>
-                                                        <%# GetAuditTime(DataBinder.Eval(Container.DataItem,"AuditingTime").ToString()) %>
+                                                        <%# DataBinder.Eval(Container.DataItem,"AuditingTime").ToString() %>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="提现位置">

@@ -346,7 +346,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
             Application.Lock();
             bool isSure = false;
             
-                isSure = BLL.Registration_declarations.RegistermemberBLL.AuditWithdraw(wDraw);
+                isSure = BLL.Registration_declarations.RegistermemberBLL.AuditWithdraw(wDraw); 
                 
             Application.UnLock();
             if (isSure)
