@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <script src="js/jquery-1.7.1.min.js"></script>
-    <title>交易记录明细</title>
+    <title>交易明细</title>
     <link rel="stylesheet" href="CSS/style.css">
     <script type="text/javascript">
         $(function () {
@@ -69,12 +69,12 @@
             <div class="navbar-inner">
                 <a class="btn btn-primary btn-lg" style="float: left; padding: 6px; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-chevron-left glyphicon-white"></i></a>
 
-                <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);">交易记录明细</span>
+                <span style="color: #fff; font-size: 18px; margin-left: 30%; text-shadow: 2px 2px 5px hsl(0, 0%, 61%);">交易明细</span>
             </div>
         </div>
         <div class="midls">
             <div class="topshow">
-                <p><a class="btn btn-primary">买</a></p>
+                <p><a class="btn btn-primary" style="color:#eee;">买</a></p>
                 <p>
                     <asp:Literal ID="lblttbuy" Text="0.00" runat="server"></asp:Literal>
                 </p>
@@ -140,7 +140,7 @@
             <img id="imgsrc" style="width:80%;margin-left:10%;"/>
         </div>
          <div id="bakg"></div>
-        <!-- #include file = "comcode.html" -->
+        
 
         <script>
           

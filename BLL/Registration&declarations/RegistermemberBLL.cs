@@ -121,7 +121,7 @@ product)
                 try
                 {
                     //记录提现明细
-                    if (!DAL.ECTransferDetailDAL.Withdraw(tran, wDraw))
+                    if ( DAL.ECTransferDetailDAL.Withdraw(tran, wDraw)>0)
                     {
                         tran.Rollback();
                         return false;
@@ -160,7 +160,7 @@ product)
                 try
                 {
                     //记录提现明细
-                    if (!DAL.ECTransferDetailDAL.Withdraw(tran, wDraw))
+                    if ( DAL.ECTransferDetailDAL.Withdraw(tran, wDraw)!=1)
                     {
                         tran.Rollback();
                         return false;

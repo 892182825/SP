@@ -7623,14 +7623,15 @@ public class AjaxClass : BLL.TranslationBase
         //}
 
 
-        bool isSure = false;
+        int  wdid = 0;
 
-        isSure = BLL.Registration_declarations.RegistermemberBLL.WithdrawMoney1(wDraw);
+        bool  istrue =  BLL.Registration_declarations.RegistermemberBLL.WithdrawMoney1(wDraw);
 
 
-        if (isSure)
+        if (istrue )
         {
-            //AutoPipeiWithdraw(); //自动匹配
+            wdid = Convert.ToInt32(DBHelper.ExecuteScalar("  select top 1 id  from   withdraw  where   number='"+number+ "' and investJB="+sellcount+"  and priceJB= "+sgprice));
+           AutoPipeiWithdraw(number, wdid, sgprice); //自动匹配
             return "0";
         }
         else return "-3";
@@ -7639,27 +7640,16 @@ public class AjaxClass : BLL.TranslationBase
     }
 
 
-    public void AutoPipeiWithdraw()
+    public void AutoPipeiWithdraw(string number, int wdid,decimal price)
     {
-        string sqlstr = "select ID from remittances where  shenhestate =0  and isjl=1 order by remittancesDate  ";
+        string sqlstr = "select ID from remittances where  shenhestate =0    and  pricejb >=  "+price+"  and  remitnumber<>'"+number+"' order by remittancesDate   ";
         DataTable dtlist = DBHelper.ExecuteDataTable(sqlstr);
         foreach (DataRow item in dtlist.Rows)
         {
             int rmid = Convert.ToInt32(item["id"]);
             int c = PiepeiRemittance(rmid);
-            if (c > 0)
-            {
-                DAL.DBHelper.ExecuteNonQuery("update  remittances set shenhestate =1  where id=" + rmid);
-                DataTable dtt = DAL.DBHelper.ExecuteDataTable(" select top 1  r.RemitNumber,r.RemitMoney  from Remittances r  where  r.id= " + rmid);
-                if (dtt != null && dtt.Rows.Count > 0)
-                {
-                    double wm = Convert.ToDouble(dtt.Rows[0]["RemitMoney"]);
-                    string rnumber = dtt.Rows[0]["RemitNumber"].ToString();
-
-                    string content = "<b style='margin:20px; '>系统匹配邮件</b> <p> 系统已为您的买入石斛积分完成匹配 ，请立即到交易中心查看买单并在两小时内完成汇款。<a href='Sellbuydetails.aspx?rmid=" + rmid + "'  >点击进入>></a></p> <p>系统邮件</p>";
-                    SendEmail.SendSystemEmail("System", "1", content, rnumber);
-                }
-            }
+            int txst = Convert.ToInt32(DBHelper.ExecuteScalar("select   shenhestate  from   withdraw where  id=" + wdid));
+            if (txst == 1) break; 
         }
 
 
@@ -7785,8 +7775,8 @@ public class AjaxClass : BLL.TranslationBase
             if (bs == 0)
             {
 
-                rechtml += @"<li class='buyli' href='Sellbuydetails.aspx?rmid=" + item["id"] + @"'>
-                      
+                rechtml += @"<li class='buyli'  >
+                       <a href='Sellbuydetails.aspx?rmid=" + item["id"] + @"' style='color: #dd4814;' >
                             <div class='firstdiv'>
                                 <p>买入</p>
                                 <p>" + Convert.ToDateTime(item["trantime"]). ToString("MM-dd HH:mm") + @"</p>
@@ -7797,7 +7787,7 @@ public class AjaxClass : BLL.TranslationBase
                             </div> 
 
   <div>" + Convert.ToDouble(item["ttpriec"]).ToString("0.0000") + @"</div>   
-                            <div class='secdiv' style='color: forestgreen; float: right;'>买入<br/>已成</div>
+                            <div class='secdiv' style='color: forestgreen; float: right;'>买入<br/>已成</div></a>
                        
                     </li>";
 
@@ -7807,8 +7797,8 @@ public class AjaxClass : BLL.TranslationBase
             if (bs == 1)
             {
 
-                rechtml += @"<li class='sellli' href='Selldetails.aspx?wdid=" + item["id"] + @"'>
-                         
+                rechtml += @"<li class='sellli' >
+                          <a href='Selldetails.aspx?wdid=" + item["id"] + @"'   >
                             <div class='firstdiv'>
                                 <p>卖出</p>
                                 <p>" + Convert.ToDateTime(item["trantime"]). ToString("MM-dd HH:mm") + @"</p>
@@ -7818,7 +7808,7 @@ public class AjaxClass : BLL.TranslationBase
                                 <p> " + Convert.ToDouble(item["pricejb"]).ToString("0.0000") + @"</p>
                             </div> 
   <div>" + Convert.ToDouble(item["ttpriec"]).ToString("0.0000") + @"</div>  <div class='secdiv' style='color: forestgreen; float: right;'>卖出<br/>已成</div>
-                        
+                        </a>
                     </li>";
 
             }

@@ -18,8 +18,8 @@ public partial class MemberMobile_zhifu : BLL.TranslationBase
 {
     
     protected void Page_Load(object sender, EventArgs e)
-    {
-        Session["Member"] = "3b5ed4b1c920caf3c1e8d386b44ed74c";
+    {  // Session["Member"] = "b16b6adb609a399d644fef7123bf35fe";
+      Session["Member"] = "3b5ed4b1c920caf3c1e8d386b44ed74c";
         AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
 
 
