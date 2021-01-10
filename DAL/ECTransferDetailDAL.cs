@@ -14,10 +14,10 @@ namespace DAL
     public class ECTransferDetailDAL
     {
 
-        public static bool Withdraw(SqlTransaction tran, WithdrawModel dModel)
+        public static int Withdraw(SqlTransaction tran, WithdrawModel dModel)
         {
             string strSql = @"insert into Withdraw(number,applicationExpectNum,auditExpectNum,isAuditing,WithdrawMoney,WithdrawTime,OperateIP,remark,bankcard,bankname,WithdrawSXF,Khname,IsJL,Wyj,blmoney,Wyjbl ,InvestJB,priceJB,DrawCardtype,AliNo,WeiXNo,InvestJBSXF,InvestJBWYJ ,actype)
-                                values(@Number,@ApplicationExpectNum,@AuditingExpectNum,@IsAuditing,@WithdrawMoney,@WithdrawTime,@OperateIP,@Remark,@bankcard,@bankname,@WithdrawSXF,@Khname,@IsJL,@Wyj,@blmoney,@Wyjbl,@InvestJB,@priceJB,@DrawCardtype,@AliNo,@WeiXNo,@InvestJBSXF,@InvestJBWYJ ,@actype)";
+                                values(@Number,@ApplicationExpectNum,@AuditingExpectNum,@IsAuditing,@WithdrawMoney,@WithdrawTime,@OperateIP,@Remark,@bankcard,@bankname,@WithdrawSXF,@Khname,@IsJL,@Wyj,@blmoney,@Wyjbl,@InvestJB,@priceJB,@DrawCardtype,@AliNo,@WeiXNo,@InvestJBSXF,@InvestJBWYJ ,@actype)  ";
             SqlParameter[] para = {
                                       new SqlParameter("@Number",SqlDbType.NVarChar,50),
                                       new SqlParameter("@ApplicationExpectNum",SqlDbType.Int),
@@ -64,9 +64,8 @@ namespace DAL
             
 
             int count = (int)DBHelper.ExecuteNonQuery(tran, strSql, para, CommandType.Text);
-            if (count <= 0)
-                return false;
-            return true;
+            
+            return count;
         }
 
         public static bool MemberCash(SqlTransaction tran, WithdrawModel dModel)
