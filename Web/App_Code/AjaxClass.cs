@@ -7507,7 +7507,7 @@ public class AjaxClass : BLL.TranslationBase
         }
 
         xjye = Convert.ToDecimal(DBHelper.ExecuteScalar("select "+actstr+"  from memberinfo where number='"+number+"'")); //A币账户
-        decimal ebye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointEin-pointEout  from memberinfo where number='" + number + "'")); //A币账户
+        decimal ebye = Convert.ToDecimal(DBHelper.ExecuteScalar("select pointEin-pointEout-pointEFz  from memberinfo where number='" + number + "'")); //A币账户
         try
         {
             //string hkxz = " select value from JLparameter where jlcid=5";
@@ -7525,18 +7525,12 @@ public class AjaxClass : BLL.TranslationBase
 
                 return "卖币需要燃烧20%的火星币，火星币不足！";
             }
-            string strSql = "select top 1 zzye from memberInfo where number=@number";
-            SqlParameter[] para = {
-                                      new SqlParameter("@number",SqlDbType.NVarChar,30)
-                                  };
-            para[0].Value = number;
-            decimal leftMoney = Convert.ToDecimal(DBHelper.ExecuteScalar(strSql, para, CommandType.Text));
-            xjye = xjye - leftMoney;
+            
 
             if ( sellcount  > xjye)
             {
 
-                return "超出最大可卖数量sellcount"+ sellcount+" xjye:"+xjye;
+                return "当前提交"+ sellcount+ "超出最大可卖数量，可卖:" + xjye;
             }
 
 
