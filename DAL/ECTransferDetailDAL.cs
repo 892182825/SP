@@ -433,7 +433,7 @@ namespace DAL
         /// <returns></returns>
         public static DataTable QueryWithdraw(string id)
         {
-            string sql = "select * from Withdraw where number=@id and isAuditing<2";
+            string sql = "select * from MemberCash where number=@id and isAuditing<2";
             SqlParameter[] par=new SqlParameter[]{
                 new SqlParameter("@id",id)
             };

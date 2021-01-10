@@ -217,8 +217,8 @@ public partial class PlanteDH : System.Web.UI.Page
                     System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败，如果钱已扣除，请联系客服处理');", true);
                 }
 
-                
-                return;
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换成功');", true);
+            return ;
             //}
 
         }
