@@ -7579,7 +7579,7 @@ public class AjaxClass : BLL.TranslationBase
         wDraw.WithdrawMoney = Convert.ToDouble(txMoney);
         wDraw.WithdrawTime = DateTime.UtcNow;
         wDraw.OperateIP = BLL.CommonClass.CommonDataBLL.OperateIP;
-        wDraw.Remark = "会员卖出A币";
+        wDraw.Remark = "会员卖出星币";
 
         wDraw.Wyj = Convert.ToDouble(wyj);  //违约金
         wDraw.WithdrawSXF = Convert.ToDouble(sxf);//手续费
