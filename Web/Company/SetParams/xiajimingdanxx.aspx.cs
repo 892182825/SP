@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Company_SetParams_futoushezhi : BLL.TranslationBase
+public partial class Company_SetParams_xiajimingdanxx : BLL.TranslationBase
 {
     protected void Page_Load(object sender, EventArgs e)
     {
