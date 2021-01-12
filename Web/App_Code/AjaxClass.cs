@@ -6723,7 +6723,7 @@ public class AjaxClass : BLL.TranslationBase
             DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
             foreach (DataRow item in dtt.Rows)
             {
-                curstr += "<li><div class='ldv'> <p> " + Getdirc(Convert.ToInt32(item["Direction"])) + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</p> <p class='pdate'>" +   Convert.ToDateTime(item["HappenTime"]). ToString("yy-MM-dd HH-mm") + "</p>  </div> <div  class='rdv'><p>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</p></div> </li>   ";
+                curstr += "<li><div class='ldv'> <p> " + Getdirc(Convert.ToInt32(item["Direction"])) + Convert.ToDouble(item["HappenMoney"]).ToString("0.0000") + "</p> <p class='pdate'>" +   Convert.ToDateTime(item["HappenTime"]). ToString("yy-MM-dd HH:mm") + "</p>  </div> <div  class='rdv'><p>" + Convert.ToDouble(item["BalanceMoney"]).ToString("0.0000") + "</p></div> </li>   ";
             }
         }
         return curstr;
