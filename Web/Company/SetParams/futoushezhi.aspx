@@ -75,7 +75,7 @@
                                         <asp:BoundField DataField="level2" HeaderText="节点"></asp:BoundField>
                                         <asp:BoundField DataField="Sex" HeaderText="帕点"></asp:BoundField>
                                         <asp:BoundField DataField="cw" HeaderText="向上层位"></asp:BoundField>
-                                        <asp:BoundField DataField="sfhb" HeaderText="是否回本"></asp:BoundField>
+                                        
                                     </Columns>
                                     <EmptyDataTemplate>
                                         <table width="100%">
@@ -92,8 +92,7 @@
                                                 </th>
                                                 <th>向上层位
                                                 </th>
-                                                <th>是否回本
-                                                </th>
+                                                
                                             </tr>
                                         </table>
                                     </EmptyDataTemplate>

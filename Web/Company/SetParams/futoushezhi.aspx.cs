@@ -96,7 +96,7 @@ public partial class Company_SetParams_futoushezhi : BLL.TranslationBase
         string sql = @"  WITH tb AS (select a.number,a.direct,0 AS cw from memberinfo a  where a.MobileTele='"+txtOpen.Text+"'";
 	    sql += @"
     union all
-	select m.number ,m.direct,tb.cw+1 from memberinfo m ,tb where tb.direct = m.Number)select b.MobileTele,b.Name,a.level,a.level2,b.Sex,c.cw,(case when (select sum(withdrawMoney)+SUM(HappenMoney) from Withdraw w,MemberAccount d where w.number=a.Number and d.number=a.number and isAuditing=2 and Direction=1 and SfType=1 and KmType=5 )>(select sum(TotalPv/PriceJB) from memberorder where number=a.Number and ordertype in(22,23) and PayExpectNum=0 ) then 0 else 1 end) as sfhb from memberinfobalance1 a,memberinfo b,tb c where a.number=b.Number and a.number=c.Number ";
+	select m.number ,m.direct,tb.cw+1 from memberinfo m ,tb where tb.direct = m.Number)select b.MobileTele,b.Name,a.level,a.level2,b.Sex,c.cw from memberinfobalance1 a,memberinfo b,tb c where a.number=b.Number and a.number=c.Number ";
         DataTable myda = DBHelper.ExecuteDataTable(sql);
         if (myda.Rows.Count > 0)
         {
