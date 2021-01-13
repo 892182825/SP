@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="xiajimingdanxx.aspx.cs" Inherits="Company_SetParams_futoushezhi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="xiajimingdanxx.aspx.cs" Inherits="Company_SetParams_xiajimingdanxx" %>
 
 <%@ Register Src="../../UserControl/Pager.ascx" TagName="Pager" TagPrefix="uc2" %>
 <!DOCTYPE html>
