@@ -53,7 +53,7 @@ public partial class Company_MemberAccount : BLL.TranslationBase
     public void GetBind()
     {
         string table = "memberinfo a,memberinfobalance1 b";
-        string clounms = "a.mobiletele,name,pointAIn-pointAOut as ablc,pointbIn-pointbOut as bblc,pointcIn-pointcOut as cblc,pointdIn-pointdOut as dblc,pointeIn-pointeOut as eblc ";
+        string clounms = "a.mobiletele,name,jackpot-out as ublc,   pointAIn-pointAOut as ablc,pointbIn-pointbOut as bblc,pointcIn-pointcOut as cblc,pointdIn-pointdOut as dblc,pointeIn-pointeOut as eblc ";
         StringBuilder sb = new StringBuilder();
         sb.Append(" 1=1 and a.number=b.number ");
         

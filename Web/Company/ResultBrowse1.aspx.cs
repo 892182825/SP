@@ -42,6 +42,7 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
     {
         this.TranControls(this.RadioButtonList1,
                 new string[][]{
+                     new string []{"010000","USDT账户明细"},
                     new string []{"010000","A币账户明细"},
                     new string []{"000000","B币账户明细"},
                       new string []{ "000000", "C币账户明细"},
@@ -213,6 +214,9 @@ public partial class Company_ResultBrowse1 : BLL.TranslationBase
                 break;
             case "4":
                 tbname = "AccountE";
+                break;
+            case "5":
+                tbname = "MemberAccount";
                 break;
 
         }

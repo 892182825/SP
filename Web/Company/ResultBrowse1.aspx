@@ -49,7 +49,8 @@
                 <td>
                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged"
                         RepeatDirection="Horizontal">
-                        <asp:ListItem Value="0" Selected="True">A币账户明细</asp:ListItem>
+                         <asp:ListItem Value="5" Selected="True">USDT账户明细</asp:ListItem>
+                        <asp:ListItem Value="0" >A币账户明细</asp:ListItem>
                         <asp:ListItem Value="1">B币账户明细</asp:ListItem>
                           <asp:ListItem Value="2">C币账户明细</asp:ListItem>
                         <asp:ListItem Value="3">D币账户明细</asp:ListItem>
