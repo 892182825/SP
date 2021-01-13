@@ -49,6 +49,7 @@
                         <Columns>
                             <asp:BoundField DataField="mobiletele" HeaderText="会员手机号" />
                             <asp:BoundField DataField="name" HeaderText="会员姓名" />
+                            <asp:BoundField DataField="ublc" HeaderText="USDT账户" DataFormatString="{0:f4}" />
                             <asp:BoundField DataField="ablc" HeaderText="(水星)A币账户" DataFormatString="{0:f4}" />
                             <asp:BoundField DataField="bblc" HeaderText="(金星)B币账户" DataFormatString="{0:f4}" />
                             <asp:BoundField DataField="cblc" HeaderText="(土星)C币账户" DataFormatString="{0:f4}" />
