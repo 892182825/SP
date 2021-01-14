@@ -6748,12 +6748,12 @@ public class AjaxClass : BLL.TranslationBase
     /// </summary>
     /// <returns></returns>
     [AjaxPro.AjaxMethod]
-    public double ChekisSignIn()
+    public string  ChekisSignIn()
     {
         string number = HttpContext.Current.Session["Member"].ToString();
         int qs = ConfigDAL.GetMaxExpectNum(); 
-        double rr = Convert.ToInt32(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= "+qs+" and cs=0 and bonus>0 "));
-        return rr ;
+        double rr = Convert.ToDouble(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= "+qs+" and cs=0 and bonus>0 "));
+        return rr.ToString("0.0000") ;
 
     }
     /// <summary>
@@ -6766,7 +6766,7 @@ public class AjaxClass : BLL.TranslationBase
         int r = 0;
          
         int qs = ConfigDAL.GetMaxExpectNum();
-        double bunus = Convert.ToInt32(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= " + qs + " and cs=0 and bonus>0 "));
+        double bunus = Convert.ToDouble(DBHelper.ExecuteScalar(@"select ISNULL( SUM(bonus),0) as bs  from mx0 where hybh='" + number + "'  and qs= " + qs + " and cs=0 and bonus>0 "));
         string coinname = "A";
         string sqlu = " pointAin=pointAin+ "+bunus;
         int jd = Common.GetcurJieDuan();
