@@ -1681,7 +1681,7 @@ span .orderTHOK {
     .middle .scttjy {
         height: 30px;
         line-height: 30px;
-        width: 100%; 
+        width: 100%;
         font-size: 16px;
     }
 
@@ -1710,6 +1710,7 @@ span .orderTHOK {
         text-align: center;
         border-bottom: 1px solid #ccc;
     }
+
 .scdjy li {
     list-style: none;
     float: left;
@@ -1717,126 +1718,131 @@ span .orderTHOK {
     text-align: center;
     border-bottom: 1px solid #ccc;
 }
-    .middle .scttjy .cur0 {
-        color: #ef3a05;
-        font-weight: bold;
-        border-bottom: 2px solid #ef3a05;
-    }
-    .middle .scttjy .cur1 {
-        color: #75b1e2;
-        font-weight: bold;
-        border-bottom: 2px solid #6507fb;
-    }
 
-    .middle .content {
-        display: none;
-        padding: 0px;
-        width: 65%;
-        height: 300px;
-        
-        font-size: 16px;
-        float:left;
-    }
-
-    .middle .buy ul li, .sell ul li {
-        list-style: none;
-        /*margin-top: 10px;*/
-        line-height: 20px;
-        vertical-align: middle
-    }
-
-    .middle .content ul li .spmp {
-        width: 38px;
-        height: 38px;
-        text-align: center;
-        font-size: 30px;
-        font-weight: bold;
-        line-height: 30px;
-        float: left;
-        margin-left: 3px;
-        margin-right: 3px;
-    }
-
-    .middle .content #cardinfo {
-        line-height: 40px;
-        text-align: right;
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .middle .cur {
-        display: block;
-    }
-
-    .middle ul li .changeLt {
-        width: 30%;
-        float: left;
-        line-height: 40px;
-        text-align: center;
-    }
-
-    .middle ul li .changeRt {
-        width: 100%;
-        float: left;
-        line-height: 40px;
-    }
-.botm {
-width:100%;
-
-margin-top:300px;
+.middle .scttjy .cur0 {
+    color: #10b885;
+    font-weight: bold;
+    border-bottom: 2px solid #10b885;
 }
-    .botm .djye { 
+
+.middle .scttjy .cur1 {
+    color: #f55b5d;
+    font-weight: bold;
+    border-bottom: 2px solid #f55b5d;
+}
+
+.middle .content {
+    display: none;
+    padding: 0px;
+    width: 65%;
+    height: 300px;
+    font-size: 16px;
+    float: left;
+}
+
+.middle .buy ul li, .sell ul li {
+    list-style: none;
+    /*margin-top: 10px;*/
+    line-height: 20px;
+    vertical-align: middle
+}
+
+.middle .content ul li .spmp {
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 30px;
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.middle .content #cardinfo {
+    line-height: 40px;
+    text-align: right;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.middle .cur {
+    display: block;
+}
+
+.middle ul li .changeLt {
+    width: 30%;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+}
+
+.middle ul li .changeRt {
+    width: 100%;
+    float: left;
+    line-height: 40px;
+}
+
+.botm {
+    width: 100%;
+    margin-top: 300px;
+}
+
+    .botm .djye {
     }
+
     .botm .scdjy li {
         list-style: none;
         float: left;
         width: 50%;
         line-height: 35px;
         text-align: center;
-        color:#bcbcbc;
-    }
-    .botm .scdjy   .cur {
-        border-bottom: 1px solid #6507fb;
-        font-weight: bold;
-        color: #6507fb;
+        color: #bcbcbc;
     }
 
-    .cc {
-        width: 100%;
-        float: left;
+    .botm .scdjy .cur {
+        border-bottom: 1px solid #68a2f9;
+        font-weight: bold;
+        color: #68a2f9;
     }
+
+.cc {
+    width: 100%;
+    float: left;
+}
+
     .cc li {
         list-style: none;
-       
         float: left;
         height: 40px;
         width: 40px;
-         margin:3px;
+        margin: 3px;
         border: 1px solid #666;
         line-height: 40px;
         font-size: 25px;
         font-weight: bold;
         color: #999;
-        text-align:center;
-
+        text-align: center;
     }
+
     .cc .cr1 {
-        color: #ef3a05;
-        border-color: #ef3a05;
+        color: #10b885;
+        border-color: #10b885;
     }
+
     .cc .cr2 {
-        color: #6507fb;
-        border-color: #6507fb;
+        color: #f55b5d;
+        border-color: #f55b5d;
     }
 
 
-        #buy input[type="text"] {
-            border-color: #dd4814;
-        }
+#buy input[type="text"] {
+    border-color: #10b885;
+}
 
 #buy {
-    color: #ef3a05;
+    color: #10b885;
 }
 
     #buy .red {
@@ -1848,66 +1854,73 @@ margin-top:300px;
     }
 
     #buy .spmp {
-        border: 1px solid #ef3a05;
+        border: 1px solid #10b885;
     }
 
 #sell input[type="text"] {
-    border-color: #6507fb;
+    border-color: #f55b5d;
 }
 
 #sell {
-    color: #6507fb;
+    color: #f55b5d;
 }
 
     #sell .spmp {
-        border: 1px solid #6507fb;
+        border: 1px solid #f55b5d;
     }
 
     #sell .blue {
-        background-image: linear-gradient(#0E4A93, #5F0BC1);
+        background-image: linear-gradient(#f55b5d, #f55b5d);
         line-height: 38px;
         height: 38px;
         width: 95%;
         color: #fff;
     }
+
     #sell li {
-        line-height:40px;
+        line-height: 40px;
     }
+
 #buy .busub {
-    background-image: linear-gradient(#ff6600, red);
+    background-image: linear-gradient(#10b885, #10b885);
     line-height: 38px;
     height: 38px;
     width: 100%;
     color: #fff;
 }
+
 #buy li {
     line-height: 40px;
 }
+
 .gmlb {
-  width:35%;float:right; display:none;
+    width: 35%;
+    float: right;
+    display: none;
 }
+
 .djye ul {
     width: 100%;
     min-height: 500px;
 }
- 
-.djye ul .title {
-    float:left;
-    height: 35px; 
-    line-height: 25px;
-    background: #232323;
-    font-weight: normal;
-}
 
-.djye ul li {
-    list-style: none;
-    height: 60px;
-    line-height: 25px;
-    padding: 5px;
-    width: 100%;
-    float: left;
-    color: #c8c4c4;
-}
+    .djye ul .title {
+        float: left;
+        height: 35px;
+        line-height: 25px;
+        background: #232323;
+        font-weight: normal;
+    }
+
+    .djye ul li {
+        list-style: none;
+        height: 60px;
+        line-height: 25px;
+        padding: 5px;
+        width: 100%;
+        float: left;
+        color: #c8c4c4;
+    }
 
         .djye ul li div {
             height: 100%;
@@ -1944,11 +1957,11 @@ margin-top:300px;
 
     .djye ul .sellli {
         border-bottom: 1px #b3c0e4 solid;
-        color: #6507fb;
+        color: #f55b5d;
     }
 
         .djye ul .sellli a {
-            color: #6507fb;
+            color: #f55b5d;
         }
 
     .djye ul .buyli {
@@ -1969,7 +1982,6 @@ margin-top:300px;
 }
 
     .midls .topshow {
-        
         width: 100%;
         height: 130px;
         padding: 10px;
@@ -2015,7 +2027,6 @@ margin-top:300px;
     }
 
     .midls ul {
-      
         width: 100%;
         margin-bottom: 10px;
     }
@@ -2204,24 +2215,27 @@ margin-top:300px;
     padding-left: 8px;
     box-sizing: border-box;
 }
+
 .zhlist {
     width: 100%;
     height: 114px;
-    margin-top:30px;
-    
+    margin-top: 30px;
 }
-    .zhlist ul li { 
-    list-style:none;
-   font-size:6px;  
-   line-height:10px; 
-   font-family:宋体;
-  
+
+    .zhlist ul li {
+        list-style: none;
+        font-size: 6px;
+        line-height: 10px;
+        font-family: 宋体;
     }
-    .zhlist ul li .pl {
-        float:left ; width:50%;
-        margin-bottom:2px;
-        font-size:14px;
-    }
+
+        .zhlist ul li .pl {
+            float: left;
+            width: 50%;
+            margin-bottom: 2px;
+            font-size: 14px;
+        }
+
         .zhlist ul li .pr {
             text-align: right;
             float: right;
@@ -2230,10 +2244,14 @@ margin-top:300px;
             font-size: 14px;
         }
 
-#selllist{ color:green;}
-#buylist {
-    color: #75b1e2;
+#selllist {
+    color: #11b785;
 }
+
+#buylist {
+    color: #f55b5d;
+}
+
 .buylist {
     width: 100%;
     padding-bottom: 20px;
@@ -2329,24 +2347,26 @@ margin-top:300px;
     left: 10%;
     margin: auto;
     height: 150px;
-    text-align:center;
-}
-.showhid .textdiv {
-    height:50%;
-    text-align:center;
-    font-size:20px;
-    line-height:50px;
-    color:#999;
-}
-.showhid input {
-    height: 30px;
-    width: 100px;
     text-align: center;
-    line-height: 30px;
-    color: #eee;
-    border-radius:20px;
-    margin-top:20px;
 }
+
+    .showhid .textdiv {
+        height: 50%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 50px;
+        color: #999;
+    }
+
+    .showhid input {
+        height: 30px;
+        width: 100px;
+        text-align: center;
+        line-height: 30px;
+        color: #eee;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
 
 
 .rawz {
@@ -2375,7 +2395,7 @@ margin-top:300px;
 }
 
 .showhid div .qr {
-    background-color:#740bf5;
+    background-color: #740bf5;
     background-image: linear-gradient(to right,#0E4A93,#5F0BC1) 1 10;
 }
 
