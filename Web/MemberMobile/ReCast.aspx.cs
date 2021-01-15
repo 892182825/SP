@@ -26,7 +26,7 @@ public partial class ReCast : BLL.TranslationBase
                 {
                     string number = Session["Member"].ToString();
                     int choselv = Convert.ToInt32(Session["choselv"]);
-                    double eneed=Convert.ToDouble(  Session["Eneed"] );
+                    double eneed = Convert.ToDouble(Session["Eneed"]);
                     int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
 
 
@@ -34,15 +34,16 @@ public partial class ReCast : BLL.TranslationBase
                     {
                         if (eneed > 0)
                         {
-                       int  ee=     MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
+                            int ee = MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
                             if (ee == 1)
                             {
                                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机激活成功！');</script>", false);
                             }
-                            else { 
-                            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('支付成功，请使用E币激活矿机！'); setTimeout(function(){ window.location.href='orderlist.aspx'},3000); </script>", false);
+                            else
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('支付成功，请使用E币激活矿机！'); setTimeout(function(){ window.location.href='orderlist.aspx'},3000); </script>", false);
                             }
-                        } 
+                        }
                         ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机支付成功！');</script>", false); Bind();
                         return;
                     }
@@ -57,8 +58,43 @@ public partial class ReCast : BLL.TranslationBase
                     ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false);
                 }
             }
-            else
+            else {
+                //查询 当前会员未支付订单
+                string number = Session["Member"].ToString();
+                DataTable dtordernopay = DBHelper.ExecuteDataTable("select    orderid ,totalmoney  from memberorder where  number='"+number+ "'  and DefrayState=0  ");
+                try
+                {
+
+               
+                if (dtordernopay.Rows.Count > 0) {  
+                double cep = Convert.ToDouble(DBHelper.ExecuteScalar("select   coinnewprice  from CoinPlant where CoinIndex='CoinE'  "));
+                    foreach (DataRow item in dtordernopay.Rows)
+                    {
+                        string orderid = item["orderid"].ToString();
+                        double ttmoney = Convert.ToDouble(item["totalmoney"]);
+
+                        string ddz = CommandAPI.getzf(orderid);
+                        if (ddz == "SUCCESS")
+                        {
+                            int choselv = Convert.ToInt32(Session["choselv"]);
+                            double eneed = (ttmoney * 0.05) / cep;
+                            int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
+
+                            if(rr==1 && eneed>0)  MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
+                        }
+                    }
+
+                    }
+                }
+                catch (Exception)
+                {
+                     
+                }
+
+
                 Bind();
+            }
+              
         }
     }
 
