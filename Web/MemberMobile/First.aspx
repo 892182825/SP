@@ -189,11 +189,11 @@
                     提现
                       
                 </a>
-                <%--<a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="PlanteDH.aspx">
-                    <img src="img/交易.png" width="32" height="32" /><br />
-                    抢购
+                <a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="AccountJJDetail.aspx">
+                    <img src="img/绩效奖金.png" width="32" height="32" /><br />
+                    奖金
                 </a>
-                <a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="sellercenter.aspx?tp=1">
+                <%--<a style="float: left; width: 24%; height: 55px; text-align: center; font-size: 14px; margin-top: 3px; color: #fff;" href="sellercenter.aspx?tp=1">
                     <img src="img/星球.png" width="32" height="32" /><br />
                     交易
                       
