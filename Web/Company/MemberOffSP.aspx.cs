@@ -80,6 +80,21 @@ public partial class Company_MemberOffSP : BLL.TranslationBase
         {
             string number = txtNumber.Text.Trim();
             //判断会员是否存在
+            if (txtNumber.Text.Trim() != "")
+            {
+                string sql = "select number from MemberInfo where MobileTele='" + txtNumber.Text + "'";
+                DataTable shj = DBHelper.ExecuteDataTable(sql);
+                if (shj.Rows.Count > 0)
+                {
+                    number = shj.Rows[0][0].ToString();
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert(' 无此手机号，请检查后再重新输入 ！')</script>");
+                    return;
+                }
+               
+            }
             int con = MemberOffBLL.getMember(number);
             if (con == 0)
             {
