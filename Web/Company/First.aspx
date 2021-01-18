@@ -96,7 +96,7 @@
 		<br />
 		<br />
 		<%--<a href="ShowView.aspx" visible="false">网络图</a>--%>
-        <table class="tbss" width="80%"  align="center" border="1" cellpadding="1" cellspacing="1" style="border-color: #88e0f4;border-collapse: collapse;">
+        <table class="tbss" width="80%"  align="center" border="1" cellpadding="1" cellspacing="1" style="border-color: #88e0f4;border-collapse: collapse; display:none;">
                     <tr>
                        
                     <tr>
