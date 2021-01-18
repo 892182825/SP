@@ -16,9 +16,9 @@ public partial class ReCast : BLL.TranslationBase
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)
         {
-            if (Request.QueryString["orderid"] != null)
+            if (Session["orderid"] != null)
             {
-                string orderid = Request.QueryString["orderid"];
+                string orderid = Session["orderid"].ToString();
                 string getresult = CommandAPI.getzf(orderid);
                 string[] rlist = getresult.Split(',');
                 //修改订单状态
@@ -31,9 +31,12 @@ public partial class ReCast : BLL.TranslationBase
 
 
                     if (rr == 1)
-                    {
+                    {  Session.Remove("orderid");
+                            Session.Remove("choselv");
+                            Session.Remove("Eneed");
                         if (eneed > 0)
                         {
+                          
                             int ee = MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
                             if (ee == 1)
                             {
@@ -76,7 +79,7 @@ public partial class ReCast : BLL.TranslationBase
                         string ddz = CommandAPI.getzf(orderid);
                         if (ddz == "SUCCESS")
                         {
-                            int choselv = Convert.ToInt32(Session["choselv"]);
+                                int choselv = 0;// Convert.ToInt32(Session["choselv"]);
                             double eneed = (ttmoney * 0.05) / cep;
                             int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
 
@@ -397,7 +400,7 @@ public partial class ReCast : BLL.TranslationBase
         RegistermemberBLL registermemberBLL = new RegistermemberBLL();
           orderid = registermemberBLL.GetOrderInfo("add", null);
         int maxexpt = ConfigDAL.GetMaxExpectNum();
-
+        Session["orderid"] = orderid;
         Boolean flag = new AddOrderDataDAL().AddOrderInfo(number, orderid, maxexpt, isagain, ttmoney, ttpv, ordertype);
         Session["choselv"] = chosenum;//保存当前选中级别
         if (flag)  //插入订单成功 开始支付
