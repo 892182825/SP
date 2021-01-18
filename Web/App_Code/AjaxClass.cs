@@ -6729,6 +6729,38 @@ public class AjaxClass : BLL.TranslationBase
         return curstr;
 
     }
+
+    /// <summary>
+    /// 奖金明细页面数据加载
+    /// </summary>
+    /// <param name="isact"></param>
+    /// <param name="pageindex"></param>
+    /// <returns></returns>
+    [AjaxPro.AjaxMethod]
+    public string AccountJJDetailOrders(int pageindex)
+    {
+
+        string curstr = "";
+        string cdit = "";
+        int pgsize = 10;
+        if (HttpContext.Current.Session["Member"] != null)
+        {
+            string direct = HttpContext.Current.Session["Member"].ToString();
+
+            cdit += " and  jjdate>'2021-01-03 00:31:50.943'";
+            string sqls = @"WITH sss AS(SELECT a.id,hybh,sjbh,daishu,MobileTele,bonus,jjdate,ROW_NUMBER() OVER(ORDER BY jjdate desc, a.id desc ) as rowNum FROM  mx1 a,memberinfo b where a.sjbh=b.number and a.hybh='" + direct + "'  " + cdit + "   ) SELECT * FROM sss WHERE rowNum BETWEEN " + ((pageindex - 1) * pgsize + 1) + " AND " + pageindex * pgsize + "";
+
+
+            DataTable dtt = DAL.DBHelper.ExecuteDataTable(sqls);
+            foreach (DataRow item in dtt.Rows)
+            {
+                curstr += "<li><div class='ldv'> <p> " + Convert.ToInt32(item["daishu"]).ToString() + "代 " + Convert.ToDouble(item["bonus"]).ToString("0.0000") + "</p> <p class='pdate'>" + Convert.ToDateTime(item["jjdate"]).ToString("yy-MM-dd HH:mm") + "</p>  </div> <div  class='rdv'><p>" + item["MobileTele"].ToString() + "</p></div> </li>   ";
+            }
+        }
+        return curstr;
+
+    }
+
     private string Getdirc(int der) {
         if (der == 0) return "+";
         if (der == 1) return "-";
