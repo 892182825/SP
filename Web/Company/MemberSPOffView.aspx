@@ -59,7 +59,7 @@
                                 <asp:Button ID="btnSeach" runat="server" Text="查 询" OnClick="btnSeach_Click" CssClass="anyes" />
                             </td>
                             <td>
-                                <%=GetTran("000024", "会员编号")%>： &nbsp;
+                                <%=GetTran("0000", "会员账号")%>： &nbsp;
                             </td>
                             <td>
                                 <asp:TextBox ID="txt_member" runat="server" MaxLength="15"></asp:TextBox>
@@ -99,7 +99,7 @@
                                 <asp:GridView ID="givTWmember" Width="100%" runat="server" AutoGenerateColumns="False"
                                     CssClass="tablemb" OnRowDataBound="givTWmember_RowDataBound">
                                     <Columns>
-                                        <asp:BoundField DataField="Number" HeaderText="会员编号" />
+                                        <asp:BoundField DataField="mobiletele" HeaderText="会员编号" />
                                         <asp:TemplateField HeaderText="会员姓名">
                                             <ItemTemplate>
                                                 <%#GetbyName(Eval("Number").ToString())%>

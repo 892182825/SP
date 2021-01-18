@@ -505,7 +505,7 @@
             </li>
        
     </ul>
-        <div class="tc">
+        <div class="tc"  >
             <div></div>
             
             <asp:Literal ID="Litw" runat="server"></asp:Literal>
@@ -521,7 +521,7 @@
 </style>--%>
 </html>
 <script>
-    $(function () {
+  <%--  $(function () {
         var it='<%=jfdtx%>';
         if(it>0){
             $('.tc').slideDown()
@@ -531,6 +531,6 @@
        
         }
 
-    })
+    })--%>
 
 </script>

@@ -239,7 +239,7 @@ public partial class Company_Index : BLL.TranslationBase
         }
         else
         {
-            Litw.Text=" 您当前有"+ getdisCount() +"条纠纷单未处理,请及时处理";
+        //    Litw.Text=" 您当前有"+ getdisCount() +"条纠纷单未处理,请及时处理";
         }
 
 

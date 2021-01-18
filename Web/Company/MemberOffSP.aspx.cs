@@ -75,18 +75,21 @@ public partial class Company_MemberOffSP : BLL.TranslationBase
     }
 
     protected void btnquery_Click(object sender, EventArgs e)
-    {
-        if (Request.QueryString["type"] == null)
-        {
-            string number = txtNumber.Text.Trim();
-            //判断会员是否存在
-            int con = MemberOffBLL.getMember(number);
-            if (con == 0)
+    { string  tel= txtNumber.Text.Trim();
+             
+          object ob= DBHelper.ExecuteScalar("select   number from memberinfo where mobiletele='"+tel+"'");
+            if(ob==null)
+            //判断会员是否存在 
+            if (ob == null)
             {
-                LabelResponse.Text = "<font color='red'>" + GetTran("000599", "会员") + "" + number + "" + GetTran("000801", "不存在，请重新输入") + "！</font>";
+                LabelResponse.Text = "<font color='red'>" + GetTran("000599", "会员") + "" + tel + "" + GetTran("000801", "不存在，请重新输入") + "！</font>";
 
                 return;
             }
+  string number =ob.ToString();
+        if (Request.QueryString["type"] == null)
+        {  
+
             if (MemberOffBLL.getMemberZX(number) > 0)
             {
                 int con1 = MemberOffBLL.getMemberSPISzx(number);
@@ -121,9 +124,9 @@ public partial class Company_MemberOffSP : BLL.TranslationBase
         else
         {
             //int id = Convert.ToInt32(DAL.DBHelper.ExecuteScalar("select top 1 id from memberOffSP where number='" + txtNumber.Text.Trim() + "'  order by zxdate desc"));
-            DataTable dt = DAL.DBHelper.ExecuteDataTable("select top 1 id,isnull(name,'') as name,isnull(storeid,'') as storeid,isnull(papernumber,'')as papernumber,isnull(mobiletele,'') as mobiletele from memberoffsp where number='" + txtNumber.Text.Trim() + "' order by zxdate desc");
+            DataTable dt = DAL.DBHelper.ExecuteDataTable("select top 1 id,isnull(name,'') as name,isnull(storeid,'') as storeid,isnull(papernumber,'')as papernumber,isnull(mobiletele,'') as mobiletele from memberoffsp where number='" + number + "' order by zxdate desc");
             if (dt.Rows.Count > 0) {
-                string number = txtNumber.Text;
+                 
                 string reason = txtMemberOffreason.Text;
                 string opert = Session["company"].ToString();
                 string opname =GetTran("000151", "管理员");
@@ -206,6 +209,6 @@ public partial class Company_MemberOffSP : BLL.TranslationBase
             return;
         }
 
-        Response.Redirect("DisplayMemberDeatail.aspx?ID=" + Number + "&type=MemberoffSP");
+       // Response.Redirect("DisplayMemberDeatail.aspx?ID=" + Number + "&type=MemberoffSP");
     }
 }
