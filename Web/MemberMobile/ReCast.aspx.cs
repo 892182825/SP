@@ -400,13 +400,14 @@ public partial class ReCast : BLL.TranslationBase
         RegistermemberBLL registermemberBLL = new RegistermemberBLL();
           orderid = registermemberBLL.GetOrderInfo("add", null);
         int maxexpt = ConfigDAL.GetMaxExpectNum();
-        Session["orderid"] = orderid;
+      
         Boolean flag = new AddOrderDataDAL().AddOrderInfo(number, orderid, maxexpt, isagain, ttmoney, ttpv, ordertype);
         Session["choselv"] = chosenum;//保存当前选中级别
         if (flag)  //插入订单成功 开始支付
         {
             if (jd==1 && chosenum > 1)//说明是第一阶段的所有购买都 必须使用USDT买 
             {
+                Session["orderid"] = orderid;
                 string postf = CommandAPI.GetFunction(orderid, ttmoney.ToString(),"recast.aspx", RadioButtonList1.SelectedValue);
                 ClientScript.RegisterStartupScript(this.GetType(), "", postf, false);
                 return;
