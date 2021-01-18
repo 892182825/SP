@@ -33,8 +33,7 @@ public partial class Member_OnlinePayment : BLL.TranslationBase
         bzCurrency = CommonDataBLL.GetStandard();
         huilv = 0;
         //判断会员账户是否被冻结
-        if (MemberInfoDAL.CheckState(Session["Member"].ToString())) { Page.ClientScript.RegisterStartupScript(GetType(), null, "<script language='javascript'>alert('您的账户被冻结，不能使用交易系统');window.location.href='First.aspx';</script>"); return; }       
-
+        if (MemberInfoDAL.CheckState(Session["Member"].ToString())) { Page.ClientScript.RegisterStartupScript(GetType(), null, "<script language='javascript'>alert('您的账户被冻结，不能使用交易系统');setTimeout(function(){ window.location.href='First.aspx'},3000);</script>"); return; }
         if (!IsPostBack)
         {
             DateTime dtnow = DateTime.Now;
