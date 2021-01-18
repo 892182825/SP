@@ -71,12 +71,12 @@ public partial class Company_MemberSPOffView : BLL.TranslationBase
     {
 
         StringBuilder sb = new StringBuilder();
-        sb.Append("1=1");
+        sb.Append("1=1 and  mp.number=mi.number ");
 
         string mb = DisposeString.DisString(txt_member.Text);
         if (mb.Length > 0)
         {
-            sb.Append(" and Number like '%" + PageBase.InputText(this.txt_member.Text.Trim()) + "%'");
+            sb.Append(" and mobiletele like '%" + PageBase.InputText(this.txt_member.Text.Trim()) + "%'");
 
         }
         if (txtName.Text.Length>0)
@@ -103,9 +103,9 @@ public partial class Company_MemberSPOffView : BLL.TranslationBase
             sb.Append(" and iszx=" + PageBase.InputText(this.DropDownList1.SelectedValue));
         }
 
-        string col = "MemberOffSP.Name,MemberOffSP.Number,zxqishu,zxdate,case when iszx=1 then '" + GetTran("007542", "已冻结") + "' when iszx=2 then '" + GetTran("001287", "已恢复") + "' else '' end as zx,offReason,Operator,OperatorName";
+        string col = "mi.mobiletele,mp.Name,mp.Number,zxqishu,zxdate,case when iszx=1 then '" + GetTran("007542", "已冻结") + "' when iszx=2 then '" + GetTran("001287", "已恢复") + "' else '' end as zx,offReason,Operator,OperatorName";
         Pager pager = Page.FindControl("Pager1") as Pager;
-        pager.PageBind(0, 10, "MemberOffSP", col, sb.ToString(), "id", "givTWmember");
+        pager.PageBind(0, 10, "MemberOffSP  mp ,memberinfo  mi", col, sb.ToString(), "mp.id", "givTWmember");
 
         ViewState["SQLSTR"] = "select " + col + " from MemberOffSP where " + sb.ToString();
 

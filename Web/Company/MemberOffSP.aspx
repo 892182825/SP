@@ -37,16 +37,16 @@
             </tr>
             <tr>
                 <td align="right">
-                    <%=GetTran("000024", "会员编号")%>：
+                    <%=GetTran("000000", "会员手机号")%>：
                 </td>
                 <td align="left">
                     <asp:TextBox ID="txtNumber" runat="server" MaxLength="50" onblur="getname()"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="btn_Select" runat="server" Text="查看" CssClass="another" OnClick="btn_Select_Click" />
+                    <asp:Button ID="btn_Select" Visible="false" runat="server" Text="查看" CssClass="another" OnClick="btn_Select_Click" />
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right"  style="display:none;">
                     <%=GetTran("000025", "会员姓名")%>：
                 </td>
                 <td align="left">
