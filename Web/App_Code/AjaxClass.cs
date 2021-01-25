@@ -7306,8 +7306,8 @@ public class AjaxClass : BLL.TranslationBase
                 info.InvestJB = Mcount;
                 info.PriceJB = sgprice;
                 info.Actype = acttype;
-                info.ReceivablesDate = DateTime.UtcNow;
-                info.RemittancesDate = DateTime.UtcNow;
+                info.ReceivablesDate = Convert.ToDateTime( "1900-01-01");
+                info.RemittancesDate = DateTime.Now;
                 info.IsJL = 1;
                 info.ImportBank = "";
                 info.ImportNumber = "";
@@ -7603,7 +7603,7 @@ public class AjaxClass : BLL.TranslationBase
         wDraw.ApplicationExpecdtNum = BLL.CommonClass.CommonDataBLL.getMaxqishu();
 
         wDraw.WithdrawMoney = Convert.ToDouble(txMoney);
-        wDraw.WithdrawTime = DateTime.UtcNow;
+        wDraw.WithdrawTime = DateTime.Now;
         wDraw.OperateIP = BLL.CommonClass.CommonDataBLL.OperateIP;
         wDraw.Remark = "会员卖出星币";
 
