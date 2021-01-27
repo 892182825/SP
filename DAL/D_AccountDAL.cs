@@ -31,7 +31,7 @@ namespace DAL
                     money=-money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual + money;
                 parm[4].Value = (int)direction;
@@ -64,7 +64,7 @@ namespace DAL
                 }
 
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 if (state)
                 {
@@ -102,7 +102,7 @@ namespace DAL
                     DBHelper.ExecuteScalar( tran, "select  point" + Coinname + "in-point" + Coinname+"out  as rr from memberinfo  where   number='"+number+"'",CommandType.Text));
                  
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money; 
                   parm[3].Value = Residual   ; 
                 parm[4].Value = (int)direction;
@@ -190,7 +190,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;
@@ -229,7 +229,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;
@@ -270,7 +270,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;
@@ -466,7 +466,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual ;
                 parm[4].Value = (int)direction;
@@ -503,7 +503,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;
@@ -542,7 +542,7 @@ namespace DAL
                     money = -money;
                 }
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;
@@ -581,7 +581,7 @@ namespace DAL
                 //    money = -money;
                 //}
                 parm[0].Value = number;
-                parm[1].Value = DateTime.Now.ToUniversalTime();
+                parm[1].Value = DateTime.Now;
                 parm[2].Value = money;
                 parm[3].Value = Residual;
                 parm[4].Value = (int)direction;

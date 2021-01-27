@@ -27,9 +27,101 @@ public partial class PlanteDH : System.Web.UI.Page
           
 
             GetActMoney();
-            if (Session["zfddh"] != null )
-            { 
-                getzf(); 
+            if (Session["zfddh"] != null)
+            {
+                getzf();
+            }
+            else {
+
+                string number = Session["Member"].ToString();
+                DataTable dtordernopay = DBHelper.ExecuteDataTable("select top 1   dhorderid ,getplantE,useusdt  from dhlist where  number='" + number + "' and issuc=0   order by id desc");
+                try
+                {
+                    string ddh = "";
+                    double getE = 0;
+                    double usdt = 0;
+                    if (dtordernopay.Rows.Count > 0)
+                    {
+                         ddh = dtordernopay.Rows[0]["dhorderid"].ToString();
+                        getE = Convert.ToDouble(dtordernopay.Rows[0]["getplantE"].ToString());
+                        usdt = Convert.ToDouble(dtordernopay.Rows[0]["useusdt"].ToString());
+                    }
+
+
+                        string sl = GenerateCheckCodeNum(32);
+                    //long mony = Convert.ToInt64(money.Text.Trim());
+                    if (number == "")
+                    {
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换状态未知，如果钱已扣除，请联系客服处理');", true);
+                        return;
+                    }
+                    //string ddh = Session["zfddh"].ToString();
+                    
+                    string postdz = "https://oauth.factorde.com/api/pay/queryOrder";
+                    Dictionary<String, String> myDi = new Dictionary<String, String>();
+                    Dictionary<String, Object> da = new Dictionary<String, Object>
+{
+            {"out_trade_no", ddh}
+};
+
+                    String jso = JsonConvert.SerializeObject(da, Formatting.Indented);
+
+                    myDi.Add("nonce_str", sl);
+                    myDi.Add("biz_content", jso);
+                    myDi.Add("app_id", PublicClass.app_id);
+                    myDi.Add("access_token", Session["access_token"].ToString());
+                    myDi.Add("lang", "zh_CN");
+                    myDi.Add("version", "1.0");
+                    myDi.Add("charset", "utf8");
+                    myDi.Add("openid", number);
+
+                    string signj = PublicClass.GetSignContent(myDi);
+                    string jsonS = PublicClass.HmacSHA256(signj + "&key=cd310d4c38d3b27dd9dfc069e559f73f", "cd310d4c38d3b27dd9dfc069e559f73f");
+
+                    myDi.Add("sign", jsonS);
+
+                    string rspp = PublicClass.doHttpPost(postdz, myDi);
+                    JObject stJson = JObject.Parse(rspp);
+                    // money.Text = rspp;
+                    string zt = stJson["data"]["trade_status"].ToString();
+                    int skje = Convert.ToInt32(stJson["data"]["settle_trans_amount"]);
+                    double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
+                    skje = Convert.ToInt32(skje * dprice);
+                    if (zt == "SUCCESS")
+                    {
+                        //if (skje == usdt)
+                        //{
+                        int rr = MemberOrderDAL.dhOrdersuc(number, ddh, getE);
+                        if (rr > 0)
+                        {
+                            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败');", true);
+                            Session["zfddh"] = "";
+                            Session["USDT"] = "";
+                            Session["getE"] = "";
+                            return;
+                        }
+                        else
+                        {
+                            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败，如果钱已扣除，请联系客服处理');", true);
+                        }
+
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换成功');", true);
+                        return;
+                        //}
+
+                    }
+                    else
+                    {
+                        System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('兑换失败，如果钱已扣除，请联系客服处理');", true);
+                        // GetActMoney();
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
             }
             
         }
@@ -106,8 +198,14 @@ public partial class PlanteDH : System.Web.UI.Page
         double dprice = Convert.ToDouble(DBHelper.ExecuteScalar("select  CoinnewPrice from CoinPlant where CoinIndex='CoinE' "));
         double kg = 80 - coineblac;
         double cuususdt = txMoney * dprice; //需要使用的usdt數量
+        DataTable dtordernopay = DBHelper.ExecuteDataTable("select top 1   dhorderid ,getplantE,useusdt  from dhlist where  number='" + number + "'  and issuc=1 and DateDiff(dd,dhdate,getdate())=0  order by id desc");
+        if (dtordernopay.Rows.Count > 0)
+        {
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('每天只能抢购一次');", true); txtneed.Text = kg.ToString("0.0000");
+            return;
+        }
 
-        if (kg < txMoney) //購買數量超過可購數量
+            if (kg < txMoney) //購買數量超過可購數量
         { 
         System.Web.UI.ScriptManager.RegisterStartupScript(Page, GetType(), "success2", "showsuc('最多可购"+ kg + " 枚火星币！');", true); txtneed.Text = kg.ToString("0.0000");
             return;
