@@ -3,167 +3,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>DS2014管理系统-头部</title>
-    <link href="CSS/Company.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script language="JavaScript" src="js/jquery.js"></script>
-    <style type="text/css">
-        .white {
-            FONT-SIZE: 12px;
-            COLOR: white;
-            TEXT-DECORATION: none;
-            font-family: Arial;
-        }
-
-        .yellow {
-            FONT-WEIGHT: bold;
-            FONT-SIZE: 12px;
-            COLOR: yellow;
-            TEXT-DECORATION: none;
-            font-family: Arial;
-        }
-
-        .yellow2 {
-            FONT-WEIGHT: bold;
-            FONT-SIZE: 13px;
-            COLOR: yellow;
-            TEXT-DECORATION: none;
-            font-family: Arial;
-        }
-        li
-        {
-            margin-bottom:20px;
-        }
-        .topleft {
-            width:25%;
-        }
-        .nav {
-            width:60%;
-        }
-        .topright {
-            width:15%
-        }
-        .nav li {
-            width:15%;
-        }
-        .topright ul li a {
-            font-size:12px;
-        }
-    </style>
-
-    <script language="javascript" type="text/javascript">
-        function change(id) {
-            //var menu0 = document.getElementById("menu0");
-            //var menu1 = document.getElementById("menu1");
-            //var menu2 = document.getElementById("menu2");
-            //var menu3 = document.getElementById("menu3");
-            //var menu4 = document.getElementById("menu4");
-            //var menu5 = document.getElementById("menu5");
-            //var menu6 = document.getElementById("menu6");
-
-
-            ////menu0.className = "white";
-            //menu1.className = "white";
-            //menu2.className = "white";
-            //menu3.className = "white";
-            //menu4.className = "white";
-            //menu5.className = "white";
-            //menu6.className = "white";
-
-            //alert(id);
-
-            //switch (id) {
-            //    case 0:
-            //       // menu0.className = "yellow";
-            //        	                window.open("First.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 1:
-            //      //  menu1.className = "yellow";
-            //         window.open("QueryMemberInfo.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 2:
-            //      //  menu2.className = "yellow";
-            //           window.open("Provider_ViewEdit.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 3:
-            //      //  menu3.className = "yellow";
-            //          window.open("BrowseStoreOrders.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 4:
-            //       // menu4.className = "yellow";
-            //         window.open("AuditingStoreAccount.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 5:
-            //      //  menu5.className = "yellow";
-            //         window.open("ManageResource.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-            //    case 6:
-            //      //  menu6.className = "yellow";
-            //          window.open("DeptRolesManage.aspx?flag=1", "mainframe","channelmode"); 
-            //        break;
-
-            //    case 10:
-            //        menu10.className = "yellow";
-            //        	                                           left.aspx?pid=10   leftmenu
-            //        break;
-
-           // }
-            if (id == 0||id==10) {
-                //alert(id)
-                AjaxClass.getsession("first.aspx");
-                window.open("First.aspx?flag=1", "mainframe", "channelmode");
-            }
-        }
-
-        function abc() {
-            if (window.parent.document.getElementById("pp").cols == "195px,18px,*") {
-                window.parent.document.getElementById("pp").cols = "0px,18px,*";
-                document.getElementById("imgid").src = "images/menunu16.gif";
-
-                document.getElementById("tx").innerHTML = '<%=GetTran("006011", "显示")%>';
-            }
-            else {
-                window.parent.document.getElementById("pp").cols = "195px,18px,*";
-                document.getElementById("imgid").src = "images/menunu15.gif";
-
-                document.getElementById("tx").innerHTML = '<%=GetTran("006017", "隐藏")%>';
-            }
-        }
-        $(function () {
-            $('.nav  li a').click(function () {
-
-                $(this).css('background', 'url(images/navbg.png) no-repeat').parent('li').siblings('li').children('a').css('background', 'none')
-                var aa = this.href;
-                var index = aa.lastIndexOf("\/");
-                var str = aa.substring(index + 1, aa.length)
-                AjaxClass.gettopsession(str);
-            })
-        });
-        $(function () {
-            $('.topright  li a').click(function () {
-                var aa = this.href;
-                var index = aa.lastIndexOf("\/");
-                var str = aa.substring(index + 1, aa.length)
-                AjaxClass.getsession(str);
-            });
-
-
-
-
-
-        });
-
-        function loadmenu(id) {
-            window.open("leftMenu_W.aspx?pid=" + id, "leftmenu", "channelmode");
-        }
-
-
-    </script>
+    <title> </title>
+     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+ 
+    <!-- jQuery -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+	<link href="CSS/stylen.css" rel="stylesheet" />
+    <link href="CSS/iconfont.css" rel="stylesheet" />
+ 
+ 
 </head>
-<body>
-    <form id="form1" runat="server">
+<body class="sidebar-expanded">
+   
+        <div class="skin-default" id="wrapper">
+		<header class="navbar-header">
+			<div class="brand">
+				<a class="navbar-brand" href="index.html" title="AlphaAdmin">后台管理系统</a>
+			</div>
+			<div class="navbar">
+				 
+				<div class="navbar-menu pull-right">
+					<ul class="nav navbar-nav">
+						<li class="dropdown message">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="消息">
+								<i class="iconfont ">消息</i>
+								<span class="badge">0</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="header">
+									您有4条消息
+								</li>
+								<li class="body"> 
+								</li>
+								<li class="footer">
+									<a href="#" title="查看所有消息">
+										查看所有消息
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown notify">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="通知">
+								<i class="iconfont">通知</i>
+								<span class="badge">0</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="header">
+									您有7个通知
+								</li>
+								 
+								<li class="footer">
+									<a href="#" title="查看所有通知">
+										查看所有通知
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown user">
+							 <a href="javascript:change(0);" target="mainframe" id="A1"><%=GetTran("001478", "首页")%></a>  </li>
+						<li class="dropdown user">
+                            <a href="../Logout.aspx?tp=gongs" target="_parent"><%=GetTran("001652", "退出")%></a>
+						 
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	
+	 
+	</div>
 
-        <div class="top" style="background: url(images/topbg.gif) repeat-x; position: fixed; top: 0; left: 0; width: 100%">
+ <form id="form1" runat="server">
+
+        <div class="top" style="background: url(images/topbg.gif) repeat-x; position: fixed; top: 0; left: 0; width: 100%; display:none;">
             <div class="topleft">
                 <div class="user">
                     <marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" behavior="scroll" scrollamount="2" height="75" style="margin-left: -30px;">
@@ -212,7 +124,7 @@
 
             <div class="topright">
                 <ul>
-                    <li><a href="javascript:change(0);" target="mainframe" id="A1"><%=GetTran("001478", "首页")%></a></li>
+                    <li></li>
                     <li><span>
                         <img src="images/help.png" title="帮助" class="helpimg" /></span><a href="javascript:change(0);" target="mainframe" id="menu10" > <%=GetTran("001651", "帮助")%></a></li>
                     <li><a href="../Logout.aspx?tp=gongs" target="_parent"><%=GetTran("001652", "退出")%></a></li>

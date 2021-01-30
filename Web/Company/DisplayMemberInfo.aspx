@@ -9,22 +9,23 @@
     <script type="text/javascript" language="javascript" src="../JS/jquery-1.2.6.js"></script>
     <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
 
-    <link href="CSS/Company.css" rel="stylesheet" type="text/css" />
-
+    <link href="CSS/Company.css" rel="stylesheet" type="text/css" /> 
+    <link href="CSS/stylen.css" rel="stylesheet" />
+      <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../JS/QCDS2010.js" type="text/javascript"></script>
     <script src="../JS/SqlCheck.js" type="text/javascript"></script>
     <script src="js/companyview.js" type="text/javascript"></script>
 </head>
 <body onload="down2()">
     <form id="form1" method="post" runat="server">
-    <br />
+ 
     <table cellspacing="0" cellpadding="0" border="0" width="100%" class="biaozzi">
         <tr>
             <td align="left">
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
                         <td align="left" style="white-space: nowrap;">
-                            <asp:Button ID="btnsearch" runat="server" Text="查 询" OnClick="BtnConfirm_Click" CssClass="anyes"></asp:Button>
+                            <asp:Button ID="btnsearch" runat="server" Text="查 询" OnClick="BtnConfirm_Click" CssClass="btn btn-primary"></asp:Button>
                             <asp:DropDownList ID="DropDownExpectNum" runat="server" Visible="false">
                             </asp:DropDownList>
                             &nbsp; 手机号：<asp:TextBox ID="Number" runat="server" Width="80px"

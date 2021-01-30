@@ -7,7 +7,20 @@ body {
 }
 /*BODY TD{WHITE-SPACE:nowrap;}*/
 BODY TH{WHITE-SPACE:nowrap;}
-
+input[type="text"] {
+	border-radius: 0;
+	box-shadow: none;
+	border-color: #d2d6de;
+ 
+	color: #444;
+	border: solid 1px #ccc;
+	  
+	 
+	 
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+}
 .SmsDefaultText a:link {
 	color: #075C79;
 	text-decoration: none;
@@ -168,7 +181,11 @@ BODY TH{WHITE-SPACE:nowrap;}
 	background-color: #FAFAFA;
 	border: 1px solid #88E0F4;
 	text-indent: 10px;
-	white-space:normal;
+	white-space: normal;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-top: none;
+	border-left: none;
 }
 .tablemb a {
 	font-family: Arial;
@@ -195,15 +212,18 @@ BODY TH{WHITE-SPACE:nowrap;}
 }
 
 .tablemb th {
-	font-family: Arial;
-	font-size: 12px;
-	font-weight: bold;
-	color: #FFFFFF;
-	text-decoration: none;
-	background-image: url(../images/tabledp.gif);
-	background-repeat: repeat-x;
+	
+	line-height: 30px;
+	font-family: 'Microsoft YaHei';
 	text-align: center;
-	text-indent: 10px;
+	height: 30px;
+	font-size: 14px;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-bottom: none;
+	border-right: none;
+	color:#fff;
+	background-color: #428bca;
 }
 .tablemb th a {
 	font-family: Arial;
@@ -224,7 +244,11 @@ BODY TH{WHITE-SPACE:nowrap;}
 	text-indent: 10px;
 }
 .tablemb td {
-    white-space:normal;
+	white-space: normal;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-bottom: none;
+	border-right: none;
 }
 .biaozzi {
 	font-family: Arial;
@@ -232,6 +256,7 @@ BODY TH{WHITE-SPACE:nowrap;}
 	line-height: 24px;
 	color: #005575;
 	text-decoration: none;
+	margin:20px;
 }
 .bold {
 	font-weight: bold;
@@ -362,26 +387,48 @@ BODY TH{WHITE-SPACE:nowrap;}
 	bottom: 0px;
 }
 .anyes {
-	font-size: 12px;
-	color: #FFFFFF;
-	text-decoration: none;
-	background-image: url('../images/anliudp000.GIF');
-	background-repeat: repeat-x;
-	border: 1px solid #132022;
-	cursor:pointer;
-	font-family: Arial, Helvetica, sans-serif;
-	height: 23px;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd; 
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
 }
 .another {
-	font-size: 12px;
-	color: #FFFFFF;
-	text-decoration: none;
-	background-image: url(../images/anliudp000.GIF);
-	background-repeat: repeat-x;
-	height: 22px;
-	border: 1px solid #132022;
-	cursor:pointer;
-	font-family: Arial, Helvetica, sans-serif;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
 }
 .tbkanliu {
 	font-family: Arial;
@@ -592,3 +639,5 @@ border-collapse: collapse;
 .H2 {
 border-collapse: collapse;
 }
+
+ 

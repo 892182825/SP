@@ -11,6 +11,9 @@
     <script language="javascript" type="text/javascript" src="../js/SqlCheck.js"></script>
     <script language="javascript" type="text/javascript" src="../JS/jquery-1.2.6.js"></script>
     <link href="CSS/Company.css" rel="stylesheet" type="text/css" />
+        <link href="CSS/stylen.css" rel="stylesheet" />
+      <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
     <script src="../JS/QCDS2010.js" type="text/javascript"></script>
     <script type="text/javascript">
         function down2() {
@@ -75,7 +78,7 @@
         <table width="99%" border="0" cellpadding="0" cellspacing="0" style="word-break: keep-all; word-wrap: normal;" class="biaozzi">
             <tr>
                 <td>
-                    <asp:Button ID="btnSearch" runat="server" CssClass="anyes" Text=" " OnClick="btnSearch_Click" />
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary" Text=" " OnClick="btnSearch_Click" />
                     <asp:DropDownList ID="ddlType" runat="server">
                         <asp:ListItem Selected="True" Value="0">报单期数</asp:ListItem>
                         <asp:ListItem Value="1">审核期数</asp:ListItem>
