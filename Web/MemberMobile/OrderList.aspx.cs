@@ -10,11 +10,7 @@ public partial class OrderList : BLL.TranslationBase
     decimal num = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-       // Session["Member"] = "40321e6e52a6cd5bc6d3adc3d85023c3";
-        //  AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxClass));
-        //Session["Member"] = "d2918447acbc262fbcb01efce558752c";
-        //Permissions.MemRedirect(Page, Permissions.redirUrl);
+         
         Response.Cache.SetExpires(DateTime.Now);
         if (!IsPostBack)
         {
@@ -38,19 +34,19 @@ public partial class OrderList : BLL.TranslationBase
 
         DataTable dt_config = DAL.DBHelper.ExecuteDataTable("select top 1  * from config order  by id desc");
         //  ConfigModel cm = ConfigDAL.GetConfig();
-        int x1p = 0; int x2p = 0; int x3p = 0; int x4p = 0; int x5p = 0; int x6p = 0; int x7p = 0;
-        double x1cn = 0; double x2cn = 0; double x3cn = 0; double x4cn = 0; double x5cn = 0; double x6cn = 0; double x7cn = 0;
+        int x1p = 0; int x2p = 0; int x3p = 0; int x4p = 0; int x5p = 0; int x6p = 0; int x7p = 0; int x8p = 0;
+        double x1cn = 0; double x2cn = 0; double x3cn = 0; double x4cn = 0; double x5cn = 0; double x6cn = 0; double x7cn = 0; double x8cn = 0;
         if (dt_config != null && dt_config.Rows.Count > 0)
         {
             DataRow dr = dt_config.Rows[0];
             x1p = Convert.ToInt32(dr["para1"]); x2p = Convert.ToInt32(dr["para2"]);
             x3p = Convert.ToInt32(dr["para3"]); x4p = Convert.ToInt32(dr["para4"]);
             x5p = Convert.ToInt32(dr["para5"]); x6p = Convert.ToInt32(dr["para6"]);
-            x7p = Convert.ToInt32(dr["para7"]);
+            x7p = Convert.ToInt32(dr["para7"]); x8p = Convert.ToInt32(dr["para28"]);
             x1cn = Convert.ToDouble(dr["para8"]) * 100; x2cn = Convert.ToDouble(dr["para9"]) * 100;
             x3cn = Convert.ToDouble(dr["para10"]) * 100; x4cn = Convert.ToDouble(dr["para11"]) * 100;
             x5cn = Convert.ToDouble(dr["para12"]) * 100; x6cn = Convert.ToDouble(dr["para13"]) * 100;
-            x7cn = Convert.ToDouble(dr["para14"]) * 100;
+            x7cn = Convert.ToDouble(dr["para14"]) * 100; x8cn = Convert.ToDouble(dr["para29"]) * 100;
         }
         int lebuy = 0;
         //lebuy = Convert.ToInt32(DBHelper.ExecuteScalar("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
@@ -66,13 +62,14 @@ public partial class OrderList : BLL.TranslationBase
         if (lv == 5) { usd = x5p; usdcn = x5cn + "%"; }
         if (lv == 6) { usd = x6p; usdcn = x6cn + "%"; }
         if (lv == 7) { usd = x7p; usdcn = x7cn + "%"; }
+        if (lv == 8) { usd = x8p; usdcn = x8cn + "%"; }
         string html = @" <ul>";
         string h = "";
         if (lv > 0)
         {
             html += @"
 <li    > <div class='ltimg'><img src = 'img/btb.png'  alt='X1' /></div><div class='dsc1' > <p class='p1' >Super-Planet-X" + lv + "</p> <p class='p2'>" + usd + @" USDT</p> <p class='p3'>矿机价格</p>
-</div><div class='dsc2' >" + acthtml + "<p class='p1'>&nbsp;" + usdcn + @"</p><p class='p3'></p><p class='p2'> 激活</p>   </div>  </ li > ";
+</div><div class='dsc2' >" + acthtml + "<p class='p1'>&nbsp;" + usdcn + @"</p><p class='p3'></p><p class='p2'>已激活</p>   </div>  </ li > ";
         }
 
 

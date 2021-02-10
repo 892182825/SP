@@ -412,7 +412,10 @@ namespace DAL
                             case 3000:
                                 lv = 7;
                                 break;
-                        }
+                                case 10000:
+                                    lv = 8;
+                                    break;
+                            }
                         //修改会员账户
                         int r = DBHelper.ExecuteNonQuery(tran, "update memberinfo set  levelint=" + lv + "  where number='" + number + "' ");
 

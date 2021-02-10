@@ -19,6 +19,9 @@ public partial class ReCast : BLL.TranslationBase
             if (Session["orderid"] != null)
             {
                 string orderid = Session["orderid"].ToString();
+                try
+                {
+
                 string getresult = CommandAPI.getzf(orderid);
                 string[] rlist = getresult.Split(',');
                 //修改订单状态
@@ -60,6 +63,13 @@ public partial class ReCast : BLL.TranslationBase
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机失败！');</script>", false);
                 }
+
+
+                }
+                catch (Exception)
+                {
+                     
+                }
             }
             else {
                 //查询 当前会员未支付订单
@@ -75,7 +85,10 @@ public partial class ReCast : BLL.TranslationBase
                     {
                         string orderid = item["orderid"].ToString();
                         double ttmoney = Convert.ToDouble(item["totalmoney"]);
+                            try
+                            {
 
+                          
                         string ddz = CommandAPI.getzf(orderid);
                         if (ddz == "SUCCESS")
                         {
@@ -85,7 +98,12 @@ public partial class ReCast : BLL.TranslationBase
 
                             if(rr==1 && eneed>0)  MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
                         }
-                    }
+                            }
+                            catch (Exception)
+                            {
+                                
+                            }
+                        }
 
                     }
                 }
@@ -120,19 +138,19 @@ public partial class ReCast : BLL.TranslationBase
 
         DataTable dt_config = DAL.DBHelper.ExecuteDataTable("select top 1  * from config order  by id desc");
         //  ConfigModel cm = ConfigDAL.GetConfig();
-        int x1p = 0; int x2p = 0; int x3p = 0; int x4p = 0; int x5p = 0; int x6p = 0; int x7p = 0;
-        double x1cn = 0; double x2cn = 0; double x3cn = 0; double x4cn = 0; double x5cn = 0; double x6cn = 0; double x7cn = 0;
+        int x1p = 0; int x2p = 0; int x3p = 0; int x4p = 0; int x5p = 0; int x6p = 0; int x7p = 0; int x8p = 0;
+        double x1cn = 0; double x2cn = 0; double x3cn = 0; double x4cn = 0; double x5cn = 0; double x6cn = 0; double x7cn = 0; double x8cn = 0;
         if (dt_config != null && dt_config.Rows.Count > 0)
         {
             DataRow dr = dt_config.Rows[0];
             x1p = Convert.ToInt32(dr["para1"]); x2p = Convert.ToInt32(dr["para2"]);
             x3p = Convert.ToInt32(dr["para3"]); x4p = Convert.ToInt32(dr["para4"]);
             x5p = Convert.ToInt32(dr["para5"]); x6p = Convert.ToInt32(dr["para6"]);
-            x7p = Convert.ToInt32(dr["para7"]);
+            x7p = Convert.ToInt32(dr["para7"]); x8p = Convert.ToInt32(dr["para28"]);
             x1cn = Convert.ToDouble(dr["para8"]) * 100; x2cn = Convert.ToDouble(dr["para9"]) * 100;
             x3cn = Convert.ToDouble(dr["para10"]) * 100; x4cn = Convert.ToDouble(dr["para11"]) * 100;
             x5cn = Convert.ToDouble(dr["para12"]) * 100; x6cn = Convert.ToDouble(dr["para13"]) * 100;
-            x7cn = Convert.ToDouble(dr["para14"]) * 100;
+            x7cn = Convert.ToDouble(dr["para14"]) * 100; x8cn = Convert.ToDouble(dr["para29"]) * 100;
         }
         int lebuy = 0;
         lebuy = Convert.ToInt32(DBHelper.ExecuteScalar("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
@@ -147,12 +165,16 @@ public partial class ReCast : BLL.TranslationBase
 </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x1cn + @"%</p><p class='p3'>日收益率</p>   </div>
                 </li>";
         }
-        if (lv < 7)
-            h = @"<li><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7(未开放)</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
-<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
+        if (lv < 8)
+            h = @"<li  onclick='showbuy(8)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X8' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X8</p> <p class='p2'> " + x8p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
+<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x8cn + @"%</p><p class='p3'>日收益率</p>   </div>
                    </li>";
+        if (lv < 7)
+            h = @"<li  onclick='showbuy(7)'><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
+<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
+                   </li>" + h;
         if (lv < 6)
-            h = @"<li><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6(未开放)</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
+            h = @"<li  onclick='showbuy(6)'><div class='ltimg'><img src = 'img/btb.png'  alt='X6' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X6</p> <p class='p2'> " + x6p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x6cn + @"%</p><p class='p3'>日收益率</p>   </div>
                    </li>" + h;
         if (lv < 5)
             h = @" <li onclick='showbuy(5)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X5' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X5</p> <p class='p2'> " + x5p + @" USDT</p><p class='p3'>矿机价格</p> </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x5cn + @"%</p><p class='p3'>日收益率</p>   </div>
@@ -262,7 +284,7 @@ public partial class ReCast : BLL.TranslationBase
         int jd = Common.GetcurJieDuan();//获取阶段状态
         if ((lv == 1 || (lv == 0 && chosenum > 1)) && jd == 1)
             zhye = CommandAPI.GetActMoney();
-        if (chosenum < 0 || chosenum > 7 || lv > chosenum)
+        if (chosenum < 0 || chosenum > 8 || lv > chosenum)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('请选择矿机！');</script>", false);
             return;
@@ -292,7 +314,8 @@ public partial class ReCast : BLL.TranslationBase
         if (lv == 4) yymoney = cm.Para4;
         if (lv == 5) yymoney = cm.Para5;
         if (lv == 6) yymoney = cm.Para6;
-        if (lv == 7) ordertype = 25;  //复投
+        if (lv == 7) yymoney = cm.Para7;
+        if (lv == 8) ordertype = 25;  //复投
         if (chosenum == 1) { ttmoney = cm.Para1; ttpv = 0; }//20u 不计算业绩
         if (chosenum == 2) { ttmoney = cm.Para2 - yymoney; ttpv = cm.Para2 - yymoney; }
         if (chosenum == 3) { ttmoney = cm.Para3 - yymoney; ttpv = cm.Para3 - yymoney; }
@@ -300,7 +323,7 @@ public partial class ReCast : BLL.TranslationBase
         if (chosenum == 5) { ttmoney = cm.Para5 - yymoney; ttpv = cm.Para5 - yymoney; }
         if (chosenum == 6) { ttmoney = cm.Para6 - yymoney; ttpv = cm.Para6 - yymoney; }
         if (chosenum == 7) { ttmoney = cm.Para7 - yymoney; ttpv = cm.Para7 - yymoney; }
-
+        if (chosenum == 8) { ttmoney = cm.Para28 - yymoney; ttpv = cm.Para28 - yymoney; }
         if (yymoney > 0) { isagain = 1; ordertype = 24; }//升级
 
         DataTable dtmb = DBHelper.ExecuteDataTable("select pointAin-pointAout  as  ablc,pointbin-pointbout  as  bblc,pointcin-pointcout  as  cblc,pointdin-pointdout  as  dblc,pointein-pointeout  as  eblc  from memberinfo where number='" + number + "'");
