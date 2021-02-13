@@ -78,18 +78,18 @@ public partial class ReCast : BLL.TranslationBase
                 try
                 {
 
-               
-                if (dtordernopay.Rows.Count > 0) {  
-                double cep = Convert.ToDouble(DBHelper.ExecuteScalar("select   coinnewprice  from CoinPlant where CoinIndex='CoinE'  "));
-                    foreach (DataRow item in dtordernopay.Rows)
-                    {
-                        string orderid = item["orderid"].ToString();
-                        double ttmoney = Convert.ToDouble(item["totalmoney"]);
-                            try
-                            {
 
-                          
-                        string ddz = CommandAPI.getzf(orderid);
+                    if (dtordernopay.Rows.Count > 0)
+                    {
+                        double cep = Convert.ToDouble(DBHelper.ExecuteScalar("select   coinnewprice  from CoinPlant where CoinIndex='CoinE'  "));
+                        foreach (DataRow item in dtordernopay.Rows)
+                        {
+                            string orderid = item["orderid"].ToString();
+                            double ttmoney = Convert.ToDouble(item["totalmoney"]);
+
+
+
+                            string ddz = CommandAPI.getzf(orderid);
                             if (ddz == "SUCCESS")
                             {
                                 int choselv = 0;// Convert.ToInt32(Session["choselv"]);
@@ -102,15 +102,16 @@ public partial class ReCast : BLL.TranslationBase
                             }
                             else
                             {
-                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('"+ ddz + "');</script>", false);
+                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('" + ddz + "');</script>", false);
                             }
-                    }
+
+                        }
 
                     }
                 }
                 catch (Exception)
                 {
-                     
+
                 }
 
 
