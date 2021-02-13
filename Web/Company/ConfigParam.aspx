@@ -117,6 +117,18 @@
             </td>
             <td>&nbsp;</td>
         </tr>
+
+         <tr>
+             <td class="style1">
+               X8矿机价格&nbsp;<asp:TextBox Id = "txtPara28" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+            <td class="style2">
+                X8矿机收益率&nbsp;<asp:TextBox Id = "txtPara29" runat="server" MaxLength="7"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+
+
         <tr><td class="style1">
                 A币每日涨幅 &nbsp;<asp:TextBox Id = "txtPara15" runat="server" MaxLength="15"></asp:TextBox>
             </td>

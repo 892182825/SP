@@ -53,6 +53,7 @@
             if (num == 5) html += "支付1000 USDT";
             if (num == 6) html += "支付1500 USDT";
             if (num == 7) html += "支付3000 USDT";
+            if (num == 8) html += "支付10000 USDT";
             $("#sbuyinfo").html(html);
         }
 

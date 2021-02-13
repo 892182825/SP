@@ -79,7 +79,9 @@ public partial class Company_BauseParam : BLL.TranslationBase
         this.txtPara25.Text = model.Para25.ToString();
         this.txtPara26.Text = model.Para26.ToString();
         this.txtPara27.Text = model.Para27.ToString();
-        
+        this.txtPara28.Text = model.Para28.ToString();
+        this.txtPara29.Text = model.Para29.ToString();
+
         //SqlDataReader sdr = DAL.DBHelper.ExecuteReader("Select Top 1 * From jykz ORDER BY ID");
         //while (sdr.Read())
         //{
@@ -134,8 +136,9 @@ public partial class Company_BauseParam : BLL.TranslationBase
             model.Para25 = double.Parse(this.txtPara25.Text);
             model.Para26 = double.Parse(this.txtPara26.Text);
             model.Para27 = double.Parse(this.txtPara27.Text);
+            model.Para28 = double.Parse(this.txtPara28.Text);
+            model.Para29 = double.Parse(this.txtPara29.Text);
 
-        
         }
         catch (FormatException)
         {

@@ -180,6 +180,17 @@ namespace DAL
                 model.Para17 = double.Parse(dr["Para17"].ToString());
                 model.Para18 = double.Parse(dr["Para18"].ToString());
                 model.Para19 = double.Parse(dr["Para19"].ToString());
+                model.Para20 = double.Parse(dr["Para20"].ToString());
+                model.Para21 = double.Parse(dr["Para21"].ToString());
+                model.Para22 = double.Parse(dr["Para22"].ToString());
+                model.Para23 = double.Parse(dr["Para23"].ToString());
+                model.Para24 = double.Parse(dr["Para24"].ToString());
+                model.Para25 = double.Parse(dr["Para25"].ToString());
+                model.Para26 = double.Parse(dr["Para26"].ToString());
+                model.Para27 = double.Parse(dr["Para27"].ToString());
+                model.Para28 = double.Parse(dr["Para28"].ToString());
+                model.Para29 = double.Parse(dr["Para29"].ToString());
+               
             }
             dr.Close();
             dr.Dispose();
@@ -259,12 +270,14 @@ namespace DAL
                              new SqlParameter("@Para25",model.Para25),
                                 new SqlParameter("@Para26",model.Para26),
                                    new SqlParameter("@Para27",model.Para27),
+                                     new SqlParameter("@Para28",model.Para28),
+                                       new SqlParameter("@Para29",model.Para29),
               new SqlParameter("@expectNum",model.ExpectNum)
             };
             string sql = @"update config set Para1=@Para1,Para2=@Para2,Para3=@Para3,Para4=@Para4,Para5=@Para5,
 Para6=@Para6,Para7=@Para7,Para8=@Para8,Para9=@Para9,Para10=@Para10,Para11=@Para11,Para12=@Para12,Para13=@Para13,Para14=@Para14,Para15=@Para15,
 Para16=@Para16,Para17=@Para17,Para18=@Para18,Para19=@Para19,Para20=@Para20,Para21=@Para21,Para22=@Para22,Para23=@Para23,Para24=@Para24,Para25=@Para25,
-Para26=@Para26,Para27=@Para27  where expectNum=@expectNum";
+Para26=@Para26,Para27=@Para27,Para28=@Para28,Para29=@Para29  where expectNum=@expectNum";
             return DBHelper.ExecuteNonQuery(sql, paras, CommandType.Text);
         }
 
