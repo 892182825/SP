@@ -60,7 +60,7 @@
                         <td style="border-bottom:1px solid #88E0F4;"><%#getCoinType( Eval("actype").ToString())  %></td>
                         <td style="border-bottom:1px solid #88E0F4;"><%# Convert.ToDouble(Eval("InvestJB")).ToString("f4") %></td>  
                         <td style="border-bottom:1px solid #88E0F4;"><%# Convert.ToDouble(Eval("pricejb")).ToString("f4") %></td> 
-                        <td style="border-bottom:1px solid #88E0F4;"><%#DateTime.Parse( Eval("remittancesdate").ToString()).AddHours(8) %></td>
+                        <td style="border-bottom:1px solid #88E0F4;"><%#Convert.ToDateTime(Eval("remittancesdate")).ToString("yyyy-MM-dd HH:mm:ss") %></td>
                         <td style="border-bottom:1px solid #88E0F4;"><%#getstate(Eval("shenhestate").ToString()) %></td>
 
                 <td style="border-bottom:1px solid #88E0F4;"><%#getstatedate(Eval("shenhestate").ToString() ,  Eval("ReceivablesDate")) %></td>

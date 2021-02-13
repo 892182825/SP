@@ -171,7 +171,7 @@ public class CommandAPI : BLL.TranslationBase
         // money.Text = rspp;
         string zt = stJson["data"]["trade_status"].ToString();
         int skje = Convert.ToInt32(stJson["data"]["settle_trans_amount"]);
-        return zt + "," + skje;
+        return zt;
         //if (zt == "SUCCESS")
         //{
 

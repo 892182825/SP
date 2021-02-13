@@ -9,9 +9,11 @@
 <head runat="server">
     <title>报单浏览</title>
     <script language="javascript" type="text/javascript" src="../js/SqlCheck.js"></script>
-    <script language="javascript" type="text/javascript" src="../JS/jquery-1.2.6.js"></script>
+    <script language="javascript" type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery-1.4.3.min.js"></script>
     <link href="CSS/Company.css" rel="stylesheet" type="text/css" />
         <link href="CSS/stylen.css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="../js/SqlCheck.js"></script>
       <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <script src="../JS/QCDS2010.js" type="text/javascript"></script>
@@ -70,7 +72,7 @@
             width: 150px;
         }
     </style>
-    <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+    
 </head>
 <body onload="down2()">
     <form id="form1" runat="server">
@@ -174,7 +176,7 @@
                                 <asp:TemplateField HeaderText="报单时间" ItemStyle-Wrap="false">
                                     <ItemStyle HorizontalAlign="Center" />
                                     <ItemTemplate>
-                                        <%# GetRegisterDate(DataBinder.Eval(Container.DataItem, "OrderDate").ToString())%>
+                                        <%# DataBinder.Eval(Container.DataItem, "OrderDate").ToString()%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="收货人手机号"  Visible="false">

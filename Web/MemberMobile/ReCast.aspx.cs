@@ -77,14 +77,20 @@ public partial class ReCast : BLL.TranslationBase
                         double ttmoney = Convert.ToDouble(item["totalmoney"]);
 
                         string ddz = CommandAPI.getzf(orderid);
-                        if (ddz == "SUCCESS")
-                        {
+                            if (ddz == "SUCCESS")
+                            {
                                 int choselv = 0;// Convert.ToInt32(Session["choselv"]);
-                            double eneed = (ttmoney * 0.05) / cep;
-                            int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
+                                double eneed = (ttmoney * 0.05) / cep;
+                                int rr = MemberOrderDAL.PayOrder(number, orderid, 0, 0, 0, 0, choselv, "USDT账户支付成功");
 
-                            if(rr==1 && eneed>0)  MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
-                        }
+                                if (rr == 1 && eneed > 0) MemberOrderDAL.payOrderEcoin(number, orderid, eneed, "E币支付，激活成功！");
+
+                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('购买矿机激活成功！');</script>", false);
+                            }
+                            else
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "", "<script>showsuc('"+ ddz + "');</script>", false);
+                            }
                     }
 
                     }

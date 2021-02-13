@@ -56,7 +56,7 @@
                         <td style="border-bottom:1px solid #88E0F4;"><%# Convert.ToDouble(Eval("InvestJB")).ToString("f4") %></td>  
                         <td style="border-bottom:1px solid #88E0F4;"><%# Convert.ToDouble(Eval("pricejb")).ToString("f4") %></td> 
 
-                        <td style="border-bottom:1px solid #88E0F4;"><%# Eval("WithdrawTime") !=DBNull.Value ? DateTime.Parse(Eval("WithdrawTime").ToString()).AddHours(8).ToString() :"" %></td>
+                        <td style="border-bottom:1px solid #88E0F4;"><%# Eval("WithdrawTime") !=DBNull.Value ? Convert.ToDateTime(Eval("WithdrawTime")).ToString("yyyy-MM-dd HH:mm:ss") :"" %></td>
                         <td style="border-bottom:1px solid #88E0F4;"><%# getstate(Eval("shenhestate").ToString()) %></td>
 
                         <td style="border-bottom:1px solid #88E0F4;"><%#getstatedate(Eval("shenhestate").ToString() ,  Eval("AuditingTime")) %></td>
