@@ -537,7 +537,7 @@ public partial class Company_AuditWithdraw : BLL.TranslationBase
 
     protected string GetAuditTime(string AuditTime)
     {
-        if (AuditTime == "1900-1-1 0:00:00")
+        if (AuditTime == "1900-1-1 0:00:00"|| AuditTime=="")
         {
             return "";
         }

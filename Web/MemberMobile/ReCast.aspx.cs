@@ -148,11 +148,11 @@ public partial class ReCast : BLL.TranslationBase
             x1p = Convert.ToInt32(dr["para1"]); x2p = Convert.ToInt32(dr["para2"]);
             x3p = Convert.ToInt32(dr["para3"]); x4p = Convert.ToInt32(dr["para4"]);
             x5p = Convert.ToInt32(dr["para5"]); x6p = Convert.ToInt32(dr["para6"]);
-            x7p = Convert.ToInt32(dr["para7"]); x8p = Convert.ToInt32(dr["para28"]);
+            x7p = Convert.ToInt32(dr["para7"]); /*x8p = Convert.ToInt32(dr["para28"]);*/
             x1cn = Convert.ToDouble(dr["para8"]) * 100; x2cn = Convert.ToDouble(dr["para9"]) * 100;
             x3cn = Convert.ToDouble(dr["para10"]) * 100; x4cn = Convert.ToDouble(dr["para11"]) * 100;
             x5cn = Convert.ToDouble(dr["para12"]) * 100; x6cn = Convert.ToDouble(dr["para13"]) * 100;
-            x7cn = Convert.ToDouble(dr["para14"]) * 100; x8cn = Convert.ToDouble(dr["para29"]) * 100;
+            x7cn = Convert.ToDouble(dr["para14"]) * 100; /*x8cn = Convert.ToDouble(dr["para29"]) * 100;*/
         }
         int lebuy = 0;
         lebuy = Convert.ToInt32(DBHelper.ExecuteScalar("select  countin-countout as lebuy  from Levelbuy  where levelint=1 "));
@@ -167,10 +167,7 @@ public partial class ReCast : BLL.TranslationBase
 </div><div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x1cn + @"%</p><p class='p3'>日收益率</p>   </div>
                 </li>";
         }
-        if (lv < 8)
-            h = @"<li  onclick='showbuy(8)' ><div class='ltimg'><img src = 'img/btb.png'  alt='X8' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X8</p> <p class='p2'> " + x8p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
-<div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x8cn + @"%</p><p class='p3'>日收益率</p>   </div>
-                   </li>";
+
         if (lv < 7)
             h = @"<li  onclick='showbuy(7)'><div class='ltimg'><img src = 'img/btb.png'  alt='X7' /></div><div class='dsc1' > <p class='p1'>Super-Planet-X7</p> <p class='p2'> " + x7p + @" USDT</p><p class='p3'>矿机价格</p>  </div>
 <div class='dsc2' ><p class='p1'>&nbsp;</p><p class='p2'>" + x7cn + @"%</p><p class='p3'>日收益率</p>   </div>
@@ -317,7 +314,7 @@ public partial class ReCast : BLL.TranslationBase
         if (lv == 5) yymoney = cm.Para5;
         if (lv == 6) yymoney = cm.Para6;
         if (lv == 7) yymoney = cm.Para7;
-        if (lv == 8) ordertype = 25;  //复投
+        if (lv == 7) ordertype = 25;  //复投
         if (chosenum == 1) { ttmoney = cm.Para1; ttpv = 0; }//20u 不计算业绩
         if (chosenum == 2) { ttmoney = cm.Para2 - yymoney; ttpv = cm.Para2 - yymoney; }
         if (chosenum == 3) { ttmoney = cm.Para3 - yymoney; ttpv = cm.Para3 - yymoney; }
@@ -325,7 +322,7 @@ public partial class ReCast : BLL.TranslationBase
         if (chosenum == 5) { ttmoney = cm.Para5 - yymoney; ttpv = cm.Para5 - yymoney; }
         if (chosenum == 6) { ttmoney = cm.Para6 - yymoney; ttpv = cm.Para6 - yymoney; }
         if (chosenum == 7) { ttmoney = cm.Para7 - yymoney; ttpv = cm.Para7 - yymoney; }
-        if (chosenum == 8) { ttmoney = cm.Para28 - yymoney; ttpv = cm.Para28 - yymoney; }
+        //if (chosenum == 8) { ttmoney = cm.Para28 - yymoney; ttpv = cm.Para28 - yymoney; }
         if (yymoney > 0) { isagain = 1; ordertype = 24; }//升级
 
         DataTable dtmb = DBHelper.ExecuteDataTable("select pointAin-pointAout  as  ablc,pointbin-pointbout  as  bblc,pointcin-pointcout  as  cblc,pointdin-pointdout  as  dblc,pointein-pointeout  as  eblc  from memberinfo where number='" + number + "'");

@@ -149,9 +149,9 @@ public partial class Member_First : BLL.TranslationBase
                 if (lv == 5)
                 { Label1.Text = "1000U矿机"; }
                 if (lv == 6)
-                { Label1.Text = "1500U矿机"; }
-                if (lv == 7)
                 { Label1.Text = "3000U矿机"; }
+                if (lv == 7)
+                { Label1.Text = "10000U矿机"; }
                 if (lv == 0)
                 {
 

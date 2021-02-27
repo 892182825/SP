@@ -209,13 +209,13 @@
                                                 <asp:TemplateField HeaderText="提现时间">
                                                     <ItemStyle HorizontalAlign="Center" />
                                                     <ItemTemplate>
-                                                        <%# DataBinder.Eval(Container.DataItem, "WithdrawTime").ToString() %>
+                                                        <%# GetWithdrawTime(DataBinder.Eval(Container.DataItem, "WithdrawTime").ToString())%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="审核时间">
                                                     <ItemStyle HorizontalAlign="Center" />
                                                     <ItemTemplate>
-                                                        <%# DataBinder.Eval(Container.DataItem,"AuditingTime").ToString() %>
+                                                        <%# GetAuditTime(DataBinder.Eval(Container.DataItem,"AuditingTime").ToString()) %>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="提现位置">
